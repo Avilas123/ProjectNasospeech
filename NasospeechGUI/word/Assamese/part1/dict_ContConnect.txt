@@ -1,0 +1,6 @@
+band	band
+garb	garb
+mara	mara
+saul	saul
+tita	tita
+xari	xari
