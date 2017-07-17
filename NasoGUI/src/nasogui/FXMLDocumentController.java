@@ -21,6 +21,7 @@ public class FXMLDocumentController implements Initializable {
     
     private Label label;
     
+    
    
     
     @Override

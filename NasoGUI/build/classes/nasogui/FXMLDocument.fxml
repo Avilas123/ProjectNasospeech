@@ -57,7 +57,7 @@
             <Image url="@../icons/title.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="573.0" fitWidth="893.0" layoutX="3.0" layoutY="31.0" nodeOrientation="INHERIT" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="31.0">
+      <ImageView disable="true" fitHeight="573.0" fitWidth="893.0" layoutX="2.0" layoutY="31.0" nodeOrientation="INHERIT" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="31.0">
          <image>
             <Image url="@../icons/grey-texture-wallpaper-1.jpg" />
          </image>
@@ -84,6 +84,102 @@
                </image>
             </ImageView>
          </graphic>
+      </Button>
+      <Button layoutX="5.0" layoutY="32.0" mnemonicParsing="false">
+         <graphic>
+            <ImageView fitHeight="33.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/fo.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font size="1.0" />
+         </font>
+      </Button>
+      <Button layoutX="41.0" layoutY="32.0" mnemonicParsing="false">
+         <graphic>
+            <ImageView fitHeight="33.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/search-icon-hi.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font size="1.0" />
+         </font>
+      </Button>
+      <Button layoutX="78.0" layoutY="32.0" mnemonicParsing="false">
+         <graphic>
+            <ImageView fitHeight="33.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/playicon.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font size="1.0" />
+         </font>
+      </Button>
+      <Button layoutX="114.0" layoutY="32.0" mnemonicParsing="false">
+         <graphic>
+            <ImageView fitHeight="33.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/stop-flat.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font size="1.0" />
+         </font>
+      </Button>
+      <Button layoutX="150.0" layoutY="32.0" mnemonicParsing="false">
+         <graphic>
+            <ImageView fitHeight="33.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/recordicon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font size="1.0" />
+         </font>
+      </Button>
+      <Button layoutX="186.0" layoutY="32.0" mnemonicParsing="false">
+         <graphic>
+            <ImageView fitHeight="33.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/forwardicon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font size="1.0" />
+         </font>
+      </Button>
+      <Button layoutX="222.0" layoutY="32.0" mnemonicParsing="false">
+         <graphic>
+            <ImageView fitHeight="33.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/rewindicon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font size="1.0" />
+         </font>
+      </Button>
+      <Button layoutX="258.0" layoutY="32.0" mnemonicParsing="false">
+         <graphic>
+            <ImageView fitHeight="33.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/cropicon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font size="1.0" />
+         </font>
       </Button>
    </children>
 </AnchorPane>
