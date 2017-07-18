@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,7 +13,13 @@
 
 <AnchorPane id="AnchorPane" prefHeight="604.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nasogui.FXMLDocumentController">
    <children>
-      <MenuBar layoutX="40.0" layoutY="2.0" style="-fx-background-color: #aaaaaa;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ImageView disable="true" fitHeight="573.0" fitWidth="893.0" layoutX="2.0" layoutY="31.0" nodeOrientation="INHERIT" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="31.0">
+         <image>
+            <Image url="@../icons/grey-texture-wallpaper-1.jpg" />
+         </image>
+      </ImageView>
+      <ToolBar layoutY="29.0" prefHeight="40.0" prefWidth="900.0" style="-fx-background-color: #aaaaaa;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0" />
+      <MenuBar layoutY="2.0" prefHeight="29.0" prefWidth="900.0" style="-fx-background-color: #aaaaaa;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -22,8 +29,7 @@
                   <MenuItem mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
+          <Menu mnemonicParsing="false" text="Edit">           <items>
               <MenuItem mnemonicParsing="false" text="Play" />
                   <MenuItem mnemonicParsing="false" text="Pause" />
                   <MenuItem mnemonicParsing="false" text="Stop" />
@@ -45,23 +51,14 @@
                   <MenuItem mnemonicParsing="false" text="Select and Analyse" />
                </items>
             </Menu>
+            <Menu mnemonicParsing="false" text="About">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Nasospeech" />
+                  <MenuItem mnemonicParsing="false" text="Help" />
+               </items>
+            </Menu>
         </menus>
       </MenuBar>
-      <ImageView fitHeight="29.0" fitWidth="40.0" layoutX="3.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../icons/nasolatest%20small.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="29.0" fitWidth="277.0" layoutX="326.0" layoutY="1.0" pickOnBounds="true">
-         <image>
-            <Image url="@../icons/title.png" />
-         </image>
-      </ImageView>
-      <ImageView disable="true" fitHeight="573.0" fitWidth="893.0" layoutX="2.0" layoutY="31.0" nodeOrientation="INHERIT" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="31.0">
-         <image>
-            <Image url="@../icons/grey-texture-wallpaper-1.jpg" />
-         </image>
-      </ImageView>
       <Label layoutX="291.0" layoutY="261.0" prefHeight="64.0" prefWidth="396.0" text="Open a sound sample" textAlignment="CENTER" textFill="#d79696" AnchorPane.bottomAnchor="279.0" AnchorPane.leftAnchor="291.0" AnchorPane.rightAnchor="213.0" AnchorPane.topAnchor="261.0">
          <font>
             <Font name="DejaVu Serif Condensed Bold" size="35.0" />
@@ -72,15 +69,6 @@
             <ImageView fitHeight="69.0" fitWidth="77.0" pickOnBounds="true">
                <image>
                   <Image url="@../icons/open%20folder%20icon.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button layoutX="853.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="45.0">
-         <graphic>
-            <ImageView fitHeight="22.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../icons/blue-rounded-help-button-26862.jpg" />
                </image>
             </ImageView>
          </graphic>
