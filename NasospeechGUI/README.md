@@ -8,3 +8,4 @@ Worked with C code for graphic scale design to integrate with MFCC and GMM
 <Roshan Chettri, 14th July, 5:15pm> Designed the new GUI home page(Partially) and annotated 3 speech files upon correction by Vikram Da.
 <Roshan Chettri, 17th july 4:57 pm> Added button icons to the gui and annotated 2 speech files, 5 in total. (Leaving early to attend Prasanna sir's talk on research pain and pleasure).
 <Dikshita Kalita, 17th july 4:59pm> Designed the Nasospeech website and annotated 2 speech files, 4 in total. 
+<Dikshita Kalita, 18th july 4:55pm>Designed the  Nasospeech website and annotated 1 file
