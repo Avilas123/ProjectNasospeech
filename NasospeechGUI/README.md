@@ -11,3 +11,4 @@ Worked with C code for graphic scale design to integrate with MFCC and GMM
 <Dikshita Kalita, 18th july 4:55pm>Designed the  Nasospeech website and annotated 1 file
 <Roshan Chettri, 18th july 6:21pm> Modified the GUI as instructed by Abhishek Sir, and also studied about how to integrate previous GUI codes to the new one. Also annotated 2 speech files.
 <Dikshita Kalita,19 july,2017 5:18pm>96% Nasospeech Website done.Required the photos and names of faculty members and project staff.
+<Dikshita Kalita,20 july,2017 3:40pm>Completed The nasospeech website till date.Can be modified for further requirements.
