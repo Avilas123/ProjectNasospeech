@@ -1,0 +1,155 @@
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 1.8em;
+	line-height: 1.7em;
+	font-weight: 300;
+	color: #646464;
+	background-color: #ffffff;
+}
+h1, h2, h3, h4, h5, h6 {
+	color: #545454;
+	font-weight: 600;
+	line-height: 1.3em;
+}
+h2 {
+	margin-top: 1.3em;
+}
+/*a {
+    font-size: 18px;
+    color: #0099cc;
+    cursor: pointer;
+    text-decoration: none;
+}*/
+a:link {
+/*	ffont-size: 18px;*/
+	text-decoration: none;
+	color: #0099cc;
+}
+a:visited {
+/*	ffont-size: 18px;*/
+	color: #0099cc;
+	text-decoration: none;
+}
+a:hover {
+/*	ffont-size: 18px;*/
+	color: #007399;
+	text-decoration: none;
+}
+a:active {
+	font-size: 18px;
+	color: #0099cc;
+	text-decoration: none;
+}
+p#testingP {
+	margin-top: 10px;
+	font-size: 0.8em;
+	line-height: 1.5em;
+	padding-bottom: 10px;
+	border-bottom: dashed 1px #AFAFAF;
+	text-align: justify;
+}
+p.lhsstory {
+	margin-top: 10px;
+	font-size: 0.8em;
+	line-height: 1.5em;
+	padding-bottom: 10px;
+	
+	
+}
+#testingCol {
+	margin-top: 25px;
+}
+.testingCol1 {
+	border-right: dashed 1px #AFAFAF;
+	margin-bottom:70px;
+	
+}
+.testingCol2 {
+	padding-right: 0px;
+}
+.h5News {
+	margin: 0px;
+}
+
+/*media query for device width of 991*/
+@media only screen and (max-width: 991px) {
+p#testingP {
+	border-bottom: dashed 0px #AFAFAF;
+}
+#testingCol {
+	margin-top: 0px;
+}
+.testingCol1 {
+	border-left: dashed 0px #AFAFAF;
+	padding-left: 0px;
+}
+.testingCol2 {
+	padding-right: 1.5%;
+}
+.h5News {
+	margin: 10px 0px;
+}
+}
+
+@media only screen and (max-width: 767px) {
+p#testingP {
+	border-bottom: dashed 1px #AFAFAF;
+}
+}
+/*Dikshita*/
+/*
+.boxdesign{
+   box-shadow: 0 4px 7px rgba(0,0,0,0.25), 0 4px 7px rgba(0,0,0,0.22);
+    border-top: 3px solid #43D5C3;
+    padding: 8px;
+}
+*/
+.topgap{
+    margin-top: 30px;
+}
+.df{display: flex;}
+.slider-nav img {
+  max-width: 100%;
+}
+.slider-for img {
+  width: 100%;
+}
+.slider-nav slick-slide:hover {
+  cursor: pointer;
+}
+.slick-prev,
+.slick-next {
+  position: absolute;
+  top: 50%;
+  margin-top: -30px;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  font-size: 0;
+}
+.slick-prev:before,
+.slick-next:before {
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  content: "";
+  display: block;
+  height: 60px;
+  opacity: 1;
+  width: 30px;
+}
+.slick-prev:hover:before,
+.slick-next:hover:before {
+  opacity: .8;
+}
+.slick-prev {
+  left: 0;
+}
+.slick-prev:before {
+  background-image: url("http://www.flagshipsd.com/sites/default/files/userfiles/images/slick-prev.png");
+}
+.slick-next {
+  right: 0;
+}
+.slick-next:before {
+  background-image: url("http://www.flagshipsd.com/sites/default/files/userfiles/images/slick-next.png");
+}
