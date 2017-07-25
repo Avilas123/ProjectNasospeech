@@ -14,10 +14,8 @@ package Interface_1;
 //import Speech.common.*;
 //import Speech.gui.MainFrame;
 //import Speech.gui.UIControls;
-//import Speech.rmi.VrasiClientKWS;
-//import Speech.rmi.VrasiClientPDS;
-//import Speech.rmi.VrasiClientSID;
-//import Speech.signalProcessing.SignalProc;
+
+import Speech.signalProcessing.SignalProc;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.font.*;
@@ -65,25 +63,30 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
     public double mousePosX1, mousePosX2, mouseMoveX1, mousePosY1;
     public JPopupMenu menu;
     public StreamBytes streamBytes;
-    public MainGuI mainFrame;
+  
     private SamplingGraph sg;
     private int graphFromScreen = 5, graphVerticalSize = 240, normalPixcel = 60;
     public boolean selectedPlay = false;
     public StreamVariables streamVariable;
-    public RightClickEvent rightClick;
+    public MainGuI mainFrame;
     public String[][] annotationPos;
     public ByteArrayOutputStream capOut;
     private int samplingpanelSize;
     List<List<Integer>> dummyList;
-    //public ServerFinder serverStatus;
+    public ServerFinder serverStatus;
     public int xSize;
     public String fileHashValue;
     private double record_duration;
     private boolean buffStatus = true;
     private boolean lineStatus = false;
-
+    private JPanel samplingPanel = new javax.swing.JPanel();
+    private JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
+    private JLabel label = new JLabel("Test label dfadsjfasdf adflkjasd fljadfjadfljadslf");
+   
     public PlotWave(MainGuI mainFrame, AudioInputStream audioStreamArray) {
-        initComponents();
+        
+       initComponents();
+        
         // Create Objects Area
         capture = new Capture();
         recordGraph = new RecordWaveGraph();
@@ -99,7 +102,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         dummyList = new ArrayList<>();
       //  serverStatus = new ServerFinder();
         streamVariable = new StreamVariables();
-        rightClick = new RightClickEvent(this);
+        //rightClick = new RightClickEvent(this);
         // End Object Area
         
         
@@ -133,7 +136,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
 
         jScrollPane1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
         jScrollPane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-       // jScrollPane1.getHorizontalScrollBar().addAdjustmentListener(adjustmentListener);
+        jScrollPane1.getHorizontalScrollBar().addAdjustmentListener(adjustmentListener);
         jScrollPane1.getHorizontalScrollBar().setUnitIncrement(100);
 
         //End
@@ -146,10 +149,10 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         //createAudioInputStream(null, audioStreamArray, true);
         //End
         //Finding server availablity
-        pausB.setEnabled(false);
+      //  pausB.setEnabled(false);
         //serverStatus.start();
         try {
-           // new UIControls(mainFrame).startControlProcess();  //u may have to remove these 
+           // new UIControls(mainFrame).startControlProcess();
         } catch (Exception er) {
             System.err.println(er);
         }
@@ -157,7 +160,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         wavePanel = new javax.swing.JPanel();
@@ -197,7 +200,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         jToolBar1.setRollover(true);
 
         loadB.setBackground(new java.awt.Color(255, 255, 255));
-        loadB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/btn_open_folder.png"))); // NOI18N
+//        loadB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/btn_open_folder.png"))); // NOI18N
         loadB.setFocusable(false);
         loadB.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         loadB.setMaximumSize(new java.awt.Dimension(33, 33));
@@ -212,7 +215,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         jToolBar1.add(loadB);
 
         waveB.setBackground(new java.awt.Color(255, 255, 255));
-        waveB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/btn_save_icon.png"))); // NOI18N
+      //  waveB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/btn_save_icon.png"))); // NOI18N
         waveB.setFocusable(false);
         waveB.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         waveB.setMaximumSize(new java.awt.Dimension(33, 33));
@@ -227,7 +230,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         jToolBar1.add(waveB);
 
         playB.setBackground(new java.awt.Color(255, 255, 255));
-        playB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/btn_play_icon.png"))); // NOI18N
+       // playB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/btn_play_icon.png"))); // NOI18N
         playB.setToolTipText("play");
         playB.setFocusable(false);
         playB.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -243,7 +246,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         jToolBar1.add(playB);
 
         pausB.setBackground(new java.awt.Color(255, 255, 255));
-        pausB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/btn_pause_icon.png"))); // NOI18N
+       // pausB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/btn_pause_icon.png"))); // NOI18N
         pausB.setToolTipText("pause");
         pausB.setFocusable(false);
         pausB.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -259,7 +262,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         jToolBar1.add(pausB);
 
         captB.setBackground(new java.awt.Color(255, 255, 255));
-        captB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/btn_stop_icon.png"))); // NOI18N
+      //  captB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/btn_stop_icon.png"))); // NOI18N
         captB.setToolTipText("record");
         captB.setFocusable(false);
         captB.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -275,7 +278,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         jToolBar1.add(captB);
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/btn_cut_icon.png"))); // NOI18N
+        //jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/btn_cut_icon.png"))); // NOI18N
         jButton4.setFocusable(false);
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setMaximumSize(new java.awt.Dimension(33, 33));
@@ -291,7 +294,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         jToolBar1.add(jButton4);
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/btn_crop_icon.png"))); // NOI18N
+   //     jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/btn_crop_icon.png"))); // NOI18N
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setMaximumSize(new java.awt.Dimension(33, 33));
@@ -306,7 +309,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         jToolBar1.add(jButton3);
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/delete.png"))); // NOI18N
+       // jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/delete.png"))); // NOI18N
         jButton5.setFocusable(false);
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton5.setMaximumSize(new java.awt.Dimension(33, 33));
@@ -321,7 +324,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         jToolBar1.add(jButton5);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/btn_megnificatio_plus.jpeg"))); // NOI18N
+      //  jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/btn_megnificatio_plus.jpeg"))); // NOI18N
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setMaximumSize(new java.awt.Dimension(33, 33));
@@ -336,7 +339,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         jToolBar1.add(jButton1);
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/btn_megnificatio_minus.png"))); // NOI18N
+      //  jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/btn_megnificatio_minus.png"))); // NOI18N
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setMaximumSize(new java.awt.Dimension(33, 33));
@@ -351,7 +354,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         jToolBar1.add(jButton2);
 
         jButton6.setBackground(new java.awt.Color(255, 255, 255));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/btn_magnificationOne.png"))); // NOI18N
+      //  jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/btn_magnificationOne.png"))); // NOI18N
         jButton6.setFocusable(false);
         jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton6.setMaximumSize(new java.awt.Dimension(33, 33));
@@ -366,7 +369,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         jToolBar1.add(jButton6);
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/WavePanel/amplify.jpg"))); // NOI18N
+       // jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/WavePanel/amplify.jpg"))); // NOI18N
         jButton7.setFocusable(false);
         jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -426,15 +429,9 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         timeLabel.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         timeLabel.setText("jLabel2");
 
-        pdsServerLable.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        pdsServerLable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/serveroff.png"))); // NOI18N
-        pdsServerLable.setText("CONNECT");
+      
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jLabel1.setText("NETWORK STATUS");
-
-        lblexecTime.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        lblexecTime.setText("Done !");
+      
 
         javax.swing.GroupLayout wavePanelLayout = new javax.swing.GroupLayout(wavePanel);
         wavePanel.setLayout(wavePanelLayout);
@@ -483,7 +480,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(wavePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
     AdjustmentListener adjustmentListener = new AdjustmentListener() {
         @Override
         public void adjustmentValueChanged(AdjustmentEvent e) {
@@ -574,7 +571,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                         }
 
                         createAudioInputStream(wave, null, true);
-                        loadB.setEnabled(false);
+                       // loadB.setEnabled(false);
                         //lblloading.setText("Done");
                     } else if ((source_file_name).endsWith(".wma")) {
                         Process t = Runtime.getRuntime().exec(AllToWav_command);
@@ -589,12 +586,12 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                         }
 
                         createAudioInputStream(wave, null, true);
-                        loadB.setEnabled(false);
+                       // loadB.setEnabled(false);
                         //lblloading.setText("Done");
 
                     } else {
                         createAudioInputStream(fc.getSelectedFile(), null, true);
-                        loadB.setEnabled(false);
+                     //   loadB.setEnabled(false);
                     }
                     //--
                     double elapsed = (System.currentTimeMillis() - start) / 1000.0;
@@ -738,14 +735,14 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
             System.err.println(er);
         }
     }
-    private void playBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playBActionPerformed
+    private void playBActionPerformed(java.awt.event.ActionEvent evt) {                                      
         // TODO add your ssndling code here:
         try {
             if (audioInputStream != null) {
                 if (playB.getToolTipText().equals("play")) {
-                    if (rightClick.sourceAvailValidation()) {
-                        rightClick.playSoundAll();
-                    }
+               //     if (rightClick.sourceAvailValidation()) {
+                 //       rightClick.playSoundAll();
+                 //   }
                 } else {
                     stopSound();
                 }
@@ -753,9 +750,9 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         } catch (Exception er) {
             System.err.println(er);
         }
-    }//GEN-LAST:event_playBActionPerformed
+    }                                     
 
-    private void pausBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pausBActionPerformed
+    private void pausBActionPerformed(java.awt.event.ActionEvent evt) {                                      
         // TODO add your handling code here:
         if (audioInputStream != null) {
             if (pausB.getToolTipText().equals("pause")) {
@@ -764,9 +761,9 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                 resumeSound();
             }
         }
-    }//GEN-LAST:event_pausBActionPerformed
+    }                                     
 
-          private void captureVoiceAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_captureVoiceAction
+          private void captureVoiceAction(java.awt.event.ActionEvent evt) {                                    
               // TODO add your handling code here:
               if (captB.getToolTipText().equals("record")) {
                   recordSound();
@@ -776,13 +773,13 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                   stopRecord();
                   playB.setEnabled(true);
               }
-          }//GEN-LAST:event_captureVoiceAction
+          }                                   
 
-          private void samplingPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_samplingPanelMousePressed
+          private void samplingPanelMousePressed(java.awt.event.MouseEvent evt) {                                           
               // TODO add your handling code here:
 
               if (evt.getButton() == MouseEvent.BUTTON3) {
-                  rightClick.addMenuItems();
+//                  rightClick.addMenuItems();
                   menu.show(evt.getComponent(), evt.getX(), evt.getY());
               } else {
                   if (mousePosX1 == 0 && mousePosX2 == 0) {
@@ -798,20 +795,20 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
 
               }
               // ;
-          }//GEN-LAST:event_samplingPanelMousePressed
+          }                                          
 
-          private void samplingPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_samplingPanelMouseClicked
+          private void samplingPanelMouseClicked(java.awt.event.MouseEvent evt) {                                           
               // TODO add your handling code here:
               samplingGraph.repaint();
 
-          }//GEN-LAST:event_samplingPanelMouseClicked
+          }                                          
 
-          private void samplingPanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_samplingPanelMouseReleased
+          private void samplingPanelMouseReleased(java.awt.event.MouseEvent evt) {                                            
               // TODO add your handling code here:
               try {
                   if (evt.getY() > 190) {
                       if (audioInputStream != null) {
-                          rightClick.resizeandAddannotation();
+                      //    rightClick.resizeandAddannotation();
                       }
                   }
                   samplingGraph.repaint();
@@ -819,9 +816,9 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                   System.err.println(er);
               }
               // ;
-          }//GEN-LAST:event_samplingPanelMouseReleased
+          }                                           
 
-          private void samplingPanelMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_samplingPanelMouseDragged
+          private void samplingPanelMouseDragged(java.awt.event.MouseEvent evt) {                                           
               // TODO add your handling code here:
               try {
                   if (mousePosX1 == 0) {
@@ -833,13 +830,13 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                   System.err.println(er);
               }
               // ;
-          }//GEN-LAST:event_samplingPanelMouseDragged
+          }                                          
 
-          private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+          private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
               // TODO add your handling code here:
               setZoomIn();
 
-          }//GEN-LAST:event_jButton1ActionPerformed
+          }                                        
 
     public void setZoomIn() {
         try {
@@ -879,74 +876,74 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
             System.err.println(er);
         }
     }
-          private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+          private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
               // TODO add your handling code here:            
               setZoomOut();
-          }//GEN-LAST:event_jButton2ActionPerformed
+          }                                        
 
-          private void samplingPanelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_samplingPanelMouseMoved
+          private void samplingPanelMouseMoved(java.awt.event.MouseEvent evt) {                                         
               // TODO add your handling code here:
               mouseMoveX1 = evt.getX();
               samplingGraph.repaint();
-          }//GEN-LAST:event_samplingPanelMouseMoved
+          }                                        
 
-          private void loadBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadBActionPerformed
+          private void loadBActionPerformed(java.awt.event.ActionEvent evt) {                                      
               // TODO add your handling code here:
               fileOpenMethod();
-          }//GEN-LAST:event_loadBActionPerformed
+          }                                     
 
-          private void waveBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_waveBActionPerformed
+          private void waveBActionPerformed(java.awt.event.ActionEvent evt) {                                      
               // TODO add your handling code here:
-              rightClick.saveFile("saveAs");
+           //   rightClick.saveFile("saveAs");
 
               // saveToFile("Test_new.wav", AudioFileFormat.Type.WAVE);
-          }//GEN-LAST:event_waveBActionPerformed
+          }                                     
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
-        rightClick.cropWaveFile();
-    }//GEN-LAST:event_jButton3ActionPerformed
+      //  rightClick.cropWaveFile();
+    }                                        
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
-        rightClick.cutWaveFile(false);
-    }//GEN-LAST:event_jButton5ActionPerformed
+       // rightClick.cutWaveFile(false);
+    }                                        
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
-        rightClick.cutWaveFile(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+       // rightClick.cutWaveFile(true);
+    }                                        
 
-    private void wavePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wavePanelMouseClicked
+    private void wavePanelMouseClicked(java.awt.event.MouseEvent evt) {                                       
         // TODO add your handling code here:
-    }//GEN-LAST:event_wavePanelMouseClicked
+    }                                      
 
-    private void jScrollPane1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MousePressed
+    private void jScrollPane1MousePressed(java.awt.event.MouseEvent evt) {                                          
         // TODO add your handling code here:
-    }//GEN-LAST:event_jScrollPane1MousePressed
+    }                                         
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         if (audioInputStream != null) {
-            if (rightClick.sourceAvailValidation()) {
-                setStreamDrawGraph();
-            }
+         //   if (rightClick.sourceAvailValidation()) {
+         //       setStreamDrawGraph();
+         //   }
         }
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }                                        
 
-    private void jScrollPane1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jScrollPane1KeyPressed
+    private void jScrollPane1KeyPressed(java.awt.event.KeyEvent evt) {                                        
         // TODO add your handling code here:
         // javax.swing.JOptionPane.showMessageDialog(mainFrame, "hello");
-    }//GEN-LAST:event_jScrollPane1KeyPressed
+    }                                       
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {                                         
        Amplify If = new Amplify();
        If.setResizable(false);
        If.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
        If.show();
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }                                        
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JToggleButton captB;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -956,18 +953,18 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
+//    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lblexecTime;
     javax.swing.JButton loadB;
     private javax.swing.JToggleButton pausB;
     private javax.swing.JLabel pdsServerLable;
     private javax.swing.JToggleButton playB;
-    private javax.swing.JPanel samplingPanel;
+    //private javax.swing.JPanel samplingPanel;
     private javax.swing.JLabel timeLabel;
     private javax.swing.JButton waveB;
     private javax.swing.JPanel wavePanel;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -996,9 +993,9 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                     screenWidth = ((streamBytes.getCurrent().length) / 2);
                 }
             }
-            sg.setSize(new Dimension(screenWidth, graphVerticalSize));
-            samplingPanel.setSize(new Dimension(screenWidth, graphVerticalSize));
-            samplingPanel.setPreferredSize(new java.awt.Dimension(screenWidth, graphVerticalSize));
+            //sg.setSize(new Dimension(screenWidth, graphVerticalSize));
+            //samplingPanel.setSize(new Dimension(screenWidth, graphVerticalSize));
+            //samplingPanel.setPreferredSize(new java.awt.Dimension(screenWidth, graphVerticalSize));
             this.revalidate();
             this.repaint();
         } catch (Exception er) {
@@ -1081,7 +1078,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
             }
             errStr = null;
             if (capture.thread == null) {
-                playB.setEnabled(true);
+               // playB.setEnabled(true);
             }
 
             //Set Bytes and Generated
@@ -1103,7 +1100,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
             long milliseconds = (long) ((audioInputStream.getFrameLength() * 1000) / audioInputStream.getFormat().getFrameRate());
             duration = milliseconds / 1000.0;
 
-            waveB.setEnabled(true);
+            //waveB.setEnabled(true);
             if (updateComponents) {
                 samplingGraph.createWaveForm(streamBytes.getCurrent());
             }
@@ -1450,18 +1447,18 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                     ByteArrayInputStream bais = new ByteArrayInputStream(audioBytes);
                     audioInputStream = new AudioInputStream(bais, format, audioBytes.length / frameSizeInBytes);
 
-                    String recordFile = rightClick.saveLocation();
-                    if (recordFile == null) {
-                        recordFile = "temp.wav";
-                    }
-                    StreamConverter.streamTowavefile(recordFile, audioInputStream);
+                   // String recordFile = rightClick.saveLocation();
+                //    if (recordFile == null) {
+                 //       recordFile = "temp.wav";
+                //    }
+                //    StreamConverter.streamTowavefile(recordFile, audioInputStream);
                     audioInputStream = null;
-                    File recordFileName = new File(recordFile);
-                    if (recordFileName.exists()) {
-                        createAudioInputStream(recordFileName, null, true);
-                    } else {
-                        javax.swing.JOptionPane.showConfirmDialog(mainFrame, "Unable to create file");
-                    }
+                //    File recordFileName = new File(recordFile);
+                //    if (recordFileName.exists()) {
+                //        createAudioInputStream(recordFileName, null, true);
+                //    } else {
+                 //       javax.swing.JOptionPane.showConfirmDialog(mainFrame, "Unable to create file");
+                 //   }
                     //streamBytes.setOriginal(audioBytes);
               /*  streamBytes.setCurrent(audioBytes);
                      int widthScreen = setNormalScreen(audioInputStream);
@@ -1497,7 +1494,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         Color pink = new Color(139, 0, 0);
         private int[] audioDataNormalize;
         private int normalizedValue = 3000;
-        Interface_1.SignalProc sigProc;
+        Speech.signalProcessing.SignalProc sigProc;
 
         public SamplingGraph() {
             setBackground(new Color(255, 255, 255, 255));
@@ -1507,6 +1504,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         public void createWaveForm(byte[] audiobyte) {
 
             if (audioInputStream == null) {
+                System.out.println("audio null");
                 return;
             }
 
@@ -1564,10 +1562,10 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                 int startPaint = jScrollPane1.getHorizontalScrollBar().getValue();
                 endPaint = (startPaint + endPaint);
                 
-                int constantWidth = 1595;
-                int divFactor = w/constantWidth;
+                int constantWidth = 500;
+                float divFactor = w/constantWidth;
                 
-                frames_per_pixel = audiobyte.length /endPaint/2/divFactor;
+                frames_per_pixel = audiobyte.length /endPaint/2;
                 
                 
                 int startbytes = startPaint * frames_per_pixel*2 ;
@@ -1708,11 +1706,11 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                 if (capture.thread == null) {
                     //Create Annotation
                     try {
-//i think this is not required                        Interface_1.annotations.GetAnnotation annObj = new Interface_1.annotations.GetAnnotation(mainFrame.getConn());
+                       // Speech.annotations.GetAnnotation annObj = new Speech.annotations.GetAnnotation(mainFrame.getConn());
 
                         //System.out.println(fileHashValue);
                         Thread.sleep(100);
-                //not required        annotationPos = annObj.getAll(fileHashValue);
+                        //annotationPos = annObj.getAll(fileHashValue);
 
 
                     } catch (Exception er) {
@@ -1734,7 +1732,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         @Override
         public void paint(Graphics g) {
             try {
-                //mainFrame.heepSize();
+               
                 Dimension d = this.getSize();
                 int w = d.width;
                 
@@ -2186,7 +2184,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         samplingGraph.createWaveForm(null);
     }
 
-    //@Override
+    @Override
     public void reorderWavePanel() {
         samplingGraph.createWaveForm(null);
     }
@@ -2298,8 +2296,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         }
     }
 
-    private boolean textAreaBottomIsVisible()
-    {
+    private boolean textAreaBottomIsVisible() {
         Adjustable sb = jScrollPane1.getVerticalScrollBar();
         int val = sb.getValue();
         int lowest = val + sb.getVisibleAmount();
@@ -2307,14 +2304,8 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         boolean atBottom = maxVal == lowest;
         return atBottom;
     }
-
-
 // ServerFinder class 
-
-//i think server finder class is not required
- /* public class ServerFinder implements Runnable
-  {
-  
+    public class ServerFinder implements Runnable {
 
         public Thread thread;
 
@@ -2333,13 +2324,10 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         }
 
         @Override
-        public void run()
-        {
+        public void run() {
 
 
-            try 
-            { 
-                
+            try {
                 try {
                     File testFile = new File("testing.wav");
                     if (!testFile.exists()) {
@@ -2356,50 +2344,26 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
 
 
 
-               boolean findPDS = new VrasiClientPDS().setRemoteConnection(mainFrame.getUserID(), "testing.wav");
-               boolean findKWS = new VrasiClientKWS().setRemoteConnection(mainFrame.getUserID(), "testing.wav");
-               boolean findSID = new VrasiClientSID().setRemoteConnection(mainFrame.getUserID());
-                for (int lo = 0; lo < 10; lo++)
-                {
+ 
+                for (int lo = 0; lo < 10; lo++) {
 
                     Thread.sleep(500);
-                    pdsServerLable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/blank.png")));
+//                    pdsServerLable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/blank.png")));
                     //kwsServerLable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/blank.png")));
                     //sidServerLable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/blank.png")));
                     Thread.sleep(500);
 
-                    if (findPDS) {
-                        pdsServerLable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/serveron.png")));
-                    } else {
-                        pdsServerLable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/serveroff.png")));
-                    }
-
-
-                    if (findKWS) {
-                        //kwsServerLable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/serveron.png")));
-                    } else {
-                       // kwsServerLable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/serveroff.png")));
-                    }
-
-
-                    if (findSID) {
-                        //sidServerLable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/serveron.png")));
-                    } else {
-                        //sidServerLable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/serveroff.png")));
-                    }
+                   
 
 
                 }
 
-            } catch (Exception ex) 
-                {
+            } catch (Exception ex) {
                 Logger.getLogger(PlotWave.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
-            
     }
-*/
 
     public void setfileNameColor(Color color) {
 
@@ -2408,22 +2372,14 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
 
     }
 
-            
-                
-//in the design lebel r nam hoi
-            
-    public Color getfileNameColor() 
-    {
+    public Color getfileNameColor() {
 
         return timeLabel.getForeground();
 
 
-}
+    }
 
-  
-
-    private String timeConversion(int time) 
-{
+    private String timeConversion(int time) {
 
         String hD = "", mD = "", sD = "", totalTD = "";
         try {
@@ -2453,11 +2409,5 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
             Logger.getLogger(PlotWave.class.getName()).log(Level.SEVERE, null, er);
         }
         return totalTD;
+    }
 }
-}
-
-
-              
-
-
-    

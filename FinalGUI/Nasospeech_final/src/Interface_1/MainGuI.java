@@ -8,7 +8,10 @@ package Interface_1;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.awt.*;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 
 /**
  *
@@ -19,9 +22,14 @@ public class MainGuI extends javax.swing.JFrame {
     /**
      * Creates new form MainGuI
      */
+    public PlotWave pwave;
+   
     public MainGuI() {
+        
         initComponents();
         setTitle("Nasospeech");
+        
+       
     } 
      public void close()
     {
@@ -248,11 +256,13 @@ public class MainGuI extends javax.swing.JFrame {
 
          //close();
         
-        WaveGuI wg =  new WaveGuI();
-         wg.setVisible(true);
-         dispose();
+      // WaveGuI wg =  new WaveGuI();
+      // wg.add(new JLabel("labdlkafjdlkjfadfjadfkjadfk adf"));
+       //wg.setBackground(Color.yellow);
        
-      // fileOpenMethod(); // TODO add your handling code here:
+     //  dispose();
+       pwave = new PlotWave(this,null);
+       pwave.fileOpenMethod(); // TODO add your handling code here:
     }//GEN-LAST:event_loadbActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
@@ -298,7 +308,8 @@ public class MainGuI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainGuI().setVisible(true);
+                MainGuI mainFrame = new MainGuI();
+                mainFrame.setVisible(true);
             }
         }
         );
