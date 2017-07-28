@@ -1,0 +1,6 @@
+#Data Base Settings
+#Wed Jul 31 10:46:52 IST 2013
+dbpassword=root111
+host=127.0.0.1:3306
+database=vras
+dbuser=root
