@@ -3,12 +3,11 @@
  * and open the template in the editor.
  */
 package Speech.WavePanel;
-
-
 import Speech.annotations.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.AudioInputStream;
@@ -29,6 +28,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JFrame;
+//import sun.misc.FloatingDecimal;
 
 /**
  *
@@ -74,13 +75,29 @@ public class RightClickEvent {
     private String ann_fName, ann_oldfName;
     
     private JMenu addKeywordMenu;
-   
+    public  static double  valuefromc;
+    public String filenamedummy="";
+   // public static String staticfilenamedummy="";
 //:)    
     Stack<String> undoStack;
     Stack<String> redoStack;
     int _MAX_UNDO_REDO_SIZE = 5;
 //(:
 
+    RightClickEvent() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public static double getvaluefromc()
+    {
+        return valuefromc;
+    }
+    /* public static String returnfilename()
+     {
+          staticfilenamedummy=filenamedummy;
+     
+     }
+    */
     public RightClickEvent(PlotWave pWave) {
 
         this.pWave = pWave;
@@ -156,8 +173,8 @@ public class RightClickEvent {
                 item.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
 
-                        pWave.fileOpenMethod();
-
+                       filenamedummy=pWave.fileOpenMethod();
+                        System.out.println("filenamedummy = "+filenamedummy);
                     }
                 });
                 item.setFont(new Font("Courier New", Font.PLAIN, 15));
@@ -326,7 +343,7 @@ public class RightClickEvent {
                 item.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
 
-                        cutWaveFile(true);
+                        cutWFile(true);
                     }
                 });
                 item.setFont(new Font("Courier New", Font.PLAIN, 15));
@@ -339,7 +356,8 @@ public class RightClickEvent {
 
             //Copy
 
-            /*if (pWave.mousePosX1 != 0 && pWave.mousePosX2 != 0 && pWave.audioInputStream != null) {
+           /* if (pWave.mousePosX1 != 0 && pWave.mousePosX2 != 0 && pWave.audioInputStream != null) 
+            {
                 item = new JMenuItem(" Copy ");
                 item.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -378,12 +396,12 @@ public class RightClickEvent {
                 });
                 item.setFont(new Font("Courier New", Font.PLAIN, 15));
                 item.setBackground(Color.white);
-                manualProcess.add(item);
-            }*/
+               pWave.menu.add(item);
+            }
             //End copy
-
+*/
             //[paste]
-            /*if (CutAudioInputStream.getCutWave() != null && pWave.audioInputStream != null) {
+           /* if (CutAudioInputStream.getCutWave() != null && pWave.audioInputStream != null) {
                 item = new JMenuItem(" Paste ");
                 item.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -392,7 +410,7 @@ public class RightClickEvent {
                             AudioInputStream newInputStream = StreamConverter.byteTostream(CutAudioInputStream.getCutWave(), pWave.audioInputStream);
 
                             // FindAnnotated findAnnotation = new FindAnnotated(pWave.mainFrame.getConn(), pWave.fileName, copy_from_ms, copy_to_ms);
-                            ArrayList ann_id = new FindAnnotated(pWave.mainFrame.getConn(), Hash.getHashValue(StreamConverter.byteTostream(pWave.streamBytes.getCurrent(), pWave.audioInputStream)), copy_from_ms, copy_to_ms).getAnnotationID();
+                            ArrayList ann_id = new FindAnnotated(pWave.mainFrame, Hash.getHashValue(StreamConverter.byteTostream(pWave.streamBytes.getCurrent(), pWave.audioInputStream)), copy_from_ms, copy_to_ms).getAnnotationID();
 
                             String newAnn_file = Hash.getHashValue(newInputStream);
                             newInputStream = StreamConverter.byteTostream(CutAudioInputStream.getCutWave(), pWave.audioInputStream);
@@ -405,7 +423,7 @@ public class RightClickEvent {
                 });
                 item.setFont(new Font("Courier New", Font.PLAIN, 15));
                 item.setBackground(Color.white);
-                manualProcess.add(item);
+                 pWave.menu.add(item);
             }*/
             // [End paste]
 
@@ -430,7 +448,7 @@ public class RightClickEvent {
                 });
                 item.setFont(new Font("Courier New", Font.PLAIN, 15));
                 item.setBackground(Color.white);
-                manualProcess.add(item);
+              //  manualProcess.add(item);
             }
 
 
@@ -448,7 +466,7 @@ public class RightClickEvent {
                 });
                 item.setFont(new Font("Courier New", Font.PLAIN, 15));
                 item.setBackground(Color.white);
-                manualProcess.add(item);
+                //manualProcess.add(item);
             }
 
 
@@ -467,7 +485,7 @@ public class RightClickEvent {
                 });
                 item.setFont(new Font("Courier New", Font.PLAIN, 15));
                 item.setBackground(Color.white);
-                manualProcess.add(item);
+               // manualProcess.add(item);
             }
 
 
@@ -479,11 +497,12 @@ public class RightClickEvent {
                 item.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         if (sourceAvailValidation()) {
-                            if (pWave.mousePosX1 != 0 && pWave.mousePosX2 != 0) {
-                                getSamplingPositions();
+                            if (pWave.mousePosX1 != 0 && pWave.mousePosX2 != 0) 
+                            {
+                                //getSamplingPositions();
                                 int startSample = getStartSamples();
                                 int endSample = getEndSamples();
-
+                               // System.out.print("i am going to");
                                 CutAudioWave cutW = new CutAudioWave();
                                 cutW.cutPortion(pWave.streamBytes.getCurrent(), startSample, endSample);
 
@@ -496,18 +515,18 @@ public class RightClickEvent {
                                 String filelocName = saveLocation();
                                 StreamConverter.byteTowavefile(CutAudioInputStream.getCutWave(), pWave.audioInputStream, filelocName);
 
-                                CutAudioInputStream.setCutWave(null);
+                               CutAudioInputStream.setCutWave(null);
 
                             } else {
 
-                                saveFile("saveAs");
+                             //  saveFile("saveAs");
                             }
                         }
                     }
                 });
                 item.setFont(new Font("Courier New", Font.PLAIN, 15));
                 item.setBackground(Color.white);
-                manualProcess.add(item);
+              //  manualProcess.add(item);
             }
 
 
@@ -515,6 +534,7 @@ public class RightClickEvent {
             if (pWave.audioInputStream != null && (pWave.mousePosX1 == 0 || pWave.mousePosX2 == 0)) {
 
                 item = new JMenuItem(" Save to server ");
+                item.setVisible(false);
                 item.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         if (sourceAvailValidation()) {
@@ -524,13 +544,14 @@ public class RightClickEvent {
                 });
                 item.setFont(new Font("Courier New", Font.PLAIN, 15));
                 item.setBackground(Color.white);
-                manualProcess.add(item);
+               // manualProcess.add(item);
+            //    pWave.menu.add(manualProcess);
             }
 
 
             //Zoom Menu
 
-            manualProcess.add(zoom);
+         //   manualProcess.add(zoom);
 
             //manualProcess.add(dummy);
 
@@ -541,6 +562,7 @@ public class RightClickEvent {
             if (pWave.audioInputStream != null && (pWave.mousePosX1 == 0 || pWave.mousePosX2 == 0)) {
 
                 item = new JMenuItem(" Select All ");
+                item.setVisible(false);
                 item.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         // action performed
@@ -576,7 +598,7 @@ public class RightClickEvent {
                 item.setFont(new Font("Courier New", Font.PLAIN, 15));
                 item.setBackground(Color.white);
                 manualProcess.add(item);
-                
+          //      pWave.menu.add(manualProcess);
                 
                 
             }
@@ -708,7 +730,7 @@ public class RightClickEvent {
             });
             item.setFont(new Font("Courier New", Font.PLAIN, 15));
             item.setBackground(Color.white);
-            manualProcess.add(item);
+          //  manualProcess.add(item);
 
             /*   if (pWave.dummyList != null) {
              if (pWave.dummyList.size() > 0) {
@@ -851,6 +873,7 @@ public class RightClickEvent {
            ///// put the hypernasality code here and end point detection code here  .///////////
            
             item = new JMenuItem(" Energy detection ");
+            item.setVisible(false);
             item.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
 
@@ -878,6 +901,7 @@ public class RightClickEvent {
             
             
             item = new JMenuItem(" End point Detection");
+            item.setVisible(false);
             item.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
 
@@ -892,6 +916,7 @@ public class RightClickEvent {
             
             ///// for MFCC extraction 
             item = new JMenuItem(" MFCC extraction");
+            item.setVisible(false);
             item.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
 
@@ -908,35 +933,115 @@ public class RightClickEvent {
             
             item = new JMenuItem(" Hypernasality");
             item.addActionListener(new ActionListener() {
+                
+                               
                 public void actionPerformed(ActionEvent e) 
                 {
-
-                    ProcessBuilder pb = new ProcessBuilder("C:/Users/user/Documents/NetBeansProjects/CppApplication_1/dist/Debug/Cygwin_1-Windows/cppapplication_1.exe");
-                   
-                  //  ProcessBuilder pb = new ProcessBuilder("tree");
-
-                    
-                      try {
-                        Process p = pb.start();
                        
-                        BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
-                        
-                        
-                       // System.out.println(" i am  getting this value---->"+br.readLine());
-                       // String probability =br.readLine();
-                        //double probnew = Double.parseDouble(probability);
-                        
-                        PlotProbability plot=new  PlotProbability();
-                        plot.plotfunction();
-                        //pWave.mainFrame.createIvectorInternalFrame("Speaker Identification", "word/Assamese/part2");
-                          }
+           
+                        String currentDir = System.getProperty("user.dir");
+                        System.out.println("cu");
+                        String cexedir = currentDir + "\\cexe\\";
+                       // JFrame jf = new JFrame("test");
+                        //String name = JOptionPane.showInputDialog(jf,
+                        //currentDir, null);
+                      try {
+                          Process p1;
+                          System.out.println("getting filename"+pWave.abbfilePath);
+                          filenamedummy = pWave.abbfilePath;
+                          ProcessBuilder pb1=new ProcessBuilder
+                            (cexedir+"mfcc_final_version_working",
+                                    filenamedummy,
+                                    "1001",
+                                    cexedir+"start.txt",
+                                    cexedir+"end.txt",
+                                    cexedir+"vunv.txt",
+                                    cexedir+"spfr.txt",
+                                    cexedir+"avg.txt",
+                                    cexedir+"N.txt",
+                                    cexedir+"F.txt",
+                                    cexedir+"mfcc_output_13dim.txt"
+                            );
+                          
+                          
+                          p1 = pb1.start();
+                          
+                          
+                          p1.waitFor();
+                         
+                                  
+                          LineNumberReader  lnr = new LineNumberReader(new FileReader(new File(cexedir+"mfcc_output_13dim.txt")));
+                            lnr.skip(Long.MAX_VALUE);
+                            System.out.println(lnr.getLineNumber() + 1); //Add 1 because line index starts at 0
+                                    // Finally, the LineNumberReader object should be closed to prevent resource leak
+                            int numFrames = lnr.getLineNumber();
+                         //   System.out.println("The number of frames is AAAAAAA"+numFrames);
+                            lnr.close();
+                            System.out.println("num frames = "+numFrames);
+                                  ProcessBuilder pb = new ProcessBuilder(cexedir+"posteriorcomputation" ,
+                                          cexedir+"mfcc_output_13dim.txt",
+                                          cexedir+"mean_norm.txt",
+                                          cexedir+"var_norm.txt",
+                                          cexedir+"weight_norm.txt",
+                                          cexedir+"mean_clp.txt",
+                                          cexedir+"var_clp.txt",
+                                          cexedir+"weight_clp.txt",
+                                          cexedir+"output_norm.txt",
+                                          cexedir+"output_clp.txt", "16", "13", Integer.toString(numFrames));
+                                  
+                                  //  ProcessBuilder pb = new ProcessBuilder("tree");
+                                  
+                                  
+                                  try {
+                                      Process p = pb.start();
+                                      /*try {
+                                      pb.wait(0);
+                                      } catch (InterruptedException ex) {
+                                      Logger.getLogger(RightClickEvent.class.getName()).log(Level.SEVERE, null, ex);
+                                      }
+                                      */
+                                       p.waitFor();
+                                      BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                                      
+                                      valuefromc = Double.parseDouble(br.readLine());
+                                      System.out.println(" i am  getting this value from c---->"+valuefromc);
+                                      //br.readLine();
+                                      
+                                      //  System.out.println(" i am  getting this value from c---->");
+                                      
+                                      //System.out.println("value getting"+br);//br.readLine());
+                                      // String probability =br.readLine();
+                                      //double probnew = Double.parseDouble(probability);
+                                      
+                                                               
+                                      //System.out.println(" i am  getting this value after converting from double---->"+valuefromc);
+                                     // PlotProbability plot=new  PlotProbability();
+                                      //plot.plotfunction();
+                                      PlotProbability plot1=new  PlotProbability(pWave);
+                                       plot1.plotfunction();
+                                      plot1.plotfunction1();
+                                      //pWave.mainFrame.createIvectorInternalFrame("Speaker Identification", "word/Assamese/part2");
+                                  }
+                                  catch (IOException ex)
+                                  {
+                                      Logger.getLogger(RightClickEvent.class.getName()).log(Level.SEVERE, null, ex);
+                                  }
+                                  
+                                  
+                      }
                       catch (IOException ex) 
                          {
                         Logger.getLogger(RightClickEvent.class.getName()).log(Level.SEVERE, null, ex);
-                         }
+                         } catch (InterruptedException ex) {
+                        Logger.getLogger(RightClickEvent.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
-                }
-            });
+                
+            }
+            
+            
+                    }
+            );
             item.setFont(new Font("Courier New", Font.PLAIN, 15));
             item.setBackground(Color.white);
             pWave.menu.add(item);
@@ -1174,7 +1279,7 @@ public class RightClickEvent {
             item.setFont(new Font("Courier New", Font.PLAIN, 15));
             item.setBackground(Color.white);
             phoneme.add(item);
-
+            
             //Keyword spotting
 
             keywordMenu.add(keywordAssam);
@@ -1337,7 +1442,7 @@ public class RightClickEvent {
         }
     }
 
-    private void getSamplingPositions() {
+    public void getSamplingPositions() {
         try {
             int width = pWave.samplingGraph.getSize().width;
             int inPos = (int) pWave.mousePosX1, enPos = (int) pWave.mousePosX2;
@@ -1619,7 +1724,7 @@ public class RightClickEvent {
         }
     }
 
-    private void calculatePixcel() {
+    public void calculatePixcel() {
 
         if (pWave.mousePosX1 > pWave.mousePosX2) {
             startPix = (int) pWave.mousePosX2;
@@ -1630,11 +1735,11 @@ public class RightClickEvent {
         }
     }
 
-    private int getStartPixel() {
+    public int getStartPixel() {
         return this.startPix;
     }
 
-    private int getendPixel() {
+    public int getendPixel() {
         return this.endPix;
     }
 
@@ -1656,11 +1761,11 @@ public class RightClickEvent {
         this.endSam = end;
     }
 
-    private int getStartSamples() {
+  public int getStartSamples() {
         return this.startSam;
     }
 
-    private int getEndSamples() {
+    public int getEndSamples() {
         return this.endSam;
     }
 

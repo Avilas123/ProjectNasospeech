@@ -15,6 +15,13 @@
       </Properties>
     </Component>
     <Menu class="javax.swing.JMenuBar" name="Mainmenubar">
+      <Properties>
+        <Property name="focusable" type="boolean" value="false"/>
+        <Property name="requestFocusEnabled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MainmenubarMouseExited"/>
+      </Events>
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="File">
           <Properties>
@@ -23,7 +30,19 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jOpenMenu">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f6" green="f6" red="f6" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="New"/>
+                <Property name="doubleBuffered" type="boolean" value="true"/>
+                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="focusCycleRoot" type="boolean" value="true"/>
+                <Property name="focusPainted" type="boolean" value="true"/>
+                <Property name="focusTraversalPolicyProvider" type="boolean" value="true"/>
+                <Property name="focusable" type="boolean" value="true"/>
+                <Property name="opaque" type="boolean" value="true"/>
+                <Property name="rolloverEnabled" type="boolean" value="true"/>
+                <Property name="selected" type="boolean" value="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jOpenMenuActionPerformed"/>
@@ -42,7 +61,12 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jSaveAsMenu">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f6" green="f6" red="f6" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Save "/>
+                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="focusable" type="boolean" value="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jSaveAsMenuActionPerformed"/>
@@ -50,7 +74,11 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jexitMenu">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f6" green="f6" red="f6" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Save as"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jexitMenuActionPerformed"/>
@@ -76,7 +104,11 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+X"/>
                 </Property>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f6" green="f6" red="f6" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Select all"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
@@ -84,22 +116,44 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f6" green="f6" red="f6" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Select Inverse"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f6" green="f6" red="f6" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Cut"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem3ActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f6" green="f6" red="f6" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Copy"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem4ActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f6" green="f6" red="f6" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Paste"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -107,36 +161,74 @@
         <Menu class="javax.swing.JMenu" name="Analyse">
           <Properties>
             <Property name="text" type="java.lang.String" value="Analyse"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Default Cursor"/>
+            </Property>
+            <Property name="focusPainted" type="boolean" value="true"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="requestFocusEnabled" type="boolean" value="false"/>
+            <Property name="rolloverEnabled" type="boolean" value="false"/>
+            <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="AnalyseFocusLost"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="AnalyseMouseExited"/>
+          </Events>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem8">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f6" green="f6" red="f6" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Analyse all"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </MenuItem>
             <Menu class="javax.swing.JMenu" name="selectandanalysemenu">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Select and Analyse"/>
+                <Property name="contentAreaFilled" type="boolean" value="false"/>
+                <Property name="focusable" type="boolean" value="false"/>
+                <Property name="requestFocusEnabled" type="boolean" value="false"/>
+                <Property name="rolloverEnabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="selectandanalysemenuMouseExited"/>
+              </Events>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem9">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Hypernasility"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem9ActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem10">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="f6" green="f6" red="f6" type="rgb"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Articulation error"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem11">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="f6" green="f6" red="f6" type="rgb"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Intelligibility"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem12">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="f6" green="f6" red="f6" type="rgb"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Voicing error"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </MenuItem>
               </SubComponents>
@@ -150,12 +242,20 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem19">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f6" green="f6" red="f6" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Show Result"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem20">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f6" green="f6" red="f6" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Print Result"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -203,10 +303,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nasospeech"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem13ActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem14">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f6" green="f6" red="f6" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Help"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </MenuItem>
           </SubComponents>

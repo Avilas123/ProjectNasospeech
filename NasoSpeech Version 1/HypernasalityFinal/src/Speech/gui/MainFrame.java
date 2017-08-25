@@ -9,8 +9,9 @@
  * Created on 3 Jan, 2013, 2:40:26 PM
  */
 package Speech.gui;
-
-
+import Speech.WavePanel.*;
+import Speech.common.PixcelConversion;
+import Speech.common.CutAudioInputStream;
 import Speech.WavePanel.PlotWave;
 import Speech.annotations.FindAnnotated;
 import Speech.annotations.Hash;
@@ -34,7 +35,17 @@ import javax.sound.sampled.AudioInputStream;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
+import Speech.WavePanel.RightClickEvent;
+import static Speech.WavePanel.RightClickEvent.valuefromc;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.awt.event.WindowFocusListener;
+import java.io.FileReader;
+import java.io.LineNumberReader;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 /**
  *
  * @author Tatapower SED
@@ -51,7 +62,10 @@ public class MainFrame extends javax.swing.JFrame {
     public boolean rPhoneStatus = false;
     private String userRoll = "";
     int timeRun;
-
+    public RightClickEvent right;
+    private int copy_from_ms = 0, copy_to_ms = 0, ann_fLength, ann_oldfLength;
+    
+ public String filenamedummy="";
     /**
      * Creates new form MainFrame
      */
@@ -347,9 +361,27 @@ public class MainFrame extends javax.swing.JFrame {
             e1.printStackTrace();
         }
 
+        Mainmenubar.setFocusable(false);
+        Mainmenubar.setRequestFocusEnabled(false);
+        Mainmenubar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                MainmenubarMouseExited(evt);
+            }
+        });
+
         File.setText("File");
 
+        jOpenMenu.setBackground(new java.awt.Color(246, 246, 246));
         jOpenMenu.setText("New");
+        jOpenMenu.setDoubleBuffered(true);
+        jOpenMenu.setEnabled(false);
+        jOpenMenu.setFocusCycleRoot(true);
+        jOpenMenu.setFocusPainted(true);
+        jOpenMenu.setFocusTraversalPolicyProvider(true);
+        jOpenMenu.setFocusable(true);
+        jOpenMenu.setOpaque(true);
+        jOpenMenu.setRolloverEnabled(true);
+        jOpenMenu.setSelected(true);
         jOpenMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jOpenMenuActionPerformed(evt);
@@ -366,7 +398,10 @@ public class MainFrame extends javax.swing.JFrame {
         });
         File.add(jSaveMenu);
 
+        jSaveAsMenu.setBackground(new java.awt.Color(246, 246, 246));
         jSaveAsMenu.setText("Save ");
+        jSaveAsMenu.setEnabled(false);
+        jSaveAsMenu.setFocusable(true);
         jSaveAsMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jSaveAsMenuActionPerformed(evt);
@@ -374,7 +409,9 @@ public class MainFrame extends javax.swing.JFrame {
         });
         File.add(jSaveAsMenu);
 
+        jexitMenu.setBackground(new java.awt.Color(246, 246, 246));
         jexitMenu.setText("Save as");
+        jexitMenu.setEnabled(false);
         jexitMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jexitMenuActionPerformed(evt);
@@ -395,7 +432,9 @@ public class MainFrame extends javax.swing.JFrame {
         Edit.setText("Edit");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setBackground(new java.awt.Color(246, 246, 246));
         jMenuItem1.setText("Select all");
+        jMenuItem1.setEnabled(false);
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -403,37 +442,93 @@ public class MainFrame extends javax.swing.JFrame {
         });
         Edit.add(jMenuItem1);
 
+        jMenuItem2.setBackground(new java.awt.Color(246, 246, 246));
         jMenuItem2.setText("Select Inverse");
+        jMenuItem2.setEnabled(false);
         Edit.add(jMenuItem2);
 
+        jMenuItem3.setBackground(new java.awt.Color(246, 246, 246));
         jMenuItem3.setText("Cut");
+        jMenuItem3.setEnabled(false);
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         Edit.add(jMenuItem3);
 
+        jMenuItem4.setBackground(new java.awt.Color(246, 246, 246));
         jMenuItem4.setText("Copy");
+        jMenuItem4.setEnabled(false);
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         Edit.add(jMenuItem4);
 
+        jMenuItem5.setBackground(new java.awt.Color(246, 246, 246));
         jMenuItem5.setText("Paste");
+        jMenuItem5.setEnabled(false);
         Edit.add(jMenuItem5);
 
         Mainmenubar.add(Edit);
 
         Analyse.setText("Analyse");
+        Analyse.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Analyse.setFocusPainted(true);
+        Analyse.setFocusable(false);
+        Analyse.setRequestFocusEnabled(false);
+        Analyse.setRolloverEnabled(false);
+        Analyse.setVerifyInputWhenFocusTarget(false);
+        Analyse.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                AnalyseFocusLost(evt);
+            }
+        });
+        Analyse.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                AnalyseMouseExited(evt);
+            }
+        });
 
+        jMenuItem8.setBackground(new java.awt.Color(246, 246, 246));
         jMenuItem8.setText("Analyse all");
+        jMenuItem8.setEnabled(false);
         Analyse.add(jMenuItem8);
 
         selectandanalysemenu.setText("Select and Analyse");
+        selectandanalysemenu.setContentAreaFilled(false);
+        selectandanalysemenu.setFocusable(false);
+        selectandanalysemenu.setRequestFocusEnabled(false);
+        selectandanalysemenu.setRolloverEnabled(false);
+        selectandanalysemenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                selectandanalysemenuMouseExited(evt);
+            }
+        });
 
         jMenuItem9.setText("Hypernasility");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         selectandanalysemenu.add(jMenuItem9);
 
+        jMenuItem10.setBackground(new java.awt.Color(246, 246, 246));
         jMenuItem10.setText("Articulation error");
+        jMenuItem10.setEnabled(false);
         selectandanalysemenu.add(jMenuItem10);
 
+        jMenuItem11.setBackground(new java.awt.Color(246, 246, 246));
         jMenuItem11.setText("Intelligibility");
+        jMenuItem11.setEnabled(false);
         selectandanalysemenu.add(jMenuItem11);
 
+        jMenuItem12.setBackground(new java.awt.Color(246, 246, 246));
         jMenuItem12.setText("Voicing error");
+        jMenuItem12.setEnabled(false);
         selectandanalysemenu.add(jMenuItem12);
 
         Analyse.add(selectandanalysemenu);
@@ -442,10 +537,14 @@ public class MainFrame extends javax.swing.JFrame {
 
         result.setText("Result");
 
+        jMenuItem19.setBackground(new java.awt.Color(246, 246, 246));
         jMenuItem19.setText("Show Result");
+        jMenuItem19.setEnabled(false);
         result.add(jMenuItem19);
 
+        jMenuItem20.setBackground(new java.awt.Color(246, 246, 246));
         jMenuItem20.setText("Print Result");
+        jMenuItem20.setEnabled(false);
         result.add(jMenuItem20);
 
         Mainmenubar.add(result);
@@ -478,9 +577,16 @@ public class MainFrame extends javax.swing.JFrame {
         About.setText("About");
 
         jMenuItem13.setText("Nasospeech");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
         About.add(jMenuItem13);
 
+        jMenuItem14.setBackground(new java.awt.Color(246, 246, 246));
         jMenuItem14.setText("Help");
+        jMenuItem14.setEnabled(false);
         About.add(jMenuItem14);
 
         Mainmenubar.add(About);
@@ -556,10 +662,11 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ClosedObjects
 
     
-      public void dummyfileopenfunction()
+      public String dummyfileopenfunction()
     {   
-        pWave.fileOpenMethod();//  fileOpenMethod();
-       
+        String filename = pWave.fileOpenMethod();//  fileOpenMethod();
+     
+        return filename;
     }
     
     
@@ -623,10 +730,257 @@ pWave.setZoomOut();        // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        
+        
+     right.cutWaveFile(true);   
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+
+        
+        
+            //Copy
+
+            if (pWave.mousePosX1 != 0 && pWave.mousePosX2 != 0 && pWave.audioInputStream != null) 
+            {
+                
+                        try {
+                            //  cutWave();
+                            if (pWave.mousePosX1 == 0 && pWave.mousePosX2 == 0) {
+                                return;
+                            }
+                            copy_from_ms = 0;
+                            copy_to_ms = 0;
+                            right.getSamplingPositions();
+                            int startSample = right.getStartSamples();
+                            int endSample = right.getEndSamples();
+
+                            System.out.println("Ref. StartSamples " + startSample + " EndSamples " + endSample + " FramePix " + pWave.frames_per_pixel);
+
+                            CutAudioWave cutW = new CutAudioWave();
+                            cutW.cutPortion(pWave.streamBytes.getCurrent(), startSample, endSample);
+
+                            right.calculatePixcel();
+                            PixcelConversion pixConversion = new PixcelConversion();
+                            copy_from_ms = pixConversion.pixcelToMillisecond(right.getStartPixel(), pWave.frames_per_pixel, (int) pWave.audioInputStream.getFormat().getFrameRate());
+                            copy_to_ms = pixConversion.pixcelToMillisecond(right.getendPixel(), pWave.frames_per_pixel, (int) pWave.audioInputStream.getFormat().getFrameRate());
+
+
+                            if (cutW.getresultByteArray() == null) {
+                                return;
+                            }
+
+
+
+                        } catch (Exception ex) {
+                            Logger.getLogger(RightClickEvent.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+           }
+                
+            //End copy
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+
+
+        
+        
+        
+        
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+
+       
+                       
+              
+                        String currentDir = System.getProperty("user.dir");
+                        System.out.println("cu");
+                        String cexedir = currentDir + "\\cexe\\";
+                       // JFrame jf = new JFrame("test");
+                        //String name = JOptionPane.showInputDialog(jf,
+                        //currentDir, null);
+                      try {
+                          Process p1;
+                          System.out.println("getting filename"+pWave.abbfilePath);
+                          filenamedummy = pWave.abbfilePath;
+                          ProcessBuilder pb1=new ProcessBuilder
+                            (cexedir+"mfcc_final_version_working",
+                                    filenamedummy,
+                                    "1001",
+                                    cexedir+"start.txt",
+                                    cexedir+"end.txt",
+                                    cexedir+"vunv.txt",
+                                    cexedir+"spfr.txt",
+                                    cexedir+"avg.txt",
+                                    cexedir+"N.txt",
+                                    cexedir+"F.txt",
+                                    cexedir+"mfcc_output_13dim.txt"
+                            );
+                          
+                          
+                          p1 = pb1.start();
+                          
+                          
+                          p1.waitFor();
+                                  
+                                  
+                          LineNumberReader  lnr = new LineNumberReader(new FileReader(new File(cexedir+"mfcc_output_13dim.txt")));
+                            lnr.skip(Long.MAX_VALUE);
+                            System.out.println(lnr.getLineNumber() + 1); //Add 1 because line index starts at 0
+                                    // Finally, the LineNumberReader object should be closed to prevent resource leak
+                            int numFrames = lnr.getLineNumber();
+                            lnr.close();
+                            System.out.println("num frames = "+numFrames);
+                                  ProcessBuilder pb = new ProcessBuilder(cexedir+"posteriorcomputation" ,
+                                          cexedir+"mfcc_output_13dim.txt",
+                                          cexedir+"mean_norm.txt",
+                                          cexedir+"var_norm.txt",
+                                          cexedir+"weight_norm.txt",
+                                          cexedir+"mean_clp.txt",
+                                          cexedir+"var_clp.txt",
+                                          cexedir+"weight_clp.txt",
+                                          cexedir+"output_norm.txt",
+                                          cexedir+"output_clp.txt", "16", "13", Integer.toString(numFrames));
+                                  
+                                  //  ProcessBuilder pb = new ProcessBuilder("tree");
+                                  
+                                  
+                                  try {
+                                      Process p = pb.start();
+                                      /*try {
+                                      pb.wait(0);
+                                      } catch (InterruptedException ex) {
+                                      Logger.getLogger(RightClickEvent.class.getName()).log(Level.SEVERE, null, ex);
+                                      }
+                                      */
+                                       p.waitFor();
+                                      BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                                      
+                                      valuefromc = Double.parseDouble(br.readLine());
+                                      System.out.println(" i am  getting this value from c---->"+valuefromc);
+                                      //br.readLine();
+                                      
+                                      //  System.out.println(" i am  getting this value from c---->");
+                                      
+                                      //System.out.println("value getting"+br);//br.readLine());
+                                      // String probability =br.readLine();
+                                      //double probnew = Double.parseDouble(probability);
+                                      
+                                                               
+                                      //System.out.println(" i am  getting this value after converting from double---->"+valuefromc);
+                                      PlotProbability plot=new  PlotProbability(pWave);
+                                      plot.plotfunction();
+                                      //pWave.mainFrame.createIvectorInternalFrame("Speaker Identification", "word/Assamese/part2");
+                                  }
+                                  catch (IOException ex)
+                                  {
+                                      Logger.getLogger(RightClickEvent.class.getName()).log(Level.SEVERE, null, ex);
+                                  }
+                                  
+                                  
+                      }
+                      catch (IOException ex) 
+                         {
+                        Logger.getLogger(RightClickEvent.class.getName()).log(Level.SEVERE, null, ex);
+                         } catch (InterruptedException ex) {
+                        Logger.getLogger(RightClickEvent.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void AnalyseFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_AnalyseFocusLost
+      
+      //
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_AnalyseFocusLost
+
+    private void MainmenubarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MainmenubarMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MainmenubarMouseExited
+
+    private void selectandanalysemenuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectandanalysemenuMouseExited
+        //  selectandanalysemenu.setVisible(false);
+       //   jMenuItem8.setVisible(false);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selectandanalysemenuMouseExited
+
+    private void AnalyseMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AnalyseMouseExited
+       
+        
+
+    }//GEN-LAST:event_AnalyseMouseExited
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        
+        try {
+            java.awt.Desktop.getDesktop().browse(new URL("http://www.iitg.ac.in/").toURI());
+// TODO add your handling code here:
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) 
+    
+    {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

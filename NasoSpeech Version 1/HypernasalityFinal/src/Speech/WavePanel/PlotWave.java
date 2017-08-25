@@ -83,8 +83,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
     private double record_duration;
     private boolean buffStatus = true;
     private boolean lineStatus = false;
- 
-
+   // public static fileNameDis;
     public PlotWave(MainFrame mainFrame, AudioInputStream audioStreamArray) {
        
         initComponents();
@@ -160,6 +159,14 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         }
 
     }
+
+    PlotWave() {
+        
+      
+     
+        }
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -397,9 +404,11 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
   
     
     
-    public void fileOpenMethod() {
+    public String fileOpenMethod() {
+        
+        String filename="";
         try {
-
+             
             File fileDir = new File(System.getProperty("user.dir"));
             JFileChooser fc = new JFileChooser(fileDir);
 
@@ -443,7 +452,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
 
                 String source_file_path = fc.getSelectedFile().getAbsolutePath();
                 String wav_file_path = convertedFile.getAbsolutePath() + "\\" + wav_file_name;
-
+                 filename=wav_file_path;
                 String sox_command = sox_path + " " + source_file_path + " -r 8k " + convertedFile.getAbsolutePath() + "\\" + wav_file_name;
                 //String mystring1 = sox_path+" -r 8k -e signed -b 8 -c 1 "+source_file_path+" d:\\converted\\"+newFileName;
                 String AllToWav_command = allToWav_path + " " + source_file_path + " -O" + convertedFile.getAbsolutePath() + "\\" + wav_file_name + " -S8000";
@@ -504,8 +513,19 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         }
        
       mainFrame.setVisible(true);
+     System.out.println("filename === "+ filename);
+        
+      return filename;// = convertedFile.getAbsolutePath() + "\\" + wav_file_name;
+
+      
+      
       //mainpopup.setVisible(false);
     }//End File Load
+    
+    
+    
+    
+    
 
     public void playSound() {
         try {
@@ -804,7 +824,8 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         int i = 0;
-        while (i<10){
+        while (i<10)
+        {
             setZoomOut();
             i++;
         }
@@ -1633,7 +1654,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                 } else {
                     g2.setColor(Color.black);
                     g2.setFont(font12);
-                    String fileNameDis = "";
+                   String fileNameDis = "";
                     int startPaint = jScrollPane1.getHorizontalScrollBar().getValue();
                     if (fileName.length() > 15) {
 
@@ -2048,6 +2069,31 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
             }
         }
     }
+    
+    
+    
+    
+    public  String ReturnFilename()
+    {
+       // super();
+    
+        //super();
+        
+        String fileNameDis = "";
+        
+        if (fileName.length() > 15) {
+
+                        try {
+                            fileNameDis = fileName.substring(0, 15);
+                        } catch (Exception er) {
+                            System.err.println(er);
+                        }
+                    } else {
+                        fileNameDis = fileName;
+                    }
+        return fileNameDis;
+    }
+    
 
 // End class SamplingGraph
 //*********************************************************************************************************

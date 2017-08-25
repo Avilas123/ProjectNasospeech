@@ -102,7 +102,7 @@ public class Mainpopup extends javax.swing.JFrame {
         //this.dispose(); 
      // mainFrame.setVisible(true);
          // this.dispose();
-        mainFrame.dummyfileopenfunction();
+       String filename= mainFrame.dummyfileopenfunction();
         this.dispose();  
     }//GEN-LAST:event_jButton1ActionPerformed
 
