@@ -514,7 +514,8 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
        
       mainFrame.setVisible(true);
      System.out.println("filename === "+ filename);
-        
+      //  boolean autoscrolls = jScrollPane1.getAutoscrolls();
+      //jScrollPane1.createHorizontalScrollBar();
       return filename;// = convertedFile.getAbsolutePath() + "\\" + wav_file_name;
 
       
@@ -720,7 +721,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                 mousePosX1 = (double) (mousePosX1 * 2);
                 mousePosX2 = (double) (mousePosX2 * 2);
                 samplingGraph.createWaveForm(streamBytes.getCurrent());
-                jScrollPane1.getViewport().setViewPosition(new java.awt.Point((int) mousePosX1 - 50, 0));
+               // jScrollPane1.getViewport().setViewPosition(new java.awt.Point((int) mousePosX1 - 50, 0));
               //  jScrollPane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
             }
         } catch (Exception er) {
@@ -744,7 +745,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                     mousePosX2 = (double) (mousePosX2 / 2);
                 }
                 samplingGraph.createWaveForm(streamBytes.getCurrent());
-                jScrollPane1.getViewport().setViewPosition(new java.awt.Point((int) mousePosX1 - 50, 0));
+               // jScrollPane1.getViewport().setViewPosition(new java.awt.Point((int) mousePosX1 - 50, 0));
                 
             }
         } catch (Exception er) {
@@ -1443,7 +1444,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                 System.out.println(endPaint);
                // System.out.println("jscrollPanel = "+jScrollPane1.getSize().width + "    horizontal = "+ jScrollPane1.getHorizontalScrollBar().getValue());
                 int startPaint = jScrollPane1.getHorizontalScrollBar().getValue();
-                System.out.println(startPaint);
+                System.out.println("pankaj tested\t"+startPaint);
                 endPaint = (startPaint + endPaint);
                 
                 
@@ -1457,7 +1458,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                 int startbytes = startPaint * frames_per_pixel*2 ;
                 int endbytes = endPaint * frames_per_pixel *2;
                
-                jScrollPane1.getViewport().setViewPosition(new java.awt.Point((int) mousePosX1 - 50, 0));
+              //  jScrollPane1.getViewport().setViewPosition(new java.awt.Point((int) mousePosX1 - 50, 0));
                
                // System.out.println("end paint = "+endPaint + "  start paint = "+startPaint + " bytes "+audiobyte.length / format.getFrameSize() ) ;
 
