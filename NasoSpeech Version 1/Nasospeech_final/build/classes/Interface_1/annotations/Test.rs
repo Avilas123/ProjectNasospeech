@@ -1,1 +1,0 @@
-Speech.annotations.Test
