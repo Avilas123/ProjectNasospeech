@@ -31,6 +31,7 @@ public class StreamBytes {
     }
 
     public byte[] getCurrent() {
+        //System.out.println("getcurent value"+this.current);
         return this.current;
     }
 

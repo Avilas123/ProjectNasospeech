@@ -269,11 +269,11 @@ public class MainFrame extends javax.swing.JFrame {
         jInternalFrame1 = new javax.swing.JInternalFrame();
         Mainmenubar = new javax.swing.JMenuBar();
         File = new javax.swing.JMenu();
-        jOpenMenu = new javax.swing.JMenuItem();
-        jSaveMenu = new javax.swing.JMenuItem();
-        jSaveAsMenu = new javax.swing.JMenuItem();
-        jexitMenu = new javax.swing.JMenuItem();
-        jMenuItem18 = new javax.swing.JMenuItem();
+        jNew = new javax.swing.JMenuItem();
+        jOpen = new javax.swing.JMenuItem();
+        jClosethisfile = new javax.swing.JMenuItem();
+        jSaveas = new javax.swing.JMenuItem();
+        jExit = new javax.swing.JMenuItem();
         Edit = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -371,61 +371,60 @@ public class MainFrame extends javax.swing.JFrame {
 
         File.setText("File");
 
-        jOpenMenu.setBackground(new java.awt.Color(246, 246, 246));
-        jOpenMenu.setText("New");
-        jOpenMenu.setDoubleBuffered(true);
-        jOpenMenu.setEnabled(false);
-        jOpenMenu.setFocusCycleRoot(true);
-        jOpenMenu.setFocusPainted(true);
-        jOpenMenu.setFocusTraversalPolicyProvider(true);
-        jOpenMenu.setFocusable(true);
-        jOpenMenu.setOpaque(true);
-        jOpenMenu.setRolloverEnabled(true);
-        jOpenMenu.setSelected(true);
-        jOpenMenu.addActionListener(new java.awt.event.ActionListener() {
+        jNew.setBackground(new java.awt.Color(246, 246, 246));
+        jNew.setText("New");
+        jNew.setDoubleBuffered(true);
+        jNew.setEnabled(false);
+        jNew.setFocusCycleRoot(true);
+        jNew.setFocusPainted(true);
+        jNew.setFocusTraversalPolicyProvider(true);
+        jNew.setFocusable(true);
+        jNew.setOpaque(true);
+        jNew.setRolloverEnabled(true);
+        jNew.setSelected(true);
+        jNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jOpenMenuActionPerformed(evt);
+                jNewActionPerformed(evt);
             }
         });
-        File.add(jOpenMenu);
+        File.add(jNew);
 
-        jSaveMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-        jSaveMenu.setText("Open");
-        jSaveMenu.addActionListener(new java.awt.event.ActionListener() {
+        jOpen.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        jOpen.setText("Open");
+        jOpen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jSaveMenuActionPerformed(evt);
+                jOpenActionPerformed(evt);
             }
         });
-        File.add(jSaveMenu);
+        File.add(jOpen);
 
-        jSaveAsMenu.setBackground(new java.awt.Color(246, 246, 246));
-        jSaveAsMenu.setText("Save ");
-        jSaveAsMenu.setEnabled(false);
-        jSaveAsMenu.setFocusable(true);
-        jSaveAsMenu.addActionListener(new java.awt.event.ActionListener() {
+        jClosethisfile.setBackground(new java.awt.Color(246, 246, 246));
+        jClosethisfile.setText("Close this file");
+        jClosethisfile.setFocusable(true);
+        jClosethisfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jSaveAsMenuActionPerformed(evt);
+                jClosethisfileActionPerformed(evt);
             }
         });
-        File.add(jSaveAsMenu);
+        File.add(jClosethisfile);
 
-        jexitMenu.setBackground(new java.awt.Color(246, 246, 246));
-        jexitMenu.setText("Save as");
-        jexitMenu.setEnabled(false);
-        jexitMenu.addActionListener(new java.awt.event.ActionListener() {
+        jSaveas.setBackground(new java.awt.Color(246, 246, 246));
+        jSaveas.setText("Save as");
+        jSaveas.setEnabled(false);
+        jSaveas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jexitMenuActionPerformed(evt);
+                jSaveasActionPerformed(evt);
             }
         });
-        File.add(jexitMenu);
+        File.add(jSaveas);
 
-        jMenuItem18.setText("Exit");
-        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+        jExit.setText("Exit");
+        jExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem18ActionPerformed(evt);
+                jExitActionPerformed(evt);
             }
         });
-        File.add(jMenuItem18);
+        File.add(jExit);
 
         Mainmenubar.add(File);
 
@@ -676,17 +675,17 @@ public class MainFrame extends javax.swing.JFrame {
     
     
     
-    private void jOpenMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOpenMenuActionPerformed
+    private void jNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewActionPerformed
                     // TODO add your handling code here:
            
                     new NewFrameOnClickNewButton().setVisible(true);
                     
-    }//GEN-LAST:event_jOpenMenuActionPerformed
+    }//GEN-LAST:event_jNewActionPerformed
 
-    private void jexitMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jexitMenuActionPerformed
+    private void jSaveasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveasActionPerformed
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_jexitMenuActionPerformed
+    }//GEN-LAST:event_jSaveasActionPerformed
 
     private void jInternalFrame1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jInternalFrame1KeyPressed
         // TODO add your handling code here:
@@ -702,10 +701,10 @@ public class MainFrame extends javax.swing.JFrame {
         DisplayObjects.displayStaticPanle();
     }//GEN-LAST:event_internalframeactived
 
-    private void jSaveAsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveAsMenuActionPerformed
+    private void jClosethisfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jClosethisfileActionPerformed
         // TODO add your handling code here:
-        pWave.rightClick.saveFile("SaveAs");
-    }//GEN-LAST:event_jSaveAsMenuActionPerformed
+        pWave.rightClick.functionclose();
+    }//GEN-LAST:event_jClosethisfileActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
@@ -720,15 +719,15 @@ public class MainFrame extends javax.swing.JFrame {
 pWave.setZoomOut();        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
-    private void jSaveMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveMenuActionPerformed
+    private void jOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOpenActionPerformed
         // TODO add your handling code here:
          pWave.fileOpenMethod();
-    }//GEN-LAST:event_jSaveMenuActionPerformed
+    }//GEN-LAST:event_jOpenActionPerformed
 
-    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+    private void jExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExitActionPerformed
         // TODO add your handling code here:
         System.exit(0);
-    }//GEN-LAST:event_jMenuItem18ActionPerformed
+    }//GEN-LAST:event_jExitActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
@@ -995,8 +994,10 @@ pWave.setZoomOut();        // TODO add your handling code here:
     private javax.swing.JMenu File;
     private javax.swing.JMenuBar Mainmenubar;
     private javax.swing.JMenu View;
+    private javax.swing.JMenuItem jClosethisfile;
     private javax.swing.JComboBox jComboBox1;
     public javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenuItem jExit;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -1007,7 +1008,6 @@ pWave.setZoomOut();        // TODO add your handling code here:
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
-    private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
@@ -1016,10 +1016,9 @@ pWave.setZoomOut();        // TODO add your handling code here:
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
-    private javax.swing.JMenuItem jOpenMenu;
-    private javax.swing.JMenuItem jSaveAsMenu;
-    private javax.swing.JMenuItem jSaveMenu;
-    private javax.swing.JMenuItem jexitMenu;
+    private javax.swing.JMenuItem jNew;
+    private javax.swing.JMenuItem jOpen;
+    private javax.swing.JMenuItem jSaveas;
     private javax.swing.JMenu result;
     private javax.swing.JMenu selectandanalysemenu;
     // End of variables declaration//GEN-END:variables

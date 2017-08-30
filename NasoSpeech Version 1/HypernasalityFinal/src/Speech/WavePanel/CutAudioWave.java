@@ -96,8 +96,11 @@ public class CutAudioWave {
 
             int startPos = (int) startSample;
             int endPos = (int) endSample;
+            System.out.println("startPos"+startPos+"endPos"+endPos);
             int newLength = (int) (audioBytes.length) - (endPos - startPos) + 10;
+            System.out.println("newLength\t"+newLength);
             int newCutln = (int) (endPos - startPos) + 10;
+            System.out.println("newCutln\t"+newCutln);
             newAudioBytes = new byte[newLength];
             cutnewAudioBytes = new byte[newCutln];
             int j = 0;
@@ -164,7 +167,7 @@ public class CutAudioWave {
             AudioFormat format = fileFormat.getFormat();
             AudioInputStream inputStream = AudioSystem.getAudioInputStream(file);
             // CutAudioWave cu = new CutAudioWave(inputStream);
-            System.out.println(inputStream.getFrameLength());
+            System.out.println("inputscreen framelength"+inputStream.getFrameLength());
             //cu.cutPortion(5000, 17250);
 
         } catch (UnsupportedAudioFileException ex) {

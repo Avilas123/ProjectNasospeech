@@ -1960,10 +1960,10 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                             g2.setColor(pink);
                             g2.setStroke(new BasicStroke(3));
                             if ((((int) loc % (jScrollPane1.getWidth())) < 50) && loc != 0 && ((loc + jScrollPane1.getWidth()) < (samplingGraph.getWidth() - 10))) {
-                                jScrollPane1.getViewport().setViewPosition(new java.awt.Point((int) loc, 0));
+                              //  jScrollPane1.getViewport().setViewPosition(new java.awt.Point((int) loc, 0));
                             } else {
                                 if (endPaint < loc) {
-                                    jScrollPane1.getViewport().setViewPosition(new java.awt.Point((int) loc, 0));
+                                //    jScrollPane1.getViewport().setViewPosition(new java.awt.Point((int) loc, 0));
                                 }
                             }
                             g2.draw(new Line2D.Double(loc, 0, loc, h - INFOPAD - 2));
@@ -1986,10 +1986,10 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                                 g2.setStroke(new BasicStroke(3));
                                
                                 if ((((int) loc % (jScrollPane1.getWidth())) < 50) && loc != 0 && ((loc + jScrollPane1.getWidth()) < (samplingGraph.getWidth() - 10))) {
-                                    jScrollPane1.getViewport().setViewPosition(new java.awt.Point((int) loc, 0));
+                                  //  jScrollPane1.getViewport().setViewPosition(new java.awt.Point((int) loc, 0));
                                 } else {
                                     if (endPaint < loc) {
-                                        jScrollPane1.getViewport().setViewPosition(new java.awt.Point((int) loc, 0));
+                                    //    jScrollPane1.getViewport().setViewPosition(new java.awt.Point((int) loc, 0));
                                     }
                                 }
                                 g2.draw(new Line2D.Double(loc, 0, loc, h - INFOPAD - 2));
@@ -2108,7 +2108,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
     }
 
     public void scrollWaveFromRemote(int pix) {
-        jScrollPane1.getViewport().setViewPosition(new java.awt.Point((int) pix - 50, 0));
+      //  jScrollPane1.getViewport().setViewPosition(new java.awt.Point((int) pix - 50, 0));
     }
 
     public void setStreamDrawGraph() {

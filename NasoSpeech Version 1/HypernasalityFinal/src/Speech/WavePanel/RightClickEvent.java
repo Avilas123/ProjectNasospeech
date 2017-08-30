@@ -101,7 +101,7 @@ public class RightClickEvent {
     public RightClickEvent(PlotWave pWave) {
 
         this.pWave = pWave;
-        paste = new JMenu(" Paste ");
+       paste = new JMenu(" Paste ");
         paste.setFont(new Font("Courier New", Font.PLAIN, 15));
         paste.setBackground(Color.white);
         zoom = new JMenu(" Zoom ");
@@ -151,8 +151,8 @@ public class RightClickEvent {
     }
 
     public void addMenuItems() {
-        pWave.menu.removeAll();
-        paste.removeAll();
+       pWave.menu.removeAll();
+       /* paste.removeAll();
         zoom.removeAll();
         play.removeAll();
         pds.removeAll();
@@ -164,7 +164,7 @@ public class RightClickEvent {
         keywordHindi.removeAll();
         manualProcess.removeAll();
         dummy.removeAll();
-        importProcessed.removeAll();
+       */ importProcessed.removeAll();
         try {
 
 
@@ -428,7 +428,7 @@ public class RightClickEvent {
             // [End paste]
 
             //Delete
-            if (pWave.mousePosX1 != 0 && pWave.mousePosX2 != 0 && pWave.audioInputStream != null) {
+           /* if (pWave.mousePosX1 != 0 && pWave.mousePosX2 != 0 && pWave.audioInputStream != null) {
 
                 item = new JMenuItem(" Delete ");
                 item.addActionListener(new ActionListener() {
@@ -443,22 +443,23 @@ public class RightClickEvent {
                              int startSample = getStartSamples();
                              int endSample = getEndSamples();
                              waveDelete(startSample, endSample);*/
-                        }
-                    }
-                });
-                item.setFont(new Font("Courier New", Font.PLAIN, 15));
-                item.setBackground(Color.white);
+                //        }
+                  //  }
+              //  });
+                //item.setFont(new Font("Courier New", Font.PLAIN, 15));
+               // item.setBackground(Color.white);
               //  manualProcess.add(item);
-            }
+            //}
 
 
             //Delete
-
+/*
             //Crop
 
             if (pWave.mousePosX1 != 0 && pWave.mousePosX2 != 0 && pWave.audioInputStream != null) {
 
-                item = new JMenuItem(" Crop ");
+                //item = new JMenuItem(" Crop ");
+                
                 item.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         cropWaveFile();
@@ -488,65 +489,71 @@ public class RightClickEvent {
                // manualProcess.add(item);
             }
 
-
+*/
             //Save As...
 
-            if (pWave.audioInputStream != null) {
+          // if (pWave.audioInputStream != null) {
 
-                item = new JMenuItem(" Save As... ");
-                item.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        if (sourceAvailValidation()) {
-                            if (pWave.mousePosX1 != 0 && pWave.mousePosX2 != 0) 
-                            {
+              // item = new JMenuItem(" Save As... ");
+               //item.setVisible(true);
+                //item.addActionListener(new ActionListener() {
+                  //  public void actionPerformed(ActionEvent e) 
+                    //{
+                       // System.out.println("i have entered");
+                       //if (sourceAvailValidation()) {
+                         //   if (pWave.mousePosX1 != 0 && pWave.mousePosX2 != 0) 
+                           // {
                                 //getSamplingPositions();
-                                int startSample = getStartSamples();
-                                int endSample = getEndSamples();
-                               // System.out.print("i am going to");
-                                CutAudioWave cutW = new CutAudioWave();
-                                cutW.cutPortion(pWave.streamBytes.getCurrent(), startSample, endSample);
+                             //   int startSample = getStartSamples();
+                               // int endSample = getEndSamples();
+                               //System.out.print("StartSample\t"+startSample+"endSample\t"+endSample);
+                               // CutAudioWave cutW = new CutAudioWave();
+                                //cutW.cutPortion(pWave.streamBytes.getCurrent(), startSample, endSample);
 
-                                if (cutW.getresultByteArray() == null) {
-                                    return;
-                                }
-                                if (CutAudioInputStream.getCutWave() == null) {
-                                    return;
-                                }
-                                String filelocName = saveLocation();
-                                StreamConverter.byteTowavefile(CutAudioInputStream.getCutWave(), pWave.audioInputStream, filelocName);
+                                //if (cutW.getresultByteArray() == null) {
+                                  //   System.out.println("i have entered");
+                                   // return;
+                                //}
+                                //if (CutAudioInputStream.getCutWave() == null) {
+                                  //   System.out.println("i have entered");
+                                    //return;
+                                //}
+                                //String filelocName =saveLocation(); //drawingComponent.this.ReturnFilename;saveLocation();
+                               // System.out.println("filelocName\t"+filelocName);
+                               //StreamConverter.byteTowavefile(CutAudioInputStream.getCutWave(), pWave.audioInputStream, filelocName);
 
-                               CutAudioInputStream.setCutWave(null);
+                             // CutAudioInputStream.setCutWave(null);
 
-                            } else {
+                           // } else {
 
                              //  saveFile("saveAs");
-                            }
-                        }
-                    }
-                });
-                item.setFont(new Font("Courier New", Font.PLAIN, 15));
-                item.setBackground(Color.white);
+                          //  }
+                        //}
+                 //   }
+               //});
+              //  item.setFont(new Font("Courier New", Font.PLAIN, 15));
+               // item.setBackground(Color.white);
               //  manualProcess.add(item);
-            }
+          //  }
 
 
 
-            if (pWave.audioInputStream != null && (pWave.mousePosX1 == 0 || pWave.mousePosX2 == 0)) {
+          //  if (pWave.audioInputStream != null && (pWave.mousePosX1 == 0 || pWave.mousePosX2 == 0)) {
 
-                item = new JMenuItem(" Save to server ");
-                item.setVisible(false);
-                item.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        if (sourceAvailValidation()) {
-                            sendToServer();
-                        }
-                    }
-                });
-                item.setFont(new Font("Courier New", Font.PLAIN, 15));
-                item.setBackground(Color.white);
+            //    item = new JMenuItem(" Save to server ");
+              //  item.setVisible(false);
+                //item.addActionListener(new ActionListener() {
+                  //  public void actionPerformed(ActionEvent e) {
+                    //    if (sourceAvailValidation()) {
+                      //      sendToServer();
+                        //}
+                    //}
+               // });
+               // item.setFont(new Font("Courier New", Font.PLAIN, 15));
+               // item.setBackground(Color.white);
                // manualProcess.add(item);
             //    pWave.menu.add(manualProcess);
-            }
+            //}
 
 
             //Zoom Menu
@@ -758,9 +765,9 @@ public class RightClickEvent {
                     }
                 }
             });*/
-           item.setFont(new Font("Courier New", Font.PLAIN, 15));
-           item.setBackground(Color.white);
-           pWave.menu.add(item);
+         //  item.setFont(new Font("Courier New", Font.PLAIN, 15));
+          // item.setBackground(Color.white);
+          // pWave.menu.add(item);
 
 
             /*item = new JMenuItem(" Refresh ");
@@ -896,7 +903,7 @@ public class RightClickEvent {
             });
             item.setFont(new Font("Courier New", Font.PLAIN, 15));
             item.setBackground(Color.white);
-            pWave.menu.add(item);
+            //pWave.menu.add(item);
            
             
             
@@ -911,7 +918,7 @@ public class RightClickEvent {
             });
             item.setFont(new Font("Courier New", Font.PLAIN, 15));
             item.setBackground(Color.white);
-            pWave.menu.add(item);
+        //    pWave.menu.add(item);
             
             
             ///// for MFCC extraction 
@@ -927,7 +934,7 @@ public class RightClickEvent {
             });
             item.setFont(new Font("Courier New", Font.PLAIN, 15));
             item.setBackground(Color.white);
-            pWave.menu.add(item);
+            //pWave.menu.add(item);
             /////////////////////////  MFCC extraction end
             
             
@@ -1047,6 +1054,261 @@ public class RightClickEvent {
             pWave.menu.add(item);
             
             
+             
+            item=new JMenuItem(" Save As");
+                item.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) 
+                    {
+                        System.out.println("i have entered");
+                       if (sourceAvailValidation()) {
+                            if (pWave.mousePosX1 != 0 && pWave.mousePosX2 != 0) 
+                            {
+                                getSamplingPositions();
+                               int startSample = getStartSamples();
+                                int endSample = getEndSamples();
+                               System.out.print("StartSample\t"+startSample+"endSample\t"+endSample);
+                                CutAudioWave cutW = new CutAudioWave();
+                                cutW.cutPortion(pWave.streamBytes.getCurrent(), startSample, endSample);
+
+                                if (cutW.getresultByteArray() == null) {
+                                     System.out.println("i have entered");
+                                    return;
+                                }
+                                if (CutAudioInputStream.getCutWave() == null) {
+                                     System.out.println("i have entered");
+                                    return;
+                                }
+                                String filelocName =saveLocation(); //drawingComponent.this.ReturnFilename;saveLocation();
+                                System.out.println("filelocName\t"+filelocName);
+                               StreamConverter.byteTowavefile(CutAudioInputStream.getCutWave(), pWave.audioInputStream, filelocName);
+
+                             CutAudioInputStream.setCutWave(null);
+
+                            } else {
+
+                               saveFile("saveAs");
+                           }
+                        }
+                  }
+                });
+            item.setFont(new Font("Courier New", Font.PLAIN, 15));
+            item.setBackground(Color.white);
+            pWave.menu.add(item);
+            
+            item=new JMenuItem("close");
+            item.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    try {
+
+                        if (sourceAvailValidation()) {
+
+                            //Save Exsiting 
+                            if (pWave.getfileNameColor().equals(Color.red)) {
+                                int option = javax.swing.JOptionPane.showConfirmDialog(pWave.mainFrame, "Do you want to save changes to " + pWave.fileName, "Save", JOptionPane.YES_NO_OPTION);
+                                if (option == JOptionPane.YES_OPTION) {
+                                    saveFile("saveAS");
+                                }
+
+                            }
+                            //End Save
+                            String curr_hash_name = Hash.getHashValue(StreamConverter.byteTostream(pWave.streamBytes.getCurrent(), pWave.audioInputStream));
+                      //      boolean find_ann = new FindAnnotated(pWave.mainFrame.getConn(), curr_hash_name, 0, 0).isAnnotationFileinServer();
+
+                      //      if (!find_ann) {
+                       //         int option = javax.swing.JOptionPane.showConfirmDialog(pWave.mainFrame, "" + pWave.fileName + " is annotated, if not saved in server changes will be removed, Do you want to send to server", "Conform", JOptionPane.YES_NO_OPTION);
+                      //          if (option == JOptionPane.YES_OPTION) {
+                       //             sendToServer();
+                     //           }
+                    //        }
+                            if (pWave.audioInputStream != null) {
+                                if (pWave.playback.line != null) {
+                                    if (pWave.playback.line.isRunning() && pWave.playback.line.isOpen()) {
+                                        pWave.stopSound();
+                                    }
+                                }
+                            }
+                            pWave.audioInputStream = null;
+                            pWave.clearInfoLabel();
+                            pWave.streamBytes.setCurrent(null);
+                            pWave.createAudioInputStream(null, null, true);
+                            pWave.setGrphSizeinScreen(0);
+                            pWave.samplingGraph.repaint();
+                            undoStack.clear();
+                            redoStack.clear();
+                            pWave.setfileNameColor(Color.black);
+//                            pWave.loadB.setEnabled(true);
+                        } else {
+                            pWave.clearInfoLabel();
+                            if (pWave.audioInputStream != null) {
+                                if (pWave.playback.line != null) {
+                                    if (pWave.playback.line.isRunning() && pWave.playback.line.isOpen()) {
+                                        pWave.stopSound();
+                                    }
+                                }
+                            }
+                            pWave.audioInputStream = null;
+                            pWave.streamBytes.setCurrent(null);
+                            pWave.createAudioInputStream(null, null, true);
+                            pWave.setGrphSizeinScreen(0);
+                            pWave.samplingGraph.repaint();
+                            pWave.setfileNameColor(Color.black);
+                           // pWave.loadB.setEnabled(true);
+
+                        }
+
+
+                    } catch (Exception er) {
+                        System.err.println(er);
+                    }
+                }
+            });
+            item.setFont(new Font("Courier New", Font.PLAIN, 15));
+            item.setBackground(Color.white);
+            pWave.menu.add(item);
+         
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            //////////////////////////////////////////////////close button////////////////////////////////
+          //  item = new JMenuItem(" Close");
+            
+          //  item.setFont(new Font("Courier New", Font.PLAIN, 15));
+           // item.setBackground(Color.white);
+           // pWave.menu.add(item);
+
+             
+            //////////////////////////////////////close///////////////////////////////////////////////////////////
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+               //Save As...
+
+         // if (pWave.audioInputStream != null) {
+//
+        //     item = new JMenuItem(" Save As... ");
+          //      item.setVisible(true);
+                //item.addActionListener(new ActionListener() {
+                  //  public void actionPerformed(ActionEvent e) 
+                    //{
+                       // System.out.println("i have entered");
+                       //if (sourceAvailValidation()) {
+                         //   if (pWave.mousePosX1 != 0 && pWave.mousePosX2 != 0) 
+                           // {
+                                //getSamplingPositions();
+                             //   int startSample = getStartSamples();
+                               // int endSample = getEndSamples();
+                               //System.out.print("StartSample\t"+startSample+"endSample\t"+endSample);
+                               // CutAudioWave cutW = new CutAudioWave();
+                                //cutW.cutPortion(pWave.streamBytes.getCurrent(), startSample, endSample);
+
+                                //if (cutW.getresultByteArray() == null) {
+                                  //   System.out.println("i have entered");
+                                   // return;
+                                //}
+                                //if (CutAudioInputStream.getCutWave() == null) {
+                                  //   System.out.println("i have entered");
+                                    //return;
+                                //}
+                                //String filelocName =saveLocation(); //drawingComponent.this.ReturnFilename;saveLocation();
+                               // System.out.println("filelocName\t"+filelocName);
+                               //StreamConverter.byteTowavefile(CutAudioInputStream.getCutWave(), pWave.audioInputStream, filelocName);
+
+                             // CutAudioInputStream.setCutWave(null);
+
+                           // } else {
+
+                             //  saveFile("saveAs");
+                          //  }
+                        //}
+                 //   }
+               //});
+        //      item.setFont(new Font("Courier New", Font.PLAIN, 15));
+         //      item.setBackground(Color.white);
+         //       pWave.menu.add(item);
+          //  }
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
              ///// END OF  the hypernasality code here and end point detection code here  .///////////
             //[end speaker Identification]
 
@@ -1155,102 +1417,31 @@ public class RightClickEvent {
             //-----------------ADD KEYWORD MWNU ENDS-----------------------//
             
             
-            item = new JMenuItem(" Close");
-            item.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    try {
-
-                        if (sourceAvailValidation()) {
-
-                            //Save Exsiting 
-                            if (pWave.getfileNameColor().equals(Color.red)) {
-                                int option = javax.swing.JOptionPane.showConfirmDialog(pWave.mainFrame, "Do you want to save changes to " + pWave.fileName, "Save", JOptionPane.YES_NO_OPTION);
-                                if (option == JOptionPane.YES_OPTION) {
-                                    saveFile("saveAS");
-                                }
-
-                            }
-                            //End Save
-                            String curr_hash_name = Hash.getHashValue(StreamConverter.byteTostream(pWave.streamBytes.getCurrent(), pWave.audioInputStream));
-                      //      boolean find_ann = new FindAnnotated(pWave.mainFrame.getConn(), curr_hash_name, 0, 0).isAnnotationFileinServer();
-
-                      //      if (!find_ann) {
-                       //         int option = javax.swing.JOptionPane.showConfirmDialog(pWave.mainFrame, "" + pWave.fileName + " is annotated, if not saved in server changes will be removed, Do you want to send to server", "Conform", JOptionPane.YES_NO_OPTION);
-                      //          if (option == JOptionPane.YES_OPTION) {
-                       //             sendToServer();
-                     //           }
-                    //        }
-                            if (pWave.audioInputStream != null) {
-                                if (pWave.playback.line != null) {
-                                    if (pWave.playback.line.isRunning() && pWave.playback.line.isOpen()) {
-                                        pWave.stopSound();
-                                    }
-                                }
-                            }
-                            pWave.audioInputStream = null;
-                            pWave.clearInfoLabel();
-                            pWave.streamBytes.setCurrent(null);
-                            pWave.createAudioInputStream(null, null, true);
-                            pWave.setGrphSizeinScreen(0);
-                            pWave.samplingGraph.repaint();
-                            undoStack.clear();
-                            redoStack.clear();
-                            pWave.setfileNameColor(Color.black);
-//                            pWave.loadB.setEnabled(true);
-                        } else {
-                            pWave.clearInfoLabel();
-                            if (pWave.audioInputStream != null) {
-                                if (pWave.playback.line != null) {
-                                    if (pWave.playback.line.isRunning() && pWave.playback.line.isOpen()) {
-                                        pWave.stopSound();
-                                    }
-                                }
-                            }
-                            pWave.audioInputStream = null;
-                            pWave.streamBytes.setCurrent(null);
-                            pWave.createAudioInputStream(null, null, true);
-                            pWave.setGrphSizeinScreen(0);
-                            pWave.samplingGraph.repaint();
-                            pWave.setfileNameColor(Color.black);
-                           // pWave.loadB.setEnabled(true);
-
-                        }
-
-
-                    } catch (Exception er) {
-                        System.err.println(er);
-                    }
-                }
-            });
-            item.setFont(new Font("Courier New", Font.PLAIN, 15));
-            item.setBackground(Color.white);
-            pWave.menu.add(item);
-
-
+            
             //End Menu
 
             //Phoneme
 
-            item = new JMenuItem(" Assamese ");
-            item.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    if (sourceAvailValidation()) {
+          //  item = new JMenuItem(" Assamese ");
+           // item.addActionListener(new ActionListener() {
+            //    public void actionPerformed(ActionEvent e) {
+              //      if (sourceAvailValidation()) {
                //         pWave.mainFrame.createPhenomeInternalFrame("Phenome analysis (Assamese)", StreamConverter.byteTostream(pWave.streamBytes.getCurrent(), pWave.audioInputStream), "Assamese", null);
+                //    }
+               // }
+           // });
+            //item.setFont(new Font("Courier New", Font.PLAIN, 15));
+           // item.setBackground(Color.white);
+            phoneme.add(item);
+
+            item = new JMenuItem(" Hindi ");
+            item.addActionListener(new ActionListener() {
+              public void actionPerformed(ActionEvent e) {
+                    if (sourceAvailValidation()) {
+                       // pWave.mainFrame.createPhenomeInternalFrame("Phenome analysis (Hindi)", StreamConverter.byteTostream(pWave.streamBytes.getCurrent(), pWave.audioInputStream), "Hindi", null);
                     }
                 }
             });
-            item.setFont(new Font("Courier New", Font.PLAIN, 15));
-            item.setBackground(Color.white);
-            phoneme.add(item);
-
-            //item = new JMenuItem(" Hindi ");
-            //item.addActionListener(new ActionListener() {
-                //public void actionPerformed(ActionEvent e) {
-                    //if (sourceAvailValidation()) {
-                        //pWave.mainFrame.createPhenomeInternalFrame("Phenome analysis (Hindi)", StreamConverter.byteTostream(pWave.streamBytes.getCurrent(), pWave.audioInputStream), "Hindi", null);
-                    //}
-                //}
-            //});
             item.setFont(new Font("Courier New", Font.PLAIN, 15));
             item.setBackground(Color.white);
             phoneme.add(item);
@@ -1786,14 +1977,17 @@ public class RightClickEvent {
         String filePath = null;
         try {
             File file = new File(System.getProperty("user.dir"));
+            System.out.println("File is\t"+file);
             JFileChooser fc = new JFileChooser(file);
             fc.setFileFilter(new javax.swing.filechooser.FileFilter() {
-                public boolean accept(File f) {
-                    if (f.isDirectory()) {
+                @Override
+                public boolean accept(File file) {
+
+                    if (file.isDirectory()) {
                         return true;
                     }
-                    String name = f.getName();
-                    if (name.endsWith(".wav")) {
+                    String name = file.getName().toLowerCase();
+                    if (name.endsWith(".wav") || name.endsWith(".mp3") || name.endsWith(".wma")) {
                         return true;
                     }
                     return false;
@@ -1807,6 +2001,7 @@ public class RightClickEvent {
 
             if (fc.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
                 filePath = fc.getSelectedFile().toString();
+                
             }
             if (filePath == null) {
                 return null;
@@ -1821,9 +2016,9 @@ public class RightClickEvent {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
+System.out.println("filepath is\t"+filePath);
         return filePath;
-
+        
     }
 
     public void waveDelete(int startSample, int endSample) {
@@ -2283,4 +2478,81 @@ public class RightClickEvent {
         }
 
     }//End File Load
+    
+    public void functionclose()
+            {
+            
+              try {
+
+                        if (sourceAvailValidation()) {
+
+                            //Save Exsiting 
+                            if (pWave.getfileNameColor().equals(Color.red)) {
+                                int option = javax.swing.JOptionPane.showConfirmDialog(pWave.mainFrame, "Do you want to save changes to " + pWave.fileName, "Save", JOptionPane.YES_NO_OPTION);
+                                if (option == JOptionPane.YES_OPTION) {
+                                    saveFile("saveAS");
+                                }
+
+                            }
+                            //End Save
+                            String curr_hash_name = Hash.getHashValue(StreamConverter.byteTostream(pWave.streamBytes.getCurrent(), pWave.audioInputStream));
+                      //      boolean find_ann = new FindAnnotated(pWave.mainFrame.getConn(), curr_hash_name, 0, 0).isAnnotationFileinServer();
+
+                      //      if (!find_ann) {
+                       //         int option = javax.swing.JOptionPane.showConfirmDialog(pWave.mainFrame, "" + pWave.fileName + " is annotated, if not saved in server changes will be removed, Do you want to send to server", "Conform", JOptionPane.YES_NO_OPTION);
+                      //          if (option == JOptionPane.YES_OPTION) {
+                       //             sendToServer();
+                     //           }
+                    //        }
+                            if (pWave.audioInputStream != null) {
+                                if (pWave.playback.line != null) {
+                                    if (pWave.playback.line.isRunning() && pWave.playback.line.isOpen()) {
+                                        pWave.stopSound();
+                                    }
+                                }
+                            }
+                            pWave.audioInputStream = null;
+                            pWave.clearInfoLabel();
+                            pWave.streamBytes.setCurrent(null);
+                            pWave.createAudioInputStream(null, null, true);
+                            pWave.setGrphSizeinScreen(0);
+                            pWave.samplingGraph.repaint();
+                            undoStack.clear();
+                            redoStack.clear();
+                            pWave.setfileNameColor(Color.black);
+//                            pWave.loadB.setEnabled(true);
+                        } else {
+                            pWave.clearInfoLabel();
+                            if (pWave.audioInputStream != null) {
+                                if (pWave.playback.line != null) {
+                                    if (pWave.playback.line.isRunning() && pWave.playback.line.isOpen()) {
+                                        pWave.stopSound();
+                                    }
+                                }
+                            }
+                            pWave.audioInputStream = null;
+                            pWave.streamBytes.setCurrent(null);
+                            pWave.createAudioInputStream(null, null, true);
+                            pWave.setGrphSizeinScreen(0);
+                            pWave.samplingGraph.repaint();
+                            pWave.setfileNameColor(Color.black);
+                           // pWave.loadB.setEnabled(true);
+
+                        }
+
+
+                    } catch (Exception er) {
+                        System.err.println(er);
+                    }
+            
+            
+            
+            }
+            
+    
+    
+    
+    
+    
+    
 }
