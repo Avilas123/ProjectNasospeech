@@ -33,6 +33,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -88,8 +89,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextField desigtxt;
 
-    @FXML
-    private TextField addtxt;
+     @FXML
+    private TextArea addtxt;
      @FXML
     private Button reg;
      
@@ -450,6 +451,7 @@ public class FXMLDocumentController implements Initializable {
         // TODO
         //gcombox.setValue("Male");
        gcombox.setItems(genderitems);
+       gcombox.getSelectionModel().selectFirst();
       // System.setProperty("prism.lcdtext", "false");
     
         

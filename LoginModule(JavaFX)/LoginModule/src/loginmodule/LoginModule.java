@@ -29,9 +29,9 @@ public class LoginModule extends Application {
         
         Connection conn = LoginModule.connect();
         System.out.println("connection successfull");
-        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("PatientRegistration.fxml"));
         
-        Scene scene = new Scene(root,550,450, true, SceneAntialiasing.BALANCED);
+        Scene scene = new Scene(root,735,530, true, SceneAntialiasing.BALANCED);
        
         
         
