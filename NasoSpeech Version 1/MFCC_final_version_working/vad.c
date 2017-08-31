@@ -83,9 +83,9 @@ short *vad_enrthr(char fullpath_input[], int *total_no_of_frames, int *no_of_spe
 
 	fclose(fp1_input);
 
-         
+        printf("no of frame size\t%d",*nof_fsize);
         nof_fshift=((FRAMESIZE/FRAMESHIFT)*(*nof_fsize))-((FRAMESIZE/FRAMESHIFT)-1);   // Calculating the no of frames of FRAMESHIFT
- 
+       // printf("\nno of frame shift\n%d",nof_fshift);
 	ptr = (short*)malloc((FRAMESIZE * (*nof_fsize)) * sizeof(short));              // Allocating contiguous memory to store the complete data of Input wav file
 
 	Energy_frames = (float *)malloc( nof_fshift * sizeof(float) );                // Allocating contiguous memory to store the energies of every frame
@@ -93,13 +93,15 @@ short *vad_enrthr(char fullpath_input[], int *total_no_of_frames, int *no_of_spe
         speech_nonspeech_frames = (short *)malloc( nof_fshift * sizeof(short) );       // Allocating contiguous memory to store the boolean value whether a frame is speech or non-speech 
 
 
-        fread(ptr, sizeof(short), (*nof_fsize)*FRAMESIZE, fp2_input);                        // Reading complete data as single chunk
+        fread(ptr, sizeof(short), (*nof_fsize)*FRAMESIZE, fp2_input);  
+        printf("pointer value%d",*ptr);// Reading complete data as single chunk
 			
 	fclose(fp2_input);
 
 	shift = 0;
 
        eoinput= ( (*nof_fsize) * FRAMESIZE ) - FRAMESHIFT;
+       printf("endofinput\n%ldC",eoinput);
  /**
      The below while loop is used for calculating the energy of each frame and storing it in the Energy_frames array
 

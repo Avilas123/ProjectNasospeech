@@ -983,7 +983,9 @@ pWave.setZoomOut();        // TODO add your handling code here:
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                 new Mainpopup().setVisible(true);
+                
+                new LoginForm().setVisible(true);
+                 //new Mainpopup().setVisible(true);
             }
         });
     }

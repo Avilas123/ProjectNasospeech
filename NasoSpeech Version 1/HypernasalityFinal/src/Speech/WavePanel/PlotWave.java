@@ -718,8 +718,8 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
             if (audioInputStream != null) {
                 int screenWidth = (int) (samplingPanel.getSize().getWidth() * 2);
                 setGrphSizeinScreen(screenWidth);
-                mousePosX1 = (double) (mousePosX1 * 2);
-                mousePosX2 = (double) (mousePosX2 * 2);
+               // mousePosX1 = (double) (mousePosX1 * 2);
+               // mousePosX2 = (double) (mousePosX2 * 2);
                 samplingGraph.createWaveForm(streamBytes.getCurrent());
                // jScrollPane1.getViewport().setViewPosition(new java.awt.Point((int) mousePosX1 - 50, 0));
               //  jScrollPane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
