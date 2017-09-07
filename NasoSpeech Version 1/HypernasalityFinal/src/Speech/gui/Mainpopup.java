@@ -49,6 +49,7 @@ public class Mainpopup extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        openarecordfile = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(246, 246, 246));
@@ -65,21 +66,34 @@ public class Mainpopup extends javax.swing.JFrame {
             }
         });
 
+        openarecordfile.setBackground(new java.awt.Color(246, 246, 246));
+        openarecordfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech.icons1/record filenew.png"))); // NOI18N
+        openarecordfile.setBorderPainted(false);
+        openarecordfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openarecordfileActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(openarecordfile, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(130, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(openarecordfile, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -102,9 +116,20 @@ public class Mainpopup extends javax.swing.JFrame {
         //this.dispose(); 
      // mainFrame.setVisible(true);
          // this.dispose();
-       String filename= mainFrame.dummyfileopenfunction();
+        String filename= mainFrame.dummyfileopenfunction();
+     //  mainFrame.setVisible(true);
         this.dispose();  
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void openarecordfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openarecordfileActionPerformed
+
+         mainFrame.setVisible(true);
+         this.dispose(); 
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_openarecordfileActionPerformed
 
     
     
@@ -150,5 +175,6 @@ public class Mainpopup extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton openarecordfile;
     // End of variables declaration//GEN-END:variables
 }

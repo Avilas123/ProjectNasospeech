@@ -628,7 +628,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
             pausBtn.setEnabled(true);
 
            // waveB.setEnabled(false);
-            captBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/stop.jpg")));
+           captBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech.icons1/record.png")));
             captBtn.setToolTipText("stop");
         } catch (Exception er) {
             System.err.println(er);
@@ -644,7 +644,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
             playBtn.setEnabled(true);
             pausBtn.setEnabled(false);
            // waveB.setEnabled(true);
-            captBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/record.jpg")));
+           captBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech.icons1/record.png")));
             captBtn.setToolTipText("record");
         } catch (Exception er) {
             System.err.println(er);
@@ -655,7 +655,9 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
 
               if (evt.getButton() == MouseEvent.BUTTON3) {
                   rightClick.addMenuItems();
+                //  menu.show();
                   menu.show(evt.getComponent(), evt.getX(), evt.getY());
+                  //menu.removeAll();
               } else {
                   if (mousePosX1 == 0 && mousePosX2 == 0) {
                       mousePosX1 = evt.getX();
@@ -722,7 +724,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                // mousePosX2 = (double) (mousePosX2 * 2);
                 samplingGraph.createWaveForm(streamBytes.getCurrent());
                // jScrollPane1.getViewport().setViewPosition(new java.awt.Point((int) mousePosX1 - 50, 0));
-              //  jScrollPane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            //    jScrollPane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
             }
         } catch (Exception er) {
             System.err.println(er);
@@ -778,18 +780,20 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
 
     private void playBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playBtnActionPerformed
         // TODO add your handling code here:
-        
+        System.out.println("kljlklkjjkljkljljkl;l");
         try {
             if (audioInputStream != null) {
-                if (playBtn.getToolTipText().equals("play")) {
+                
+                if (playBtn.getToolTipText().equals("play")  || playBtn.getToolTipText().equals("Play")) {
+                    
                     if (rightClick.sourceAvailValidation()) {
                         rightClick.playSoundAll();
                     }
                 } else {
                    if (audioInputStream != null) {
-            if (playBtn.getToolTipText().equals("pause")) {
+            if (playBtn.getToolTipText().equals("pause")  || playBtn.getToolTipText().equals("Pause")) {
                 pauseSound();
-            } else if (playBtn.getToolTipText().equals("resume")){
+            } else if (playBtn.getToolTipText().equals("resume") || playBtn.getToolTipText().equals("Resume")){
                 resumeSound();
             }
         }//stopSound();
@@ -1058,11 +1062,11 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                 samplingGraph.repaint();
             }
             if (thread != null) {
-                thread = null;
+              //  thread = null;
                 samplingGraph.stop();
                 captBtn.setEnabled(true);
                 pausBtn.setEnabled(false);
-                playBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/btn_play_icon.png")));
+               playBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech.icons1/play-button.png")));
                 playBtn.setToolTipText("Play");
             }
         }
@@ -1096,7 +1100,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                 if (line != null) {
                     line.stop();
                     line.close();
-                    System.out.println("Reached");
+                    System.out.println("Reached1");
                     line = null;
                 }
 
@@ -1166,9 +1170,9 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                     line.drain();
                 }
 
-                line.stop();
-                line.close();
-                System.out.println("Reached");
+              //  line.stop();
+              //  line.close();
+                System.out.println("Reached2");
                 line = null;
                 selectedPlay = false;
                 data = null;
@@ -1209,7 +1213,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                     pausBtn.setEnabled(false);
 
 //                    waveB.setEnabled(true);
-                    captBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech/Icons/record.jpg")));
+                  captBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech.icons1/record.png")));
                     captBtn.setToolTipText("record");
                     System.err.println(errStr);
                     //samplingGraph.repaint();
@@ -1924,6 +1928,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                         //Color linecolor = new Color(128, 128, 128);
                         Color linecolor = new Color(0,0,100);
                         g2.setColor(linecolor);
+                        System.out.println("Lines Size"+lines.size());
                         for (int i = 0; i < lines.size(); i++) {
 
                             // Draw Signal Graph

@@ -77,7 +77,6 @@
                   <Color blue="f6" green="f6" red="f6" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Save as"/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jSaveasActionPerformed"/>
@@ -107,7 +106,6 @@
                   <Color blue="f6" green="f6" red="f6" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Select all"/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
@@ -154,6 +152,9 @@
                 <Property name="text" type="java.lang.String" value="Paste"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem5ActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

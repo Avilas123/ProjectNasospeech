@@ -62,7 +62,7 @@ public class MainFrame extends javax.swing.JFrame {
     public boolean rPhoneStatus = false;
     private String userRoll = "";
     int timeRun;
-    public RightClickEvent right;
+    public RightClickEvent right=new RightClickEvent(pWave);
     private int copy_from_ms = 0, copy_to_ms = 0, ann_fLength, ann_oldfLength;
     
  public String filenamedummy="";
@@ -71,6 +71,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     /*  function for displaying clock */
     public MainFrame(String userID, String userRoll) {
+        
         initComponents();
         
         
@@ -410,7 +411,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         jSaveas.setBackground(new java.awt.Color(246, 246, 246));
         jSaveas.setText("Save as");
-        jSaveas.setEnabled(false);
         jSaveas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jSaveasActionPerformed(evt);
@@ -433,7 +433,6 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setBackground(new java.awt.Color(246, 246, 246));
         jMenuItem1.setText("Select all");
-        jMenuItem1.setEnabled(false);
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -469,6 +468,11 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuItem5.setBackground(new java.awt.Color(246, 246, 246));
         jMenuItem5.setText("Paste");
         jMenuItem5.setEnabled(false);
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         Edit.add(jMenuItem5);
 
         Mainmenubar.add(Edit);
@@ -683,7 +687,22 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jNewActionPerformed
 
     private void jSaveasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveasActionPerformed
-        // TODO add your handling code here:
+      
+///////////////////////save As/////////////////////////////////////////////////
+
+pWave.rightClick.saveas();
+
+
+
+
+
+
+
+
+        
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TODO add your handling code here:
         
     }//GEN-LAST:event_jSaveasActionPerformed
 
@@ -708,7 +727,14 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        pWave.rightClick.cutWaveFile(true);
+        //////////////////////select All/////////////////////////////////////////////////////
+        
+        
+       pWave.rightClick.selectAll();
+        
+        
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////     
+     //   pWave.rightClick.cutWaveFile(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
@@ -974,6 +1000,23 @@ pWave.setZoomOut();        // TODO add your handling code here:
         }
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+   
+        pWave.rightClick.paste();
+
+
+
+
+
+
+
+
+
+
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1024,6 +1067,11 @@ pWave.setZoomOut();        // TODO add your handling code here:
     private javax.swing.JMenu result;
     private javax.swing.JMenu selectandanalysemenu;
     // End of variables declaration//GEN-END:variables
+
+    public void createCopyPanel(String panelName, AudioInputStream audioInputStream) {
+        new CopyPanelFrame(this).createCopyInternalFrame(panelName, audioInputStream);
+
+    }
     // function for status button
   /*  public void kwsButtonStatus(boolean status) {
 
@@ -1058,5 +1106,6 @@ pWave.setZoomOut();        // TODO add your handling code here:
 
     }*/
 
+ 
 
 }

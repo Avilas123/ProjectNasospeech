@@ -186,6 +186,11 @@ public class RegisterForm extends javax.swing.JFrame {
                 phnumtxtMouseClicked(evt);
             }
         });
+        phnumtxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phnumtxtActionPerformed(evt);
+            }
+        });
 
         gendercbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Others" }));
         gendercbox.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -574,9 +579,9 @@ public class RegisterForm extends javax.swing.JFrame {
     private void emailtxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailtxtMouseClicked
         // TODO add your handling code here:
         emailtxt.setBorder(bblue);
-        phnumtxt.setBorder(bgrey);
+        pwdtxt1.setBorder(bgrey);
         jLabelemail.setText("");
-        phnumtxt.setBorder(bgrey);
+       
         if(!(Arrays.equals(pwdtxt.getPassword(), pwdtxt1.getPassword()))){
         
             jLabelpwd1.setText("*Passwords do not match!");
@@ -713,7 +718,7 @@ public class RegisterForm extends javax.swing.JFrame {
 
     private void phnumtxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_phnumtxtMouseClicked
         // TODO add your handling code here:
-        addtxt.setBorder(bgrey);
+        emailtxt.setBorder(bgrey);
     
         phnumtxt.setBorder(bblue);
         orgnametxt.setBorder(bgrey);
@@ -758,7 +763,7 @@ public class RegisterForm extends javax.swing.JFrame {
 
     private void desigtxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desigtxtMouseClicked
         // TODO add your handling code here:
-        addtxt.setBorder(bgrey);
+        orgnametxt.setBorder(bgrey);
         jLabeldesig.setText("");
         desigtxt.setBorder(bblue);
         if(orgnametxt.getText().equals("")){
@@ -773,7 +778,7 @@ public class RegisterForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         jLabelorg.setText("");
         orgnametxt.setBorder(bblue);
-        desigtxt.setBorder(bgrey);
+        phnumtxt.setBorder(bgrey);
         if(phnumtxt.getText().equals("")){
             phnumtxt.setBorder(bred);
             jLabelphnum.setText("You can't leave this empty!");
@@ -838,6 +843,10 @@ public class RegisterForm extends javax.swing.JFrame {
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void phnumtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phnumtxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_phnumtxtActionPerformed
 
     /**
      * @param args the command line arguments

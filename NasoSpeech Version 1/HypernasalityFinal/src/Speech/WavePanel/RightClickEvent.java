@@ -26,6 +26,7 @@ import java.util.Stack;
 import Speech.panels.NewPlotWavePanel;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.sql.Connection;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
@@ -151,8 +152,8 @@ public class RightClickEvent {
     }
 
     public void addMenuItems() {
-       pWave.menu.removeAll();
-       /* paste.removeAll();
+        pWave.menu.removeAll();
+        paste.removeAll();
         zoom.removeAll();
         play.removeAll();
         pds.removeAll();
@@ -164,12 +165,12 @@ public class RightClickEvent {
         keywordHindi.removeAll();
         manualProcess.removeAll();
         dummy.removeAll();
-       */ importProcessed.removeAll();
+        importProcessed.removeAll();
         try {
 
 
             if (pWave.audioInputStream == null) {
-                item = new JMenuItem(" Open ");
+                item = new JMenuItem("Open ");
                 item.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
 
@@ -611,7 +612,43 @@ public class RightClickEvent {
             }
 
 
+           
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             //[End Select All]
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
 
             //pWave.menu.add(manualProcess);
 
@@ -937,8 +974,8 @@ public class RightClickEvent {
             //pWave.menu.add(item);
             /////////////////////////  MFCC extraction end
             
-            
-            item = new JMenuItem(" Hypernasality");
+             if (pWave.audioInputStream != null) {
+            item = new JMenuItem("Hypernasality");
             item.addActionListener(new ActionListener() {
                 
                                
@@ -1052,10 +1089,21 @@ public class RightClickEvent {
             item.setFont(new Font("Courier New", Font.PLAIN, 15));
             item.setBackground(Color.white);
             pWave.menu.add(item);
-            
-            
+             }
              
-            item=new JMenuItem(" Save As");
+             item = new JMenuItem("Close this File");
+             item.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) 
+                    {     functionclose();
+                        }
+                  }
+                );
+              item.setFont(new Font("Courier New", Font.PLAIN, 15));
+            item.setBackground(Color.white);
+            pWave.menu.add(item);
+            
+            if (pWave.mousePosX1 != 0 && pWave.mousePosX2 != 0) {
+            item=new JMenuItem("Select & Check Hypernasality");
                 item.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) 
                     {
@@ -1066,35 +1114,276 @@ public class RightClickEvent {
                                 getSamplingPositions();
                                int startSample = getStartSamples();
                                 int endSample = getEndSamples();
+                                
+                                
+                                
                                System.out.print("StartSample\t"+startSample+"endSample\t"+endSample);
                                 CutAudioWave cutW = new CutAudioWave();
                                 cutW.cutPortion(pWave.streamBytes.getCurrent(), startSample, endSample);
 
                                 if (cutW.getresultByteArray() == null) {
                                      System.out.println("i have entered");
-                                    return;
+                                     return;
                                 }
                                 if (CutAudioInputStream.getCutWave() == null) {
                                      System.out.println("i have entered");
-                                    return;
+                                     return;
                                 }
-                                String filelocName =saveLocation(); //drawingComponent.this.ReturnFilename;saveLocation();
-                                System.out.println("filelocName\t"+filelocName);
+                                 String currentDir = System.getProperty("user.dir");
+                                 System.out.println("cu");
+                                 String cexedir = currentDir + "\\cexe\\";
+                                
+                                // createTempFile("wave",".wav"," C:\\Users\\user\\Documents\\NetBeansProjects\\HypernasalityFinal\\");
+                                String filelocName ="C:\\Users\\user\\Documents\\NetBeansProjects\\HypernasalityFinal\\temp.wav";//saveLocation(); //drawingComponent.this.ReturnFilename;saveLocation();
+                                System.out.println("filelocName Saved\t"+filelocName);
                                StreamConverter.byteTowavefile(CutAudioInputStream.getCutWave(), pWave.audioInputStream, filelocName);
 
                              CutAudioInputStream.setCutWave(null);
-
+                             
+  ///////////////////////////////hypernasality///////////////////////////////////////////////                           
+                             
+                  
+                      //  String currentDir = System.getProperty("user.dir");
+                        //System.out.println("cu");
+                       // String cexedir = currentDir + "\\cexe\\";
+                       // JFrame jf = new JFrame("test");
+                        //String name = JOptionPane.showInputDialog(jf,
+                        //currentDir, null);
+                      try {
+                          Process p1;
+                          System.out.println("getting filename"+filelocName);//pWave.abbfilePath);
+                          filenamedummy = filelocName;
+                          ProcessBuilder pb1=new ProcessBuilder
+                            (cexedir+"mfcc_final_version_working",
+                                    filenamedummy,
+                                    "1001",
+                                    cexedir+"start.txt",
+                                    cexedir+"end.txt",
+                                    cexedir+"vunv.txt",
+                                    cexedir+"spfr.txt",
+                                    cexedir+"avg.txt",
+                                    cexedir+"N.txt",
+                                    cexedir+"F.txt",
+                                    cexedir+"mfcc_output_13dim.txt"
+                            );
+                          
+                          
+                          p1 = pb1.start();
+                          
+                          
+                          p1.waitFor();
+                         
+                                  
+                          LineNumberReader  lnr = new LineNumberReader(new FileReader(new File(cexedir+"mfcc_output_13dim.txt")));
+                            lnr.skip(Long.MAX_VALUE);
+                            System.out.println(lnr.getLineNumber() + 1); //Add 1 because line index starts at 0
+                                    // Finally, the LineNumberReader object should be closed to prevent resource leak
+                            int numFrames = lnr.getLineNumber();
+                         //   System.out.println("The number of frames is AAAAAAA"+numFrames);
+                            lnr.close();
+                            System.out.println("num frames = "+numFrames);
+                                  ProcessBuilder pb = new ProcessBuilder(cexedir+"posteriorcomputation" ,
+                                          cexedir+"mfcc_output_13dim.txt",
+                                          cexedir+"mean_norm.txt",
+                                          cexedir+"var_norm.txt",
+                                          cexedir+"weight_norm.txt",
+                                          cexedir+"mean_clp.txt",
+                                          cexedir+"var_clp.txt",
+                                          cexedir+"weight_clp.txt",
+                                          cexedir+"output_norm.txt",
+                                          cexedir+"output_clp.txt", "16", "13", Integer.toString(numFrames));
+                                  
+                                  //  ProcessBuilder pb = new ProcessBuilder("tree");
+                                  
+                                  
+                                  try {
+                                      Process p = pb.start();
+                                      /*try {
+                                      pb.wait(0);
+                                      } catch (InterruptedException ex) {
+                                      Logger.getLogger(RightClickEvent.class.getName()).log(Level.SEVERE, null, ex);
+                                      }
+                                      */
+                                       p.waitFor();
+                                      BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                                      
+                                      valuefromc = Double.parseDouble(br.readLine());
+                                      System.out.println(" i am  getting this value from c---->"+valuefromc);
+                                      //br.readLine();
+                                      
+                                      //  System.out.println(" i am  getting this value from c---->");
+                                      
+                                      //System.out.println("value getting"+br);//br.readLine());
+                                      // String probability =br.readLine();
+                                      //double probnew = Double.parseDouble(probability);
+                                      
+                                                               
+                                      //System.out.println(" i am  getting this value after converting from double---->"+valuefromc);
+                                     // PlotProbability plot=new  PlotProbability();
+                                      //plot.plotfunction();
+                                      PlotProbability plot1=new  PlotProbability(pWave);
+                                       plot1.plotfunction();
+                                      plot1.plotfunction1();
+                                      //pWave.mainFrame.createIvectorInternalFrame("Speaker Identification", "word/Assamese/part2");
+                                  }
+                                  catch (IOException ex)
+                                  {
+                                      Logger.getLogger(RightClickEvent.class.getName()).log(Level.SEVERE, null, ex);
+                                  }
+                                  
+                                  
+                      }
+                      catch (IOException ex) 
+                         {
+                        Logger.getLogger(RightClickEvent.class.getName()).log(Level.SEVERE, null, ex);
+                         } catch (InterruptedException ex) {
+                        Logger.getLogger(RightClickEvent.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            
+                             
+                             
+                             
+  
+  
+  
+  
+  
+  
+  
+  
+  
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                              File file;
+                                file = new File("C:\\Users\\user\\Documents\\NetBeansProjects\\HypernasalityFinal\\temp.wav");
+         
+        if(file.delete())
+        {
+            System.out.println("File deleted successfully");
+        }
+        else
+        {
+            System.out.println("Failed to delete the file");
+        }
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
                             } else {
 
                                saveFile("saveAs");
                            }
+                            
                         }
                   }
                 });
             item.setFont(new Font("Courier New", Font.PLAIN, 15));
             item.setBackground(Color.white);
             pWave.menu.add(item);
+            }
             
+            
+            if (pWave.mousePosX1 != 0 && pWave.mousePosX2 != 0) {
+            item=new JMenuItem("copy");
+             item.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                      //Copy
+
+            if (pWave.mousePosX1 != 0 && pWave.mousePosX2 != 0 && pWave.audioInputStream != null) 
+            {
+                
+                        try {
+                            //  cutWave();
+                            if (pWave.mousePosX1 == 0 && pWave.mousePosX2 == 0) {
+                                return;
+                            }
+                            copy_from_ms = 0;
+                            copy_to_ms = 0;
+                            getSamplingPositions();
+                            int startSample = getStartSamples();
+                            int endSample = getEndSamples();
+
+                            System.out.println("Ref. StartSamples " + startSample + " EndSamples " + endSample + " FramePix " + pWave.frames_per_pixel);
+
+                            CutAudioWave cutW = new CutAudioWave();
+                            cutW.cutPortion(pWave.streamBytes.getCurrent(), startSample, endSample);
+
+                            calculatePixcel();
+                            PixcelConversion pixConversion = new PixcelConversion();
+                            copy_from_ms = pixConversion.pixcelToMillisecond(getStartPixel(), pWave.frames_per_pixel, (int) pWave.audioInputStream.getFormat().getFrameRate());
+                            copy_to_ms = pixConversion.pixcelToMillisecond(getendPixel(), pWave.frames_per_pixel, (int) pWave.audioInputStream.getFormat().getFrameRate());
+
+
+                            if (cutW.getresultByteArray() == null) {
+                                return;
+                            }
+
+
+
+                        } catch (Exception ex) {
+                            Logger.getLogger(RightClickEvent.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+           }
+                
+                   
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+
+                      }
+             });
+               
+            
+            
+            
+            
+            
+            item.setFont(new Font("Courier New", Font.PLAIN, 15));
+            item.setBackground(Color.white);
+            pWave.menu.add(item);
+          }
+        
+         if (pWave.mousePosX1 != 0 && pWave.mousePosX2 != 0) {
+            item=new JMenuItem("paste");
+             item.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    paste();
+                }
+             });
+             item.setFont(new Font("Courier New", Font.PLAIN, 15));
+            item.setBackground(Color.white);
+            pWave.menu.add(item);
+         }
+            
+            
+            
+            
+            
+            
+            
+          
             item=new JMenuItem("close");
             item.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -1166,7 +1455,7 @@ public class RightClickEvent {
             item.setBackground(Color.white);
             pWave.menu.add(item);
          
-            
+           
             
             
             
@@ -1579,7 +1868,7 @@ public class RightClickEvent {
 
                     if (CutAudioInputStream.getCutWave() != null) {
                         AudioInputStream newInputStream = StreamConverter.byteTostream(CutAudioInputStream.getCutWave(), pWave.audioInputStream);
-               //         pWave.mainFrame.createCopyPanel("Copy Panel", newInputStream);
+                      pWave.mainFrame.createCopyPanel("Copy Panel", newInputStream);
                         CutAudioInputStream.setCutWave(null);
                     }
                 }
@@ -1661,7 +1950,8 @@ public class RightClickEvent {
                 startSample = startTime;
                 endSample = endTime;
             }
-
+            System.out.println("startSample inside"+startSample);
+            System.out.println("endSample inside"+endSample);
             setStartSamples(startSample);
             setEndSamples(endSample);
         } catch (Exception er) {
@@ -1962,12 +2252,15 @@ public class RightClickEvent {
 
     public boolean sourceAvailValidation() {
         if (pWave.audioInputStream == null) {
+            System.out.println("null play");
             return false;
         }
         if (pWave.streamBytes.getCurrent() == null) {
+            System.out.println("null play 2");
             return false;
         }
         if (pWave.streamBytes.getCurrent().length < 10) {
+            System.out.println("null play 3");
             return false;
         }
         return true;
@@ -1977,8 +2270,13 @@ public class RightClickEvent {
         String filePath = null;
         try {
             File file = new File(System.getProperty("user.dir"));
-            System.out.println("File is\t"+file);
+            System.out.println("File is created here track this\t"+file);
+           
+            
+          //  FileWriter fstream = null;
             JFileChooser fc = new JFileChooser(file);
+           // filePath = fc.getSelectedFile().toString();
+             //System.out.println("File is created finally\t"+ filePath);
             fc.setFileFilter(new javax.swing.filechooser.FileFilter() {
                 @Override
                 public boolean accept(File file) {
@@ -1988,6 +2286,7 @@ public class RightClickEvent {
                     }
                     String name = file.getName().toLowerCase();
                     if (name.endsWith(".wav") || name.endsWith(".mp3") || name.endsWith(".wma")) {
+                       
                         return true;
                     }
                     return false;
@@ -2001,6 +2300,7 @@ public class RightClickEvent {
 
             if (fc.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
                 filePath = fc.getSelectedFile().toString();
+                 System.out.println("File is created finally\t"+ filePath);
                 
             }
             if (filePath == null) {
@@ -2016,10 +2316,54 @@ public class RightClickEvent {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-System.out.println("filepath is\t"+filePath);
+                                 System.out.println("filepath is\t"+filePath);
+                                 String currentDir = System.getProperty("user.dir");
+                                 System.out.println("cu");
+                                 String cexedir = currentDir + "\\cexe\\";
+
+       
+
         return filePath;
         
     }
+    
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     public void waveDelete(int startSample, int endSample) {
         try {
@@ -2321,7 +2665,13 @@ System.out.println("filepath is\t"+filePath);
                 pWave.setfileNameColor(Color.red);
 
                 pWave.streamBytes.setCurrent(CutAudioInputStream.getCutWave());
-
+              
+                
+                
+                
+              //  String filelocName =saveLocation();//"C:\\Users\\user\\Documents\\NetBeansProjects\\HypernasalityFinal\\temp.wav";//saveLocation(); //drawingComponent.this.ReturnFilename;saveLocation();
+               // System.out.println("filelocName Saved\t"+filelocName);
+                //StreamConverter.byteTowavefile(CutAudioInputStream.getCutWave(), pWave.audioInputStream, filelocName);
 
                 CutAudioInputStream.setCutWave(null);
 
@@ -2330,7 +2680,7 @@ System.out.println("filepath is\t"+filePath);
                 pWave.mousePosX1 = 0;
                 pWave.mousePosX2 = 0;
                 //saveFile();
-
+                                
 
 
             }
@@ -2548,11 +2898,194 @@ System.out.println("filepath is\t"+filePath);
             
             
             }
+
+    private String getAbsolutePath() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+            
+     public void selectAll()
+            {
+                try{
+                           int inPos = (int) pWave.mousePosX1, enPos = (int) ((pWave.samplingGraph.getSize().width) - 10);
+
+                            if (inPos < 1) {
+                                inPos = 1;
+                            }
+
+                            if (enPos < 1) {
+                                enPos = 1;
+                            }
+                            if (inPos > (enPos - 10)) {
+                                inPos = enPos - 10;
+                            }
+                            //double bytesPerSecond = pWave.audioInputStream.getFormat().getFrameSize() * (double) pWave.audioInputStream.getFormat().getFrameRate();
+                            int startTime = ((inPos * pWave.frames_per_pixel) * pWave.audioInputStream.getFormat().getFrameSize() - 118);
+                            int endTime = ((enPos * pWave.frames_per_pixel) * pWave.audioInputStream.getFormat().getFrameSize());
+                            System.out.println("CK " + ((inPos * pWave.frames_per_pixel) / pWave.audioInputStream.getFormat().getFrameRate()) * 1000 + " " + ((enPos * pWave.frames_per_pixel) / pWave.audioInputStream.getFormat().getFrameRate()) * 1000);
+
+
+                            pWave.mousePosX1 = startTime;
+                            pWave.mousePosX2 = endTime;
+
+                            pWave.samplingGraph.repaint();
+                        } catch (Exception er) {
+                            System.err.println(er);
+                        }
+}
+////////////////////////////////////COPY/////////////////////////////////////////////////////////////////////////             
+     
+     
+     
+     
+     public void copyfunction(){
+     
+     
+     
+     
+     
+      try {
+                            //  cutWave();
+                            if (pWave.mousePosX1 == 0 && pWave.mousePosX2 == 0) {
+                                return;
+                            }
+                            copy_from_ms = 0;
+                            copy_to_ms = 0;
+                            getSamplingPositions();
+                            int startSample = getStartSamples();
+                            int endSample = getEndSamples();
+
+                            System.out.println("Ref. StartSamples " + startSample + " EndSamples " + endSample + " FramePix " + pWave.frames_per_pixel);
+
+                            CutAudioWave cutW = new CutAudioWave();
+                            cutW.cutPortion(pWave.streamBytes.getCurrent(), startSample, endSample);
+
+                            calculatePixcel();
+                            PixcelConversion pixConversion = new PixcelConversion();
+                            copy_from_ms = pixConversion.pixcelToMillisecond(getStartPixel(), pWave.frames_per_pixel, (int) pWave.audioInputStream.getFormat().getFrameRate());
+                            copy_to_ms = pixConversion.pixcelToMillisecond(getendPixel(), pWave.frames_per_pixel, (int) pWave.audioInputStream.getFormat().getFrameRate());
+
+
+                            if (cutW.getresultByteArray() == null) {
+                                return;
+                            }
+
+
+
+                        } catch (Exception ex) {
+                            Logger.getLogger(RightClickEvent.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+     
+   
+     }
+     
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////     
+ //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\paste function///////////////////////////////////////////////////////
+     public void paste()
+     {
+     
+   if (CutAudioInputStream.getCutWave() != null && pWave.audioInputStream != null) {
+               
+                        if (CutAudioInputStream.getCutWave() != null) {
+                            AudioInputStream newInputStream = StreamConverter.byteTostream(CutAudioInputStream.getCutWave(), pWave.audioInputStream);
+
+                            // FindAnnotated findAnnotation = new FindAnnotated(pWave.mainFrame.getConn(), pWave.fileName, copy_from_ms, copy_to_ms);
+                          //  ArrayList ann_id = new FindAnnotated((Connection) pWave.mainFrame, Hash.getHashValue(StreamConverter.byteTostream(pWave.streamBytes.getCurrent(), pWave.audioInputStream)), copy_from_ms, copy_to_ms).getAnnotationID();
+
+                            String newAnn_file = Hash.getHashValue(newInputStream);
+                            newInputStream = StreamConverter.byteTostream(CutAudioInputStream.getCutWave(), pWave.audioInputStream);
+                           // new InsertAnnotation(pWave.mainFrame.getConn()).insertCopySAnnotation(newAnn_file, copy_from_ms, 0, ann_id);
+                            pWave.mainFrame.createCopyPanel("Copy/Paste", newInputStream);
+
+                            CutAudioInputStream.setCutWave(null);
+                        }
+                    }
+                
+            }  
+     public void saveas()
+     {
+     if (sourceAvailValidation()) {
+                            if (pWave.mousePosX1 != 0 && pWave.mousePosX2 != 0) 
+                            {
+                                getSamplingPositions();
+                               int startSample = getStartSamples();
+                                int endSample = getEndSamples();
+                                
+                                
+                                
+                               System.out.print("StartSample\t"+startSample+"endSample\t"+endSample);
+                                CutAudioWave cutW = new CutAudioWave();
+                                cutW.cutPortion(pWave.streamBytes.getCurrent(), startSample, endSample);
+
+                                if (cutW.getresultByteArray() == null) {
+                                     System.out.println("i have entered");
+                                     return;
+                                }
+                                if (CutAudioInputStream.getCutWave() == null) {
+                                     System.out.println("i have entered");
+                                     return;
+                                }
+                                 //String currentDir = System.getProperty("user.dir");
+                                 //System.out.println("cu");
+                                 //String cexedir = currentDir + "\\cexe\\";
+                                // createTempFile("wave",".wav"," C:\\Users\\user\\Documents\\NetBeansProjects\\HypernasalityFinal\\");
+                                String filelocName =saveLocation();//"C:\\Users\\user\\Documents\\NetBeansProjects\\HypernasalityFinal\\temp.wav";//saveLocation(); //drawingComponent.this.ReturnFilename;saveLocation();
+                                System.out.println("filelocName Saved\t"+filelocName);
+                               StreamConverter.byteTowavefile(CutAudioInputStream.getCutWave(), pWave.audioInputStream, filelocName);
+
+                             CutAudioInputStream.setCutWave(null);
+         
+         
+         
+         
+         
+     
+     }
+     
+     }
+     }
+}
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+   
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
             
     
     
     
     
     
-    
-}

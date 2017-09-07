@@ -7,7 +7,7 @@
 package Speech.gui;
 import java.sql.*;
 import javax.swing.JOptionPane;
-        /*
+/*
 /**
  *
  * @author IITG
@@ -21,10 +21,10 @@ public class SqliteJDBCconnection {
         Connection conn = null;
         try {
             // db parameters
-           // String url = "jdbc:sqlite:C:\\sqlite\\Nasospeech.sqlite";
+            String url = "jdbc:sqlite:C:\\sqlite\\Nasospeech.sqlite";
             // create a connection to the database
-            conn = DriverManager.getConnection("jdbc:mysql://172.16.16.124/nasospeech","root","");
-            
+          //  conn = DriverManager.getConnection("jdbc:mysql://172.16.16.124/nasospeech","root","");
+            conn = DriverManager.getConnection(url);
             //System.out.println("Connection to the Database has been established.");
            // JOptionPane.showMessageDialog(null,"Connection Successfull");
             return conn;
