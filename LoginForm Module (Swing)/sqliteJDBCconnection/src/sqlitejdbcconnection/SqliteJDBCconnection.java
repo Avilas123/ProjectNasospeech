@@ -21,12 +21,12 @@ public class SqliteJDBCconnection {
         Connection conn = null;
         try {
             // db parameters
-            String url = "jdbc:sqlite:C:\\sqlite\\Nasospeech.sqlite";
+            //String url = "jdbc:sqlite:C:\\sqlite\\Nasospeech.sqlite";
             // create a connection to the database
-            conn = DriverManager.getConnection(url);
+           conn = DriverManager.getConnection("jdbc:mysql://172.16.16.124/nasospeech","root","");
             
             //System.out.println("Connection to the Database has been established.");
-            //JOptionPane.showMessageDialog(null,"Connection Successfull");
+            JOptionPane.showMessageDialog(null,"Connection Successfull");
             return conn;
             
         } catch (SQLException e) {

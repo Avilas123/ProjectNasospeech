@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.BorderFactory;
+import javax.swing.UIManager;
 
 /**
  *
@@ -32,10 +33,13 @@ public class RegisterForm extends javax.swing.JFrame {
      * Creates new form RegisterForm
      */
     
+ //   Border border = UIManager.getBorder("TextField.border");
+   // Border bred = BorderFactory.createLineBorder(Color.RED,1);
+   // Border bblue = BorderFactory.createLineBorder(Color.blue,1);
+  
     
-    Border bred = BorderFactory.createLineBorder(Color.RED,1);
-    Border bblue = BorderFactory.createLineBorder(Color.BLUE,1);
-    Border bgrey = BorderFactory.createLineBorder(Color.GRAY,1);
+  //  Border bgrey = BorderFactory.createLineBorder(Color.GRAY,1);
+    
     
     Connection conn = null;
     private PreparedStatement pst;
@@ -243,6 +247,7 @@ public class RegisterForm extends javax.swing.JFrame {
         jLabelpwd1.setForeground(new java.awt.Color(244, 0, 0));
 
         addtxt.setColumns(20);
+        addtxt.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         addtxt.setRows(5);
         addtxt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -483,16 +488,16 @@ public class RegisterForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         if(fnametxt.getText().equals("")){
-            fnametxt.setBorder(bred);
+//            fnametxt.setBorder(bred);
             jLabelfname.setText("You can't leave this empty! ");
         } 
         else if(lnametxt.getText().equals("")) {
-            lnametxt.setBorder(bred);
+//            lnametxt.setBorder(bred);
             jLabellname.setText("You can't leave this empty!");
             
         }
         else if(unametxt.getText().equals("")){
-            unametxt.setBorder(bred);
+        //    unametxt.setBorder(bred);
             jLabelun.setText("You can't leave this empty! ");
         }
         else if(pwdtxt.getText().equals("")){
@@ -503,26 +508,26 @@ public class RegisterForm extends javax.swing.JFrame {
         
         }
         else if(emailtxt.getText().equals("")){
-        emailtxt.setBorder(bred);
+     //   emailtxt.setBorder(bred);
         jLabelemail.setText("You can't leave this empty!");
         }
         else if(phnumtxt.getText().equals("")){
-            phnumtxt.setBorder(bred);
+     //       phnumtxt.setBorder(bred);
             jLabelphnum.setText("You can't leave this empty!");
         
         }
         else if(addtxt.getText().equals("")){
-            addtxt.setBorder(bred);
+     //       addtxt.setBorder(bred);
             jLabeladd.setText("You can't leave this empty!");
         
         }
         else if(gendercbox.getSelectedItem().equals("")){
-            gendercbox.setBorder(bred);
+       //     gendercbox.setBorder(bred);
             jLabelgender.setText("You can't leave this empty!");
             
         }
         else if(desigtxt.getText().equals("")){
-            desigtxt.setBorder(bred);
+      //      desigtxt.setBorder(bred);
             jLabeldesig.setText("You can't leave this empty!");
         
         }
@@ -551,9 +556,16 @@ public class RegisterForm extends javax.swing.JFrame {
         pst1.setString(8,desigtxt.getText());
         pst1.setString(9,orgnametxt.getText());
         
+         String query2 = "INSERT INTO Therapist_Master_Table(Username,Password,Email) values (?,?,?)";
+        pst2 = conn.prepareStatement(query2);
+        pst2.setString(1, unametxt.getText());
+        pst2.setString(2, pwdtxt.getText());
+        pst2.setString(3,emailtxt.getText());
+        
         
         pst1.execute();
         pst.execute();
+        pst2.execute();
         JOptionPane.showMessageDialog(null,"Registered Successfully");
         this.dispose();
           new LoginForm().setVisible(true);
@@ -567,16 +579,16 @@ public class RegisterForm extends javax.swing.JFrame {
 
     private void emailtxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailtxtMouseClicked
         // TODO add your handling code here:
-        emailtxt.setBorder(bblue);
-        phnumtxt.setBorder(bgrey);
+     //   emailtxt.setBorder(bblue);
+      //  phnumtxt.setBorder(bgrey);
         jLabelemail.setText("");
-        phnumtxt.setBorder(bgrey);
+      //  phnumtxt.setBorder(bgrey);
         if(!(Arrays.equals(pwdtxt.getPassword(), pwdtxt1.getPassword()))){
         
             jLabelpwd1.setText("*Passwords do not match!");
         }
         else if(pwdtxt1.getText().equals("")){
-            pwdtxt1.setBorder(bred);
+      //      pwdtxt1.setBorder(bred);
             jLabelpwd1.setText("You can't leave this empty!");
         }
         else{
@@ -587,35 +599,35 @@ public class RegisterForm extends javax.swing.JFrame {
     private void mnametxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnametxtMouseClicked
         // TODO add your handling code here:
        // Border border = BorderFactory.createLineBorder(Color.RED,1);
-        mnametxt.setBorder(bblue);
+     //   mnametxt.setBorder(bblue);
         if(fnametxt.getText().equals("")){
-            fnametxt.setBorder(bred);
+     //       fnametxt.setBorder(bred);
             jLabelfname.setText("You can't leave this empty! ");
         } else {
-            fnametxt.setBorder(bgrey);
+      //      fnametxt.setBorder(bgrey);
             
         }
     }//GEN-LAST:event_mnametxtMouseClicked
 
     private void fnametxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fnametxtMouseClicked
         // TODO add your handling code here:
-        fnametxt.setBorder(bblue);
-        mnametxt.setBorder(bgrey);
-        lnametxt.setBorder(bgrey);
+   //     fnametxt.setBorder(bblue);
+     //   mnametxt.setBorder(bgrey);
+    //    lnametxt.setBorder(bgrey);
         jLabelfname.setText("");
     }//GEN-LAST:event_fnametxtMouseClicked
 
     private void lnametxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lnametxtMouseClicked
         // TODO add your handling code here:
-        lnametxt.setBorder(bblue);
-        mnametxt.setBorder(bgrey);
-        unametxt.setBorder(bgrey);
+   //     lnametxt.setBorder(bblue);
+   //     mnametxt.setBorder(bgrey);
+   //     unametxt.setBorder(bgrey);
         jLabellname.setText("");
         if(fnametxt.getText().equals("")){
-            fnametxt.setBorder(bred);
+ //           fnametxt.setBorder(bred);
             jLabelfname.setText("You can't leave this empty! ");
         } else {
-            fnametxt.setBorder(bgrey);
+   //         fnametxt.setBorder(bgrey);
             
         }
     }//GEN-LAST:event_lnametxtMouseClicked
@@ -626,13 +638,13 @@ public class RegisterForm extends javax.swing.JFrame {
 
     private void unametxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unametxtMouseClicked
         // TODO add your handling code here:
-        pwdtxt.setBorder(bgrey);
-        unametxt.setBorder(bblue);
-        lnametxt.setBorder(bgrey);
+  //      pwdtxt.setBorder(bgrey);
+  //      unametxt.setBorder(bblue);
+  //      lnametxt.setBorder(bgrey);
         jLabelun.setText("");
        
         if(lnametxt.getText().equals("")) {
-            lnametxt.setBorder(bred);
+//            lnametxt.setBorder(bred);
             jLabellname.setText("You can't leave this empty!");
             
         }else{
@@ -644,12 +656,12 @@ public class RegisterForm extends javax.swing.JFrame {
     private void pwdtxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pwdtxtMouseClicked
         // TODO add your handling code here:
         //lnametxt.setBorder(bgrey);
-        pwdtxt.setBorder(bblue);
-        pwdtxt1.setBorder(bgrey);
-        unametxt.setBorder(bred);
+  //      pwdtxt.setBorder(bblue);
+ //       pwdtxt1.setBorder(bgrey);
+ //       unametxt.setBorder(bred);
         jLabelpwd.setText("");
         if(unametxt.getText().equals("")){
-            unametxt.setBorder(bred);
+//            unametxt.setBorder(bred);
             jLabelun.setForeground(red);
             jLabelun.setText("You can't leave this empty! ");
         }
@@ -675,12 +687,12 @@ public class RegisterForm extends javax.swing.JFrame {
               
           jLabelun.setForeground(red);
           jLabelun.setText("Username already taken");
-          unametxt.setBorder(bred);
+ //         unametxt.setBorder(bred);
           }
           else{
           jLabelun.setForeground(blue);
           jLabelun.setText("Username available");
-          unametxt.setBorder(bgrey);
+ //         unametxt.setBorder(bgrey);
           }
         }
         catch (SQLException e){
@@ -694,12 +706,12 @@ public class RegisterForm extends javax.swing.JFrame {
 
     private void pwdtxt1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pwdtxt1MouseClicked
         // TODO add your handling code here:
-        emailtxt.setBorder(bgrey);
-        pwdtxt.setBorder(bgrey);
+ //       emailtxt.setBorder(bgrey);
+ //       pwdtxt.setBorder(bgrey);
         jLabelpwd1.setText("");
-        pwdtxt1.setBorder(bblue);
+ //       pwdtxt1.setBorder(bblue);
         if(pwdtxt.getText().equals("")){
-            pwdtxt.setBorder(bred);
+ //           pwdtxt.setBorder(bred);
             jLabelpwd.setText("You can't leave this empty!");
         }
         
@@ -707,25 +719,43 @@ public class RegisterForm extends javax.swing.JFrame {
 
     private void phnumtxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_phnumtxtMouseClicked
         // TODO add your handling code here:
-        addtxt.setBorder(bgrey);
+ //       addtxt.setBorder(bgrey);
     
-        phnumtxt.setBorder(bblue);
-        orgnametxt.setBorder(bgrey);
+//        phnumtxt.setBorder(bblue);
+ //       orgnametxt.setBorder(bgrey);
         jLabelphnum.setText("");
         
         if(emailtxt.getText().equals("")){
-        emailtxt.setBorder(bred);
+ //       emailtxt.setBorder(bred);
         jLabelemail.setText("You can't leave this empty!");
         }
+        
+        else{
+                  EmailValidator emailValidator = new EmailValidator();
+                  if(!emailValidator.validate(emailtxt.getText().trim())) {
+ //                 emailtxt.setBorder(bred);
+                  jLabelemail.setText("Invalid Email Format!");
+                  
+                  
+                  
+                  
+                  }
+        
+        
+        }
+        
+        
+        
+        
     }//GEN-LAST:event_phnumtxtMouseClicked
 
     private void addtxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addtxtMouseClicked
         // TODO add your handling code here:
         jLabeladd.setText("");
-        addtxt.setBorder(bblue);
-        desigtxt.setBorder(bgrey);
+  //      addtxt.setBorder(bblue);
+  //      desigtxt.setBorder(bgrey);
         if(desigtxt.getText().equals("")){
-            desigtxt.setBorder(bred);
+  //          desigtxt.setBorder(bred);
             jLabeldesig.setText("You can't leave this empty!");
         
         }
@@ -739,12 +769,12 @@ public class RegisterForm extends javax.swing.JFrame {
 
     private void gendercboxMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gendercboxMouseEntered
         // TODO add your handling code here:
-        desigtxt.setBorder(bgrey);
+  //      desigtxt.setBorder(bgrey);
         gendercbox.setBorder(null);
-        addtxt.setBorder(bgrey);
+  //      addtxt.setBorder(bgrey);
         jLabelgender.setText("");
         if(lnametxt.getText().equals("")){
-            lnametxt.setBorder(bred);
+  //          lnametxt.setBorder(bred);
             jLabellname.setText("You can't leave this empty!");
         
         }
@@ -752,11 +782,11 @@ public class RegisterForm extends javax.swing.JFrame {
 
     private void desigtxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desigtxtMouseClicked
         // TODO add your handling code here:
-        addtxt.setBorder(bgrey);
+  //      addtxt.setBorder(bgrey);
         jLabeldesig.setText("");
-        desigtxt.setBorder(bblue);
+  //      desigtxt.setBorder(bblue);
         if(orgnametxt.getText().equals("")){
-            orgnametxt.setBorder(bred);
+  //          orgnametxt.setBorder(bred);
             jLabelorg.setText("You can't leave this empty!");
             
         }
@@ -766,10 +796,10 @@ public class RegisterForm extends javax.swing.JFrame {
     private void orgnametxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orgnametxtMouseClicked
         // TODO add your handling code here:
         jLabelorg.setText("");
-        orgnametxt.setBorder(bblue);
-        desigtxt.setBorder(bgrey);
+ //       orgnametxt.setBorder(bblue);
+  //      desigtxt.setBorder(bgrey);
         if(phnumtxt.getText().equals("")){
-            phnumtxt.setBorder(bred);
+ //           phnumtxt.setBorder(bred);
             jLabelphnum.setText("You can't leave this empty!");
         
         }
@@ -790,17 +820,17 @@ public class RegisterForm extends javax.swing.JFrame {
         desigtxt.setText("");
         gendercbox.setSelectedItem("Male");
         
-        fnametxt.setBorder(bgrey);
-        mnametxt.setBorder(bgrey);
-        lnametxt.setBorder(bgrey);
-        unametxt.setBorder(bgrey);
-        pwdtxt.setBorder(bgrey);
-        pwdtxt1.setBorder(bgrey);
-        emailtxt.setBorder(bgrey);
-        phnumtxt.setBorder(bgrey);
-        addtxt.setBorder(bgrey);
-        orgnametxt.setBorder(bgrey);
-        desigtxt.setBorder(bgrey);
+  //      fnametxt.setBorder(bgrey);
+  //      mnametxt.setBorder(bgrey);
+  //      lnametxt.setBorder(bgrey);
+  //      unametxt.setBorder(bgrey);
+  //      pwdtxt.setBorder(bgrey);
+  //      pwdtxt1.setBorder(bgrey);
+  //      emailtxt.setBorder(bgrey);
+  //      phnumtxt.setBorder(bgrey);
+  //      addtxt.setBorder(bgrey);
+  //      orgnametxt.setBorder(bgrey);
+  //      desigtxt.setBorder(bgrey);
         
         jLabelfname.setText("");
         jLabellname.setText("");
@@ -837,7 +867,7 @@ public class RegisterForm extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

@@ -105,10 +105,6 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                              <Component id="fdrnametxt" min="-2" pref="175" max="-2" attributes="0"/>
-                              <Component id="jLabelfdrname" alignment="1" min="-2" pref="175" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                               <Component id="jLabeladd" max="32767" attributes="0"/>
                               <Component id="addtxt" pref="175" max="32767" attributes="0"/>
@@ -132,6 +128,10 @@
                               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel9" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jDateCtxt" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabelfdrname" alignment="0" pref="175" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -207,9 +207,9 @@
                   </Group>
                   <Component id="jLabelfv" min="-2" pref="16" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+              <Component id="jDateCtxt" min="-2" pref="25" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="fdrnametxt" min="-2" pref="30" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
               <Component id="jLabelfdrname" min="-2" pref="15" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
@@ -315,12 +315,6 @@
     <Component class="javax.swing.JTextField" name="mnametxt">
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mnametxtMouseClicked"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="fdrnametxt">
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="fdrnametxtMouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fdrnametxtActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="phnumtxt">
@@ -490,6 +484,8 @@
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lnametxtMouseClicked"/>
       </Events>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="jDateCtxt">
     </Component>
   </SubComponents>
 </Form>

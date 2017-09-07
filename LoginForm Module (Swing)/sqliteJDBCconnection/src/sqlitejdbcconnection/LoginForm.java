@@ -5,6 +5,7 @@
  */
 package sqlitejdbcconnection;
 
+import java.awt.event.KeyEvent;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,6 +61,11 @@ public class LoginForm extends javax.swing.JFrame {
                 jp1ActionPerformed(evt);
             }
         });
+        jp1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jp1KeyPressed(evt);
+            }
+        });
 
         jLabel1.setText("Username");
 
@@ -77,6 +83,11 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(250, 0, 51));
         jLabel3.setText("Forgot Password?");
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("New User? Register here");
@@ -137,6 +148,8 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void jp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jp1ActionPerformed
         // TODO add your handling code here:
+       
+
     }//GEN-LAST:event_jp1ActionPerformed
 
     private void jLabel4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jLabel4FocusGained
@@ -173,6 +186,17 @@ public class LoginForm extends javax.swing.JFrame {
         e.printStackTrace();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+     
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jp1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jp1KeyPressed
+        // TODO add your handling code here:
+         if(evt.getKeyCode()==KeyEvent.VK_ENTER)        
+        jButton1.doClick();
+    }//GEN-LAST:event_jp1KeyPressed
 
     /**
      * @param args the command line arguments

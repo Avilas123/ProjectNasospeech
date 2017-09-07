@@ -35,6 +35,7 @@ public class PatientRegistration extends javax.swing.JFrame {
     
     Border bred = BorderFactory.createLineBorder(Color.RED,1);
     Border bblue = BorderFactory.createLineBorder(Color.BLUE,1);
+    
     Border bgrey = BorderFactory.createLineBorder(Color.GRAY,1);
     
     Connection conn = null;
@@ -68,7 +69,6 @@ public class PatientRegistration extends javax.swing.JFrame {
         pidtxt = new javax.swing.JTextField();
         fnametxt = new javax.swing.JTextField();
         mnametxt = new javax.swing.JTextField();
-        fdrnametxt = new javax.swing.JTextField();
         phnumtxt = new javax.swing.JTextField();
         gendercbox = new javax.swing.JComboBox<>();
         ntrtxt = new javax.swing.JTextField();
@@ -90,6 +90,7 @@ public class PatientRegistration extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         lnametxt = new javax.swing.JTextField();
+        jDateCtxt = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Register");
@@ -147,17 +148,6 @@ public class PatientRegistration extends javax.swing.JFrame {
         mnametxt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 mnametxtMouseClicked(evt);
-            }
-        });
-
-        fdrnametxt.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                fdrnametxtMouseClicked(evt);
-            }
-        });
-        fdrnametxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fdrnametxtActionPerformed(evt);
             }
         });
 
@@ -323,9 +313,6 @@ public class PatientRegistration extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(fdrnametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabelfdrname, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jLabeladd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(addtxt, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
@@ -343,7 +330,10 @@ public class PatientRegistration extends javax.swing.JFrame {
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jDateCtxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelfdrname, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)))))
                 .addContainerGap(150, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -400,9 +390,9 @@ public class PatientRegistration extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7))
                     .addComponent(jLabelfv, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addComponent(jDateCtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fdrnametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
                 .addComponent(jLabelfdrname, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
                 .addComponent(jLabel9)
@@ -445,8 +435,8 @@ public class PatientRegistration extends javax.swing.JFrame {
             
         }
         
-        else if(fdrnametxt.getText().equals("")){
-        fdrnametxt.setBorder(bred);
+       else if(jDateCtxt.getDateFormatString().equals("")){
+       jDateCtxt.setBorder(bred);
         jLabelfdrname.setText("You can't leave this empty!");
         }
         else if(phnumtxt.getText().equals("")){
@@ -490,7 +480,7 @@ public class PatientRegistration extends javax.swing.JFrame {
         pst1.setString(7, gendercbox.getSelectedItem().toString());
         pst1.setString(8,ntrtxt.getText());
         pst1.setString(9,fvtxt.getText());
-        pst1.setString(10,fdrnametxt.getText());
+        pst1.setString(10,jDateCtxt.getDateFormatString());
         
         
         pst1.execute();
@@ -505,20 +495,6 @@ public class PatientRegistration extends javax.swing.JFrame {
         }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void fdrnametxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fdrnametxtMouseClicked
-        // TODO add your handling code here:
-        fdrnametxt.setBorder(bblue);
-        jLabelfdrname.setText("");
-     if(fvtxt.getText().equals("")){
-            fvtxt.setBorder(bred);
-            jLabelfv.setText("You can't leave this empty! ");
-        } else {
-            fvtxt.setBorder(bgrey);
-            
-        }
-        
-    }//GEN-LAST:event_fdrnametxtMouseClicked
 
     private void fnametxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fnametxtMouseClicked
         // TODO add your handling code here:
@@ -557,10 +533,6 @@ public class PatientRegistration extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_mnametxtMouseClicked
 
-    private void fdrnametxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fdrnametxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fdrnametxtActionPerformed
-
     private void phnumtxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_phnumtxtMouseClicked
         // TODO add your handling code here:
         
@@ -577,13 +549,13 @@ public class PatientRegistration extends javax.swing.JFrame {
         jLabeladd.setText("");
         addtxt.setBorder(bblue);
        
-        if(fdrnametxt.getText().equals("")){
-            fdrnametxt.setBorder(bred);
-            jLabelfdrname.setText("You can't leave this empty!");
+        if(jDateCtxt.getDateFormatString().equals("")){
+           jDateCtxt.setBorder(bred);
+           jLabelfdrname.setText("You can't leave this empty!");
         
         }
         else{
-        fdrnametxt.setBorder(bgrey);
+        jDateCtxt.setBorder(bgrey);
         }
         
     }//GEN-LAST:event_addtxtMouseClicked
@@ -612,7 +584,7 @@ public class PatientRegistration extends javax.swing.JFrame {
         fnametxt.setText("");
         mnametxt.setText("");
         lnametxt.setText("");
-        fdrnametxt.setText("");
+        jDateCtxt.setDateFormatString("");
         phnumtxt.setText("");
         addtxt.setText("");
         fvtxt.setText("");
@@ -623,7 +595,7 @@ public class PatientRegistration extends javax.swing.JFrame {
         fnametxt.setBorder(bgrey);
         mnametxt.setBorder(bgrey);
         lnametxt.setBorder(bgrey);
-        fdrnametxt.setBorder(bgrey);
+        jDateCtxt.setBorder(bgrey);
         phnumtxt.setBorder(bgrey);
         addtxt.setBorder(bgrey);
         fvtxt.setBorder(bgrey);
@@ -728,12 +700,12 @@ public class PatientRegistration extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea addtxt;
-    private javax.swing.JTextField fdrnametxt;
     private javax.swing.JTextField fnametxt;
     private javax.swing.JTextField fvtxt;
     private javax.swing.JComboBox<String> gendercbox;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private com.toedter.calendar.JDateChooser jDateCtxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
