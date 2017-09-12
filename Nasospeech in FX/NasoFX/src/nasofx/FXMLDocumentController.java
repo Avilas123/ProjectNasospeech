@@ -13,7 +13,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -24,24 +27,17 @@ import javafx.scene.layout.Background;
  */
 public class FXMLDocumentController implements Initializable {
     
-    @FXML
-    private Label label;
-    
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-       
-    }
+       @FXML
+    private Slider slider;
+        @FXML
+    private Tab tab1;
+           @FXML
+    private TabPane TP;
+
+
+
      
-    
-     @FXML
-    private SplitPane sp;
-
-    @FXML
-    private AnchorPane ap1;
-
-    @FXML
-    private AnchorPane ap2;
-    
+   
 
 
     
@@ -49,7 +45,18 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
        
-        
+    slider.setMin(0);
+    slider.setMax(100);
+    slider.setValue(40);
+    slider.setShowTickLabels(true);
+    slider.setShowTickMarks(true);
+    slider.setMajorTickUnit(50);
+    slider.setMinorTickCount(5);
+    slider.setBlockIncrement(10);
+    
+   TP.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
+    
+ 
     }    
     
 }

@@ -10,8 +10,8 @@ and open the template in the editor.
 
 
 .menuFont{
-    -fx-font-size: 130%;
-    
-    
+   
+     -fx-font-size: 130%;
+     -fx-text-fill: white;
     
 }
