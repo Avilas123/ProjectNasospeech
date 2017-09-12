@@ -85,7 +85,6 @@ float **ConcatenateFeatures(float **feature1, int rows1, int cols1, float **feat
 
 
 
-
 FILE *fp2; 
 float **ComputeMFCC(char waveName[], int numSpeechFrames, short *speechNonSpeech, int nof_fsize, int totalFrames){
 short     *ptr;
@@ -97,6 +96,10 @@ float      **mfccCoeffs;
 double     value;
 float Log_var[FRAMESIZE][NUM_OF_FILTER];
 fp2 = fopen("2.txt","a");
+fp2 = fopen("3.txt", "a");
+float array[eoinput];
+   //int count=0;
+
 
 // printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n\n\n\n\n\n\n",totalFrames);
 
@@ -117,7 +120,23 @@ fread(ptr, sizeof(short), nof_fsize*FRAMESIZE, fp_input);         //reading comp
 fclose(fp_input);
 
 
-eoinput= nof_fsize * FRAMESIZE - FRAMESHIFT;       
+eoinput= nof_fsize * FRAMESIZE - FRAMESHIFT;  
+printf("no F size is %d \n ",nof_fsize);
+printf("end of input is %ld \n ",eoinput);
+
+for(int d=0; d<eoinput; d++)
+ 
+    
+{
+    double arr= array[i];
+    fprintf(fp2,"%f \t", array[i]);
+    //printf("%f \t ", array[i]);
+   // count++;
+   // printf("%d ", count);
+}
+    
+fclose(fp2);
+
 
 
           while((shift != eoinput-80)){
@@ -196,18 +215,27 @@ eoinput= nof_fsize * FRAMESIZE - FRAMESHIFT;
          {
              for(j=0;j<NUM_OF_FILTER;j++)
              {
-                 if(p==4000)
+                 if(p==100)
                  {
+                     for(int p=(i+1); p<(i+6);p++)
+                     {
+                         for(int q=0;q<(j+6);q++)
+                         {
+                             //printf("%f \n ", Log_var[p][q]);
+                         }
+                     }
                      printf("%d \n", p);
                      double value = Log_var[i][j];
-                     printf(" %lf \n ", value);
-                     printf(" %f \n ", Log_var[i][j]);
+                    // printf(" %lf \n ", value);
+                     //printf(" %f \n ", Log_var[i][j]);
                      printf("%d \n ", i);
                  }
                p++;
              }
                
          }
+         
+         //for(int m=1; m<)
         
 //printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n",shift);  
 //printf("%d", k);
