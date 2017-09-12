@@ -41,8 +41,9 @@ int main(int argc, char *argv[]){
    int no_of_speech_frames;
    int total_no_of_frames, nof_fsize=0;
    int mfccDim = 13,xxxx=0;
+   //
    //char argv[1] = "C:\\Users\\user\\Desktop\\kaka.wav";
-   
+   //char argv[1] = "C:\\Users\\user\\Desktop\\kaka.wav";
    
   
 
