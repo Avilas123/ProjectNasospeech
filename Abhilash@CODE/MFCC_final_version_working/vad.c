@@ -39,12 +39,12 @@ short *vad_enrthr(char fullpath_input[], int *total_no_of_frames, int *no_of_spe
 	short temp_buff[FRAMESIZE];	          // for temporay storage
         long eoinput;
         int temp_no_speech_frames;
-        FILE *fp1_input, *fp2_input, *fp_speech_nonspeech, *fp_starting_end_point, *fp_endpoint,  *fp_no_speech_frames, *fp_avr_enr,*fp_total_no_frames, *fp_nof_fsize;
+        FILE *fp1_input, *fp2_input, *fp_speech_nonspeech, *fp_starting_end_point, *fp_endpoint,  *fp_no_speech_frames, *fp_avr_enr, *fp_total_no_frames, *fp_nof_fsize;
         
         *no_of_speech_frames = 0;                // used to calculate the no. of speech frames
 
 
-	
+	printf(" I/P File is \t %s \n",fullpath_input);
 	if((fp1_input = fopen(fullpath_input,"rb")) == NULL)                               // Opens the input wav file to count the no of frames without FRAMESHIFT
 		{
 			printf("Unable to open the file %s \n",fullpath_input);
@@ -59,7 +59,7 @@ short *vad_enrthr(char fullpath_input[], int *total_no_of_frames, int *no_of_spe
  
 	if((fp2_input = fopen(fullpath_input,"rb")) == NULL)                               // Opens the input wav file
 		{
-			printf("Unable to open the %s file\n",fullpath_input);
+			printf("Unable to open the %s file\n",fullpath_input); 
 			exit(0);
 		}
 	else
@@ -77,13 +77,13 @@ short *vad_enrthr(char fullpath_input[], int *total_no_of_frames, int *no_of_spe
                         if(feof(fp1_input)) break;
 
 			(*nof_fsize)++;
-                       // printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n\n\n\n\n\n\n",*nof_fsize);
+                        //printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n\n\n\n\n\n\n",*nof_fsize);
 		}
 
 
 	fclose(fp1_input);
 
-        printf("no of frame size\t%d",*nof_fsize);
+        printf("no of frame size\t%d \n",*nof_fsize);
         nof_fshift=((FRAMESIZE/FRAMESHIFT)*(*nof_fsize))-((FRAMESIZE/FRAMESHIFT)-1);   // Calculating the no of frames of FRAMESHIFT
        // printf("\nno of frame shift\n%d",nof_fshift);
 	ptr = (short*)malloc((FRAMESIZE * (*nof_fsize)) * sizeof(short));              // Allocating contiguous memory to store the complete data of Input wav file
@@ -101,7 +101,7 @@ short *vad_enrthr(char fullpath_input[], int *total_no_of_frames, int *no_of_spe
 	shift = 0;
 
        eoinput= ( (*nof_fsize) * FRAMESIZE ) - FRAMESHIFT;
-       printf("endofinput\n%ldC",eoinput);
+       printf("endofinput\t%ldC \n", eoinput);
  /**
      The below while loop is used for calculating the energy of each frame and storing it in the Energy_frames array
 

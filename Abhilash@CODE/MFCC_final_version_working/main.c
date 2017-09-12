@@ -31,7 +31,8 @@ int main(int argc, char *argv[]){
                           speech_frameNo_fileName(op)  Average_Energy_FileName(op)   Zeroth_Order_Stats_FileName(op)   First_Order_Stats_FileName(op) MFCC_Delta_Delta_Coeff_File(op) \n");
        exit(0);
                  } 
-
+   printf(" I/P file \t %s  \n", argv[1]);
+  
       
    char *input_filename, *fullpath_input, *id;
    short *speech_nonspeech_frames;
@@ -40,13 +41,18 @@ int main(int argc, char *argv[]){
    int no_of_speech_frames;
    int total_no_of_frames, nof_fsize=0;
    int mfccDim = 13,xxxx=0;
+   //char argv[1] = "C:\\Users\\user\\Desktop\\kaka.wav";
+   
+   
+  
 
    // printf("File %s", argv[1]);   
    /*****************calling the voice activity detection_energy threshold function to do the preprocessing and return the speech frames**********************************/ 
    //speech_nonspeech_frames = vad_enrthr(argv[1], &total_no_of_frames, &no_of_speech_frames, &nof_fsize);
    speech_nonspeech_frames = vad_enrthr(argv[1], &total_no_of_frames, &no_of_speech_frames, &nof_fsize, argv[3], argv[4], argv[5], argv[6], argv[7]);
+   
    printf("Voice Activity detection module execution is done. \n Input is  Fullpath of input: %s \n Output of module are Total No of frames : %d No of speech frames : %d  and speech frames array\n.", argv[1], total_no_of_frames,   no_of_speech_frames); 
-
+    printf("FILE PATH IS \t %s \n ",  argv[1]);
 
   
 
@@ -55,6 +61,7 @@ int main(int argc, char *argv[]){
 
     FILE *opMfccDD;
     opMfccDD = fopen(argv[10], "w");
+    printf("argv 10 is \t %s\n ", argv[10]);
    //// Count the Number of Lines ..... 
     float  **mfccCoeffs, **deltaCoeffs, **deltaDeltaCoeffs;
   // mfccCoeffs = (float **) calloc(total_no_of_frames, sizeof(float *));  // Define the Mfcc Coefficients to have <<< NUMSPEECHFRAMES >>> 
