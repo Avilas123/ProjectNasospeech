@@ -5,7 +5,7 @@ struct audio
 {
 
 	int Chunk_ID;
-	int Chunk_Size;
+	int Chunk_Size; 
 	int Format;
 	int SubChunk1_ID;
 	int SubChunk1_Size;
@@ -17,6 +17,7 @@ struct audio
 	short Bits_Per_Sample;
 	int SubChunk2_ID;
 	int Subchunk2_Size;
+       
 
 };
 typedef struct audio waveStruct;	

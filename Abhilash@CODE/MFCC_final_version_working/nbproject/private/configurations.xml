@@ -29,9 +29,11 @@
           <runcommandpicklistitem>"${OUTPUT_PATH}"  C:\Users\user\Desktop\New Folder\kruthika_s1.wav  1001 start.txt end.txt vunv.txt spfr.txt  avg.txt   N.txt   F.txt   mfcc.txt</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"    C:\Users\user\Desktop\NewFolder\kruthika_s1.wav       1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt   mfcc.txt</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"    C:\Users\user\Desktop\NewFolder\kruthika_s1.wav       1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"    C:\Users\user\Desktop\kurthika_s1.wav       1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"    C:\Users\user\Desktop\kruthika_s1.wav       1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"    C:\Users\user\Desktop\kaka.wav       1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}"    C:\Users\user\Desktop\kruthika_s1.wav       1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt</runcommand>
+        <runcommand>"${OUTPUT_PATH}"    C:\Users\user\Desktop\kaka.wav       1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>

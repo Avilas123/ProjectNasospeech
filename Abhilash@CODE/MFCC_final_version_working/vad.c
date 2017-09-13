@@ -101,7 +101,7 @@ short *vad_enrthr(char fullpath_input[], int *total_no_of_frames, int *no_of_spe
 	shift = 0;
 
        eoinput= ( (*nof_fsize) * FRAMESIZE ) - FRAMESHIFT;
-       printf("endofinput\t%ldC \n", eoinput);
+       printf("endofinput\t %ld  \n", eoinput);
  /**
      The below while loop is used for calculating the energy of each frame and storing it in the Energy_frames array
 
@@ -357,7 +357,7 @@ k=0;
                 fprintf(fp_speech_nonspeech,"%hd\n",speech_nonspeech_frames[i]);
 	}
 
-       printf("%d\n",temp_no_speech_frames);
+       printf("SPEECH NON SPEECH (print in vad) \t%d\n", temp_no_speech_frames);
 	        
                 ptr = ptr - eoinput;
 		free(ptr);
@@ -367,6 +367,7 @@ k=0;
                 fclose(fp_endpoint);
                
                 *total_no_of_frames = nof_fshift;
+                printf("Total no of frames \t %d \n", *total_no_of_frames );
                int count =0; 
                 for (int i=0;i<nof_fshift;i++){
                     if(speech_nonspeech_frames[i]==1)

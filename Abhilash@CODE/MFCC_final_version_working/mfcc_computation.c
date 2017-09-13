@@ -88,16 +88,29 @@ float **ConcatenateFeatures(float **feature1, int rows1, int cols1, float **feat
 FILE *fp2; 
 float **ComputeMFCC(char waveName[], int numSpeechFrames, short *speechNonSpeech, int nof_fsize, int totalFrames){
 short     *ptr;
-int        i,j,k=0,m=0,shift=0;
+int        i,j,k=0,m=0,shift=0, w;
 int        frameNo = 0, speechFrame = 0;
 FILE      *fp_input;
 long       eoinput;
 float      **mfccCoeffs;
 double     value;
+float     diff;
 float Log_var[FRAMESIZE][NUM_OF_FILTER];
 fp2 = fopen("2.txt","a");
 fp2 = fopen("3.txt", "a");
 float array[eoinput];
+float arr1[totalFrames];
+for(int i=0; i<totalFrames; i++)
+{
+    arr1[i]=0;
+    //printf("ARR1 \t%f\n", arr1[i]);
+     //printf("COUNT \t%d\n", i);
+    
+}
+
+
+
+printf("TOTAL NO OF FRAMES \t %d\n",totalFrames);
    //int count=0;
 
 
@@ -186,15 +199,33 @@ fclose(fp2);
                        k=k+1;
                       
 	 fp2 = fopen("2.txt","r");
-         for(int k=0; k<FRAMESIZE; k++)
          {
-             for(int l=0; l<NUM_OF_FILTER; l++ )
-             {
-                 //printf("%f \t", Log_var[k][l]);
-                 //printf("HHHHHHHHHH \t");
-                 fscanf(fp2,"%f \t", &Log_var[k][l]);
-             }
+         for(int k=0; k<totalFrames; k++)
+         {
+             
+             arr1[k]= arr1[k]+FRAMESHIFT;
+            
+             
          }
+             printf("ARRAY G IS \t%f\n",arr1[k]);
+            
+             float p=4000;
+             diff = (arr1[k]-p);
+             if(diff>0 && diff<100)
+             {
+                
+                 printf("DIFF IS \t %d \n", k);
+             }
+             
+               
+          }   
+         
+         
+        
+         
+         
+         
+         
          
          
          for(int k=0; k<FRAMESIZE; k++)
@@ -224,11 +255,11 @@ fclose(fp2);
                              //printf("%f \n ", Log_var[p][q]);
                          }
                      }
-                     printf("%d \n", p);
+                     //printf("%d \n", p);
                      double value = Log_var[i][j];
                     // printf(" %lf \n ", value);
                      //printf(" %f \n ", Log_var[i][j]);
-                     printf("%d \n ", i);
+                     //printf("%d \n ", i);
                  }
                p++;
              }
