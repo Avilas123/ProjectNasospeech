@@ -23,7 +23,7 @@ a:hover{
     text-decoration: none!important;
 }
 .mainbody {
- padding: 24px 0;
+ padding: 32px 0;
 }
 .index .navbar-right li,.welcomeheader .navbar-right .right{
     margin-right: 16px;
@@ -182,9 +182,9 @@ a:hover{
  background-color: transparent;
 }
 .searchicon{
-    position: relative;
-    top: 7px;
-    right: 29px;
+    position: absolute;
+    top: 17px;
+    right: 80px;
 }
 .arrowicon{
     position: relative;
@@ -232,7 +232,7 @@ a:hover{
 .searchbar{
     margin-top: 15px;
     border-radius: 4px;
-    width: 700px;
+    width: 560px;
     height: 28px;
     margin-left: 33px;
     border: 1px solid #ccc;
@@ -656,6 +656,12 @@ opacity: 0.2
     text-overflow: ellipsis;
     overflow: hidden;
 }
+.inputsearch{
+  width: 150px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;  
+}
 .radio{
     align-items: center;
 }
@@ -692,4 +698,73 @@ opacity: 0.2
 .modalbutton:hover{
    color: cadetblue!important; 
 }
+.formtrack .dropdown select {
+  width:100%;
+  margin:0;
+  background:none;
+  border: 1px solid transparent;
+  outline: none;
+ -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  /* Remove select styling */
+  appearance: none;
+  -webkit-appearance: none;
+  line-height:1.3;
+}
 
+.formtrack .dropdown::after {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 8px;
+  top: 50%;
+  right: 1em;
+  margin-top:-4px;
+  z-index: 2;
+  background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 12'%3E%3Cpolygon fill='rgb(102,102,102)' points='8,12 0,0 16,0'/%3E%3C/svg%3E") 0 0 no-repeat;  
+  /* These hacks make the select behind the arrow clickable in some browsers */
+  pointer-events:none;
+}
+
+.formtrack body:last-child .dropdown::after, x:-moz-any-link {
+  display: none;
+}
+.formtrack body:last-child .dropdown select, x:-moz-any-link {
+  padding-right: .8em;
+}
+
+_::-moz-progress-bar,.formtrack  body:last-child .dropdown {
+  overflow: hidden;
+}
+_::-moz-progress-bar,.formtrack  body:last-child .dropdown:after {
+  display: block;
+}
+_::-moz-progress-bar,.formtrack  body:last-child .dropdown select {
+  /* increase padding to make room for menu icon */
+  padding-right: 1.9em;
+  /* `window` appearance with these text-indent and text-overflow values will hide the arrow FF up to v30 */
+  -moz-appearance: window;
+  text-indent: 0.01px;
+  text-overflow: "";
+  /* for FF 30+ on Windows 8, we need to make the select a bit longer to hide the native arrow */
+  width: 110%;
+}
+_::-moz-progress-bar,.formtrack  body:last-child .dropdown select:focus {
+  outline: 2px solid rgba(180,222,250, .7);
+}
+x:-o-prefocus,.formtrack  .dropdown::after {
+  display:none;
+}
+.colors {
+ color: #000;
+  display: none;
+}
+.Approved .dropdown-menu{
+    width: 320px!important;
+}
+.searchdrop .dropdown-menu{
+    width: 300px!important;
+    padding: 8px!important;
+    left: -233px!important;
+}

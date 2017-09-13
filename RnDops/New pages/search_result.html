@@ -37,8 +37,8 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-left">
-            <li class="ln"><div class="dropdown headleft">
+        <ul class="nav navbar-nav navbar-left headleft">
+            <li class="ln"><div class="dropdown">
     <button class="btn dropdown-toggle b" type="button" data-toggle="dropdown">Utilities
     <span class="caret"></span>
                 </button>
@@ -124,44 +124,32 @@
                 </div>
                 </div>
   </div></li>
-            <li class="ln">
-
-  <ul class="df p0">
+            <li class="ln searchdrop">
+<!--            <input type="search"placeholder="Search using 16 digit application reference no. only."class="searchbar">-->
+  <ul class="df">
       <li class="ln">
                     <input type="text" placeholder="Search using 16 digit application reference no. only." onfocus="this.placeholder=''" onblur="this.placeholder=''" class="searchbar"/>
-          <a href="search_result.html"><i class="material-icons searchicon">search</i></a>
-      </li>
-      <li class="ln">
-      <div class="dropdown searchdrop pl12">
-    <button class="dropdown-toggle f12 transparent bn mt17 lineheight12 text-left" type="button" data-toggle="dropdown">Advance<p class="m0">Search</p>
- 
-          </button>
-    <div class="dropdown-menu">
-    <div class="row">
-          <div class="col-md-6"><input type="text" placeholder="Reference Number" onfocus="this.placeholder=''" onblur="this.placeholder=''"class="inputsearch"></div>
-     <div class="col-md-6"><select>
-     <option>Applied</option>
-     <option >Processed</option>
-     <option>Approved</option>
-      <option>Rejected</option>
-      <option>Cancelled</option>
-  </select></div></div>
-      <div class="row mt10">
-          <div class="col-md-6"><input type="text" placeholder="Applicant's Name" onfocus="this.placeholder=''" onblur="this.placeholder=''"class="inputsearch"></div>
-     <div class="col-md-6">
-         <select>
-     <option>Applied</option>
-     <option>Processed</option>
-     <option>Approved</option>
-      <option>Rejected</option>
-      <option>Cancelled</option>
-  </select>
-          </div>
-        </div>
-    </div>
-  </div></li>
-              
-        </ul> 
+          <a href="search_result.html"><i class="material-icons searchicon">search</i></a></li>
+              <li class="ln"> <div class="dropdown-toggle" type="button" data-toggle="dropdown">Apply filter
+    <span class="caret"></span></div>
+    <ul class="dropdown-menu p8">
+    <li>
+      <label><input type="checkbox" value=""class="mr8">Temporary advance</label>
+    </li>
+    <li>
+      <label><input type="checkbox" value="" class="mr8">Temporary advance and TA/DA Settlement</label>
+    </li>
+        <li>
+      <label><input type="checkbox" value="" class="mr8">Project staff leave</label>
+    </li>
+        <li>
+      <label><input type="checkbox" value="" class="mr8">Travel and faculty leave</label>
+    </li>
+         <li>
+      <label><input type="checkbox" value="" class="mr8">Purchase indent cum sanction sheet</label>
+    </li>
+    
+  </ul></li></ul> 
             </li>
         </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -203,29 +191,19 @@
       <a href="#">Home</a>
     </li>
     <li class="active ln">
-      <a href="#">Form Tracking</a>
+      <a href="#">Search Result</a>
     </li>
     
   </ul>
 </div>
-<div class="container">
-<h2>Track Your Forms  </h2>
-<div class="df mb12 ">
-    <div class="w10 h40 formtrack"> 
-  <select id="colorselector">
-     <option value="Applied">Applied</option>
-     <option value="Processed">Processed</option>
-     <option value="Approved">Approved</option>
-      <option value="Rejected">Rejected</option>
-      <option value="Cancelled">Cancelled</option>
-  </select>
-</div>
-
+<div class="container ">
+<h2>Search result</h2>
 <div class="output">
-  
+  <div id="Applied" class="colors Applied">  “Good artists copy, great artists steal” Pablo Picasso</div>
+  <div id="Processed" class="colors Processed"> “Art is the lie that enables us to realize the truth” Pablo Picasso</div>
   <div id="Approved" class="colors Approved">
       <div class="dropdown">
-    <div class="dropdown-toggle cp" type="button" data-toggle="dropdown">Apply filter
+    <div class="dropdown-toggle" type="button" data-toggle="dropdown">Apply filter
     <span class="caret"></span></div>
     <ul class="dropdown-menu p8">
     <li>
@@ -250,17 +228,17 @@
     </div>
     <div id="Rejected" class="colors Rejected"> trtgtrgrthgt4hth4th4jnfjifhguihrtighiurthgtrgrtg</div>
     <div id="Cancelled" class="colors Cancelled"> uhuirhtuirurhiuerhotherohtoehrotherhgiober</div>
-</div></div>
+</div>
 
    
     <div class="row">
 					<div class="col-md-12 formTrackingPortal">
-<img src="../images/form%20tracking%20table.png" class="w100">
+<img src="../images/search%20result.png" class="w100">
                     </div>
 					</div>
-				</div>  
-   </div>
-    <footer>
+				</div>
+    </div>
+   <footer>
         <div class="row footer">
             <div class="row" >
 				<div class="col-md-10 col-md-push-1 text-center">
