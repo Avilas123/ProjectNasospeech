@@ -7,9 +7,10 @@ body{
 }
 input:focus,.btn:focus{outline:0;
 }
-button:focus{
+button:focus,.nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
     outline: none!important;
     box-shadow: none!important;
+    background-color: transparent!important;
 }
 h4,.smalltext{
     color: #777!important;
@@ -22,11 +23,11 @@ a:hover{
     text-decoration: none!important;
 }
 .mainbody {
- padding: 27px 0;
+ padding: 24px 0;
 }
 .index .navbar-right li,.welcomeheader .navbar-right .right{
     margin-right: 16px;
-    padding-top:12px;
+    padding-top:17px;
 }
 .welcomeheader .navbar-right .iconright{
     bottom: 7px;
@@ -34,6 +35,9 @@ a:hover{
 }
 .navbar-right input{
    height: 36px!important;
+}
+.navbar{
+    min-height: 56px!important;
 }
 .content{
     margin-top: 40px;
@@ -174,22 +178,8 @@ a:hover{
    list-style: none;
     display: inline;
 }
-.circle{
-    width: 30px;
-    height:30px;
-    border-radius: 50%;
-    color: #fff;
-    font-size: 12px;
-    text-align: center;
-    padding-top: 7px;
-    cursor: pointer;
-    background-color: rgba(0,0,0,.55);
-}
 .user{
  background-color: transparent;
-}
-.circle:hover{
-    background-color: #000;
 }
 .searchicon{
     position: relative;
@@ -200,9 +190,11 @@ a:hover{
     position: relative;
     top: 8px;
 }
+/*
 .welcomeheader .navbar-right{
   margin-top: 4px;
 }
+*/
 .welcomeheader .badge{
     background-color: #FFC107;
     position: relative;
@@ -648,9 +640,18 @@ opacity: 0.2
 	padding: 20px;
 	background-color: #FFFFFF;
 }
-/*welcometop*/
+/*welcomePAGE*/
 .welcometop{
     width: 390px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.welcomeheader .dropper{
+    min-width: 200px;
+}
+.welcomeheader .dropper li{
+    width: 200px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -658,7 +659,37 @@ opacity: 0.2
 .radio{
     align-items: center;
 }
-/*welcometable*/
 .welcome .table>tbody>tr>td{
     padding: 4px!important;
 }
+
+#buttons a {
+  color: #444;
+  background: #fff;
+  border: 2px solid #444;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+#tabs a {
+  color: #fff;
+  background: #0090ad;
+  border-radius: 6px 6px 0 0;
+  padding: 8px 15px;
+  margin: 0 2px;
+}
+#tabs a.active {
+  background: #2c4fad;
+}
+.fundtatusbig{
+    height: 240px;
+    overflow-y: scroll;
+}
+.fundtatussmall{
+   height: 200px;
+    overflow-y: scroll; 
+}
+/*modalbox*/
+.modalbutton:hover{
+   color: cadetblue!important; 
+}
+

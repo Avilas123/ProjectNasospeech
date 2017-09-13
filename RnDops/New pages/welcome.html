@@ -130,9 +130,13 @@
 <!--              <span class="badge">7</span>-->
         </div></li>
                     <li class="ln right">
-          <div class="dropdown iconright">
+          <div class="dropdown cp">
+<!--
     <button class="btn user" id="menu1" type="button" data-toggle="dropdown"><i class="material-icons">perm_identity</i>
     </button>
+--><a data-toggle="dropdown"class="black"><i class="material-icons">perm_identity</i>
+    <span class="caret mb12"></span>
+                </a>
     <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
          <div class="menutopboxcolor"></div>
 <ul class="dropper db">
@@ -156,32 +160,43 @@
 
 
 <div class="mainbody">
-<!--
-    <div class="wrapper">
-  <ul>
-    <li class="ln">
-      <a href="#">Utilities</a>
-    </li>
-    <li class="active ln">
-      <a href="#">Welcome</a>
-    </li>
-    
-  </ul>
-</div>
--->
-    <form class=" mt32 bg-2 white ptb5">
+<form class=" mt32 bg-2 white ptb5">
      <div class="container df">
         <div class="welcometop col-md-6 br">
          <span class="f12">You are signed in as </span>
     <label class="radio-inline ml16">
-        <input type="radio" name="optradio"class="radio"><span class="f12">Self</span>
+        <input type="radio" name="optradio"class="radio cp"><span class="f12">Self</span>
     </label>
-    <label class="radio-inline">
-        <input type="radio" name="optradio" class="radio"><span class="f12">S R Mahadeva Prasanna</span>
+    <label class="radio-inline ">
+        <input type="radio" name="optradio" class="radio cp"><span class="f12">S R Mahadeva Prasanna</span>
     </label>
          </div>
          <div class=" col-md-6">
-             <span class="f12">  To handover the account back to S R Mahadeva Prasanna <a href=""class="pl10">Click here</a></span>
+             <span class="f12">  To handover the account back to S R Mahadeva Prasanna
+<!--                 <a href=""class="pl10">Click here</a>-->
+                 <a class="pl10 cp" data-toggle="modal" data-target="#myModal">Click here</a>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Handover Account?</h4>
+      </div>
+      <div class="modal-body">
+        <p>Contents for handover account</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn transparent bn black" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+             </span>
          </div>
         
         </div>
@@ -260,23 +275,9 @@ Temporary Advance Application of Rs.12000</td>
     </div>
     <div class="col-md-4">
         <h5 class="b">Fund status of my projects</h5>
-<!--
-       <form method="post" >
-                        <input type="submit" value="xDESSUGIITG01055xABS001.xls" class="transparent bn">
-                        
-                        <input type="submit" name="individualProjectName" value="xDESSUGIITG01055xABS001.xls"class="transparent bn">
-           <input type="submit" name="individualProjectName" value="xDESSUGIITG01055xABS001.xls"class="transparent bn">
-           <input type="submit" name="individualProjectName" value="xDESSUGIITG01055xABS001.xls"class="transparent bn">
-           
-           <input type="submit" name="individualProjectName" value="xDESSUGIITG01055xABS001.xls"class="transparent bn">
-           <input type="submit" name="individualProjectName" value="xDESSUGIITG01055xABS001.xls"class="transparent bn">
-           <input type="submit" name="individualProjectName" value="xDESSUGIITG01055xABS001.xls"class="transparent bn">
-           <input type="submit" name="individualProjectName" value="xDESSUGIITG01055xABS001.xls"class="transparent bn">
-           
-                    </form>
--->
-        <div class="table-responsive">
-            <table class="table table-bordered">
+
+        <div class="table-responsive fundtatusbig">
+            <table class="table table-bordered fundstatussmaill mb0">
          
           <tbody>
             <tr>
@@ -306,14 +307,65 @@ Temporary Advance Application of Rs.12000</td>
              </tr>
               <tr>
               <td> <input type="submit" name="individualProjectName" value="xDESSUGIITG01055xABS001.xls"class="transparent bn"></td>
+              
+             </tr>
+              <tr>
+              <td> <input type="submit" name="individualProjectName" value="xDESSUGIITG01055xABS001.xls"class="transparent bn"></td>
+              
+             </tr>
+              <tr>
+              <td> <input type="submit" name="individualProjectName" value="xDESSUGIITG01055xABS001.xls"class="transparent bn"></td>
+              
+             </tr>
+              <tr>
+              <td> <input type="submit" name="individualProjectName" value="xDESSUGIITG01055xABS001.xls"class="transparent bn"></td>
+              
+             </tr>
+             
          </tbody>
           <tfoot>
          </tfoot>
         </table></div>
          </div></div>
+    <!--IF PENDING TASKS ARE THERE-->
     <div class="row mt20">
     <div class="col-md-12">
-        
+     <h5 class="b">Pending Tasks</h5>
+        <div class="text-center">
+           <i class="material-icons">sentiment_very_satisfied</i>
+           <p>You have no pending tasks</p> 
+        </div>
+       </div></div>
+<!--IF PENDING TASKS ARE THERE-->
+    <div class="row mt20">
+    <div class="col-md-12">
+     <h5 class="b">Pending Tasks</h5>
+ 
+<!--
+<ul class="nav nav-tabs">
+  <li id="tab0"> Temporary Advance </li>
+  <li id="tab1">Travel</li>
+   <li id="tab2"> Leave </li>
+  <li id="tab3"> TA Settlement </li>
+  <li id="tab4"> TA / DA Settlement </li>
+ <li id="tab5"> Rate Contract <li>
+ <li id="tab6"> Monthly Attendance Report </li>
+  <li id="tab7"> ADHOC Recruitment </li>
+  <li id="tab8"> Selection Committee Report </li>
+  <li id="tab9"> Appointment Order Generation </li>
+  <li id="tab10"> Contractual Recruitment </li>
+  
+
+</ul>
+-->
+         <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#Temporary Advance">Temporary Advance</a></li>
+    <li><a data-toggle="tab" href="#Travel">Travel</a></li>
+    <li><a data-toggle="tab" href="#Leave">Leave</a></li>
+    <li><a data-toggle="tab" href="#TA Settlement">TA Settlement</a></li>
+             <li><a data-toggle="tab" href="TA / DA Settlement">TA / DA Settlement</a></li>
+             <li><a data-toggle="tab" href="#Rate Contract">Rate Contract</a></li>
+  </ul>
        </div></div>
    </div>
     </div>
@@ -337,18 +389,64 @@ Temporary Advance Application of Rs.12000</td>
     </footer>
     
     <script>
-        // Initialize affix and add an offset to add affix class on scroll
-$('#mainNav').affix({
-  offset: {
-    top: 100
-  }
-})
-    </script>
-    <script>
 $(document).ready(function(){
     $(".dropdown-toggle").dropdown();
 });
 </script>
+   <script>
+      $(document).ready(function() {
+  var tabs = $('.tab'),                       // Make an array of tabs.
+      numTotal = tabs.length,
+      numVisible = Math.min(numTotal, 6),
+      currentIndex = 0,
+      currentTab = tabs[currentIndex],
+      left = currentIndex,                    // Track the leftmost and
+      right = currentIndex + numVisible - 1;  // rightmost visible tabs.
+  
+  $(tabs).each(function (index, tab) {        // Let each tab update
+    $(tab).click(function () {                // currentIndex to point
+      $(currentTab).removeClass('active');    // to itself when clicked.
+      currentTab = tabs[currentIndex = index];
+      $(currentTab).addClass('active');
+    });
+  });
+  $(tabs).css('display', 'none');             // Hide all tabs.
+  for (var i = left; i <= right; ++i) {
+    $(tabs[i]).css('display', 'inline');      // Show visible tabs.
+  }
+  $(currentTab).addClass('active');
+  
+  $('#prevButton').click(function () {
+    $(currentTab).removeClass('active');
+    currentIndex = (currentIndex - 1 + numTotal) % numTotal;
+    if (currentIndex === (left - 1 + numTotal) % numTotal) {
+      // Shift visible span to the left.
+      left = (left - 1 + numTotal) % numTotal;
+      $(tabs[left]).insertBefore(currentTab); // Ensure we wrap around.
+      $(tabs[left]).css('display', 'inline');
+      $(tabs[right]).css('display', 'none');
+      right = (right - 1 + numTotal) % numTotal;
+    }
+    currentTab = tabs[currentIndex];
+    $(currentTab).addClass('active');
+  });
+
+  $('#nextButton').click(function() {
+    $(currentTab).removeClass('active');
+    currentIndex = (currentIndex + 1) % numTotal;
+    if (currentIndex === (right + 1) % numTotal) {
+      // Shift visible span to the right.
+      $(tabs[left]).css('display', 'none');
+      left = (left + 1) % numTotal;
+      right = (right + 1) % numTotal;
+      $(tabs[right]).css('display', 'inline');
+      $(tabs[right]).insertAfter(currentTab); // Ensure we wrap around.
+    }
+    currentTab = tabs[currentIndex];
+    $(currentTab).addClass('active');
+  });
+});
+    </script> 
 	
 </body>
 </html>

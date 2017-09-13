@@ -47,6 +47,9 @@
 .mb10{
     margin-bottom: 10px!important;
 }
+.mb12{
+    margin-bottom: 12px!important;
+}
 
 /*PADDINGS*/
 .pl0{
@@ -229,4 +232,8 @@
 /*Fonts*/
 .f12{
     font-size: 12px!important;
+}
+/*POINTER*/
+.cp{
+    cursor: pointer!important;
 }
