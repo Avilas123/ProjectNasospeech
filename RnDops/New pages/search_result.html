@@ -22,7 +22,7 @@
 </head>
 <body>
 
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top bg-1">
+    <nav id="mainNav" class="navbar navbar-default bg-1">
   <div class="container welcomeheader">
    
     <div class="navbar-header">
@@ -126,30 +126,61 @@
   </div></li>
             <li class="ln searchdrop">
 <!--            <input type="search"placeholder="Search using 16 digit application reference no. only."class="searchbar">-->
-  <ul class="df">
+   <ul class="df p0">
       <li class="ln">
                     <input type="text" placeholder="Search using 16 digit application reference no. only." onfocus="this.placeholder=''" onblur="this.placeholder=''" class="searchbar"/>
-          <a href="search_result.html"><i class="material-icons searchicon">search</i></a></li>
-              <li class="ln"> <div class="dropdown-toggle" type="button" data-toggle="dropdown">Apply filter
-    <span class="caret"></span></div>
-    <ul class="dropdown-menu p8">
-    <li>
-      <label><input type="checkbox" value=""class="mr8">Temporary advance</label>
-    </li>
-    <li>
-      <label><input type="checkbox" value="" class="mr8">Temporary advance and TA/DA Settlement</label>
-    </li>
-        <li>
-      <label><input type="checkbox" value="" class="mr8">Project staff leave</label>
-    </li>
-        <li>
-      <label><input type="checkbox" value="" class="mr8">Travel and faculty leave</label>
-    </li>
-         <li>
-      <label><input type="checkbox" value="" class="mr8">Purchase indent cum sanction sheet</label>
-    </li>
+          <a href="search_result.html"><i class="material-icons searchicon">search</i></a>
+      </li>
+      <li class="ln">
     
-  </ul></li></ul> 
+<!--
+    <button class="dropdown-toggle f12 transparent bn mt17 lineheight12 text-left" type="button" data-toggle="dropdown">Advance<p class="m0">Search</p>
+ 
+          </button>
+    <div class="dropdown-menu">
+    
+        <div class="row mt10">
+        <div class="col-md-4"> <input type="text" placeholder="Applicant's name" onfocus="this.placeholder=''" onblur="this.placeholder=''"></div>
+            <div class="col-md-4">
+                <select>
+                    <option>ugyuggu</option>
+                      <option>ugyuggu</option>
+                      <option>ugyuggu</option>
+                    
+                      <option>ugyuggu</option>
+                </select>
+                </div>
+            <div class="col-md-4">
+               
+            </div>
+        </div>
+     </div>
+--><button class="pl10 cp f12 transparent bn lineheight12 mt17 lineheight12 text-left" data-toggle="modal" data-target="#myModal">Advance<p class="m0">Search</p></button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+       <img src="../images/search%20bar%20modal%20box%20content%20copy.png"class="w100">
+      </div>
+<!--
+      <div class="modal-footer">
+        <button type="button" class="btn transparent bn black" data-dismiss="modal">Close</button>
+      </div>
+-->
+    </div>
+
+  </div>
+</div>
+  </li>
+              
+        </ul>
             </li>
         </ul>
       <ul class="nav navbar-nav navbar-right">
