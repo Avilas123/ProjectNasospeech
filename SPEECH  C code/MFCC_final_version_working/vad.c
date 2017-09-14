@@ -154,7 +154,7 @@ printf("energy_frames : %f\n",Energy_frames[i]);
             for( m=0;m<4;m++)
            {
 
-            if((Energy_frames[k+m] > (0.66*Avg_Energy))) 
+            if((Energy_frames[k+m] > (0*Avg_Energy))) 
 	     {
 					
                 speech_nonspeech_frames[k+m]=1;                   
@@ -206,7 +206,7 @@ printf("energy_frames : %f\n",Energy_frames[i]);
             for( m=0;m<4;m++)
            {
 
-            if((Energy_frames[k-m] > (0.66*Avg_Energy))) 
+            if((Energy_frames[k-m] > (0*Avg_Energy))) 
 	     {
 					
                 speech_nonspeech_frames[k-m]=1;                   
@@ -295,7 +295,7 @@ k=0;
 /*************** Comparing with threshold energy and passing 1 if the frame is speech frame else 0 ***********************/
           while( k<=nof_fshift )
           {
-            if((Energy_frames[k] > (0.66*Avg_Energy))) 
+            if((Energy_frames[k] > (0*Avg_Energy))) 
 	     {
 					
                 speech_nonspeech_frames[k]=1;                   

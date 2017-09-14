@@ -69,8 +69,9 @@ int main(int argc, char *argv[]){
     int dimIter = 0, iter;
  // Computing the Static MFCC Coefficients  ...
     
-// printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n\n\n\n\n\n\n",nof_fsize);
+ //printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n\n\n\n\n\n\n",nof_fsize);
     mfccCoeffs = ComputeMFCC(argv[1], no_of_speech_frames, speech_nonspeech_frames, nof_fsize, total_no_of_frames);
+   // printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n\n\n\n\n\n\n",nof_fsize);
     printf("\n MFCC Computation is Done \n");
 
     //  Calling the Delta Coefficient Now ..... 

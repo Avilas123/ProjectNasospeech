@@ -10,6 +10,7 @@ void     hamming(float input[], float output[]);
 void     dft(float real_input[], float final_arg[]);
 void     frequency_warping_spectrum(float Filter_resp[][DFT_POINT], float dft_value[], float spectrum_out[]);
 void     Log_spectrum(float energy_output[], float log_out[]);
+void     twoDimensional_DCT(float log_out[], float A_out[],int totalFrames);
 void     IDCT(float log_values[], float IDCT_out[]);
 void     cms(float **mfccCoeffs, int totalFrames,int numCoeffs);
 void     ZeroMeanUnitVariance(float **features, int totalFrames,int numCoeffs);
@@ -84,8 +85,7 @@ float **ConcatenateFeatures(float **feature1, int rows1, int cols1, float **feat
                                                                                                                         } // END_OF_FUNCTION_Concatenate_Features ....
 
 
-
-FILE *fp2; 
+ 
 float **ComputeMFCC(char waveName[], int numSpeechFrames, short *speechNonSpeech, int nof_fsize, int totalFrames){
 short     *ptr;
 int        i,j,k=0,m=0,shift=0, w;
@@ -93,28 +93,18 @@ int        frameNo = 0, speechFrame = 0;
 FILE      *fp_input;
 long       eoinput;
 float      **mfccCoeffs;
-double     value;
-float     diff;
-float Log_var[FRAMESIZE][NUM_OF_FILTER];
-fp2 = fopen("2.txt","a");
-fp2 = fopen("3.txt", "a");
-float array[eoinput];
-float arr1[totalFrames];
-for(int i=0; i<totalFrames; i++)
-{
-    arr1[i]=0;
-    //printf("ARR1 \t%f\n", arr1[i]);
-     //printf("COUNT \t%d\n", i);
-    
-}
+//double     value;
+//float      array[eoinput];
+
 
 
 
 printf("TOTAL NO OF FRAMES \t %d\n",totalFrames);
-   //int count=0;
+
+  
 
 
-// printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n\n\n\n\n\n\n",totalFrames);
+//printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n\n\n\n\n\n\n",totalFrames);
 
 mfccCoeffs = (float **) calloc(totalFrames, sizeof(float *));  // Define the Mfcc Coefficients to have <<< NUMSPEECHFRAMES >>>  
 if( ( fp_input=fopen(waveName,"rb") ) == NULL){
@@ -129,30 +119,20 @@ else{
 
 filter_bank(globDataSpeechRecgStruct.header.Sample_Rate, globDataSpeechRecgStruct.Filter_resp); // Returns the Filter response which is a 2d matrix of 22*256 elements
 ptr = (short*)malloc((FRAMESIZE * nof_fsize) * sizeof(short));    // For Storing the entire Data .... 
+//printf("ptr is %hd \n",*ptr);
 fread(ptr, sizeof(short), nof_fsize*FRAMESIZE, fp_input);         //reading complete data as single chunk
 fclose(fp_input);
 
 
 eoinput= nof_fsize * FRAMESIZE - FRAMESHIFT;  
-printf("no F size is %d \n ",nof_fsize);
-printf("end of input is %ld \n ",eoinput);
-
-for(int d=0; d<eoinput; d++)
- 
-    
-{
-    double arr= array[i];
-    fprintf(fp2,"%f \t", array[i]);
-    //printf("%f \t ", array[i]);
-   // count++;
-   // printf("%d ", count);
-}
-    
-fclose(fp2);
+//printf("no F size is %d \n",nof_fsize);
+//printf("end of input is %ld \n",eoinput);
 
 
 
-          while((shift != eoinput-80)){
+//printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n",shift);
+
+          while((shift != eoinput-FRAMESIZE)){
              
            //   if (speechNonSpeech[frameNo] == 1){ // Check Whether the frame is Speech or not .... 
                           // Declare the array to contain sufficient number of MFCC Coefficients ..... 
@@ -161,9 +141,10 @@ fclose(fp2);
                             
                            for(i=0; i<DFT_POINT; i++) {
 					      if(i<FRAMESIZE){
-							globDataSpeechRecgStruct.sample_value[i] = (float)(*ptr)/(float)pow(2,(globDataSpeechRecgStruct.header.Bits_Per_Sample)-1);  
+                                                  	globDataSpeechRecgStruct.sample_value[i] = (float)(*ptr)/(float)pow(2,(globDataSpeechRecgStruct.header.Bits_Per_Sample)-1);  
                                                         ptr++;
-                                                        //printf("%f sample_values \t ", globDataSpeechRecgStruct.sample_value[i]);
+                                                        
+                                                        //printf("sample_values \t %f\n", globDataSpeechRecgStruct.sample_value[i]);
 						  }
 				              else{
 							globDataSpeechRecgStruct.sample_value[i] = 0;     //assigning zero from 161 to 512 samples
@@ -180,8 +161,12 @@ fclose(fp2);
 					frequency_warping_spectrum(globDataSpeechRecgStruct.Filter_resp, globDataSpeechRecgStruct.final_arg1, globDataSpeechRecgStruct.warping_spectrum1); //calculates the warping spectrum
                                         
 					Log_spectrum(globDataSpeechRecgStruct.warping_spectrum1, globDataSpeechRecgStruct.log_magnitude1);    //calculates the log magnitude
+                                       
                                         
-					IDCT(globDataSpeechRecgStruct.log_magnitude1, globDataSpeechRecgStruct.IDCT_Output1);                 //computes the Inverse Discrete cosine transform                      
+                                           
+                                        
+					
+                                        IDCT(globDataSpeechRecgStruct.log_magnitude1, globDataSpeechRecgStruct.IDCT_Output1);                 //computes the Inverse Discrete cosine transform                      
 
 
                                        // printf(" Printing the MFCC COeffs \n");
@@ -194,86 +179,20 @@ fclose(fp2);
                                          				 
                                                                   //    } // END_OF_IF_LOOP <<< if (speechNonSpeech[frameNo] == 1)>> I.E. SPEECH_FRAME 
                        frameNo++;
+                      // printf("FRAME NO IS\t%d\n",frameNo);
                        shift = shift + (FRAMESHIFT);                                // shift incremented by FRAMESHIFT
                        ptr = ptr - FRAMESHIFT;                                      // ptr decremented by frameshift
                        k=k+1;
-                      
-	 fp2 = fopen("2.txt","r");
-         {
-         for(int k=0; k<totalFrames; k++)
-         {
-             
-             arr1[k]= arr1[k]+FRAMESHIFT;
-            
-             
-         }
-             printf("ARRAY G IS \t%f\n",arr1[k]);
-            
-             float p=4000;
-             diff = (arr1[k]-p);
-             if(diff>0 && diff<100)
-             {
-                
-                 printf("DIFF IS \t %d \n", k);
-             }
-             
-               
-          }   
-         
-         
-        
-         
-         
-         
-         
-         
-         
-         for(int k=0; k<FRAMESIZE; k++)
-         {
-             for(int l=0; l<NUM_OF_FILTER; l++ )
-             {
-                 //printf("%f \t", Log_var[k][l]);
-                 //printf("HHHHHHHHHH \t");
-                 fprintf(fp2,"%f \t", Log_var[k][l]);
-                 
-             }
-         }
-         fclose(fp2);
-        
-         
-         int static p=0;
-         for(i=0; i<FRAMESIZE;i++)
-         {
-             for(j=0;j<NUM_OF_FILTER;j++)
-             {
-                 if(p==100)
-                 {
-                     for(int p=(i+1); p<(i+6);p++)
-                     {
-                         for(int q=0;q<(j+6);q++)
-                         {
-                             //printf("%f \n ", Log_var[p][q]);
-                         }
-                     }
-                     //printf("%d \n", p);
-                     double value = Log_var[i][j];
-                    // printf(" %lf \n ", value);
-                     //printf(" %f \n ", Log_var[i][j]);
-                     //printf("%d \n ", i);
-                 }
-               p++;
-             }
-               
-         }
-         
-         //for(int m=1; m<)
+                       
         
 //printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n",shift);  
 //printf("%d", k);
           }     // while LOOP ends
+//printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n",shift);  
 
  
 ptr = ptr - eoinput;
+
  //free(ptr);	// Free the allocated Pointer ....... 
 
 //  Cepstral Mean Subtraction Logic is implemented only if CHANNELFLAG is 1. 
@@ -281,7 +200,14 @@ ptr = ptr - eoinput;
           // if(CHANNELFLAG == 1){
             //       cms(mfccCoeffs, totalFrames,NUM_OF_COEFFICIENTS);  // calling the cepstral mean subtraction function to subtract the mean from the coefficients and save the mean subtracted coefficients in file
               //                   }
-                 
+ 
+ 
+ 
+ 
+  printf("\n Checkline");
+ twoDimensional_DCT(globDataSpeechRecgStruct.log_magnitude1,globDataSpeechRecgStruct.A_out, totalFrames );     // patching and 2DDCT
+ 
+ 
 
   return   mfccCoeffs;
                                            }   //END_OF_FUNCTION_ComputeMFCC() 
@@ -794,7 +720,7 @@ void frequency_warping_spectrum(float Filter_resp[][DFT_POINT], float dft_value[
 					spectrum_out[i] = spectrum_out[i] + Filter_resp[i][j] * dft_value[j] ;   // DFT values being warped with filter response
 					
 				}
-                        //fprintf(fp, "%f \t", spectrum_out[i] );
+                        fprintf(fp, "%f \t", spectrum_out[i] );
                         //printf("%f spectrum out \t ", spectrum_out[i]);
                         
                         
@@ -827,7 +753,7 @@ void Log_spectrum(float spectrum_output[], float log_out[])
 {
    
         fp1 = fopen("2.txt","a");
-	int i;
+	int i,count=0;
         float Log_var[FRAMESIZE][NUM_OF_FILTER];
         
        
@@ -840,20 +766,91 @@ void Log_spectrum(float spectrum_output[], float log_out[])
                        
                         fprintf(fp1 ,"%f \t", log_out[i] );
                         //printf("\n%d", i);
-                       
+                        count++;
 		}
+        //printf("count is\t%d\n",count);
+        //printf("\nlog=%f\n", log_out[1]);
         //fscanf(fp1, " %d \n", &Log_var[i]);
-        //fprintf()
+       // fprintf()
         
        
         fprintf(fp1," \n" );
         fclose (fp1);
+        
+        
 
         
         
 }
         
 	//Log_spectrum() ends here
+
+FILE *myfile1;
+FILE *myfile2;
+void twoDimensional_DCT(float log_out[], float A_out[], int totalFrames)
+{
+   
+    myfile1 = fopen("2.txt", "r");
+    myfile2 = fopen("A_OUT.txt", "w");
+    int k,l,m;
+    int rslt;
+    float arr1[totalFrames];
+    float NEW[totalFrames][NUM_OF_FILTER];
+    float Arrey_out[6][NUM_OF_FILTER];
+         for(int i=0; i<totalFrames; i++)
+                {
+                     arr1[i]=0;
+                     //printf("ARR1 \t%f\n", arr1[i]);
+                     //printf("COUNT \t%d\n", i);
+    
+                }
+    float     diff;
+    
+    for(int k=1; k<totalFrames; k++)
+    {
+         {
+             
+             arr1[k]= arr1[k-1]+FRAMESHIFT;
+            //printf("ARRAY G IS \t%f\n",arr1[k]);
+             
+         }
+             
+            
+             float p=4000;
+             diff = (arr1[k]-p);
+             if(diff>0 && diff<100)
+             {
+                 rslt =k;
+                 printf("\t\t\t\tDIFF IS \t %d \n", k);
+             }
+    }        
+    //printf("\t\t\t\tDIFF IS \t %d \n",rslt);
+    for(int m=0; m<totalFrames-2 ; m++)
+    {
+    for(l=0; l<NUM_OF_FILTER; l++)
+    {
+        fscanf(myfile1, "%f", &NEW[m][l]);
+       //printf(" The array is \t%f\n ", NEW[m][l]);
+    }
+   
+    }
+    
+    
+    for(int i=rslt-1; i<rslt+5; i++)
+    {
+        for(int j=0; j<NUM_OF_FILTER; j++)
+        {
+            printf("THE FINAL ARRAY IS \t%f\n", NEW[i][j]);
+            fprintf(myfile2 , "%f\t", NEW[i][j]);
+        }
+         fprintf(myfile2, "\r\n");
+         
+    }
+     
+         fclose(myfile1);
+         fclose(myfile2);
+    
+}
 
 
 

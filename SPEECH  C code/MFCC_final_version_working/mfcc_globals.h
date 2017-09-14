@@ -36,6 +36,7 @@ struct speech_recognition
 	float warping_spectrum1[NUM_OF_FILTER];
 	float log_magnitude1[NUM_OF_FILTER];
 	float IDCT_Output1[NUM_OF_COEFFICIENTS];
+        float A_out[NUM_OF_FILTER];
 };
 
 typedef struct speech_recognition speech_recognition_struct;
