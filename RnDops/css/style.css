@@ -764,7 +764,17 @@ x:-o-prefocus,.formtrack  .dropdown::after {
     width: 320px!important;
 }
 .searchdrop .dropdown-menu{
-    width: 300px!important;
+   width: 650px!important;
     padding: 8px!important;
-    left: -233px!important;
+    left: -565px!important;
+    /* bottom: 400px; */
+    top: 8px;
+    padding: 28px 12px!important;
+    z-index: -9;
+}
+.searchbardropper{
+    width: 281px;
+    height: 28px;
+    border: 1px solid #ccc;
+border-radius: 4px;
 }
