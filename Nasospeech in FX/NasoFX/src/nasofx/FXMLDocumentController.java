@@ -64,7 +64,7 @@ public class FXMLDocumentController implements Initializable {
 @FXML
     void hypernalasityclick(ActionEvent event) {
         Tab tab = new Tab();
-            tab.setText("Hypernasality");
+            tab.setText("Hypernasality  ");
             TP.getTabs().add(tab);
              TP.getSelectionModel().select(tab);
          
@@ -74,7 +74,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     void scorecardclick(ActionEvent event) {
         Tab tab1= new Tab();
-            tab1.setText("Scorecard");
+            tab1.setText("Scorecard  ");
             TP.getTabs().add(tab1);
             TP.getSelectionModel().select(tab1);
 
@@ -93,17 +93,24 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     void markerdrag(MouseEvent event) {
         double offsetX = event.getSceneX()- orgSceneX;
+        
            // double offsetY = event.getY() - orgSceneY;
             double newTranslateX = orgTranslateX + offsetX;
            // double newTranslateY = orgTranslateY + offsetY;
+           //System.out.println("\nThe offset is :"+ newTranslateX);
+           
+           if(newTranslateX>-579.0 && newTranslateX<610.0){
              
             ((ImageView)(event.getSource())).setTranslateX(newTranslateX);
             //((ImageView)(event.getSource())).setTranslateY(newTranslateY);
-
+           }
     }
     
    
-    
+     @FXML
+    void slidermouseenter(MouseEvent event) {
+       
+    }
     
     
    
@@ -127,16 +134,17 @@ public class FXMLDocumentController implements Initializable {
     slider.setMinorTickCount(5);
     slider.setBlockIncrement(10);
     
+    
    TP.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
    double a = 0.1;
    int i=0;
   
    
-for (i = 0,a=0; i <1200; i+=50,a+=1)
+for (i = 3,a=0; i <1200; i+=50,a+=1)
 {
     //double a = 0.1;
     String number = Double.toString(a);
-    Text t = new Text(i, 10,number);
+    Text t = new Text(i, 23,number);
         double strokeWidth = t.getStrokeWidth();
         System.out.println("the stroke width is  :  "+strokeWidth);
         t.setStrokeWidth(0.5);
@@ -146,9 +154,9 @@ for (i = 0,a=0; i <1200; i+=50,a+=1)
     
     
     
-    Line line1 = new Line(i, 15, i, 322);
+    Line line1 = new Line(i, 20, i, 322);
      line1.setStrokeWidth(0.1);
-    line1.setStroke(Color.BLACK);
+    line1.setStroke(Color.rgb(204, 204, 204));
     
    
     //Line line2 = new Line(0, i, 600, i);
@@ -158,11 +166,11 @@ for (i = 0,a=0; i <1200; i+=50,a+=1)
     
 }
 
-        //Line redLine = new Line(422, 20, 422, 322);
+        Line redLine = new Line(0, 5, 1300, 5);
 
-   // redLine.setStroke(Color.RED);
-   // redLine.setStrokeWidth(1);
-   // tab1ap.getChildren().addAll(redLine);
+    redLine.setStroke(Color.rgb(221, 221, 221));
+    redLine.setStrokeWidth(10);
+    tab1ap.getChildren().addAll(redLine);
     
 marker.toFront();
 
