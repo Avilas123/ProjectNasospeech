@@ -22,9 +22,11 @@ label{
 a:hover{
     text-decoration: none!important;
 }
+/*
 .mainbody {
  padding: 32px 0;
 }
+*/
 .index .navbar-right li,.welcomeheader .navbar-right .right{
     margin-right: 16px;
     padding-top:17px;
@@ -36,9 +38,11 @@ a:hover{
 .navbar-right input{
    height: 36px!important;
 }
+/*
 .navbar{
     min-height: 56px!important;
 }
+*/
 .content{
     margin-top: 40px;
 }
