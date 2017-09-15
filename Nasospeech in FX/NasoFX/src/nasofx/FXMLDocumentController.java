@@ -8,7 +8,7 @@ package nasofx;
 import java.awt.BasicStroke;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.event.MouseEvent;
+//import java.awt.event.MouseEvent;
 import java.awt.geom.GeneralPath;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -31,6 +32,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
+import javafx.scene.input.MouseEvent;
 
 /**
  *
@@ -54,6 +56,9 @@ public class FXMLDocumentController implements Initializable {
     
      @FXML
     private ImageView marker;
+     
+     double orgSceneX, orgSceneY;
+    double orgTranslateX, orgTranslateY;
  
 
 @FXML
@@ -76,6 +81,32 @@ public class FXMLDocumentController implements Initializable {
     }
     
     
+    @FXML
+    void markerpress(MouseEvent event) {
+        orgSceneX = event.getSceneX();//event.getX();
+            //orgSceneY = event.getY();
+            orgTranslateX = ((ImageView)(event.getSource())).getTranslateX();
+          //  orgTranslateY = ((ImageView)(event.getSource())).getTranslateY();
+    }
+    
+    
+    @FXML
+    void markerdrag(MouseEvent event) {
+        double offsetX = event.getSceneX()- orgSceneX;
+           // double offsetY = event.getY() - orgSceneY;
+            double newTranslateX = orgTranslateX + offsetX;
+           // double newTranslateY = orgTranslateY + offsetY;
+             
+            ((ImageView)(event.getSource())).setTranslateX(newTranslateX);
+            //((ImageView)(event.getSource())).setTranslateY(newTranslateY);
+
+    }
+    
+   
+    
+    
+    
+   
 
 
      

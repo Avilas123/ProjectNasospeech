@@ -17,6 +17,7 @@ import javafx.stage.Stage;
  */
 public class NasoFX extends Application {
     
+    
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
@@ -34,6 +35,12 @@ public class NasoFX extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+        
+        
+        
+        
+        
+        
     }
     
 }
