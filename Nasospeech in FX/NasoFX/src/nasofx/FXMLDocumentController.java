@@ -145,17 +145,25 @@ for (i = 3,a=0; i <1200; i+=50,a+=1)
     //double a = 0.1;
     String number = Double.toString(a);
     Text t = new Text(i, 23,number);
-        double strokeWidth = t.getStrokeWidth();
-        System.out.println("the stroke width is  :  "+strokeWidth);
-        t.setStrokeWidth(0.5);
+   //  double strokeWidth = t.getStrokeWidth();
+     // System.out.println("the stroke width is  :  "+strokeWidth);
+   // t.setStrokeWidth(0.1);
+    t.setStyle("-fx-text-fill:white; -fx-font-size:10;");
+       
+      
+       // t.setStrokeWidth(0.5);
+        
+       //t.setStrokeWidth(0.1);
+     t.setStroke(Color.rgb(204, 204, 204));
   
-        System.out.println("the new  stroke width is  :  "+strokeWidth);
+       // System.out.println("the new  stroke width is  :  "+strokeWidth);
    
     
     
     
     Line line1 = new Line(i, 20, i, 322);
      line1.setStrokeWidth(0.1);
+     
     line1.setStroke(Color.rgb(204, 204, 204));
     
    
