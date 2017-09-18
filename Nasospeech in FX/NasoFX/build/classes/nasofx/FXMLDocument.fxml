@@ -17,8 +17,9 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane id="AnchorPane" fx:id="masterap" prefHeight="605.0" prefWidth="1200.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nasofx.FXMLDocumentController">
+<AnchorPane id="AnchorPane" fx:id="masterap" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nasofx.FXMLDocumentController">
    <children>
+      <AnchorPane layoutY="469.0" prefHeight="160.0" prefWidth="1200.0" styleClass="linear-grad-to-bottom3" stylesheets="@menu.css" />
       <AnchorPane layoutX="1.0" layoutY="1.0">
          <children>
             <AnchorPane layoutX="-2.0">
@@ -26,13 +27,14 @@
                   <AnchorPane>
                      <children>
                         <AnchorPane />
+                        <AnchorPane layoutX="1.0" layoutY="93.0" prefHeight="375.0" prefWidth="1200.0" style="-fx-background-color: #222222;" />
                      </children>
                   </AnchorPane>
                </children>
             </AnchorPane>
          </children>
       </AnchorPane>
-      <MenuBar layoutX="9.0" layoutY="1.0" style="-fx-background-color: #717171;" stylesheets="@NasoCSS.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <MenuBar layoutX="9.0" layoutY="1.0" styleClass="linear-grad-to-bottom1" stylesheets="@menu.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -69,17 +71,18 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TabPane fx:id="TP" layoutX="4.0" layoutY="94.0" prefHeight="375.0" prefWidth="1192.0" style="-fx-background-color: #222222;" stylesheets="@tab1.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0">
+      <TabPane fx:id="TP" layoutX="4.0" layoutY="94.0" prefHeight="375.0" prefWidth="1200.0" style="-fx-background-color: #222222;" stylesheets="@tab1.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0">
         <tabs>
           <Tab fx:id="tab1" text="Waveform    ">
                <content>
                   <AnchorPane fx:id="tab1ap">
                      <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="398.0" layoutX="2.0" layoutY="-41.0" stroke="BLACK" strokeType="INSIDE" width="1192.0">
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="398.0" layoutX="2.0" layoutY="-41.0" stroke="BLACK" strokeType="INSIDE" width="1200.0">
                            <fill>
                               <LinearGradient endX="1.0" endY="1.0" startX="1.0">
                                  <stops>
                                     <Stop color="#222222" />
+                                    <Stop color="#222222" offset="0.007434944237918215" />
                                     <Stop color="#444444" offset="1.0" />
                                  </stops>
                               </LinearGradient>
@@ -94,6 +97,7 @@
                               <Cursor fx:constant="H_RESIZE" />
                            </cursor>
                         </ImageView>
+                        <AnchorPane layoutX="-3.0" layoutY="-123.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="3.0" />
                      </children>
                      <cursor>
                         <Cursor fx:constant="TEXT" />
@@ -151,5 +155,6 @@
                </graphic></Button>
         </items>
       </ToolBar>
+      <AnchorPane layoutY="29.0" prefHeight="65.0" prefWidth="1200.0" styleClass="linear-grad-to-bottom2" stylesheets="@menu.css" />
    </children>
 </AnchorPane>
