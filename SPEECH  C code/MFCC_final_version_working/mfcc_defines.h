@@ -4,8 +4,8 @@
 #define DELTA_WINDOW    3
 #define DELTA_DELTA_WINDOW   3
 #define PI 3.1415926536
-#define FRAMESIZE 160
-#define FRAMESHIFT 80
+#define FRAMESIZE 80  
+#define FRAMESHIFT 16
 #define DFT_POINT 512
 #define DIFF 352
 #define NUM_OF_FILTER  22

@@ -85,10 +85,10 @@ float **ConcatenateFeatures(float **feature1, int rows1, int cols1, float **feat
                                                                                                                         } // END_OF_FUNCTION_Concatenate_Features ....
 
 
- 
+FILE *SAMPLES_1, *SAMPLES_2, *SAMPLES_OUT;
 float **ComputeMFCC(char waveName[], int numSpeechFrames, short *speechNonSpeech, int nof_fsize, int totalFrames){
 short     *ptr;
-int        i,j,k=0,m=0,shift=0, w;
+int        i,j,k=0,m=0,shift=0, w,count=0,count1=0;
 int        frameNo = 0, speechFrame = 0;
 FILE      *fp_input;
 long       eoinput;
@@ -96,8 +96,9 @@ float      **mfccCoeffs;
 //double     value;
 //float      array[eoinput];
 
-
-
+SAMPLES_1 = fopen("Samples_1.txt", "w");
+SAMPLES_2 = fopen("Samples_2.txt", "w");
+SAMPLES_OUT = fopen("Samples_out.txt", "w");
 
 printf("TOTAL NO OF FRAMES \t %d\n",totalFrames);
 
@@ -119,10 +120,10 @@ else{
 
 filter_bank(globDataSpeechRecgStruct.header.Sample_Rate, globDataSpeechRecgStruct.Filter_resp); // Returns the Filter response which is a 2d matrix of 22*256 elements
 ptr = (short*)malloc((FRAMESIZE * nof_fsize) * sizeof(short));    // For Storing the entire Data .... 
-//printf("ptr is %hd \n",*ptr);
+
 fread(ptr, sizeof(short), nof_fsize*FRAMESIZE, fp_input);         //reading complete data as single chunk
 fclose(fp_input);
-
+printf("ptr is %hd \n",*ptr);
 
 eoinput= nof_fsize * FRAMESIZE - FRAMESHIFT;  
 //printf("no F size is %d \n",nof_fsize);
@@ -132,7 +133,9 @@ eoinput= nof_fsize * FRAMESIZE - FRAMESHIFT;
 
 //printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n",shift);
 
-          while((shift != eoinput-FRAMESIZE)){
+          while((shift != eoinput)){
+              count++;
+              //printf("*PTR 0 IS  \t%hd\n",*ptr);
              
            //   if (speechNonSpeech[frameNo] == 1){ // Check Whether the frame is Speech or not .... 
                           // Declare the array to contain sufficient number of MFCC Coefficients ..... 
@@ -141,18 +144,27 @@ eoinput= nof_fsize * FRAMESIZE - FRAMESHIFT;
                             
                            for(i=0; i<DFT_POINT; i++) {
 					      if(i<FRAMESIZE){
+                                                  //printf("BITS_PER_SAMPL: \t %hd\n", globDataSpeechRecgStruct.header.Bits_Per_Sample);
                                                   	globDataSpeechRecgStruct.sample_value[i] = (float)(*ptr)/(float)pow(2,(globDataSpeechRecgStruct.header.Bits_Per_Sample)-1);  
                                                         ptr++;
+                                                        count1++;
+                                                        fprintf(SAMPLES_1," %f \t", globDataSpeechRecgStruct.sample_value[i] );
+                                                        //printf("*PTR 1 IS  \t%hd\n",*ptr); 
+                                                        //printf("sample_values 0 \t %f\n", globDataSpeechRecgStruct.sample_value[i]);
                                                         
-                                                        //printf("sample_values \t %f\n", globDataSpeechRecgStruct.sample_value[i]);
+                                                        
+                                                        //
 						  }
 				              else{
 							globDataSpeechRecgStruct.sample_value[i] = 0;     //assigning zero from 161 to 512 samples
-                                                         
+                                                         //printf("sample_values 1 \t %f\n", globDataSpeechRecgStruct.sample_value[i]);
+                                                        fprintf(SAMPLES_2," %f \t", globDataSpeechRecgStruct.sample_value[i] );
 						  }
 	
 				         }
-                          
+                           fprintf(SAMPLES_OUT," %f \t", globDataSpeechRecgStruct.sample_value[i] );
+                           //printf("Count1 is \t\t%d\n",count1);
+                         
 
 					hamming(globDataSpeechRecgStruct.sample_value, globDataSpeechRecgStruct.hamming_output1);  //calculates the hamming output
                                         
@@ -180,20 +192,23 @@ eoinput= nof_fsize * FRAMESIZE - FRAMESHIFT;
                                                                   //    } // END_OF_IF_LOOP <<< if (speechNonSpeech[frameNo] == 1)>> I.E. SPEECH_FRAME 
                        frameNo++;
                       // printf("FRAME NO IS\t%d\n",frameNo);
+                       //printf("*PTR 2 IS\t%hd\n\n",*ptr);
                        shift = shift + (FRAMESHIFT);                                // shift incremented by FRAMESHIFT
-                       ptr = ptr - FRAMESHIFT;                                      // ptr decremented by frameshift
+                       ptr = ptr - (FRAMESHIFT);                                      // ptr decremented by frameshift
                        k=k+1;
-                       
+                       //printf("*PTR o/p IS\t%hd\n",*ptr);
+                       //printf("\t\tCOUNT IS %d\n\n", count);
         
 //printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n",shift);  
 //printf("%d", k);
           }     // while LOOP ends
 //printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n",shift);  
 
- 
+
 ptr = ptr - eoinput;
 
- //free(ptr);	// Free the allocated Pointer ....... 
+
+ free(ptr);	// Free the allocated Pointer ....... 
 
 //  Cepstral Mean Subtraction Logic is implemented only if CHANNELFLAG is 1. 
 
@@ -208,7 +223,9 @@ ptr = ptr - eoinput;
  twoDimensional_DCT(globDataSpeechRecgStruct.log_magnitude1,globDataSpeechRecgStruct.A_out, totalFrames );     // patching and 2DDCT
  
  
-
+ fclose(SAMPLES_1);
+ fclose(SAMPLES_2);
+ fclose(SAMPLES_OUT);
   return   mfccCoeffs;
                                            }   //END_OF_FUNCTION_ComputeMFCC() 
 
@@ -458,10 +475,11 @@ free(ptr);
                  and x is the value of modified_bin[].
 */
 
-
+FILE *FiltBnk;
 void filter_bank(float sample_rate, float Filter_resp[][DFT_POINT])      
 {
 
+        FiltBnk = fopen("Filt.txt", "w");
 	float filter_spacing, mel_freq, center_freq[NUM_OF_FILTER+1], modified_bin[DFT_POINT];
 	float scale_point_freq;
 	int i, j;
@@ -507,24 +525,30 @@ void filter_bank(float sample_rate, float Filter_resp[][DFT_POINT])
 					if((modified_bin[j] < modified_bin[bin_center[i]]) && (modified_bin[j] > modified_bin[bin_center[i-1]]))
 						{
 							Filter_resp[i][j] = (modified_bin[j]-modified_bin[bin_center[i-1]])/(modified_bin[bin_center[i]]-modified_bin[bin_center[i-1]]);
+                                                        
 						}
 				    	else
 						{
 							if((modified_bin[j] >= modified_bin[bin_center[i]]) && (modified_bin[j] < modified_bin[bin_center[i+1]]))
 							{
 								Filter_resp[i][j] = (modified_bin[bin_center[i+1]]-modified_bin[j])/(modified_bin[bin_center[i+1]]-modified_bin[bin_center[i]]);
+                                                                  fprintf(FiltBnk,"%f \t", Filter_resp[i][j]); 
 							}			
 							else
 							{
 								Filter_resp[i][j] = 0;
+                                                                  fprintf(FiltBnk,"%f \t", Filter_resp[i][j]); 
 							}
+                                                        
 						}
 
-						
+					
 				}
 
-
+                     
 		}
+         
+        fclose(FiltBnk);
 
 }	// filter_bank() ends here
 
@@ -546,22 +570,27 @@ Outputs:
             
    Logic: Hamming() calculates the hamming output of the channel data. It is computed by multiplying the hamming equation with the channel data for the entire length of channel data.
 */
-
+FILE *Hamm;
 void hamming(float input[], float output[])
 
 {
 
-     
+    Hamm = fopen("Hamm.txt" , "w");
 	int i;
 	float w;
 
 	for(i=0; i<DFT_POINT; i++)
 		{
 			w = (float)(0.54 - (0.46 * (float)cos((2*PI*i)/(FRAMESIZE-1))));  // applying hamming equation
-                        //printf("%f INPUT[i]\t ",input[i]);
+                        //printf("HAMMING WINDOW\t%f\n",w);
+                        //printf("INPUT[i]\t%f\n ",input[i]); 
 			output[i] = (w * input[i]);  
-                     //   printf("%f OUTPUT[i]\t ", output[i]);
+                        printf("OUTPUT[i]\t%f\n ", output[i]);
+                        fprintf(Hamm, "%f \t", output[i] );
+                      
 		}
+        fclose(Hamm);
+        
 }
 
 
@@ -587,9 +616,11 @@ Outputs:
             (iv)  After getting all the values the magnitude at each point is calculated by taking the sqaure root of sum of square of real part and imaginary part. Finally the 1st 256 points are returned in the array final_array[].
 */
 
+FILE *dft_compute;
 void dft(float real_input[], float final_arg[])
 {
        
+    dft_compute = fopen("DFT_compute.txt", "w");
 	int n,m;
 	double complex_input[DFT_POINT], arg_output[DFT_POINT];   
 	int i,j,k,num1,num2,half_dft;
@@ -671,14 +702,18 @@ void dft(float real_input[], float final_arg[])
 	for(i=0;i<n;i++)                 // calculating the magnitude of complex FFT
 		{
 			arg_output[i] = sqrt(pow(real_input[i], 2) + pow(complex_input[i], 2));
+                        //printf("DFT IS\t%f\n",arg_output[i]);
 		}
 
 		
 	for(i=0; i<(DFT_POINT/2); i++)  // storing the values for first 256 points
 		{
 			final_arg[i] = (float)arg_output[i];
+                        //printf("DFT IS\t%f\n",final_arg[i]);
+                        fprintf(dft_compute, " %f \t", final_arg[i]);
 
 		}
+        fclose(dft_compute);
 
 }	// dft() ends here
 
@@ -721,7 +756,7 @@ void frequency_warping_spectrum(float Filter_resp[][DFT_POINT], float dft_value[
 					
 				}
                         fprintf(fp, "%f \t", spectrum_out[i] );
-                        //printf("%f spectrum out \t ", spectrum_out[i]);
+                        //printf("FREQUENCY_SPECTRUM IS\t%f\n",spectrum_out[i]);
                         
                         
 		}
@@ -818,13 +853,13 @@ void twoDimensional_DCT(float log_out[], float A_out[], int totalFrames)
             
              float p=4000;
              diff = (arr1[k]-p);
-             if(diff>0 && diff<100)
+             if(diff>0 && diff<20)
              {
                  rslt =k;
-                 printf("\t\t\t\tDIFF IS \t %d \n", k);
+                 //printf("\t\t\t\tDIFF IS \t %d \n", k);
              }
     }        
-    //printf("\t\t\t\tDIFF IS \t %d \n",rslt);
+    printf("\t\t\t\tDIFF IS \t %d \n",rslt);
     for(int m=0; m<totalFrames-2 ; m++)
     {
     for(l=0; l<NUM_OF_FILTER; l++)
@@ -836,11 +871,11 @@ void twoDimensional_DCT(float log_out[], float A_out[], int totalFrames)
     }
     
     
-    for(int i=rslt-1; i<rslt+5; i++)
+    for(int i=rslt-1; i<rslt+6; i++)
     {
         for(int j=0; j<NUM_OF_FILTER; j++)
         {
-            printf("THE FINAL ARRAY IS \t%f\n", NEW[i][j]);
+            //printf("THE FINAL ARRAY IS \t%f\n", NEW[i][j]);
             fprintf(myfile2 , "%f\t", NEW[i][j]);
         }
          fprintf(myfile2, "\r\n");
