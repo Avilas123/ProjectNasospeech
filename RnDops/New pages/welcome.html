@@ -15,7 +15,7 @@
   <script src="../bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<nav id="mainNav" class="navbar navbar-default navbar-fixed-top bg-1">
+<nav id="mainNav" class="navbar navbar-default bg-1 mb0">
   <div class="container welcomeheader">
    
     <div class="navbar-header">
@@ -25,7 +25,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><img src="../images/headerImg/Logo_Header.jpg"class="logo"></a>
+      <a class="navbar-brand" href="welcome.html"><img src="../images/headerImg/Logo_Header.jpg"class="logo"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -119,8 +119,40 @@
   </div></li>
             <li class="ln">
 <!--            <input type="search"placeholder="Search using 16 digit application reference no. only."class="searchbar">-->
+<!--
                 <input type="text" placeholder="Search using 16 digit application reference no. only." onfocus="this.placeholder=''" onblur="this.placeholder=''" class="searchbar"/>
                <i class="material-icons searchicon">search</i>
+-->  <ul class="df p0">
+      <li class="ln">
+                    <input type="text" placeholder="Search using 16 digit application reference no. only." onfocus="this.placeholder=''" onblur="this.placeholder=''" class="searchbar"/>
+          <a href="search_result.html"><i class="material-icons searchicon">search</i></a>
+      </li>
+      <li class="ln">
+<button class="pl10 cp f12 transparent bn lineheight12 mt17 lineheight12 text-left" data-toggle="modal" data-target="#myModal">Advance<p class="m0">Search</p></button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+       <img src="../images/search%20bar%20modal%20box%20content%20copy.png"class="w100">
+      </div>
+         <div class="modal-footer">
+        <button type="button" class="btn transparent bn black" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+  </li>
+              
+        </ul>
             </li>
         </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -131,10 +163,7 @@
         </div></li>
                     <li class="ln right">
           <div class="dropdown cp">
-<!--
-    <button class="btn user" id="menu1" type="button" data-toggle="dropdown"><i class="material-icons">perm_identity</i>
-    </button>
---><a data-toggle="dropdown"class="black"><i class="material-icons">perm_identity</i>
+<a data-toggle="dropdown"class="black"><i class="material-icons">perm_identity</i>
     <span class="caret mb12"></span>
                 </a>
     <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
@@ -160,7 +189,7 @@
 
 
 <div class="mainbody">
-<form class=" mt32 bg-2 white ptb5">
+<form class=" bg-2 white ptb5">
      <div class="container df">
         <div class="welcometop col-md-6 br">
          <span class="f12">You are signed in as </span>
@@ -174,10 +203,10 @@
          <div class=" col-md-6">
              <span class="f12">  To handover the account back to S R Mahadeva Prasanna
 <!--                 <a href=""class="pl10">Click here</a>-->
-                 <a class="pl10 cp" data-toggle="modal" data-target="#myModal">Click here</a>
+                 <a class="pl10 cp" data-toggle="modal" data-target="#myModalhandover">Click here</a>
 
 <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="myModalhandover" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -210,8 +239,8 @@
      <div class="row mt20">
     <div class="col-md-8">
         <h5 class="b">Application under review</h5>
-        <div class="table-responsive">
-        <table class="table table-bordered">
+        <div class="table-responsive fundtatusbig">
+        <table class="table table-bordered fundstatussmaill">
          
           <thead>
             <tr>

@@ -174,24 +174,24 @@
     position: relative;
     right: 22px;}
 /*Breadcrumb Header*/
-.mainbody .wrapper {
+.main .wrapper {
  width: 70.5%;
     margin: 0 auto 15px;
 }
 
-.mainbody .wrapper ul {
+.main .wrapper ul {
   list-style-type: none;
   overflow: hidden;
   margin: 0;
   padding: 0;
 }
 
-.mainbody .wrapper li {
+.main .wrapper li {
   float: left;
   padding: 0;
   margin: 0;
 }
-.mainbody .wrapper li a {
+.main .wrapper li a {
   color: #757575;
   text-decoration: none;
  padding: 2px 0 2px 45px;
@@ -202,7 +202,7 @@
   display: block;
   float: left;
 }
-.mainbody .wrapper li a:after {
+.main .wrapper li a:after {
  content: " ";
     /* display: block; */
     width: 76%;
@@ -216,7 +216,7 @@
     left: 100%;
     z-index: 2;
 }
-.mainbody .wrapper li a:before {
+.main .wrapper li a:before {
   content: " ";
     display: block;
     width: 0;
@@ -231,14 +231,14 @@
     left: 100%;
     z-index: 1;
 }
-.mainbody .wrapper li:first-child a {
+.main .wrapper li:first-child a {
   padding-left: 15px;
 }
-.mainbody .wrapper li.active a {
+.main .wrapper li.active a {
   color: white;
   background: #368cd7;
 }
-.mainbody .wrapper li.active a:after {
+.main .wrapper li.active a:after {
   border-left-color: #368cd7;
 }
 /*Fonts*/
