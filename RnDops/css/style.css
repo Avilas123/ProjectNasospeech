@@ -38,6 +38,9 @@ a:hover{
 .navbar-right input{
    height: 36px!important;
 }
+.navbar{
+    height: 57px!important;
+}
 .content{
     margin-top: 40px;
 }
