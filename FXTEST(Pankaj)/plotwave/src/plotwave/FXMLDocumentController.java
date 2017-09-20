@@ -15,15 +15,24 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Side;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -381,17 +390,76 @@ public class FXMLDocumentController extends Application{
     public void initialize(URL location, ResourceBundle resources) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    
+//MenuItem menuItem1 = getMenuItemForLine("line 1");
  
+//final ContextMenu contextMenu = new ContextMenu();   
+ //MenuItem item1 = new MenuItem("About");
+ // MenuItem item2 = new MenuItem("Preferences");  
+    TextField textField = new TextField("Type Something"); // we will add a popup menu to this text field
+final ContextMenu contextMenu = new ContextMenu();
+MenuItem cut = new MenuItem("Cut");
+MenuItem copy = new MenuItem("Copy");
+MenuItem paste = new MenuItem("Paste");
+   
+ 
+   
+    @FXML
+    void rightclicked(MouseEvent event) {
+ MouseButton button = event.getButton();
+ if(button==MouseButton.SECONDARY)
+ {
+ 
+     System.out.println("rightClicked"); 
+     contextMenu.getItems().addAll(cut, copy, paste);
+cut.setOnAction(new EventHandler<ActionEvent>() {
+    @Override
+    public void handle(ActionEvent event) {
+        System.out.println("Cut...");
+    }
+});
+// ...
+textField.setContextMenu(contextMenu);
+ 
+     //item1.setOnAction(new EventHandler<ActionEvent>() {
+  //  public void handle(ActionEvent e) {
+    //    System.out.println("About");
+    //}
+//});
+  // item2.setOnAction(new EventHandler<ActionEvent>() {
+    //public void handle(ActionEvent e) {
+      //  System.out.println("Preferences");
+    //}
+//});  
+ //contextMenu.getItems().addAll(item1, item2);
+ //final TextField textField = new TextField("Type Something");
+//textField.setContextMenu(contextMenu);
+//textField.setOnAction(new EventHandler<ActionEvent>() {
+  //  public void handle(ActionEvent e) {
+    //    contextMenu.show(textField, Side.BOTTOM, 0, 0);
+    //}
+//});
+
+//Group root = (Group) scene.getRoot();
+//root.getChildren().add(textField);
+
+final AnchorPane pane = new AnchorPane();
+// fill pane with nodes, etc
+// create context menu and menu items as above
+pane.setOnMousePressed(new EventHandler<MouseEvent>() {
+    @Override
+    public void handle(MouseEvent event) {
+        if (event.isSecondaryButtonDown()) {
+            contextMenu.show(pane, event.getScreenX(), event.getScreenY());
+        }
+    }
+});
+
+
+
+ } 
     
     
-    
-    
-    
-    
-    
-    
+ }  
     
     
     
