@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="masterap" prefHeight="610.0" prefWidth="1200.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nasofx.FXMLDocumentController">
+   <children>
+      <AnchorPane layoutY="477.0" prefHeight="152.0" prefWidth="1200.0" styleClass="linear-grad-to-bottom3" stylesheets="@menu.css">
+         <children>
+            <ToolBar layoutX="500.0" layoutY="54.0" prefHeight="40.0" prefWidth="218.0" style="-fx-background-color: transparent;" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="482.0">
+              <items>
+                <Button mnemonicParsing="false" opacity="0.9" prefHeight="27.0" prefWidth="47.0" style="-fx-background-color: ;" styleClass="linear-grad-to-bottom-left" stylesheets="@button.css">
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="file:/Users/DoD/NetBeansProjects/NASOSPEECHFX/src/Icons/fast-rewind-button.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="8.0" mnemonicParsing="false" opacity="0.9" prefHeight="27.0" prefWidth="47.0" stylesheets="@button.css">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="file:/Users/DoD/NetBeansProjects/NASOSPEECHFX/src/Icons/fast-forward-arrowhead-symbol.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="61.0" layoutY="8.0" mnemonicParsing="false" opacity="0.9" prefHeight="32.0" prefWidth="47.0" stylesheets="@button.css">
+                     <graphic>
+                        <ImageView fitHeight="17.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="file:/Users/DoD/NetBeansProjects/NASOSPEECHFX/src/Icons/play-arrow-(1).png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="112.0" layoutY="8.0" mnemonicParsing="false" opacity="0.9" prefHeight="31.0" prefWidth="42.0" styleClass="linear-grad-to-bottom-left" stylesheets="@button.css">
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="file:/Users/DoD/NetBeansProjects/NASOSPEECHFX/src/Icons/record_1.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+              </items>
+            </ToolBar>
+         </children></AnchorPane>
+      <AnchorPane layoutX="1.0" layoutY="1.0">
+         <children>
+            <AnchorPane layoutX="-2.0">
+               <children>
+                  <AnchorPane>
+                     <children>
+                        <AnchorPane />
+                        <AnchorPane layoutX="1.0" layoutY="93.0" prefHeight="375.0" prefWidth="1200.0" style="-fx-background-color: #222222;" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <MenuBar layoutX="2.0" layoutY="1.0" prefHeight="29.0" prefWidth="1193.0" styleClass="linear-grad-to-bottom1" stylesheets="@menu.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="open_menu_item" mnemonicParsing="false" onAction="#open_button_Event" text="Open" />
+                  <MenuItem mnemonicParsing="false" text="New" />
+                  <MenuItem mnemonicParsing="false" text="Save" />
+                  <MenuItem mnemonicParsing="false" text="Save as" />
+                  <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Select all" />
+                  <MenuItem mnemonicParsing="false" text="Select inverse" />
+                  <MenuItem mnemonicParsing="false" text="Cut" />
+                  <MenuItem mnemonicParsing="false" text="Copy" />
+                  <MenuItem mnemonicParsing="false" text="Paste" />
+                  <MenuItem mnemonicParsing="false" text="Select and Play" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Analyse">
+              <items>
+                <MenuItem fx:id="hypernasality" mnemonicParsing="false" onAction="#hypernalasityclick" text="Hypernasality" />
+                  <MenuItem disable="true" mnemonicParsing="false" text="Articulation error" />
+                  <MenuItem disable="true" mnemonicParsing="false" text="Intelligibility" />
+                  <MenuItem disable="true" mnemonicParsing="false" text="Voicing error" />
+                  <MenuItem fx:id="scorecard" disable="true" mnemonicParsing="false" onAction="#scorecardclick" text="Score card" />
+              </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TabPane fx:id="TP" layoutX="4.0" layoutY="94.0" prefHeight="375.0" prefWidth="1200.0" style="-fx-background-color: #222222;" stylesheets="@tab1.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0">
+        <tabs>
+          <Tab fx:id="tab1" text="Waveform    ">
+               <content>
+                  <AnchorPane fx:id="tab1ap">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="398.0" layoutX="2.0" layoutY="-41.0" stroke="BLACK" strokeType="INSIDE" width="1200.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="0.0">
+                           <fill>
+                              <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                                 <stops>
+                                    <Stop color="#222222" />
+                                    <Stop color="#222222" offset="0.007434944237918215" />
+                                    <Stop color="#444444" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </Rectangle>
+                        <ScrollBar layoutY="328.0" prefHeight="16.0" prefWidth="1205.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></ScrollBar>
+                        <ImageView fx:id="marker" fitHeight="325.0" fitWidth="78.0" layoutX="566.0" onMouseDragged="#markerdrag" onMousePressed="#markerpress" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Icons/marker.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="H_RESIZE" />
+                           </cursor>
+                        </ImageView>
+                        <AnchorPane layoutX="-3.0" layoutY="-123.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="3.0" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </AnchorPane>
+               </content></Tab>
+        </tabs>
+      </TabPane>
+      <Slider fx:id="slider" layoutX="1046.0" layoutY="99.0" onMouseEntered="#slidermouseenter" AnchorPane.rightAnchor="14.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Slider>
+      <AnchorPane layoutY="29.0" prefHeight="65.0" prefWidth="1200.0" styleClass="linear-grad-to-bottom2" stylesheets="@menu.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <AnchorPane fx:id="counterap" layoutX="486.0" layoutY="7.0" prefHeight="50.0" prefWidth="225.0" stylesheets="@menu.css" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="486.0" AnchorPane.rightAnchor="489.0" AnchorPane.topAnchor="7.0">
+               <children>
+                  <AnchorPane layoutY="24.0" prefHeight="24.0" prefWidth="224.0" styleClass="linear-grad-to-bottom1" stylesheets="@menu.css" />
+                  <AnchorPane prefHeight="24.0" prefWidth="224.0" styleClass="linear-grad-to-bottom1" stylesheets="@menu.css" />
+                  <Label alignment="CENTER" prefHeight="41.0" prefWidth="54.0" text="00" textAlignment="CENTER" textFill="#686546">
+                     <effect>
+                        <Glow />
+                     </effect>
+                     <font>
+                        <Font name="DS-Digital Bold" size="35.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="54.0" prefHeight="41.0" prefWidth="54.0" text="03" textFill="#686546">
+                     <font>
+                        <Font name="DS-Digital Bold" size="35.0" />
+                     </font>
+                     <effect>
+                        <Glow />
+                     </effect>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="108.0" prefHeight="41.0" prefWidth="54.0" text="05" textFill="#686546">
+                     <font>
+                        <Font name="DS-Digital Bold" size="35.0" />
+                     </font>
+                     <effect>
+                        <Glow />
+                     </effect>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="162.0" prefHeight="41.0" prefWidth="62.0" text="567" textFill="#686546">
+                     <font>
+                        <Font name="DS-Digital Bold" size="35.0" />
+                     </font>
+                     <effect>
+                        <Glow />
+                     </effect>
+                  </Label>
+                  <Label layoutX="15.0" layoutY="31.0" prefHeight="17.0" prefWidth="25.0" text="hour" textFill="#686546">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="69.0" layoutY="31.0" prefHeight="17.0" prefWidth="25.0" text="min" textFill="#686546">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="123.0" layoutY="31.0" prefHeight="17.0" prefWidth="25.0" text="sec" textFill="#686546">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="168.0" layoutY="31.0" prefHeight="17.0" prefWidth="37.0" text="milisec" textFill="#686546">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>
