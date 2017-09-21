@@ -88,7 +88,8 @@ float **ConcatenateFeatures(float **feature1, int rows1, int cols1, float **feat
 FILE *SAMPLES_1, *SAMPLES_2, *SAMPLES_OUT;
 float **ComputeMFCC(char waveName[], int numSpeechFrames, short *speechNonSpeech, int nof_fsize, int totalFrames){
 short     *ptr;
-int        i,j,k=0,m=0,shift=0, w,count=0,count1=0;
+int        i,j,k=0,m=0,shift=0, w,count=0;
+int static count1;
 int        frameNo = 0, speechFrame = 0;
 FILE      *fp_input;
 long       eoinput;
@@ -96,9 +97,9 @@ float      **mfccCoeffs;
 //double     value;
 //float      array[eoinput];
 
-SAMPLES_1 = fopen("Samples_1.txt", "w");
-SAMPLES_2 = fopen("Samples_2.txt", "w");
-SAMPLES_OUT = fopen("Samples_out.txt", "w");
+SAMPLES_1 = fopen("Samples_1.txt", "a");
+SAMPLES_2 = fopen("Samples_2.txt", "a");
+SAMPLES_OUT = fopen("Samples_out.txt", "a");
 
 printf("TOTAL NO OF FRAMES \t %d\n",totalFrames);
 
@@ -125,9 +126,16 @@ fread(ptr, sizeof(short), nof_fsize*FRAMESIZE, fp_input);         //reading comp
 fclose(fp_input);
 printf("ptr is %hd \n",*ptr);
 
+
+for(int i=0; i<FRAMESIZE * nof_fsize; i++)
+{
+    //printf("*PTR %d IS  \t%hd\t",i,*ptr);
+   // ptr++;
+}
+
 eoinput= nof_fsize * FRAMESIZE - FRAMESHIFT;  
-//printf("no F size is %d \n",nof_fsize);
-//printf("end of input is %ld \n",eoinput);
+printf("no F size is %d \n",nof_fsize);
+printf("end of input is (mfcc_comp) %ld \n",eoinput);
 
 
 
@@ -143,18 +151,29 @@ eoinput= nof_fsize * FRAMESIZE - FRAMESHIFT;
                            mfccCoeffs[speechFrame] = (float *) calloc(NUM_OF_COEFFICIENTS, sizeof(float )); 
                             
                            for(i=0; i<DFT_POINT; i++) {
+                              //printf("Count1 is \t\t%d\n",count1);
 					      if(i<FRAMESIZE){
                                                   //printf("BITS_PER_SAMPL: \t %hd\n", globDataSpeechRecgStruct.header.Bits_Per_Sample);
+                                                   // printf("%hd\t",*ptr);
+                                                  
                                                   	globDataSpeechRecgStruct.sample_value[i] = (float)(*ptr)/(float)pow(2,(globDataSpeechRecgStruct.header.Bits_Per_Sample)-1);  
-                                                        ptr++;
+                                                        //ptr++;
                                                         count1++;
-                                                        fprintf(SAMPLES_1," %f \t", globDataSpeechRecgStruct.sample_value[i] );
-                                                        //printf("*PTR 1 IS  \t%hd\n",*ptr); 
-                                                        //printf("sample_values 0 \t %f\n", globDataSpeechRecgStruct.sample_value[i]);
+                                                        fprintf(SAMPLES_1," \t%f\t", globDataSpeechRecgStruct.sample_value[i] );
+                                                         
+                                                        //printf(" %f\t ", globDataSpeechRecgStruct.sample_value[i]);
+                                                        count1++;
+                                                        //printf("Count1 is \t%d\t",count1);
+                                                        //printf("*PTR %d IS  \t%hd\t ",i,*ptr);
                                                         
-                                                        
-                                                        //
+                                                        if(shift>=5500)
+                                                        {
+                                                           printf(" the req val is \t%f\t ", globDataSpeechRecgStruct.sample_value[i]); 
+                                                        }
+                                                    
+                                                  ptr++;
 						  }
+                                              
 				              else{
 							globDataSpeechRecgStruct.sample_value[i] = 0;     //assigning zero from 161 to 512 samples
                                                          //printf("sample_values 1 \t %f\n", globDataSpeechRecgStruct.sample_value[i]);
@@ -162,8 +181,9 @@ eoinput= nof_fsize * FRAMESIZE - FRAMESHIFT;
 						  }
 	
 				         }
+                           fprintf(SAMPLES_1," \n");
                            fprintf(SAMPLES_OUT," %f \t", globDataSpeechRecgStruct.sample_value[i] );
-                           //printf("Count1 is \t\t%d\n",count1);
+                         
                          
 
 					hamming(globDataSpeechRecgStruct.sample_value, globDataSpeechRecgStruct.hamming_output1);  //calculates the hamming output
@@ -192,7 +212,7 @@ eoinput= nof_fsize * FRAMESIZE - FRAMESHIFT;
                                                                   //    } // END_OF_IF_LOOP <<< if (speechNonSpeech[frameNo] == 1)>> I.E. SPEECH_FRAME 
                        frameNo++;
                       // printf("FRAME NO IS\t%d\n",frameNo);
-                       //printf("*PTR 2 IS\t%hd\n\n",*ptr);
+                      // printf("*PTR 2 IS\t%hd\n\n",*ptr);
                        shift = shift + (FRAMESHIFT);                                // shift incremented by FRAMESHIFT
                        ptr = ptr - (FRAMESHIFT);                                      // ptr decremented by frameshift
                        k=k+1;
@@ -201,11 +221,11 @@ eoinput= nof_fsize * FRAMESIZE - FRAMESHIFT;
         
 //printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n",shift);  
 //printf("%d", k);
-          }     // while LOOP ends
+    }     // while LOOP ends
 //printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n",shift);  
 
 
-ptr = ptr - eoinput;
+//ptr = ptr - eoinput;
 
 
  free(ptr);	// Free the allocated Pointer ....... 
@@ -220,7 +240,7 @@ ptr = ptr - eoinput;
  
  
   printf("\n Checkline");
- twoDimensional_DCT(globDataSpeechRecgStruct.log_magnitude1,globDataSpeechRecgStruct.A_out, totalFrames );     // patching and 2DDCT
+// twoDimensional_DCT(globDataSpeechRecgStruct.log_magnitude1,globDataSpeechRecgStruct.A_out, totalFrames );     // patching and 2DDCT
  
  
  fclose(SAMPLES_1);
@@ -479,7 +499,7 @@ FILE *FiltBnk;
 void filter_bank(float sample_rate, float Filter_resp[][DFT_POINT])      
 {
 
-        FiltBnk = fopen("Filt.txt", "w");
+        FiltBnk = fopen("Filt.txt", "a");
 	float filter_spacing, mel_freq, center_freq[NUM_OF_FILTER+1], modified_bin[DFT_POINT];
 	float scale_point_freq;
 	int i, j;
@@ -570,13 +590,14 @@ Outputs:
             
    Logic: Hamming() calculates the hamming output of the channel data. It is computed by multiplying the hamming equation with the channel data for the entire length of channel data.
 */
-FILE *Hamm;
+FILE *Hamm,Hamm1;
 void hamming(float input[], float output[])
 
 {
 
-    Hamm = fopen("Hamm.txt" , "w");
-	int i;
+    Hamm = fopen("Hamm.txt" , "a");
+    
+	int i,count_1=0;
 	float w;
 
 	for(i=0; i<DFT_POINT; i++)
@@ -584,12 +605,20 @@ void hamming(float input[], float output[])
 			w = (float)(0.54 - (0.46 * (float)cos((2*PI*i)/(FRAMESIZE-1))));  // applying hamming equation
                         //printf("HAMMING WINDOW\t%f\n",w);
                         //printf("INPUT[i]\t%f\n ",input[i]); 
-			output[i] = (w * input[i]);  
-                        printf("OUTPUT[i]\t%f\n ", output[i]);
+			output[i] = (w * input[i]);
+                        //printf("INPUT IS \t%f\n", input[i]);
+                        //printf("OUTPUT[i] \t%f\t  ", output[i]);
                         fprintf(Hamm, "%f \t", output[i] );
+                        count_1++;
                       
 		}
+       
+        
+        
+        //printf("count 1 is \t%d\n", count_1);
+        fprintf(Hamm," \n");
         fclose(Hamm);
+        
         
 }
 
@@ -620,7 +649,7 @@ FILE *dft_compute;
 void dft(float real_input[], float final_arg[])
 {
        
-    dft_compute = fopen("DFT_compute.txt", "w");
+    dft_compute = fopen("DFT_compute.txt", "a");
 	int n,m;
 	double complex_input[DFT_POINT], arg_output[DFT_POINT];   
 	int i,j,k,num1,num2,half_dft;
@@ -713,6 +742,7 @@ void dft(float real_input[], float final_arg[])
                         fprintf(dft_compute, " %f \t", final_arg[i]);
 
 		}
+        fprintf(dft_compute," \n");
         fclose(dft_compute);
 
 }	// dft() ends here
@@ -851,9 +881,9 @@ void twoDimensional_DCT(float log_out[], float A_out[], int totalFrames)
          }
              
             
-             float p=4000;
+             float p=6669;
              diff = (arr1[k]-p);
-             if(diff>0 && diff<20)
+             if(diff>0 && diff<100)
              {
                  rslt =k;
                  //printf("\t\t\t\tDIFF IS \t %d \n", k);

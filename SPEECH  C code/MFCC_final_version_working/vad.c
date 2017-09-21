@@ -102,7 +102,7 @@ short *vad_enrthr(char fullpath_input[], int *total_no_of_frames, int *no_of_spe
 	shift = 0;
 
        eoinput= ( (*nof_fsize) * FRAMESIZE ) - FRAMESHIFT;
-       printf("endofinput\t %ld  \n", eoinput);
+       printf("endofinput....(vad)\t %ld  \n", eoinput);
  /**
      The below while loop is used for calculating the energy of each frame and storing it in the Energy_frames array
 
