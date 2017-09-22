@@ -19,15 +19,16 @@ public class LineChartExperiments extends Application {
         primaryStage.setTitle("LineChart Experiments");
 
         NumberAxis xAxis = new NumberAxis();
-        xAxis.setLabel("No of employees");
+        xAxis.setLabel("Time");
 
         NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Revenue per employee");
+        yAxis.setLabel("Amplitude");
 
         LineChart lineChart = new LineChart(xAxis, yAxis);
 
         XYChart.Series dataSeries1 = new XYChart.Series();
         dataSeries1.setName("2014");
+      
 
         dataSeries1.getData().add(new XYChart.Data( 1, 567));
         dataSeries1.getData().add(new XYChart.Data( 5, 612));
@@ -35,7 +36,7 @@ public class LineChartExperiments extends Application {
         dataSeries1.getData().add(new XYChart.Data(20, 780));
         dataSeries1.getData().add(new XYChart.Data(40, 810));
         dataSeries1.getData().add(new XYChart.Data(80, 850));
-
+ 
         lineChart.getData().add(dataSeries1);
 
         VBox vbox = new VBox(lineChart);
