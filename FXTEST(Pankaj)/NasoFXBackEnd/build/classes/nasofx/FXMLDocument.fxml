@@ -15,9 +15,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" fx:id="masterap" prefHeight="610.0" prefWidth="1200.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nasofx.FXMLDocumentController">
@@ -118,25 +116,16 @@
       </MenuBar>
       <TabPane fx:id="TP" layoutX="4.0" layoutY="94.0" prefHeight="375.0" prefWidth="1200.0" style="-fx-background-color: #222222;" stylesheets="@tab1.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0">
         <tabs>
-          <Tab fx:id="tab1" text="Waveform    ">
+          <Tab fx:id="tab1">
                <content>
                   <AnchorPane fx:id="tab1ap">
                      <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="398.0" layoutX="2.0" layoutY="-41.0" stroke="BLACK" strokeType="INSIDE" width="1200.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="0.0">
-                           <fill>
-                              <LinearGradient endX="1.0" endY="1.0" startX="1.0">
-                                 <stops>
-                                    <Stop color="#222222" />
-                                    <Stop color="#222222" offset="0.007434944237918215" />
-                                    <Stop color="#444444" offset="1.0" />
-                                 </stops>
-                              </LinearGradient>
-                           </fill>
-                        </Rectangle>
+                        <StackPane fx:id="wavepane" layoutX="-58.0" layoutY="-16.0" prefHeight="424.0" prefWidth="1320.0" />
                         <ScrollBar layoutY="328.0" prefHeight="16.0" prefWidth="1205.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
-                           </cursor></ScrollBar>
+                           </cursor>
+                        </ScrollBar>
                         <ImageView fx:id="marker" fitHeight="325.0" fitWidth="78.0" layoutX="566.0" onMouseDragged="#markerdrag" onMousePressed="#markerpress" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Icons/marker.png" />
@@ -145,7 +134,6 @@
                               <Cursor fx:constant="H_RESIZE" />
                            </cursor>
                         </ImageView>
-                        <AnchorPane layoutX="-3.0" layoutY="-123.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="3.0" />
                      </children>
                      <cursor>
                         <Cursor fx:constant="TEXT" />
@@ -154,11 +142,6 @@
                </content></Tab>
         </tabs>
       </TabPane>
-      <Slider fx:id="slider" layoutX="1046.0" layoutY="99.0" onMouseEntered="#slidermouseenter" AnchorPane.rightAnchor="14.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Slider>
       <AnchorPane layoutY="29.0" prefHeight="65.0" prefWidth="1200.0" styleClass="linear-grad-to-bottom2" stylesheets="@menu.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <AnchorPane fx:id="counterap" layoutX="486.0" layoutY="7.0" prefHeight="50.0" prefWidth="225.0" stylesheets="@menu.css" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="486.0" AnchorPane.rightAnchor="489.0" AnchorPane.topAnchor="7.0">
@@ -220,5 +203,10 @@
                </children>
             </AnchorPane>
          </children></AnchorPane>
+      <Slider fx:id="slider" layoutX="1046.0" layoutY="99.0" onMouseClicked="#doZoom" onMouseDragged="#doZoomout" AnchorPane.rightAnchor="14.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Slider>
    </children>
 </AnchorPane>

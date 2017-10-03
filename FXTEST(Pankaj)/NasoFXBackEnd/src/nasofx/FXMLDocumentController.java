@@ -6,33 +6,25 @@
 package nasofx;
 
 //import java.awt.event.MouseEvent;
-import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.geom.Line2D;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.LineNumberReader;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -42,6 +34,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ZoomEvent;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.sound.sampled.AudioFormat;
@@ -52,7 +46,6 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.TargetDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPopupMenu;
-import nasofx.SignalProc;
 /**
  *
  * @author IITG
@@ -65,6 +58,9 @@ public class FXMLDocumentController extends Application {
     private Tab tab1;
            @FXML
     private TabPane TP;
+         
+          @FXML
+          private StackPane wavepane;
  
     @FXML
     private AnchorPane tab1ap;
@@ -127,7 +123,7 @@ public class FXMLDocumentController extends Application {
     private int[] audioDataNormalize;
     private int normalizedValue = 3000;
     public SignalProc sigProc;
-    
+    public static String dummy;
     @FXML
     private LineChart wave;
     
@@ -136,15 +132,7 @@ public class FXMLDocumentController extends Application {
     
  
 
-@FXML
-    void hypernalasityclick(ActionEvent event) {
-        Tab tab = new Tab();
-            tab.setText("Hypernasality  ");
-            TP.getTabs().add(tab);
-             TP.getSelectionModel().select(tab);
-         
 
-    }
     
     @FXML
     void scorecardclick(ActionEvent event) {
@@ -179,20 +167,27 @@ public class FXMLDocumentController extends Application {
             ((ImageView)(event.getSource())).setTranslateX(newTranslateX);
             //((ImageView)(event.getSource())).setTranslateY(newTranslateY);
            }
+           
+           double intial_second = ((mouseMoveX1 * frames_per_pixel) / this.audioInputStream.getFormat().getFrameRate()) ;
+           
+           
     }
     
    
-     @FXML
-    void slidermouseenter(MouseEvent event) {
-       
-    }
     
     
-   
-
-
      
-   
+ 
+
+
+      @FXML
+    void doZoom(MouseEvent event) {
+nfx.dozoom();
+    }
+    @FXML
+    void doZoomout(MouseEvent event) {
+nfx.dozoomout();
+    }
 
 
     
@@ -203,7 +198,7 @@ public class FXMLDocumentController extends Application {
     slider.setMin(0);
     slider.setMax(100);
     slider.setValue(40);
-    //slider.setShowTickLabels(true);
+    slider.setShowTickLabels(true);
     slider.setShowTickMarks(true);
     slider.setMajorTickUnit(50);
     slider.setMinorTickCount(5);
@@ -218,20 +213,20 @@ public class FXMLDocumentController extends Application {
 for (i = 3,a=0; i <2100; i+=50,a+=1)
 {
     //double a = 0.1;
-    String number = Double.toString(a);
+   String number = Double.toString(a);
     Text t = new Text(i, 23,number);
-   //  double strokeWidth = t.getStrokeWidth();
-     // System.out.println("the stroke width is  :  "+strokeWidth);
-   // t.setStrokeWidth(0.1);
+     double strokeWidth = t.getStrokeWidth();
+      System.out.println("the stroke width is  :  "+strokeWidth);
+    t.setStrokeWidth(0.1);
     t.setStyle("-fx-text-fill:white; -fx-font-size:10;");
        
       
-       // t.setStrokeWidth(0.5);
+        t.setStrokeWidth(0.5);
         
-       //t.setStrokeWidth(0.1);
+       t.setStrokeWidth(0.1);
      t.setStroke(Color.rgb(204, 204, 204));
   
-       // System.out.println("the new  stroke width is  :  "+strokeWidth);
+        System.out.println("the new  stroke width is  :  "+strokeWidth);
    
     
     
@@ -242,8 +237,8 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
     line1.setStroke(Color.rgb(204, 204, 204));
     
    
-    //Line line2 = new Line(0, i, 600, i);
-    //line2.setStroke(Color.LIGHTGRAY);
+    Line line2 = new Line(0, i, 600, i);
+    line2.setStroke(Color.LIGHTGRAY);
 
     tab1ap.getChildren().addAll(line1,t);
     
@@ -259,13 +254,21 @@ marker.toFront();
 
 //counterap.setStyle("-fx-border-color: black");
 
-   
-   
+ //nfx.setTab(tab1);
+ 
+  TP.getTabs().addAll(tab1);
+  
     
  
     }    
+
+    /**
+     *
+     */
     
-   
+    
+    
+    
     
     @FXML
     
@@ -287,7 +290,7 @@ marker.toFront();
     format = audioInputStream.getFormat();
     int numSamples = (int) this.audioInputStream.getFrameLength();
     double samples[] = readAudioData(audioData);
-           double[] data = nfx.getdata(samples);
+        //   double[] data = nfx.getdata(samples);
            //for(int i=0;i<numSamples;i++)
            //  System.out.println(samples[i]);
     
@@ -296,7 +299,8 @@ marker.toFront();
        // dataSeries1.getData().add(new XYChart.Data( i, samples[i]));
        //   }
      //wave.getData().add(dataSeries1);
-    nfx.startforplotwave(classStage,samples,numSamples,filename);
+   nfx.startforplotwave(classStage,samples,numSamples,filename,tab1,TP,wavepane);
+   sendfilename(filename);
     
    /* Alert alert = new Alert(Alert.AlertType.INFORMATION);
     alert.setTitle("Information Dialog displaying the filename");
@@ -784,6 +788,17 @@ marker.toFront();
     public void start(Stage primaryStage) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    private void sendfilename(String filename) {
+        this.dummy=filename;
+        //return filename;
+        
+      //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    String getfilename(){
+    return dummy;
+    
+    }
     
         class Capture implements Runnable {
 
@@ -1050,12 +1065,34 @@ marker.toFront();
       
       return audioDataNormalize1;
  }
-    
-    
-    
+   
+ 
+ @FXML
+    void hypernalasityclick(ActionEvent event) {
+        Tab tab = new Tab();
+            tab.setText("Hypernasality  ");
+           String filename = this.getfilename(); //fileName);
+            nfx.Hypernasality(filename);
+            TP.getTabs().add(tab);
+             TP.getSelectionModel().select(tab);
+         
+
+    }
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ }   
+ 
+     
     
     
     
     
 
-}
+
