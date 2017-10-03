@@ -120,7 +120,7 @@
                <content>
                   <AnchorPane fx:id="tab1ap">
                      <children>
-                        <StackPane fx:id="wavepane" layoutX="-58.0" layoutY="-16.0" prefHeight="424.0" prefWidth="1320.0" />
+                        <StackPane fx:id="wavepane" layoutX="-58.0" layoutY="-16.0" prefHeight="424.0" prefWidth="1330.0" />
                         <ScrollBar layoutY="328.0" prefHeight="16.0" prefWidth="1205.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />

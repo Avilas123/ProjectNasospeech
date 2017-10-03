@@ -63,9 +63,9 @@ public class PlotProbability  {
         window.setVisible(true);
         window.setLocationRelativeTo(null);
         //window.setBackground(Color.WHITE);
-        String file;
-        file = PlotProbability.this.file;
-        System.out.print("file name printed in plotprobability"+file);
+        //String file;
+       // file = PlotProbability.this.file;
+       // System.out.print("file name printed in plotprobability"+file);
         Prob newProb = new  Prob();
         newProb.setProb(this.valuec);
         

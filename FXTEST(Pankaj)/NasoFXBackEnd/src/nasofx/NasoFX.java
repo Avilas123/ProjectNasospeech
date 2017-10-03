@@ -41,18 +41,28 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import nasofx.FXMLDocumentController ;
 //import static nasofx.FXMLDocumentController.valuefromc;
+//import static nasofx.FXMLDocumentController.valuefromc;
 /**
  *
  * @author IITG
  */
 public class NasoFX extends Application {
-     public  static double  valuefromc;
+
+    /**
+     *
+     */
+   
     
      NumberAxis xAxis = new NumberAxis();
       NumberAxis yAxis = new NumberAxis();
       LineChart lineChart = new LineChart(xAxis, yAxis);
   //  FXMLDocumentController fxmlobject =new FXMLDocumentController();
     double array[]={};
+     @FXML 
+  static double  valuefromc;
+    
+    
+    
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));     
@@ -304,13 +314,13 @@ public class NasoFX extends Application {
     }
 
             
-             @FXML
- void Hypernasality(String filename){
+ @FXML
+ public void Hypernasality(String filename){
  
  
     
                         String currentDir = System.getProperty("user.dir");
-                        System.out.println("cu");
+                       // System.out.println("cu");
                         String cexedir = currentDir + "/cexe/";
                         System.out.println("correct format"+cexedir);
                        // JFrame jf = new JFrame("test");
@@ -320,7 +330,7 @@ public class NasoFX extends Application {
                           Process p1;
                           //System.out.println("getting filename"+pWave.abbfilePath);
                           //filenamedummy = pWave.abbfilePath;
-                          System.out.println("filenamedummy"+filename);
+                         // System.out.println("filenamedummy"+filename);
                           ProcessBuilder pb1=new ProcessBuilder
                             (cexedir+"mfcc_final_version_working",
                                     filename,
@@ -337,11 +347,11 @@ public class NasoFX extends Application {
                           
                           
                           p1 = pb1.start();
-                          
+                          System.out.println("fdgdfhdfhdfhdfhfdhdf");     
                           
                           p1.waitFor();
                          
-                                  
+                             
                           LineNumberReader  lnr = new LineNumberReader(new FileReader(new File(cexedir+"mfcc_output_13dim.txt")));
                             lnr.skip(Long.MAX_VALUE);
                             System.out.println(lnr.getLineNumber() + 1); //Add 1 because line index starts at 0
@@ -360,11 +370,12 @@ public class NasoFX extends Application {
                                           cexedir+"weight_clp.txt",
                                           cexedir+"output_norm.txt",
                                           cexedir+"output_clp.txt", "16", "13", Integer.toString(numFrames));
-                                  
+                                 // 
                                   //  ProcessBuilder pb = new ProcessBuilder("tree");
                                   
                                   
                                   try {
+                                      //System.out.println("i am here");
                                       Process p = pb.start();
                                       /*try {
                                       pb.wait(0);
@@ -372,13 +383,16 @@ public class NasoFX extends Application {
                                       Logger.getLogger(RightClickEvent.class.getName()).log(Level.SEVERE, null, ex);
                                       }
                                       */
+                                      
                                        p.waitFor();
                                       BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
-                                     // System.out.println("xxxxxxxxxxxxx"+br.readLine());
-                                     // System.out.println("double of xxxxxxxx "+Double.parseDouble(br.readLine()));
-                                      valuefromc = Double.parseDouble(br.readLine());
-                                      
-                                      System.out.println(" i am  getting this value from c---->"+valuefromc);
+                                      System.out.println("xxxxxxxxxxxxx"+br.readLine());
+                                   //  String st= br.readLine();
+                                      //Double.parseDouble(br.readLine());
+                                   //  System.out.println("double of xxxxxxxx "+Double.parseDouble(br.readLine()));
+                                    // valuefromc = Double.parseDouble(br.readLine());
+                                      valuefromc=0.27;//Double.parseDouble(br.readLine());//br.readLine();
+                                    //  System.out.println(" i am  getting this value from c---->"+valuefromc);
                                       //br.readLine();
                                       
                                       //  System.out.println(" i am  getting this value from c---->");
@@ -391,10 +405,11 @@ public class NasoFX extends Application {
                                       //System.out.println(" i am  getting this value after converting from double---->"+valuefromc);
                                      // PlotProbability plot=new  PlotProbability();
                                       //plot.plotfunction();
-                                      PlotProbability plot1=new  PlotProbability(this);
+                                     PlotProbability plot1=new  PlotProbability(this);
                                        plot1.plotfunction();
                                     //  plot1.plotfunction1();
                                       //pWave.mainFrame.createIvectorInternalFrame("Speaker Identification", "word/Assamese/part2");
+                                 
                                   }
                                   catch (IOException ex)
                                   {

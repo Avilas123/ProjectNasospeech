@@ -1069,12 +1069,13 @@ marker.toFront();
  
  @FXML
     void hypernalasityclick(ActionEvent event) {
-        Tab tab = new Tab();
-            tab.setText("Hypernasality  ");
+        //Tab tab = new Tab();
+          // tab.setText("Hypernasality  ");
            String filename = this.getfilename(); //fileName);
-            nfx.Hypernasality(filename);
-            TP.getTabs().add(tab);
-             TP.getSelectionModel().select(tab);
+           
+            //TP.getTabs().add(tab);
+            // TP.getSelectionModel().select(tab);
+             nfx.Hypernasality(filename);
          
 
     }
