@@ -24,6 +24,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
@@ -74,15 +75,31 @@ public class FXMLDocumentController extends Application {
      
        @FXML
     private AnchorPane counterap;
+        @FXML
+    private Label hour;
+
+    @FXML
+    private Label min;
+
+    @FXML
+    private Label sec;
+
+    @FXML
+    private Label milisec;
+       
+       
+       
+       
        @FXML
     private MenuItem open_menu_item;
+       
     
      
      double orgSceneX, orgSceneY;
     double orgTranslateX, orgTranslateY;
      @FXML
      final int bufSize = 16384;
-    public int frames_per_pixel;
+    public  double frames_per_pixel;
     //FormatControls formatControls = new FormatControls();
   Capture capture;
    // RecordWaveGraph recordGraph;
@@ -129,9 +146,16 @@ public class FXMLDocumentController extends Application {
     
     NasoFX nfx=new NasoFX();
     
-    
- 
+    @FXML
+    void Zoomfunction(MouseEvent event) {
+        
+        float value = (float) slider.getValue();
+        nfx.dozoom(value);
+        
+        
+        
 
+    }
 
     
     @FXML
@@ -162,13 +186,52 @@ public class FXMLDocumentController extends Application {
            // double newTranslateY = orgTranslateY + offsetY;
            //System.out.println("\nThe offset is :"+ newTranslateX);
            
-           if(newTranslateX>-579.0 && newTranslateX<610.0){
+           if(newTranslateX>0.0 && newTranslateX<1189.0){
              
             ((ImageView)(event.getSource())).setTranslateX(newTranslateX);
             //((ImageView)(event.getSource())).setTranslateY(newTranslateY);
            }
            
-           double intial_second = ((mouseMoveX1 * frames_per_pixel) / this.audioInputStream.getFormat().getFrameRate()) ;
+          /* double intial_second = ((newTranslateX * (this.frames_per_pixel*2)));// / this.audioInputStream.getFormat().getFrameRate()) ;
+          //  System.out.println("initial seconds"+intial_second+"\tmarkerx1\t"+orgTranslateX+"\tframespersecond\t"+frames_per_pixel);
+                            double x=intial_second*1000; 
+                          //  System.out.println("time type cast\t"+x);
+           String timeConversion2 = timeConversion2(x);
+           //System.out.println("totaltime:\t"+timeConversion2);
+           //System.out.println("hour"+timeConversion2.substring(0, 2));
+          // System.out.println("minute"+timeConversion2.substring(2, 5));
+          // System.out.println("second"+timeConversion2.substring(5, 8));
+          // System.out.println("millisecond"+timeConversion2.substring(8, 12));
+           hour.setText(timeConversion2.substring(0, 2));
+           min.setText(timeConversion2.substring(2, 5));
+           sec.setText(timeConversion2.substring(5, 8));
+           milisec.setText(timeConversion2.substring(8, 12));
+           */
+          
+          hour.setText("00");
+          min.setText("00");
+          double width=1189;
+          double factor=(frames_per_pixel*1000)/width;
+          double movefactor=newTranslateX*factor;
+          int milli=(int)movefactor%1000;
+          String mm=String.valueOf(milli);
+          
+          int second=(int)movefactor/1000;
+          String ss=String.valueOf(second);
+          if(milli>=0 && movefactor < (frames_per_pixel*1000))
+          {
+              
+          milisec.setText(mm);
+          sec.setText(ss);
+          
+          }
+           
+           
+           
+           
+           
+           
+           
            
            
     }
@@ -180,15 +243,7 @@ public class FXMLDocumentController extends Application {
  
 
 
-      @FXML
-    void doZoom(MouseEvent event) {
-nfx.dozoom();
-    }
-    @FXML
-    void doZoomout(MouseEvent event) {
-nfx.dozoomout();
-    }
-
+    
 
     
 //    @Override
@@ -198,7 +253,7 @@ nfx.dozoomout();
     slider.setMin(0);
     slider.setMax(100);
     slider.setValue(40);
-    slider.setShowTickLabels(true);
+    //slider.setShowTickLabels(true);
     slider.setShowTickMarks(true);
     slider.setMajorTickUnit(50);
     slider.setMinorTickCount(5);
@@ -238,7 +293,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
     
    
     Line line2 = new Line(0, i, 600, i);
-    line2.setStroke(Color.LIGHTGRAY);
+    line2.setStroke(Color.LIGHTGRAY); 
 
     tab1ap.getChildren().addAll(line1,t);
     
@@ -250,10 +305,10 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
     redLine.setStrokeWidth(10);
     tab1ap.getChildren().addAll(redLine);
     
-marker.toFront();
+   marker.toFront();
 
 //counterap.setStyle("-fx-border-color: black");
-
+       
  //nfx.setTab(tab1);
  
   TP.getTabs().addAll(tab1);
@@ -285,11 +340,25 @@ marker.toFront();
     byte audioData [] = new byte[size];
     
     System.out.println("ffffff = "+  this.audioInputStream.getFrameLength() + "  " + this.audioInputStream.getFormat());
+    
     int bytesRead = this.audioInputStream.read(audioData);
         System.out.println("bytes read = "+ bytesRead);
     format = audioInputStream.getFormat();
     int numSamples = (int) this.audioInputStream.getFrameLength();
+        System.out.println("audio data length"+audioData.length);
+   // frames_per_pixel=audioData.length/1292;
+     //   System.out.println("frames_per_pixel"+frames_per_pixel);
     double samples[] = readAudioData(audioData);
+ 
+    
+   // AudioFormat format = audioInputStream.getFormat();
+    long audioFileLength = new File( filename).length();
+    int frameSize = format.getFrameSize();
+    float frameRate = format.getFrameRate();
+    frames_per_pixel = (audioFileLength / (frameSize * frameRate));
+    System.out.println("durationInSeconds"+frames_per_pixel);
+    
+    
         //   double[] data = nfx.getdata(samples);
            //for(int i=0;i<numSamples;i++)
            //  System.out.println(samples[i]);
@@ -799,6 +868,58 @@ marker.toFront();
     return dummy;
     
     }
+
+    private String timeConversion2(double time1) {
+        
+        String hD = "", mD = "", sD = "", msd="", totalTD = "";
+        try {
+            int time=(int)time1;
+            int hour = time / (1000*3600);
+            int hour_balance = time % (1000*3600);
+            int min = hour_balance / (60*1000);
+            int min_balance = hour_balance % (60*1000);
+            int sec=min_balance/(1000);
+            int sec_balance=min_balance% (1000);
+           // System.out.println("time\t"+time+"sec\t"+sec+"hour"+hour_balance+"minute"+min);
+            if (hour < 10*1000) {
+                hD = "0" + hour;
+            } else {
+                hD = hD + hour;
+            }
+            if (min < 10*1000) {
+                mD = "0" + min;
+            } else {
+                mD = mD + min;
+            }
+            if (sec < 60*1000) {
+                sD = "0" + sec;
+            } else {
+                sD = sD + sec;
+            }
+            if(sec_balance<10){
+               msd= "00"+sec_balance;          
+             }else{
+            msd=msd+sec_balance;
+            }
+
+            totalTD = hD + ":" + mD + ":" + sD+":"+msd;
+           // System.out.println("timeformat"+totalTD);
+        } catch (Exception er) {
+          //  Logger.getLogger(PlotWave.class.getName()).log(Level.SEVERE, null, er);
+        }
+        return totalTD;
+        
+        
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+   
+    
+    
+    
+    
+    
+    
     
         class Capture implements Runnable {
 

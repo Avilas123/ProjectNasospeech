@@ -45,7 +45,7 @@ and open the template in the editor.
 }
 
 .chart-horizontal-grid-lines {
-    -fx-stroke:  #C1C1C1;
+    -fx-stroke: transparent;
     -fx-opacity: 0.5;
 }
 .chart-series-line { /*-fx-stroke:transparent ;*/
@@ -54,7 +54,7 @@ and open the template in the editor.
                     -fx-smooth: true;
                   -fx-stroke-line-cap: round;
                     -fx-stroke-line-join:round;
-                    -fx-stroke-width: 1px;}
+                    -fx-stroke-width: 0.8px;}
 
  //.series{ -fx-stroke-width: 2px;
      //-fx-effect: null;

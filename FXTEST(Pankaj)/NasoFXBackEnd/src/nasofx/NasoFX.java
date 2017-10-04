@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
+import java.util.Scanner;
 import javafx.application.Application;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -59,7 +60,7 @@ public class NasoFX extends Application {
   //  FXMLDocumentController fxmlobject =new FXMLDocumentController();
     double array[]={};
      @FXML 
-  static double  valuefromc;
+ static  double  valuefromc;
     
     
     
@@ -90,7 +91,7 @@ public class NasoFX extends Application {
        stage.setTitle(substring);
 
       
-        xAxis.setVisible(true);
+        xAxis.setVisible(false);
        // xAxis.setLabel("No of employees");
 
       
@@ -231,13 +232,18 @@ public class NasoFX extends Application {
     
     
     
-    public void dozoom(){
+    public void dozoom(Float value){
   //   double i=1;
     // while(i>0){
-      this.lineChart.setScaleX(1.2);
+    if(value<10){
+    this.lineChart.setScaleX(1);
+    
+    }
+    else{
+      this.lineChart.setScaleX(value*.15);
       //i++;
      //} //this.lineChart.onZoomProperty();
-    
+    }
     }
     public void dozoomout(){
   //   double i=1;
@@ -384,15 +390,20 @@ public class NasoFX extends Application {
                                       }
                                       */
                                       
-                                       p.waitFor();
-                                      BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
-                                      System.out.println("xxxxxxxxxxxxx"+br.readLine());
-                                   //  String st= br.readLine();
+                                      // s p.waitFor();
+                                       p.wait(1000);
+                                   //   BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                                      Scanner sc=new Scanner(p.getInputStream());
+                                     valuefromc= Double.parseDouble(sc.next());
+                                     
+                                    // System.out.println("xxxxxxxxxxxxx---->"+br.readLine());
+                                     //String st= br.readLine();
                                       //Double.parseDouble(br.readLine());
-                                   //  System.out.println("double of xxxxxxxx "+Double.parseDouble(br.readLine()));
+                                      //valuefromc=Float.parseFloat(br.readLine());
+                                    //System.out.println("float of xxxxxxxx----->"+Double.parseDouble(br.readLine()));
                                     // valuefromc = Double.parseDouble(br.readLine());
-                                      valuefromc=0.27;//Double.parseDouble(br.readLine());//br.readLine();
-                                    //  System.out.println(" i am  getting this value from c---->"+valuefromc);
+                                      //(float) 0.27;//Double.parseDouble(br.readLine());//br.readLine();
+                                     //System.out.println("%f i am  getting this value from c---->"+valuefromc);
                                       //br.readLine();
                                       
                                       //  System.out.println(" i am  getting this value from c---->");
@@ -441,7 +452,7 @@ public class NasoFX extends Application {
             
 		
 }
- static double getvaluefromc()
+   static double getvaluefromc()
     {
         return valuefromc;
     }

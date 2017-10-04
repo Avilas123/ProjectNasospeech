@@ -22,27 +22,27 @@
    <children>
       <AnchorPane layoutY="477.0" prefHeight="152.0" prefWidth="1200.0" styleClass="linear-grad-to-bottom3" stylesheets="@menu.css">
          <children>
-            <ToolBar layoutX="500.0" layoutY="54.0" prefHeight="40.0" prefWidth="218.0" style="-fx-background-color: transparent;" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="482.0">
+            <ToolBar layoutX="500.0" layoutY="54.0" prefHeight="40.0" prefWidth="218.0" style="-fx-background-color: #d3d3d3;" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="482.0">
               <items>
-                <Button mnemonicParsing="false" opacity="0.9" prefHeight="27.0" prefWidth="47.0" style="-fx-background-color: ;" styleClass="linear-grad-to-bottom-left" stylesheets="@button.css">
+                <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" opacity="0.9" prefHeight="32.0" prefWidth="47.0" style="-fx-background-color: ;" styleClass="linear-grad-to-bottom-left" stylesheets="@button.css">
                      <graphic>
-                        <ImageView fitHeight="22.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="20.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="file:/Users/DoD/NetBeansProjects/NASOSPEECHFX/src/Icons/fast-rewind-button.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="10.0" layoutY="8.0" mnemonicParsing="false" opacity="0.9" prefHeight="27.0" prefWidth="47.0" stylesheets="@button.css">
+                  <Button layoutX="10.0" layoutY="8.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" opacity="0.9" prefHeight="29.0" prefWidth="47.0" stylesheets="@button.css">
                      <graphic>
-                        <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="22.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="file:/Users/DoD/NetBeansProjects/NASOSPEECHFX/src/Icons/fast-forward-arrowhead-symbol.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="61.0" layoutY="8.0" mnemonicParsing="false" opacity="0.9" prefHeight="32.0" prefWidth="47.0" stylesheets="@button.css">
+                  <Button layoutX="61.0" layoutY="8.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" opacity="0.9" prefHeight="32.0" prefWidth="47.0" stylesheets="@button.css">
                      <graphic>
                         <ImageView fitHeight="17.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -51,7 +51,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="112.0" layoutY="8.0" mnemonicParsing="false" opacity="0.9" prefHeight="31.0" prefWidth="42.0" styleClass="linear-grad-to-bottom-left" stylesheets="@button.css">
+                  <Button layoutX="112.0" layoutY="8.0" mnemonicParsing="false" opacity="0.9" prefHeight="32.0" prefWidth="47.0" styleClass="linear-grad-to-bottom-left" stylesheets="@button.css">
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -120,13 +120,13 @@
                <content>
                   <AnchorPane fx:id="tab1ap">
                      <children>
-                        <StackPane fx:id="wavepane" layoutX="-58.0" layoutY="-16.0" prefHeight="424.0" prefWidth="1330.0" />
+                        <StackPane fx:id="wavepane" layoutX="-62.0" layoutY="-15.0" prefHeight="425.0" prefWidth="1292.0" />
                         <ScrollBar layoutY="328.0" prefHeight="16.0" prefWidth="1205.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ScrollBar>
-                        <ImageView fx:id="marker" fitHeight="325.0" fitWidth="78.0" layoutX="566.0" onMouseDragged="#markerdrag" onMousePressed="#markerpress" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="marker" fitHeight="325.0" fitWidth="78.0" layoutX="-8.0" onMouseDragged="#markerdrag" onMousePressed="#markerpress" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Icons/marker.png" />
                            </image>
@@ -148,7 +148,7 @@
                <children>
                   <AnchorPane layoutY="24.0" prefHeight="24.0" prefWidth="224.0" styleClass="linear-grad-to-bottom1" stylesheets="@menu.css" />
                   <AnchorPane prefHeight="24.0" prefWidth="224.0" styleClass="linear-grad-to-bottom1" stylesheets="@menu.css" />
-                  <Label alignment="CENTER" prefHeight="41.0" prefWidth="54.0" text="00" textAlignment="CENTER" textFill="#686546">
+                  <Label fx:id="hour" alignment="CENTER" prefHeight="41.0" prefWidth="54.0" text="00" textAlignment="CENTER" textFill="#686546">
                      <effect>
                         <Glow />
                      </effect>
@@ -156,7 +156,7 @@
                         <Font name="DS-Digital Bold" size="35.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="54.0" prefHeight="41.0" prefWidth="54.0" text="03" textFill="#686546">
+                  <Label fx:id="min" alignment="CENTER" layoutX="54.0" prefHeight="41.0" prefWidth="54.0" text="03" textFill="#686546">
                      <font>
                         <Font name="DS-Digital Bold" size="35.0" />
                      </font>
@@ -164,7 +164,7 @@
                         <Glow />
                      </effect>
                   </Label>
-                  <Label alignment="CENTER" layoutX="108.0" prefHeight="41.0" prefWidth="54.0" text="05" textFill="#686546">
+                  <Label fx:id="sec" alignment="CENTER" layoutX="108.0" prefHeight="41.0" prefWidth="54.0" text="05" textFill="#686546">
                      <font>
                         <Font name="DS-Digital Bold" size="35.0" />
                      </font>
@@ -172,7 +172,7 @@
                         <Glow />
                      </effect>
                   </Label>
-                  <Label alignment="CENTER" layoutX="162.0" prefHeight="41.0" prefWidth="62.0" text="567" textFill="#686546">
+                  <Label fx:id="milisec" alignment="CENTER" layoutX="162.0" prefHeight="41.0" prefWidth="62.0" text="567" textFill="#686546">
                      <font>
                         <Font name="DS-Digital Bold" size="35.0" />
                      </font>
@@ -202,11 +202,7 @@
                   </Label>
                </children>
             </AnchorPane>
+            <Slider fx:id="slider" layoutX="1069.0" layoutY="42.0" onMouseDragged="#Zoomfunction" />
          </children></AnchorPane>
-      <Slider fx:id="slider" layoutX="1046.0" layoutY="99.0" onMouseClicked="#doZoom" onMouseDragged="#doZoomout" AnchorPane.rightAnchor="14.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Slider>
    </children>
 </AnchorPane>
