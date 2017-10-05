@@ -11,7 +11,7 @@ and open the template in the editor.
 .chart-plot-background {
     -fx-border-color: transparent;
     
-    -fx-background-color: #2B2B2B;
+    -fx-background-color: #232323;
     /*-fx-fill-width: true;
     -fx-fill-height: true;
     -fx-fit-to-width: true;
@@ -54,7 +54,7 @@ and open the template in the editor.
                     -fx-smooth: true;
                   -fx-stroke-line-cap: round;
                     -fx-stroke-line-join:round;
-                    -fx-stroke-width: 0.8px;}
+                    -fx-stroke-width: 1px;}
 
  //.series{ -fx-stroke-width: 2px;
      //-fx-effect: null;

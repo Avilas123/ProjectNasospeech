@@ -21,11 +21,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -42,6 +45,7 @@ import javafx.stage.Stage;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.TargetDataLine;
@@ -62,6 +66,8 @@ public class FXMLDocumentController extends Application {
          
           @FXML
           private StackPane wavepane;
+          @FXML
+    private Button playbtn;
  
     @FXML
     private AnchorPane tab1ap;
@@ -86,8 +92,10 @@ public class FXMLDocumentController extends Application {
 
     @FXML
     private Label milisec;
-       
-       
+    @FXML
+    private MenuItem closebtn;   
+        @FXML
+    private ScrollBar scrollbar;
        
        
        @FXML
@@ -237,6 +245,11 @@ public class FXMLDocumentController extends Application {
     }
     
    
+    @FXML
+    void closesystem(ActionEvent event) {
+        System.exit(0);
+
+    }
     
     
      
@@ -303,6 +316,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
 
     redLine.setStroke(Color.rgb(221, 221, 221));
     redLine.setStrokeWidth(10);
+    
     tab1ap.getChildren().addAll(redLine);
     
    marker.toFront();
@@ -325,6 +339,18 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     @FXML
     
     public String open_button_Event(ActionEvent event) throws Exception
@@ -332,7 +358,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
         //show_list.getItems().add(selectedfile.getAbsolutePath());
     String filename;
     filename=this.fileopenmethod();//fileopenmethod();
-    System.out.println("filename_Final-------->>>>>>\t"+filename);   
+    System.out.println("filename_in 1st time load-------->>>>>>\t"+filename);   
     
 
     this.audioInputStream = AudioSystem.getAudioInputStream(new File(filename));
@@ -357,6 +383,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
     float frameRate = format.getFrameRate();
     frames_per_pixel = (audioFileLength / (frameSize * frameRate));
     System.out.println("durationInSeconds"+frames_per_pixel);
+     sendfilename(filename);
     
     
         //   double[] data = nfx.getdata(samples);
@@ -368,8 +395,9 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
        // dataSeries1.getData().add(new XYChart.Data( i, samples[i]));
        //   }
      //wave.getData().add(dataSeries1);
-   nfx.startforplotwave(classStage,samples,numSamples,filename,tab1,TP,wavepane);
-   sendfilename(filename);
+   nfx.startforplotwave(classStage,samples,numSamples,filename,tab1,TP,wavepane,scrollbar);
+  // System.out.println("filename_in 2nd time load-------->>>>>>\t"+filename);   
+  
     
    /* Alert alert = new Alert(Alert.AlertType.INFORMATION);
     alert.setTitle("Information Dialog displaying the filename");
@@ -865,6 +893,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
       //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     String getfilename(){
+        System.out.println("filename is in getfilename func"+dummy);
     return dummy;
     
     }
@@ -1190,18 +1219,63 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
  
  @FXML
     void hypernalasityclick(ActionEvent event) {
-        //Tab tab = new Tab();
-          // tab.setText("Hypernasality  ");
+        Tab tab = new Tab();
+           tab.setText("Hypernasality  ");
            String filename = this.getfilename(); //fileName);
            
-            //TP.getTabs().add(tab);
-            // TP.getSelectionModel().select(tab);
+            TP.getTabs().add(tab);
+            TP.getSelectionModel().select(tab);
+            TP.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
              nfx.Hypernasality(filename);
-         
+          
 
     }
  
  
+    @FXML
+    void playsound(ActionEvent event) {
+        String filename = this.getfilename();
+        System.out.println("filename in playsound func"+filename);
+        playSound(filename);
+        
+        
+    }
+
+            private void playSound(String filename){
+           AudioInputStream audio = null;
+           
+        try 
+        {
+            String clipPath = filename;
+            audio = AudioSystem.getAudioInputStream(new File(clipPath));
+            Clip clip = AudioSystem.getClip();
+            clip.open(audio);
+            clip.start();
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(JavaFX_Audio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(JavaFX_Audio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (LineUnavailableException ex) {
+                Logger.getLogger(JavaFX_Audio.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                audio.close();
+            } catch (IOException ex) {
+                Logger.getLogger(JavaFX_Audio.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        }
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+
+    
  
  
  
@@ -1209,7 +1283,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
  
  
  
- }   
+
  
      
     

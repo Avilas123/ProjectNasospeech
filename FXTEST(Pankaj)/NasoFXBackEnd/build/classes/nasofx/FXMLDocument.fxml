@@ -42,7 +42,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="61.0" layoutY="8.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" opacity="0.9" prefHeight="32.0" prefWidth="47.0" stylesheets="@button.css">
+                  <Button fx:id="playbtn" layoutX="61.0" layoutY="8.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#playsound" opacity="0.9" prefHeight="32.0" prefWidth="47.0" stylesheets="@button.css">
                      <graphic>
                         <ImageView fitHeight="17.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -85,7 +85,7 @@
                   <MenuItem mnemonicParsing="false" text="New" />
                   <MenuItem mnemonicParsing="false" text="Save" />
                   <MenuItem mnemonicParsing="false" text="Save as" />
-                  <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem fx:id="closebtn" mnemonicParsing="false" onAction="#closesystem" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
@@ -121,7 +121,7 @@
                   <AnchorPane fx:id="tab1ap">
                      <children>
                         <StackPane fx:id="wavepane" layoutX="-62.0" layoutY="-15.0" prefHeight="425.0" prefWidth="1292.0" />
-                        <ScrollBar layoutY="328.0" prefHeight="16.0" prefWidth="1205.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <ScrollBar fx:id="scrollbar" layoutY="328.0" prefHeight="16.0" prefWidth="1205.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -156,7 +156,7 @@
                         <Font name="DS-Digital Bold" size="35.0" />
                      </font>
                   </Label>
-                  <Label fx:id="min" alignment="CENTER" layoutX="54.0" prefHeight="41.0" prefWidth="54.0" text="03" textFill="#686546">
+                  <Label fx:id="min" alignment="CENTER" layoutX="54.0" prefHeight="41.0" prefWidth="54.0" text="00" textFill="#686546">
                      <font>
                         <Font name="DS-Digital Bold" size="35.0" />
                      </font>
@@ -164,7 +164,7 @@
                         <Glow />
                      </effect>
                   </Label>
-                  <Label fx:id="sec" alignment="CENTER" layoutX="108.0" prefHeight="41.0" prefWidth="54.0" text="05" textFill="#686546">
+                  <Label fx:id="sec" alignment="CENTER" layoutX="108.0" prefHeight="41.0" prefWidth="54.0" text="00" textFill="#686546">
                      <font>
                         <Font name="DS-Digital Bold" size="35.0" />
                      </font>
@@ -172,7 +172,7 @@
                         <Glow />
                      </effect>
                   </Label>
-                  <Label fx:id="milisec" alignment="CENTER" layoutX="162.0" prefHeight="41.0" prefWidth="62.0" text="567" textFill="#686546">
+                  <Label fx:id="milisec" alignment="CENTER" layoutX="162.0" prefHeight="41.0" prefWidth="62.0" text="000" textFill="#686546">
                      <font>
                         <Font name="DS-Digital Bold" size="35.0" />
                      </font>
