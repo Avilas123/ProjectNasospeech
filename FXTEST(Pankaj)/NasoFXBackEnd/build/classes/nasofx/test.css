@@ -61,3 +61,6 @@ and open the template in the editor.
 //-fx-stroke: #f0e68c;
 //-fx-background-color: #f0e68c, white;
  //}
+ .chart-plot-background {
+    -fx-background-color: linear-gradient(to bottom, #222222, #444444);
+}

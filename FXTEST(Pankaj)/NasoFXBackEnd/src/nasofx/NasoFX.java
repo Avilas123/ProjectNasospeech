@@ -20,6 +20,8 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -81,6 +83,8 @@ public class NasoFX extends Application {
       scene.getStylesheets().add(this.getClass().getResource("test.css").toExternalForm());
        // scene.getStylesheets().add("test.css");
         
+       stage.setTitle("NasoSpeech");
+       stage.setResizable(false);
         stage.setScene(scene);
      //   stage.setHeight(1200);
       //  stage.setWidth(1200);
@@ -122,44 +126,23 @@ public class NasoFX extends Application {
         
         
 
-        XYChart.Series<Integer,Double> dataSeries1 = new XYChart.Series<>();
-        XYChart.Data<Integer,Double> data = new XYChart.Data<>();
-     //   XYChart.Data data = new XYChart.Data<>();
-//Rectangle rect = new Rectangle(0, 0);
-//rect.setVisible(false);
-//data.setNode(rect);
-        //dataSeries1.setName("2014");
-         
-       /* dataSeries1.getData().add(new XYChart.Data( 1, 567));
-        dataSeries1.getData().add(new XYChart.Data( 5, 612));
-        dataSeries1.getData().add(new XYChart.Data(10, 800));
-        dataSeries1.getData().add(new XYChart.Data(20, 780));
-        dataSeries1.getData().add(new XYChart.Data(40, 810));
-        dataSeries1.getData().add(new XYChart.Data(80, 850));
-        */
-      //   int size = (int) fxm.audioInputStream.getFrameLength()*2;
-        // byte audioData [] = new byte[size];
-        
-        
-      //double samples[]=  fxm.readAudioData(audioData);
-    
-      for(int i=0;i<numsamples;i++){
+        //XYChart.Series<Integer,Double> dataSeries1 = new XYChart.Series<>();
+      //  XYChart.Data<Integer,Double> data = new XYChart.Data<>();
+       
+      ObservableList<XYChart.Data<Integer,Double>> data = FXCollections.<XYChart.Data<Integer,Double>>observableArrayList();
+   
+       for(int i=0;i<numsamples;i++){
       
-          data = new XYChart.Data<Integer,Double>( i, samples[i]);
-          
-          dataSeries1.getData().add(data);
-           
-        
+         // data = new XYChart.Data<Integer,Double>( i, samples[i]);
+          data.add(new XYChart.Data<>(i, samples[i]));
+          //dataSeries1.getData().add(data);
+          // System.out.println(data);
+     
        }
-     //wave.getData().add(dataSeries1);
-
-        
-        
-        
-        
-      //  lineChart.setStyle(".default-color0.chart-series-line { -fx-stroke: #f0e68c; }");
-      lineChart.getData().clear();
-     lineChart.getData().add(dataSeries1);
+     //dataSeries1.getData().add(data);
+     XYChart.Series series = new XYChart.Series(data);
+     lineChart.getData().clear();
+     lineChart.getData().add(series);
         
         
        // dataSeries1.setNode(null);
@@ -275,13 +258,16 @@ public class NasoFX extends Application {
     // while(i>0){
     if(value<10){
     this.lineChart.setScaleX(1);
-    this.lineChart.setStyle(".chart-series-line { /*-fx-stroke:transparent ;*/\n" +
-"                   /* -fx-stroke-type: inside;*/\n" +
-"                   -fx-stroke:#43DA95;// #22D900;\n" +
-"                    -fx-smooth: true;\n" +
-"                  -fx-stroke-line-cap: round;\n" +
-"                    -fx-stroke-line-join:round;\n" +
-"                    -fx-stroke-width: 0.03px;}");
+    //this.lineChart.setStyle("-fx-stroke:#43DA95;-fx-smooth: true; -fx-stroke-line-cap: round;-fx-stroke-line-join:round;-fx-stroke-width: 1px;");  
+    this.lineChart.setStyle("-fx-stroke:#43DA95;-fx-smooth: true; -fx-stroke-line-cap: round;-fx-stroke-line-join:round;-fx-stroke-width: 1px;");  
+
+//(".chart-series-line { /*-fx-stroke:transparent ;*/\n" +
+//"                   /* -fx-stroke-type: inside;*/\n" +
+//"                   -fx-stroke:#43DA95;// #22D900;\n" +
+//"                    -fx-smooth: true;\n" +
+//"                  -fx-stroke-line-cap: round;\n" +
+//"                    -fx-stroke-line-join:round;\n" +
+//"                    -fx-stroke-width: 0.03px;}");
     
     }
     else{
