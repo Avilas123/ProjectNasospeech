@@ -158,7 +158,7 @@ public class FXMLDocumentController extends Application {
     void Zoomfunction(MouseEvent event) {
         
         float value = (float) slider.getValue();
-        nfx.dozoom(value);
+        nfx.dozoom(value,scrollbar);
         
         
         

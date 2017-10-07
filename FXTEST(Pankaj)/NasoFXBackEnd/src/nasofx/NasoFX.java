@@ -26,6 +26,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
@@ -50,6 +51,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Transform;
 import javafx.stage.Stage;
 import nasofx.FXMLDocumentController ;
 //import static nasofx.FXMLDocumentController.valuefromc;
@@ -67,6 +69,7 @@ public class NasoFX extends Application {
     
      NumberAxis xAxis = new NumberAxis();
       NumberAxis yAxis = new NumberAxis();
+      
       LineChart lineChart = new LineChart(xAxis, yAxis);
   //  FXMLDocumentController fxmlobject =new FXMLDocumentController();
     double array[]={};
@@ -95,37 +98,18 @@ public class NasoFX extends Application {
     
     
     public void startforplotwave(Stage stage,double[] samples,int numsamples,String filename,Tab tab1 ,TabPane TP,StackPane wavepane,ScrollBar scrollbar) throws Exception {
-        //Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        //FXMLDocumentController fxm=new FXMLDocumentController();
-      //  double[] datainplot = getdata(samples);
-        //for(int i=0;i<13780;i++)
-        //System.out.println(datainplot[i]);
-      // String substring = filename.substring(32);
-       
+     
          java.nio.file.Path p=Paths.get(filename);
-      //  String fileNameDis = "";
+      
        String substring= p.getFileName().toString();
-        
        stage.setTitle(substring);
 
-      
         xAxis.setVisible(false);
-       // xAxis.setLabel("No of employees");
-
       
         yAxis.setVisible(false);
         yAxis.tickMarkVisibleProperty();
        
-         
-         //yAxis.setLabel("Revenue per employee");
-         //lineChart.setStyle("-fx-background-color: rgba(0,168,355,0.05);");
         
-        
-        
-        
-        
-        
-
         //XYChart.Series<Integer,Double> dataSeries1 = new XYChart.Series<>();
       //  XYChart.Data<Integer,Double> data = new XYChart.Data<>();
        
@@ -136,25 +120,19 @@ public class NasoFX extends Application {
          // data = new XYChart.Data<Integer,Double>( i, samples[i]);
           data.add(new XYChart.Data<>(i, samples[i]));
           //dataSeries1.getData().add(data);
-          // System.out.println(data);
+         // System.out.println(samples[i]);
      
        }
      //dataSeries1.getData().add(data);
      XYChart.Series series = new XYChart.Series(data);
+     
      lineChart.getData().clear();
      lineChart.getData().add(series);
-        
-        
-       // dataSeries1.setNode(null);
-       // double height = lineChart.getHeight();
-        //System.out.println("linechartheight\t"+height);
-        //double width = lineChart.getWidth();System.out.println("linewidth\t"+width);
+     
        boolean verticalGridLinesVisible = lineChart.getVerticalGridLinesVisible();
       verticalGridLinesVisible=true;
       boolean horizontalGridLinesVisible = lineChart.isHorizontalGridLinesVisible();
       horizontalGridLinesVisible=true;
-        
-
         
       lineChart.setCreateSymbols(false);
       lineChart.setAnimated(false);
@@ -163,69 +141,33 @@ public class NasoFX extends Application {
        lineChart.getXAxis().setTickLabelsVisible(false);
       lineChart.getXAxis().setOpacity(0.5);
         
-       // lineChart.setStyle(".chart-series-line { -fx-stroke: green; -fx-stroke-width: 4px;}");
-       // lineChart.getStylesheets().add("test.css");
-
-       // VBox vbox = new VBox(lineChart);
-      //  vbox.setPrefSize(200, 200);
-       
-        //Scene scene = new Scene(vbox, 400, 200);
-
-       // stage.setScene(scene);
-       // stage.setHeight(400);
-       // stage.setWidth(1200);
-      //  stage.show();
-     /* final StackPane chartContainer = new StackPane();
-		chartContainer.getChildren().add(lineChart);
-                chartContainer.maxHeight(1175);
-                chartContainer.maxWidth(390);
-                
-		final Rectangle zoomRect = new Rectangle();
-		zoomRect.setManaged(false);
-		zoomRect.setFill(Color.LIGHTSEAGREEN.deriveColor(0, 1, 1, 0.5));
-		chartContainer.getChildren().add(zoomRect);
-                setUpZooming(zoomRect, lineChart);
-                final HBox controls = new HBox(10);
-		controls.setPadding(new Insets(10));
-		controls.setAlignment(Pos.CENTER);
-		
-		final Button zoomButton = new Button("Zoom");
-		final Button resetButton = new Button("Reset");
-		zoomButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                doZoom(zoomRect, lineChart);
-            }
-             });
-           
-                
-                
-                
-                
-    */            
-          //.setContent(lineChart);
-        //tab1.setContent(sc);
-        //lineChart.setVisible(true);
+     
         tab1.setText(substring);
         TP.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
-       //TP.getTabs().add(tab1);
-        //TP.setMaxSize(250, 250);
-       
-       
-        
-        
-    
+      
+      
      lineChart.setStyle(this.getClass().getResource("test.css").toExternalForm());
      wavepane.getChildren().removeAll(lineChart);
      wavepane.getChildren().add(lineChart);
+     
+     
+     
+
      
      wavepane.getStylesheets().add(this.getClass().getResource("test.css").toExternalForm());
      scrollbar.valueProperty().addListener(new ChangeListener<Number>() {
         @Override
         public void changed(ObservableValue<? extends Number> ov,
             Number old_val, Number new_val) {
-           double trans = wavepane.getTranslateX();
-                wavepane.setLayoutX((-new_val.doubleValue()*40));
+            
+         //  double val= scrollbar.getValue();
+            
+          //  lineChart.setTranslateX((-val)*lineChart.getScaleX()*2);
+            
+          //  System.out.println(lineChart.getScaleX());
+            
+            double trans = lineChart.getBaselineOffset();
+                lineChart.setTranslateX((-new_val.doubleValue()*20));
                 System.out.println(trans);
                 
         }
@@ -253,34 +195,21 @@ public class NasoFX extends Application {
     
     
     
-    public void dozoom(Float value){
+    public void dozoom(Float value,ScrollBar scrollbar){
   //   double i=1;
     // while(i>0){
     if(value<10){
     this.lineChart.setScaleX(1);
-    //this.lineChart.setStyle("-fx-stroke:#43DA95;-fx-smooth: true; -fx-stroke-line-cap: round;-fx-stroke-line-join:round;-fx-stroke-width: 1px;");  
-    this.lineChart.setStyle("-fx-stroke:#43DA95;-fx-smooth: true; -fx-stroke-line-cap: round;-fx-stroke-line-join:round;-fx-stroke-width: 1px;");  
-
-//(".chart-series-line { /*-fx-stroke:transparent ;*/\n" +
-//"                   /* -fx-stroke-type: inside;*/\n" +
-//"                   -fx-stroke:#43DA95;// #22D900;\n" +
-//"                    -fx-smooth: true;\n" +
-//"                  -fx-stroke-line-cap: round;\n" +
-//"                    -fx-stroke-line-join:round;\n" +
-//"                    -fx-stroke-width: 0.03px;}");
-    
+    scrollbar.setVisibleAmount(100);
+      scrollbar.setValue(50); 
+       
+ 
     }
     else{
       this.lineChart.setScaleX(value*.15);
-      this.lineChart.setStyle(".chart-series-line { /*-fx-stroke:transparent ;*/\n" +
-"                   /* -fx-stroke-type: inside;*/\n" +
-"                   -fx-stroke:#43DA95;// #22D900;\n" +
-"                    -fx-smooth: true;\n" +
-"                  -fx-stroke-line-cap: round;\n" +
-"                    -fx-stroke-line-join:round;\n" +
-"                    -fx-stroke-width: 1px;}");
-      //i++;
-     //} //this.lineChart.onZoomProperty();
+      scrollbar.setVisibleAmount(100-value);
+      scrollbar.setValue(50);
+    
     }
     }
     public void dozoomout(){
