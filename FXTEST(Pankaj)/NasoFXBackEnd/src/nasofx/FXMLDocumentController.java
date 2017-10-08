@@ -29,9 +29,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -63,9 +65,8 @@ public class FXMLDocumentController extends Application {
     private Tab tab1;
            @FXML
     private TabPane TP;
-         
-          @FXML
-          private StackPane wavepane;
+         @FXML
+    private ScrollPane wavepane;
           @FXML
     private Button playbtn;
  
@@ -94,8 +95,7 @@ public class FXMLDocumentController extends Application {
     private Label milisec;
     @FXML
     private MenuItem closebtn;   
-        @FXML
-    private ScrollBar scrollbar;
+      
        
        
        @FXML
@@ -151,14 +151,13 @@ public class FXMLDocumentController extends Application {
     public static String dummy;
     @FXML
     private LineChart wave;
-    
     NasoFX nfx=new NasoFX();
     
     @FXML
     void Zoomfunction(MouseEvent event) {
         
         float value = (float) slider.getValue();
-        nfx.dozoom(value,scrollbar);
+        nfx.dozoom(value,wavepane);
         
         
         
@@ -259,7 +258,7 @@ public class FXMLDocumentController extends Application {
     
 
     
-//    @Override
+  //  @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
        
@@ -319,7 +318,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
     
     tab1ap.getChildren().addAll(redLine);
     
-   marker.toFront();
+  // marker.toFront();
 
 //counterap.setStyle("-fx-border-color: black");
        
@@ -395,7 +394,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
        // dataSeries1.getData().add(new XYChart.Data( i, samples[i]));
        //   }
      //wave.getData().add(dataSeries1);
-   nfx.startforplotwave(classStage,samples,numSamples,filename,tab1,TP,wavepane,scrollbar);
+   nfx.startforplotwave(classStage,samples,numSamples,filename,tab1,TP,wavepane);
   // System.out.println("filename_in 2nd time load-------->>>>>>\t"+filename);   
   
     
@@ -1250,7 +1249,22 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
             audio = AudioSystem.getAudioInputStream(new File(clipPath));
             Clip clip = AudioSystem.getClip();
             clip.open(audio);
-            clip.start();
+             Tooltip playtip=new Tooltip("play");
+             Tooltip pausetip=new Tooltip("pause");
+            
+              if(playbtn.getTooltip()==pausetip){
+                clip.stop();
+                playbtn.setTooltip(playtip);
+                }
+              else{
+             playbtn.setTooltip(pausetip);
+                 clip.start();
+                  //playbtn.setTooltip(playtip);
+              }
+          
+           
+           
+            
         } catch (UnsupportedAudioFileException ex) {
             Logger.getLogger(JavaFX_Audio.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

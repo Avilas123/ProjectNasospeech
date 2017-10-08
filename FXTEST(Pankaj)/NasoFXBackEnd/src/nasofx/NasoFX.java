@@ -4,56 +4,42 @@
  * and open the template in the editor.
  */
 package nasofx;
-
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.nio.file.Paths;
 //import java.nio.file.Paths;
 import java.util.Scanner;
 import javafx.application.Application;
-import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Bounds;
-import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.ScrollBar;
+//import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.transform.Transform;
 import javafx.stage.Stage;
-import nasofx.FXMLDocumentController ;
 //import static nasofx.FXMLDocumentController.valuefromc;
 //import static nasofx.FXMLDocumentController.valuefromc;
 /**
@@ -71,6 +57,7 @@ public class NasoFX extends Application {
       NumberAxis yAxis = new NumberAxis();
       
       LineChart lineChart = new LineChart(xAxis, yAxis);
+      
   //  FXMLDocumentController fxmlobject =new FXMLDocumentController();
     double array[]={};
      @FXML 
@@ -83,7 +70,7 @@ public class NasoFX extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));     
         Scene scene;
         scene = new Scene(root);
-      scene.getStylesheets().add(this.getClass().getResource("test.css").toExternalForm());
+     // scene.getStylesheets().add(this.getClass().getResource("test.css").toExternalForm());
        // scene.getStylesheets().add("test.css");
         
        stage.setTitle("NasoSpeech");
@@ -97,7 +84,7 @@ public class NasoFX extends Application {
     }
     
     
-    public void startforplotwave(Stage stage,double[] samples,int numsamples,String filename,Tab tab1 ,TabPane TP,StackPane wavepane,ScrollBar scrollbar) throws Exception {
+    public void startforplotwave(Stage stage,double[] samples,int numsamples,String filename,Tab tab1 ,TabPane TP,ScrollPane wavepane) throws Exception {
      
          java.nio.file.Path p=Paths.get(filename);
       
@@ -126,9 +113,13 @@ public class NasoFX extends Application {
      //dataSeries1.getData().add(data);
      XYChart.Series series = new XYChart.Series(data);
      
-     lineChart.getData().clear();
-     lineChart.getData().add(series);
+    
+     lineChart.setCreateSymbols(false);
      
+     lineChart.getData().clear();
+     //lineChart.getData().add(10, series);
+     lineChart.getData().add(series);
+     lineChart.setLegendVisible(false);
        boolean verticalGridLinesVisible = lineChart.getVerticalGridLinesVisible();
       verticalGridLinesVisible=true;
       boolean horizontalGridLinesVisible = lineChart.isHorizontalGridLinesVisible();
@@ -137,25 +128,42 @@ public class NasoFX extends Application {
       lineChart.setCreateSymbols(false);
       lineChart.setAnimated(false);
       lineChart.getYAxis().setTickLabelsVisible(false);
-       lineChart.getYAxis().setOpacity(0.5);
-       lineChart.getXAxis().setTickLabelsVisible(false);
+      lineChart.getYAxis().setTickMarkVisible(false);
+      lineChart.getXAxis().setTickMarkVisible(false);
+      lineChart.getYAxis().setOpacity(0.5);
+      lineChart.getXAxis().setTickLabelsVisible(false);
       lineChart.getXAxis().setOpacity(0.5);
+      lineChart.getYAxis().lookup(".axis-minor-tick-mark").setVisible(false);
+      lineChart.getXAxis().lookup(".axis-minor-tick-mark").setVisible(false);
         
      
         tab1.setText(substring);
         TP.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
-      
-      
-     lineChart.setStyle(this.getClass().getResource("test.css").toExternalForm());
-     wavepane.getChildren().removeAll(lineChart);
-     wavepane.getChildren().add(lineChart);
+     
+   //lineChart.setPrefHeight(402);
+     lineChart.setPrefWidth(1250);
+     lineChart.setMinWidth(1250);
+         double height = lineChart.getHeight();//System.out.println("linechartheight"+height);
+     //lineChart.setMaxSize(1300, 402);
+   // lineChart.setMinSize(1300,402);
+    lineChart.setStyle(this.getClass().getResource("test.css").toExternalForm());
+     wavepane.setPannable(true);
+    // wavepane.setStyle(".scroll-pane > .viewport{-fx-background-color:#232323 ;\n" +
+     //"-fx-control-inner-background: transparent;}");
+     wavepane.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+     wavepane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+     wavepane.setFitToWidth(true);
+     wavepane.setFitToHeight(true);
+     wavepane.setContent(lineChart);
+     //wavepane.setBackground(new Background(Array(new BackgroundFill(Color.DARKCYAN,new CornerRadii(0),Insets(0)))));
+    // wavepane.setContent().removeAll(lineChart);
+    /// wavepane.getChildren().add(lineChart);
      
      
      
 
-     
-     wavepane.getStylesheets().add(this.getClass().getResource("test.css").toExternalForm());
-     scrollbar.valueProperty().addListener(new ChangeListener<Number>() {
+    wavepane.getStylesheets().add(this.getClass().getResource("test.css").toExternalForm());
+    /* scrollbar.valueProperty().addListener(new ChangeListener<Number>() {
         @Override
         public void changed(ObservableValue<? extends Number> ov,
             Number old_val, Number new_val) {
@@ -172,7 +180,7 @@ public class NasoFX extends Application {
                 
         }
     });
-     
+   */  
      
      
      
@@ -195,20 +203,26 @@ public class NasoFX extends Application {
     
     
     
-    public void dozoom(Float value,ScrollBar scrollbar){
-  //   double i=1;
+    public void dozoom(Float value,ScrollPane wavepane){
+  //double i=1;
     // while(i>0){
-    if(value<10){
-    this.lineChart.setScaleX(1);
-    scrollbar.setVisibleAmount(100);
-      scrollbar.setValue(50); 
-       
+    //lineChart.setStyle(this.getClass().getResource("zoom.css").toExternalForm());
+   // wavepane.setStyle(this.getClass().getResource("zoom.css").toExternalForm());
+   
+    if(value<10)
+    {
+    this.lineChart.setMinWidth(1250);
+    //scrollbar.setVisibleAmount(100);
+    //scrollbar.setValue(50); 
+      
  
     }
     else{
-      this.lineChart.setScaleX(value*.15);
-      scrollbar.setVisibleAmount(100-value);
-      scrollbar.setValue(50);
+     this.lineChart.setMinWidth(1250+value*80);
+     wavepane.setHvalue(50);
+     
+    // scrollbar.setVisibleAmount(100-value);
+    // scrollbar.setValue(50);
     
     }
     }
@@ -216,6 +230,7 @@ public class NasoFX extends Application {
   //   double i=1;
     // while(i>0){
       this.lineChart.setScaleX(1);
+       
       //i++;
      //} //this.lineChart.onZoomProperty();
     

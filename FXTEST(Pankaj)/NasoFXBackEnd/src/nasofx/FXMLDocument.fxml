@@ -6,7 +6,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -15,7 +15,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" fx:id="masterap" prefHeight="610.0" prefWidth="1200.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nasofx.FXMLDocumentController">
@@ -120,13 +119,8 @@
                <content>
                   <AnchorPane fx:id="tab1ap">
                      <children>
-                        <StackPane fx:id="wavepane" layoutX="-62.0" layoutY="-15.0" prefHeight="425.0" prefWidth="1292.0" />
-                        <ScrollBar fx:id="scrollbar" layoutY="328.0" prefHeight="16.0" prefWidth="1205.0" visibleAmount="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ScrollBar>
-                        <ImageView fx:id="marker" fitHeight="325.0" fitWidth="78.0" layoutX="-8.0" onMouseDragged="#markerdrag" onMousePressed="#markerpress" pickOnBounds="true" preserveRatio="true">
+                        <ScrollPane fx:id="wavepane" fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="346.0" prefWidth="1199.0" style="-fx-background-color: #232323;" stylesheets="@test.css" vbarPolicy="NEVER" />
+                        <ImageView fx:id="marker" fitHeight="346.0" fitWidth="29.0" layoutX="-8.0" onMouseDragged="#markerdrag" onMousePressed="#markerpress" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Icons/marker.png" />
                            </image>
