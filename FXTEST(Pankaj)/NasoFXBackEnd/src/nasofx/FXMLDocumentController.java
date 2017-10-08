@@ -7,12 +7,16 @@ package nasofx;
 
 //import java.awt.event.MouseEvent;
 import java.awt.Toolkit;
+import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.LineNumberReader;
+import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -21,14 +25,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
@@ -40,8 +42,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.ZoomEvent;
-import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.sound.sampled.AudioFormat;
@@ -53,6 +55,10 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.TargetDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPopupMenu;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+import javazoom.jl.player.Player;
+import javazoom.jl.decoder.JavaLayerException;
 /**
  *
  * @author IITG
@@ -96,11 +102,12 @@ public class FXMLDocumentController extends Application {
     @FXML
     private MenuItem closebtn;   
       
-       
+      public  Media pick;  
+       public MediaPlayer player ;
        
        @FXML
     private MenuItem open_menu_item;
-       
+  
     
      
      double orgSceneX, orgSceneY;
@@ -357,10 +364,15 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
         //show_list.getItems().add(selectedfile.getAbsolutePath());
     String filename;
     filename=this.fileopenmethod();//fileopenmethod();
-    System.out.println("filename_in 1st time load-------->>>>>>\t"+filename);   
+    System.out.println("filename_in 1st time load-------->>>>>>\t"+filename);
+   File file = new File(filename);
+          pick = new Media(file.toURI().toURL().toExternalForm());
+         player = new MediaPlayer(pick);
     
 
     this.audioInputStream = AudioSystem.getAudioInputStream(new File(filename));
+    
+    
     int size = (int) this.audioInputStream.getFrameLength()*2;
     byte audioData [] = new byte[size];
     
@@ -552,6 +564,8 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
                 this.audioInputStream = AudioSystem.getAudioInputStream(file);
                 fileName = file.getName();
                 abbfilePath = file.getAbsolutePath();
+                
+                
 
             } catch (UnsupportedAudioFileException ex) {
                // Logger.getLogger(PlotWave.class.getName()).log(Level.SEVERE, null, ex);
@@ -885,8 +899,9 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private void sendfilename(String filename) {
+    private void sendfilename(String filename) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
         this.dummy=filename;
+          
         //return filename;
         
       //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -1232,54 +1247,58 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
  
  
     @FXML
-    void playsound(ActionEvent event) {
+    void playsound(ActionEvent event) throws FileNotFoundException, IOException, JavaLayerException, UnsupportedAudioFileException, LineUnavailableException {
         String filename = this.getfilename();
-        System.out.println("filename in playsound func"+filename);
-        playSound(filename);
+       
+        MediaPlayer.Status status = player.getStatus();
+                 
+         if (status == MediaPlayer.Status.PLAYING ){
+         player.pause();
+         
+         }
+         else if(status == MediaPlayer.Status.PAUSED){
+         player.play();
+         player.setOnEndOfMedia(new Runnable() {
+            @Override public void run() {
+                try {
+                    resetmedia();
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+         
+         }
+         else {
+         player.play();
+        player.setOnEndOfMedia(new Runnable() {
+            @Override public void run() {
+                try {
+                    resetmedia();
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
         
+         }
+     }
+    
+    
+    void resetmedia() throws MalformedURLException{
+      String  filename = getfilename();
+      File file = new File(filename);
+          pick = new Media(file.toURI().toURL().toExternalForm());
+         player = new MediaPlayer(pick);
+    
+    }
         
     }
+    
+    
 
-            private void playSound(String filename){
-           AudioInputStream audio = null;
            
-        try 
-        {
-            String clipPath = filename;
-            audio = AudioSystem.getAudioInputStream(new File(clipPath));
-            Clip clip = AudioSystem.getClip();
-            clip.open(audio);
-             Tooltip playtip=new Tooltip("play");
-             Tooltip pausetip=new Tooltip("pause");
-            
-              if(playbtn.getTooltip()==pausetip){
-                clip.stop();
-                playbtn.setTooltip(playtip);
-                }
-              else{
-             playbtn.setTooltip(pausetip);
-                 clip.start();
-                  //playbtn.setTooltip(playtip);
-              }
-          
-           
-           
-            
-        } catch (UnsupportedAudioFileException ex) {
-            Logger.getLogger(JavaFX_Audio.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(JavaFX_Audio.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (LineUnavailableException ex) {
-                Logger.getLogger(JavaFX_Audio.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                audio.close();
-            } catch (IOException ex) {
-                Logger.getLogger(JavaFX_Audio.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        }
-        }
+        
         
         
         

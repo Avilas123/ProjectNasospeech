@@ -14,8 +14,6 @@ import java.util.Scanner;
 import javafx.application.Application;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -33,11 +31,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 //import static nasofx.FXMLDocumentController.valuefromc;
@@ -73,13 +66,13 @@ public class NasoFX extends Application {
      // scene.getStylesheets().add(this.getClass().getResource("test.css").toExternalForm());
        // scene.getStylesheets().add("test.css");
         
-       stage.setTitle("NasoSpeech");
-       stage.setResizable(false);
+      stage.setResizable(false);
+       stage.setMaxWidth(1190);
+       stage.setMaxHeight(630);
+      stage.setTitle("NasoSpeech");
+      
         stage.setScene(scene);
-     //   stage.setHeight(1200);
-      //  stage.setWidth(1200);
-       // stage.setScene(scene1);
-       // stage.setResizable(faßlse);
+         stage.centerOnScreen();
         stage.show();
     }
     
@@ -91,9 +84,7 @@ public class NasoFX extends Application {
        String substring= p.getFileName().toString();
        stage.setTitle(substring);
 
-        xAxis.setVisible(false);
-      
-        yAxis.setVisible(false);
+        
         yAxis.tickMarkVisibleProperty();
        
         
@@ -130,19 +121,18 @@ public class NasoFX extends Application {
       lineChart.getYAxis().setTickLabelsVisible(false);
       lineChart.getYAxis().setTickMarkVisible(false);
       lineChart.getXAxis().setTickMarkVisible(false);
-      lineChart.getYAxis().setOpacity(0.5);
+      lineChart.getYAxis().setOpacity(0);
       lineChart.getXAxis().setTickLabelsVisible(false);
-      lineChart.getXAxis().setOpacity(0.5);
+      lineChart.getXAxis().setOpacity(0);
       lineChart.getYAxis().lookup(".axis-minor-tick-mark").setVisible(false);
       lineChart.getXAxis().lookup(".axis-minor-tick-mark").setVisible(false);
-        
-     
+       lineChart.getYAxis().setVisible(false);
         tab1.setText(substring);
         TP.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
      
    //lineChart.setPrefHeight(402);
-     lineChart.setPrefWidth(1250);
-     lineChart.setMinWidth(1250);
+     lineChart.setPrefWidth(1180);
+     lineChart.setMinWidth(1180);
          double height = lineChart.getHeight();//System.out.println("linechartheight"+height);
      //lineChart.setMaxSize(1300, 402);
    // lineChart.setMinSize(1300,402);
@@ -211,15 +201,15 @@ public class NasoFX extends Application {
    
     if(value<10)
     {
-    this.lineChart.setMinWidth(1250);
+    this.lineChart.setMinWidth(1180);
     //scrollbar.setVisibleAmount(100);
     //scrollbar.setValue(50); 
       
  
     }
     else{
-     this.lineChart.setMinWidth(1250+value*80);
-     wavepane.setHvalue(50);
+     this.lineChart.setMinWidth(1180+value*80);
+     wavepane.setHvalue(40);
      
     // scrollbar.setVisibleAmount(100-value);
     // scrollbar.setValue(50);
