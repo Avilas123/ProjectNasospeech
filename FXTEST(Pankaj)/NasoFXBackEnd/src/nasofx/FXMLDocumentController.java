@@ -101,6 +101,9 @@ public class FXMLDocumentController extends Application {
     private Label milisec;
     @FXML
     private MenuItem closebtn;   
+      @FXML
+    private Button stopicon;
+
       
       public  Media pick;  
        public MediaPlayer player ;
@@ -1265,13 +1268,13 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
                 } catch (MalformedURLException ex) {
                     Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
-        });
+                     }
+                    });
          
-         }
+            }
          else {
-         player.play();
-        player.setOnEndOfMedia(new Runnable() {
+                player.play();
+                player.setOnEndOfMedia(new Runnable() {
             @Override public void run() {
                 try {
                     resetmedia();
@@ -1279,11 +1282,22 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
                     Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        });
+                 });
         
          }
      }
     
+  @FXML
+    void stopsound(ActionEvent event) throws MalformedURLException {
+         MediaPlayer.Status status = player.getStatus();
+                 
+         if (status == MediaPlayer.Status.PLAYING ){
+         player.stop();
+         resetmedia();
+         
+         }
+
+    }
     
     void resetmedia() throws MalformedURLException{
       String  filename = getfilename();

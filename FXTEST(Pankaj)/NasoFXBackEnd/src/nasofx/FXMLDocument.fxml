@@ -21,7 +21,7 @@
    <children>
       <AnchorPane layoutY="477.0" prefHeight="152.0" prefWidth="1200.0" styleClass="linear-grad-to-bottom3" stylesheets="@menu.css">
          <children>
-            <ToolBar layoutX="500.0" layoutY="54.0" prefHeight="40.0" prefWidth="218.0" style="-fx-background-color: #d3d3d3;" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="482.0">
+            <ToolBar layoutX="500.0" layoutY="54.0" prefHeight="42.0" prefWidth="266.0" style="-fx-background-color: #d3d3d3;" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="434.0">
               <items>
                 <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" opacity="0.9" prefHeight="32.0" prefWidth="47.0" style="-fx-background-color: ;" styleClass="linear-grad-to-bottom-left" stylesheets="@button.css">
                      <graphic>
@@ -46,6 +46,15 @@
                         <ImageView fitHeight="17.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Icons/play-arrow-(1).png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="stopicon" layoutX="112.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#stopsound" opacity="0.9" prefHeight="32.0" prefWidth="47.0" stylesheets="@button.css">
+                     <graphic>
+                        <ImageView fitHeight="17.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Icons/video-player-stop-button.png" />
                            </image>
                         </ImageView>
                      </graphic>
