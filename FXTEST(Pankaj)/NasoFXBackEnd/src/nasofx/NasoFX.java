@@ -120,13 +120,14 @@ public class NasoFX extends Application {
       lineChart.setAnimated(false);
       lineChart.getYAxis().setTickLabelsVisible(false);
       lineChart.getYAxis().setTickMarkVisible(false);
-      lineChart.getXAxis().setTickMarkVisible(false);
-      lineChart.getYAxis().setOpacity(0);
+      lineChart.getXAxis().setTickMarkVisible(false);  
       lineChart.getXAxis().setTickLabelsVisible(false);
       lineChart.getXAxis().setOpacity(0);
       lineChart.getYAxis().lookup(".axis-minor-tick-mark").setVisible(false);
       lineChart.getXAxis().lookup(".axis-minor-tick-mark").setVisible(false);
-       lineChart.getYAxis().setVisible(false);
+      lineChart.getYAxis().setVisible(false);
+      lineChart.getYAxis().setTickLabelsVisible(false);
+     lineChart.getYAxis().setOpacity(0);
         tab1.setText(substring);
         TP.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
      

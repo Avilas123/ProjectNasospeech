@@ -7,15 +7,12 @@ package nasofx;
 
 //import java.awt.event.MouseEvent;
 import java.awt.Toolkit;
-import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -24,6 +21,8 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
@@ -36,6 +35,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -46,18 +46,15 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.TargetDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPopupMenu;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
-import javazoom.jl.player.Player;
 import javazoom.jl.decoder.JavaLayerException;
 /**
  *
@@ -110,7 +107,26 @@ public class FXMLDocumentController extends Application {
        
        @FXML
     private MenuItem open_menu_item;
+         @FXML
+    private Button fwdbtn;
+         
+    @FXML
+    private Button rewindbtn;
+    @FXML
+    private Button stopbtn;
+
+    @FXML
+    private Button recordbtn;
+
   
+    final Tooltip playtip = new Tooltip();
+    final Tooltip pausetip = new Tooltip();
+    final Tooltip forwardtip = new Tooltip();
+    final Tooltip rewindtip = new Tooltip();
+    final Tooltip stoptip = new Tooltip();
+    final Tooltip recordtip = new Tooltip();
+    
+    
     
      
      double orgSceneX, orgSceneY;
@@ -201,9 +217,9 @@ public class FXMLDocumentController extends Application {
            // double offsetY = event.getY() - orgSceneY;
             double newTranslateX = orgTranslateX + offsetX;
            // double newTranslateY = orgTranslateY + offsetY;
-           //System.out.println("\nThe offset is :"+ newTranslateX);
+          // System.out.println("\nThe offset is :"+ newTranslateX);
            
-           if(newTranslateX>0.0 && newTranslateX<1189.0){
+           if(newTranslateX>0.0 && newTranslateX<1147.11){
              
             ((ImageView)(event.getSource())).setTranslateX(newTranslateX);
             //((ImageView)(event.getSource())).setTranslateY(newTranslateY);
@@ -1252,34 +1268,59 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
     @FXML
     void playsound(ActionEvent event) throws FileNotFoundException, IOException, JavaLayerException, UnsupportedAudioFileException, LineUnavailableException {
         String filename = this.getfilename();
-       
+        Image pause = new Image("file:\\C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEnd\\src\\Icons\\pausebtn.png",27,27,false,false);
+       Image playimage = new Image("file:\\C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEnd\\src\\Icons\\play-arrow-(1).png",15,17,false,false);
         MediaPlayer.Status status = player.getStatus();
-                 
+        
+           double d = pick.getDuration().toMillis();
+          // System.out.println("The duration of the file is:"+d);
+          // double aaa =Double.parseDouble(d);
+           double translate = 1147.77/d;
+            //System.out.println("The translate of the file is:"+translate);   
+            
+            
          if (status == MediaPlayer.Status.PLAYING ){
          player.pause();
+         playtip.setText("play");
+         playbtn.setTooltip(playtip);
+         playbtn.setGraphic(new ImageView(pause));
+         playbtn.setGraphic(new ImageView(playimage));
          
          }
          else if(status == MediaPlayer.Status.PAUSED){
          player.play();
+         playtip.setText("pause");
+         playbtn.setTooltip(playtip);
+         playbtn.setGraphic(new ImageView(pause));
          player.setOnEndOfMedia(new Runnable() {
             @Override public void run() {
                 try {
-                    resetmedia();
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                       resetmedia();
+                       playtip.setText("play");
+                       playbtn.setTooltip(playtip);
+                     
+                      playbtn.setGraphic(new ImageView(playimage));
+                 } catch (MalformedURLException ex) {
+                      Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                      }
                     });
-         
-            }
+                 }
          else {
                 player.play();
+                playtip.setText("pause");
+                playbtn.setTooltip(playtip);
+  
+                playbtn.setGraphic(new ImageView(pause));
                 player.setOnEndOfMedia(new Runnable() {
             @Override public void run() {
                 try {
-                    resetmedia();
+                       resetmedia();
+                       playtip.setText("play");
+                       playbtn.setTooltip(playtip);
+                       playbtn.setGraphic(new ImageView(playimage));
                 } catch (MalformedURLException ex) {
-                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                       Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
                  });
@@ -1291,19 +1332,66 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
     void stopsound(ActionEvent event) throws MalformedURLException {
          MediaPlayer.Status status = player.getStatus();
                  
-         if (status == MediaPlayer.Status.PLAYING ){
-         player.stop();
-         resetmedia();
-         
+         if (status == MediaPlayer.Status.PLAYING )
+         {
+              Image playimage = new Image("file:\\C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEnd\\src\\Icons\\play-arrow-(1).png",15,17,false,false);
+              player.stop();
+              resetmedia();
+              playtip.setText("play");
+              playbtn.setTooltip(playtip);
+              playbtn.setGraphic(new ImageView(playimage));
          }
 
+    }
+    
+     @FXML
+    void forwardseek(ActionEvent event) {
+        
+        player.seek(player.getCurrentTime().multiply(1.5));
+
+    }
+    
+    
+    @FXML
+    void rewindseek(ActionEvent event) {
+        player.seek(player.getCurrentTime().divide(1.5));
+
+    }
+    
+    
+       @FXML
+    void rewindenter(MouseEvent event) {
+        rewindtip.setText("rewind");
+        rewindbtn.setTooltip(rewindtip);
+
+    }
+      @FXML
+    void fwdenter(MouseEvent event) {
+        forwardtip.setText("forward");
+        fwdbtn.setTooltip(forwardtip);
+    }
+      @FXML
+    void playenter(MouseEvent event) {
+        playtip.setText("play");
+        playbtn.setTooltip(playtip);
+    }
+      @FXML
+    void stopenter(MouseEvent event) {
+        stoptip.setText("stop");
+        stopbtn.setTooltip(stoptip);
+    }
+     @FXML
+    void recordenter(MouseEvent event) {
+        recordtip.setText("record");
+        recordbtn.setTooltip(recordtip);
     }
     
     void resetmedia() throws MalformedURLException{
       String  filename = getfilename();
       File file = new File(filename);
           pick = new Media(file.toURI().toURL().toExternalForm());
-         player = new MediaPlayer(pick);
+          player = new MediaPlayer(pick);
+          
     
     }
         
