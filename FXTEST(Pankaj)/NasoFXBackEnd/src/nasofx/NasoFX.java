@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.nio.file.Paths;
+import java.util.Random;
 //import java.nio.file.Paths;
 import java.util.Scanner;
 import javafx.application.Application;
@@ -20,6 +21,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
+import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -46,10 +48,11 @@ public class NasoFX extends Application {
      */
    
     
-     NumberAxis xAxis = new NumberAxis();
-      NumberAxis yAxis = new NumberAxis();
+    
+     
+      public double mousePosX1, mousePosX2, mouseMoveX1, mousePosY1;
       
-      LineChart lineChart = new LineChart(xAxis, yAxis);
+      LineChart lineChart ;
       
   //  FXMLDocumentController fxmlobject =new FXMLDocumentController();
     double array[]={};
@@ -77,8 +80,10 @@ public class NasoFX extends Application {
     }
     
     
-    public void startforplotwave(Stage stage,double[] samples,int numsamples,String filename,Tab tab1 ,TabPane TP,ScrollPane wavepane) throws Exception {
-     
+    public void startforplotwave(Stage stage,double[] samples,int numsamples,String filename,Tab tab1 ,TabPane TP,ScrollPane wavepane,Double factor,Double sam_freq,double duration) throws Exception {
+      NumberAxis xAxis = new NumberAxis("",0d,duration,0.1);
+       NumberAxis yAxis = new NumberAxis("", -1d, 1d, 1);
+       lineChart= new LineChart(xAxis, yAxis);
          java.nio.file.Path p=Paths.get(filename);
       
        String substring= p.getFileName().toString();
@@ -91,25 +96,39 @@ public class NasoFX extends Application {
         //XYChart.Series<Integer,Double> dataSeries1 = new XYChart.Series<>();
       //  XYChart.Data<Integer,Double> data = new XYChart.Data<>();
        
-      ObservableList<XYChart.Data<Integer,Double>> data = FXCollections.<XYChart.Data<Integer,Double>>observableArrayList();
+      ObservableList<XYChart.Data<Double,Double>> data = FXCollections.<XYChart.Data<Double,Double>>observableArrayList();
    
+     
+      
+      
        for(int i=0;i<numsamples;i++){
       
          // data = new XYChart.Data<Integer,Double>( i, samples[i]);
-          data.add(new XYChart.Data<>(i, samples[i]));
+          data.add(new XYChart.Data<>(i/sam_freq, samples[i]));
+         
           //dataSeries1.getData().add(data);
          // System.out.println(samples[i]);
      
        }
      //dataSeries1.getData().add(data);
      XYChart.Series series = new XYChart.Series(data);
-     
-    
+  
+    // XYChart.Series=new XYChart.Series<>
+     //xAxis.setUpperBound(2000);
+     //xAxis.setLayoutX(factor);
+     //series.setName("yyyyyy");
+    // xAxis.autosize();
+    xAxis.setSide(Side.TOP);
+   
      lineChart.setCreateSymbols(false);
      
      lineChart.getData().clear();
      //lineChart.getData().add(10, series);
+    // int index=346/2;
+    // lineChart.getData().add(150, series);
      lineChart.getData().add(series);
+        System.out.println("upper   "+yAxis.getUpperBound()+"lower     "+yAxis.getLowerBound());
+    
      lineChart.setLegendVisible(false);
        boolean verticalGridLinesVisible = lineChart.getVerticalGridLinesVisible();
       verticalGridLinesVisible=true;
@@ -118,16 +137,22 @@ public class NasoFX extends Application {
         
       lineChart.setCreateSymbols(false);
       lineChart.setAnimated(false);
-      lineChart.getYAxis().setTickLabelsVisible(false);
-      lineChart.getYAxis().setTickMarkVisible(false);
-      lineChart.getXAxis().setTickMarkVisible(false);  
-      lineChart.getXAxis().setTickLabelsVisible(false);
-      lineChart.getXAxis().setOpacity(0);
-      lineChart.getYAxis().lookup(".axis-minor-tick-mark").setVisible(false);
-      lineChart.getXAxis().lookup(".axis-minor-tick-mark").setVisible(false);
-      lineChart.getYAxis().setVisible(false);
-      lineChart.getYAxis().setTickLabelsVisible(false);
-     lineChart.getYAxis().setOpacity(0);
+     // lineChart.verticalGridLinesVisibleProperty(true){
+    // public final void setVerticalGridLinesVisible(boolean value) { verticalGridLinesVisible.set(value); }
+    
+  //  }
+      // xAxis.setTickUnit(factor);
+     // lineChart.getYAxis().setTickLabelsVisible(false);
+    //  lineChart.getYAxis().setTickMarkVisible(false);
+    //lineChart.getXAxis().toString();
+     //lineChart.getXAxis().setTickMarkVisible(false);  
+     // lineChart.getXAxis().setTickLabelsVisible(false);
+    //  lineChart.getXAxis().setOpacity(0);
+      //lineChart.getYAxis().lookup(".axis-minor-tick-mark").setVisible(false);
+     // lineChart.getXAxis().lookup(".axis-minor-tick-mark").setVisible(false);
+    //  lineChart.getYAxis().setVisible(false);
+     // lineChart.getYAxis().setTickLabelsVisible(false);
+   //  lineChart.getYAxis().setOpacity(0);
         tab1.setText(substring);
         TP.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
      
@@ -146,6 +171,18 @@ public class NasoFX extends Application {
      wavepane.setFitToWidth(true);
      wavepane.setFitToHeight(true);
      wavepane.setContent(lineChart);
+     lineChart.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                mousePosX1=e.getX();
+                mousePosY1=e.getY();
+                //System.out.println("mousePosX1--->"+e.getX());
+               // System.out.println("mousePosY1---->"+e.getY());
+               // series.getData().add(new XYChart.Data(series.getData().size() * 10, 30 + 50 * new Random().nextDouble()));
+                //Coords();
+            }
+        });
+     // System.out.println("mousePosX1--->"+mousePosX1);
+     //System.out.println("mousePosX1--->"+e.getX());
      //wavepane.setBackground(new Background(Array(new BackgroundFill(Color.DARKCYAN,new CornerRadii(0),Insets(0)))));
     // wavepane.setContent().removeAll(lineChart);
     /// wavepane.getChildren().add(lineChart);
@@ -178,6 +215,48 @@ public class NasoFX extends Application {
      
    // lineChart.setScaleX(2.0);
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public double[] normalize(double []samples, int numsamples){
+        double norm_arr[] = new double[numsamples] ;
+        double max = Math.abs(samples[0]);
+        /// find the max value
+        for(int itr=1;itr<numsamples;itr++){
+            if(Math.abs(samples[itr])> max )
+                max = Math.abs(samples[itr]);
+        }
+        
+        /// normalize with max value
+        for(int itr=0;itr<numsamples;itr++){
+            norm_arr[itr] = samples[itr]/max;
+        }
+        
+        System.out.println("max = "+max   + "samples 0 = " + samples[0]  + "norm 0 = "+ norm_arr[0]);
+        
+        
+        return norm_arr;
+    }
 
     /**
      * @param args the command line arguments
@@ -191,6 +270,21 @@ public class NasoFX extends Application {
         
         
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -209,8 +303,8 @@ public class NasoFX extends Application {
  
     }
     else{
-     this.lineChart.setMinWidth(1180+value*80);
-     wavepane.setHvalue(40);
+     this.lineChart.setMinWidth(1180+value*250);
+     wavepane.setHvalue(125);
      
     // scrollbar.setVisibleAmount(100-value);
     // scrollbar.setValue(50);

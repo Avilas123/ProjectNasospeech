@@ -178,7 +178,7 @@ public class FXMLDocumentController extends Application {
     @FXML
     private LineChart wave;
     NasoFX nfx=new NasoFX();
-    
+      double factor;
     @FXML
     void Zoomfunction(MouseEvent event) {
         
@@ -244,7 +244,7 @@ public class FXMLDocumentController extends Application {
           hour.setText("00");
           min.setText("00");
           double width=1189;
-          double factor=(frames_per_pixel*1000)/width;
+         factor=(frames_per_pixel*1000)/width;
           double movefactor=newTranslateX*factor;
           int milli=(int)movefactor%1000;
           String mm=String.valueOf(milli);
@@ -256,8 +256,7 @@ public class FXMLDocumentController extends Application {
               
           milisec.setText(mm);
           sec.setText(ss);
-          
-          }
+            }
            
            
            
@@ -400,6 +399,8 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
     int bytesRead = this.audioInputStream.read(audioData);
         System.out.println("bytes read = "+ bytesRead);
     format = audioInputStream.getFormat();
+    double sampling_freq=format.getSampleRate();
+        System.out.println("sampling_freq"+sampling_freq);
     int numSamples = (int) this.audioInputStream.getFrameLength();
         System.out.println("audio data length"+audioData.length);
    // frames_per_pixel=audioData.length/1292;
@@ -425,7 +426,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
        // dataSeries1.getData().add(new XYChart.Data( i, samples[i]));
        //   }
      //wave.getData().add(dataSeries1);
-   nfx.startforplotwave(classStage,samples,numSamples,filename,tab1,TP,wavepane);
+   nfx.startforplotwave(classStage,samples,numSamples,filename,tab1,TP,wavepane,factor,sampling_freq,frames_per_pixel);
   // System.out.println("filename_in 2nd time load-------->>>>>>\t"+filename);   
   
     
