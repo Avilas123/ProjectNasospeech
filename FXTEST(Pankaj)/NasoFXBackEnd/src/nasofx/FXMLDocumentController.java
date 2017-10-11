@@ -183,8 +183,8 @@ public class FXMLDocumentController extends Application {
     void Zoomfunction(MouseEvent event) {
         
         float value = (float) slider.getValue();
-        nfx.dozoom(value,wavepane);
-        
+        nfx.dozoom(value,wavepane, frames_per_pixel);
+     
         
         
 
@@ -257,7 +257,12 @@ public class FXMLDocumentController extends Application {
           milisec.setText(mm);
           sec.setText(ss);
             }
-           
+          else{
+          milisec.setText("000");
+          sec.setText("00");
+          
+          
+          }
            
            
            

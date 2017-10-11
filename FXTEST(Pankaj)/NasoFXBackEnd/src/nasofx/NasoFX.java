@@ -12,6 +12,7 @@ import java.nio.file.Paths;
 import java.util.Random;
 //import java.nio.file.Paths;
 import java.util.Scanner;
+import java.util.Set;
 import javafx.application.Application;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -22,17 +23,22 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.geometry.Side;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
 //import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 //import static nasofx.FXMLDocumentController.valuefromc;
@@ -47,13 +53,13 @@ public class NasoFX extends Application {
      *
      */
    
-    
-    
+    public StreamBytes streamBytes=new StreamBytes();
+    public int startSam, endSam;
      
       public double mousePosX1, mousePosX2, mouseMoveX1, mousePosY1;
       
       LineChart lineChart ;
-      
+       NumberAxis xAxis ;
   //  FXMLDocumentController fxmlobject =new FXMLDocumentController();
     double array[]={};
      @FXML 
@@ -81,7 +87,7 @@ public class NasoFX extends Application {
     
     
     public void startforplotwave(Stage stage,double[] samples,int numsamples,String filename,Tab tab1 ,TabPane TP,ScrollPane wavepane,Double factor,Double sam_freq,double duration) throws Exception {
-      NumberAxis xAxis = new NumberAxis("",0d,duration,0.1);
+     xAxis= new NumberAxis("",0d,duration,0.1);
        NumberAxis yAxis = new NumberAxis("", -1d, 1d, 1);
        lineChart= new LineChart(xAxis, yAxis);
          java.nio.file.Path p=Paths.get(filename);
@@ -96,7 +102,7 @@ public class NasoFX extends Application {
         //XYChart.Series<Integer,Double> dataSeries1 = new XYChart.Series<>();
       //  XYChart.Data<Integer,Double> data = new XYChart.Data<>();
        
-      ObservableList<XYChart.Data<Double,Double>> data = FXCollections.<XYChart.Data<Double,Double>>observableArrayList();
+   final   ObservableList<XYChart.Data<Double,Double>> data = FXCollections.<XYChart.Data<Double,Double>>observableArrayList();
    
      
       
@@ -104,7 +110,14 @@ public class NasoFX extends Application {
        for(int i=0;i<numsamples;i++){
       
          // data = new XYChart.Data<Integer,Double>( i, samples[i]);
-          data.add(new XYChart.Data<>(i/sam_freq, samples[i]));
+         
+         
+         XYChart.Data<Double,Double> dd = new XYChart.Data<>(i/sam_freq,samples[i]);
+         
+         //dd.setNode(new HoveredThresholdNode(samples[i]));
+         data.add(dd);
+         // data.add(new XYChart.Data<>(i/sam_freq, samples[i]).setNode(new HoveredThresholdNode(samples[i])));
+          
          
           //dataSeries1.getData().add(data);
          // System.out.println(samples[i]);
@@ -126,7 +139,11 @@ public class NasoFX extends Application {
      //lineChart.getData().add(10, series);
     // int index=346/2;
     // lineChart.getData().add(150, series);
-     lineChart.getData().add(series);
+     lineChart.getData().add(series);  
+     
+     
+     
+     
         System.out.println("upper   "+yAxis.getUpperBound()+"lower     "+yAxis.getLowerBound());
     
      lineChart.setLegendVisible(false);
@@ -171,16 +188,89 @@ public class NasoFX extends Application {
      wavepane.setFitToWidth(true);
      wavepane.setFitToHeight(true);
      wavepane.setContent(lineChart);
+     
+     lineChart.setOnMouseClicked(new EventHandler<MouseEvent>() 
+     {
+      @Override public void handle(MouseEvent mouseEvent) {
+          System.out.println("xaxis value print-->"+
+          String.format(
+            "x = %.2f",
+          xAxis.getValueForDisplay(mouseEvent.getX())
+          )
+        );
+         // System.out.println("series data-->"+series.getData().toString());////////////////gives the data
+      }
+    });
+     lineChart.setOnDragOver(new EventHandler<DragEvent>() {
+    public void handle(DragEvent event) {
+        /* data is dragged over the target */
+        /* accept it only if it is not dragged from the same node 
+         * and if it has a string data */
+       /* if (event.getGestureSource() != target &&
+                event.getDragboard().hasString()) {
+            /* allow for both copying and moving, whatever user chooses 
+            event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+        }
+        */
+      
+       
+       
+      
+       
+       
+        event.consume();
+    }
+});
+/*
+    xAxis.setOnMouseMoved(new EventHandler<MouseEvent>() {
+      @Override public void handle(MouseEvent mouseEvent) {
+          System.out.println("xaxis value print-->"+
+          String.format(
+            "x = %.2f",
+            xAxis.getValueForDisplay(mouseEvent.getX())
+          )
+        );
+      }
+    });
+     
+  */   
+     
+     
+     
+     
+     
+ /*    
      lineChart.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
                 mousePosX1=e.getX();
                 mousePosY1=e.getY();
+                
+                
+                
+                
+                
+                
+               getSamplingPositions(e.getX(),e.getY(),numsamples,duration);
+               int startSample = getStartSamples();
+                            int endSample = getEndSamples();
+                            System.out.print("StartSample\t"+startSample+"endSample\t"+endSample);
+                                CutAudioWave cutW = new CutAudioWave();
+                                cutW.cutPortion(streamBytes.getCurrent(), startSample, endSample);
+
+                                if (cutW.getresultByteArray() == null) {
+                                     System.out.println("i have entered");
+                                     return;
+                                }
+                                if (CutAudioInputStream.getCutWave() == null) {
+                                     System.out.println("i have entered");
+                                     return;
+                                }
                 //System.out.println("mousePosX1--->"+e.getX());
                // System.out.println("mousePosY1---->"+e.getY());
                // series.getData().add(new XYChart.Data(series.getData().size() * 10, 30 + 50 * new Random().nextDouble()));
                 //Coords();
             }
-        });
+        });*/
      // System.out.println("mousePosX1--->"+mousePosX1);
      //System.out.println("mousePosX1--->"+e.getX());
      //wavepane.setBackground(new Background(Array(new BackgroundFill(Color.DARKCYAN,new CornerRadii(0),Insets(0)))));
@@ -215,11 +305,69 @@ public class NasoFX extends Application {
      
    // lineChart.setScaleX(2.0);
     }
+    public void showHover(Float value)
+    {  
+    
+        
+        
+        
+        
     
     
+    }
     
+    public void getSamplingPositions(double mousePosX1,double mousePosX2,int numsamples,double duration) {
+        try {
+            int width = 1189;//pWave.samplingGraph.getSize().width;
+            int inPos = (int) mousePosX1, enPos = (int) mousePosX2;
+
+            if (inPos < 1) {
+                inPos = 1;
+            }
+            if (enPos > (width - 10)) {
+                enPos = width - 10;
+            }
+            if (enPos < 1) {
+                enPos = 1;
+            }
+            if (inPos > (width - 10)) {
+                inPos = width - 10;
+            }
+
+            int startTime = (int)((inPos * duration) * numsamples);
+            int endTime = (int)((enPos * duration) * numsamples);
+            int startSample, endSample;
+            if (startTime > endTime) {
+                startSample = endTime;
+                endSample = startTime;
+            } else {
+                startSample = startTime;
+                endSample = endTime;
+            }
+            System.out.println("startSample inside"+startSample);
+            System.out.println("endSample inside"+endSample);
+            setStartSamples(startSample);
+            setEndSamples(endSample);
+        } catch (Exception er) {
+            System.err.println(er);
+        }
+
+    }
     
-    
+     private void setStartSamples(int start) {
+        this.startSam = start;
+    }
+
+    private void setEndSamples(int end) {
+        this.endSam = end;
+    }
+    public int getStartSamples() {
+        return this.startSam;
+    }
+
+    public int getEndSamples() {
+        return this.endSam;
+    }
     
     
     
@@ -288,7 +436,7 @@ public class NasoFX extends Application {
     
     
     
-    public void dozoom(Float value,ScrollPane wavepane){
+    public void dozoom(Float value,ScrollPane wavepane,double duration){
   //double i=1;
     // while(i>0){
     //lineChart.setStyle(this.getClass().getResource("zoom.css").toExternalForm());
@@ -297,30 +445,46 @@ public class NasoFX extends Application {
     if(value<10)
     {
     this.lineChart.setMinWidth(1180);
+    
+    //xAxis= new NumberAxis("", 0d, duration, .001);
+    
+    
     //scrollbar.setVisibleAmount(100);
     //scrollbar.setValue(50); 
       
  
     }
-    else{
+    else if(value>=10&&value<50){
      this.lineChart.setMinWidth(1180+value*250);
+    //xAxis.setTickUnit(value*.1);////////////////set the value
+     xAxis.setTickUnit(.1);
+     
      wavepane.setHvalue(125);
      
     // scrollbar.setVisibleAmount(100-value);
     // scrollbar.setValue(50);
     
     }
+    else if(value>50)
+            {
+                this.lineChart.setMinWidth(1180+value*250);
+    //xAxis.setTickUnit(value*.1);////////////////set the value
+     xAxis.setTickUnit(.01);
+     
+     wavepane.setHvalue(125);
     }
-    public void dozoomout(){
+    }
+   /* public void dozoomout(){
   //   double i=1;
     // while(i>0){
+   
       this.lineChart.setScaleX(1);
-       
+       xAxis.setTickUnit(1);
       //i++;
      //} //this.lineChart.onZoomProperty();
     
     }
-
+*/
     double[] getdata(double[] samples) {
         System.out.println("i am entering\n");
         this.array=samples;
@@ -525,3 +689,54 @@ public class NasoFX extends Application {
         return valuefromc;
     }
 }
+class HoveredThresholdNode extends StackPane {
+    HoveredThresholdNode(double value) {
+      setPrefSize(15, 15);
+
+      final Label label = createDataThresholdLabel(value);
+
+      setOnMouseEntered(new EventHandler<MouseEvent>() {
+        @Override public void handle(MouseEvent mouseEvent) {
+          getChildren().setAll(label);
+          setCursor(Cursor.NONE);
+          toFront();
+        }
+      });
+      setOnMouseExited(new EventHandler<MouseEvent>() {
+        @Override public void handle(MouseEvent mouseEvent) {
+          getChildren().clear();
+          setCursor(Cursor.CROSSHAIR);
+        }
+      });
+      
+      
+  }
+     private Label createDataThresholdLabel(double value) {
+      final Label label = new Label(value + "");
+      label.getStyleClass().addAll("default-color0", "chart-line-symbol", "chart-series-line");
+      label.setStyle("-fx-font-size: 20; -fx-font-weight: bold;");
+
+     /*if (priorValue == 0) {
+       label.setTextFill(Color.DARKGRAY);
+      } else if (value > priorValue) {
+        label.setTextFill(Color.FORESTGREEN);
+      } else {
+        label.setTextFill(Color.FIREBRICK);
+      }
+
+      label.setMinSize(Label.USE_PREF_SIZE, Label.USE_PREF_SIZE);
+      
+    }*/
+    
+    return label;
+    
+    
+    
+}
+
+      
+      
+}    
+      
+      
+    
