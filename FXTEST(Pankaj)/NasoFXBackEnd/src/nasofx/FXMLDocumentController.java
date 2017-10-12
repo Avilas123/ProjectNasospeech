@@ -20,6 +20,8 @@ import java.util.ResourceBundle;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.Animation;
+import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -81,7 +83,7 @@ public class FXMLDocumentController extends Application {
     private MenuItem scorecard;
     
      @FXML
-    private ImageView marker;
+    public ImageView marker;
      
        @FXML
     private AnchorPane counterap;
@@ -104,6 +106,7 @@ public class FXMLDocumentController extends Application {
       
       public  Media pick;  
        public MediaPlayer player ;
+      public  TranslateTransition trans;
        
        @FXML
     private MenuItem open_menu_item;
@@ -117,6 +120,7 @@ public class FXMLDocumentController extends Application {
 
     @FXML
     private Button recordbtn;
+    
 
   
     final Tooltip playtip = new Tooltip();
@@ -178,13 +182,14 @@ public class FXMLDocumentController extends Application {
     @FXML
     private LineChart wave;
     NasoFX nfx=new NasoFX();
-      double factor;
+    double factor;
+    
     @FXML
     void Zoomfunction(MouseEvent event) {
         
         float value = (float) slider.getValue();
-        nfx.dozoom(value,wavepane, frames_per_pixel);
-     
+        nfx.dozoom(value,wavepane,duration);
+        
         
         
 
@@ -219,7 +224,7 @@ public class FXMLDocumentController extends Application {
            // double newTranslateY = orgTranslateY + offsetY;
           // System.out.println("\nThe offset is :"+ newTranslateX);
            
-           if(newTranslateX>0.0 && newTranslateX<1147.11){
+           if(newTranslateX>0.0 && newTranslateX<1140.11){
              
             ((ImageView)(event.getSource())).setTranslateX(newTranslateX);
             //((ImageView)(event.getSource())).setTranslateY(newTranslateY);
@@ -244,25 +249,33 @@ public class FXMLDocumentController extends Application {
           hour.setText("00");
           min.setText("00");
           double width=1189;
-         factor=(frames_per_pixel*1000)/width;
+          double factor=(frames_per_pixel*1000)/width;
           double movefactor=newTranslateX*factor;
           int milli=(int)movefactor%1000;
           String mm=String.valueOf(milli);
           
           int second=(int)movefactor/1000;
           String ss=String.valueOf(second);
+          
+          if(ss.length()<2){
+          ss= "0"+ss;
+          }
+          if(mm.length()==1){
+          mm= "00"+mm;
+          }
+          if (mm.length()==2){
+          mm= "0"+mm;
+          }
+          
+          
           if(milli>=0 && movefactor < (frames_per_pixel*1000))
           {
               
           milisec.setText(mm);
           sec.setText(ss);
-            }
-          else{
-          milisec.setText("000");
-          sec.setText("00");
-          
           
           }
+           
            
            
            
@@ -390,8 +403,9 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
     System.out.println("filename_in 1st time load-------->>>>>>\t"+filename);
    File file = new File(filename);
           pick = new Media(file.toURI().toURL().toExternalForm());
-         player = new MediaPlayer(pick);
-    
+       player = new MediaPlayer(pick);
+      trans= new TranslateTransition();
+      
 
     this.audioInputStream = AudioSystem.getAudioInputStream(new File(filename));
     
@@ -405,7 +419,6 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
         System.out.println("bytes read = "+ bytesRead);
     format = audioInputStream.getFormat();
     double sampling_freq=format.getSampleRate();
-        System.out.println("sampling_freq"+sampling_freq);
     int numSamples = (int) this.audioInputStream.getFrameLength();
         System.out.println("audio data length"+audioData.length);
    // frames_per_pixel=audioData.length/1292;
@@ -418,7 +431,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
     int frameSize = format.getFrameSize();
     float frameRate = format.getFrameRate();
     frames_per_pixel = (audioFileLength / (frameSize * frameRate));
-    System.out.println("durationInSeconds"+frames_per_pixel);
+   // System.out.println("durationInSeconds"+frames_per_pixel);
      sendfilename(filename);
     
     
@@ -431,7 +444,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
        // dataSeries1.getData().add(new XYChart.Data( i, samples[i]));
        //   }
      //wave.getData().add(dataSeries1);
-   nfx.startforplotwave(classStage,samples,numSamples,filename,tab1,TP,wavepane,factor,sampling_freq,frames_per_pixel);
+   nfx.startforplotwave(classStage,samples,numSamples,filename,tab1,TP,wavepane,sampling_freq,frames_per_pixel);
   // System.out.println("filename_in 2nd time load-------->>>>>>\t"+filename);   
   
     
@@ -932,7 +945,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
       //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     String getfilename(){
-        System.out.println("filename is in getfilename func"+dummy);
+        //System.out.println("filename is in getfilename func"+dummy);
     return dummy;
     
     }
@@ -1281,50 +1294,63 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
            double d = pick.getDuration().toMillis();
           // System.out.println("The duration of the file is:"+d);
           // double aaa =Double.parseDouble(d);
-           double translate = 1147.77/d;
+          // double translate = 1147.77/d;
             //System.out.println("The translate of the file is:"+translate);   
+           // TranslateTransition trans= new TranslateTransition();
+           
+          
+            trans.setDuration(Duration.millis(d));
+            trans.setToX(1140);
+            trans.setNode(marker);
             
-            
-         if (status == MediaPlayer.Status.PLAYING ){
-         player.pause();
-         playtip.setText("play");
-         playbtn.setTooltip(playtip);
-         playbtn.setGraphic(new ImageView(pause));
-         playbtn.setGraphic(new ImageView(playimage));
-         
-         }
-         else if(status == MediaPlayer.Status.PAUSED){
-         player.play();
-         playtip.setText("pause");
-         playbtn.setTooltip(playtip);
-         playbtn.setGraphic(new ImageView(pause));
-         player.setOnEndOfMedia(new Runnable() {
-            @Override public void run() {
-                try {
-                       resetmedia();
-                       playtip.setText("play");
-                       playbtn.setTooltip(playtip);
-                     
-                      playbtn.setGraphic(new ImageView(playimage));
-                 } catch (MalformedURLException ex) {
-                      Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                     }
-                    });
-                 }
-         else {
+          // Animation.Status  tttt= trans.getStatus();
+           //System.out.println("The animation status is :"+tttt);
+           if(!(status == MediaPlayer.Status.PLAYING) && !(status == MediaPlayer.Status.PAUSED)) {
                 player.play();
+               
+                player.currentTimeProperty().addListener(new ChangeListener<Duration> () {
+   @Override
+   //is usually updated every 100 ms
+   public void changed(ObservableValue<? extends Duration> observable,
+     Duration oldValue, Duration newValue) {
+       
+      double a = trans.getCurrentTime().toMillis();
+      int aa = (int)a;
+      
+       int milli=(int)aa%1000;
+          String mm=String.valueOf(milli);
+          
+          int second=(int)aa/1000;
+          String ss=String.valueOf(second);
+          if(ss.length()<2){
+          ss= "0"+ss;
+          }
+          if(mm.length()==1){
+          mm= "00"+mm;
+          }
+          if (mm.length()==2){
+          mm= "0"+mm;
+          }
+          
+              
+          milisec.setText(mm);
+          sec.setText(ss);
+          
+           
+   }
+        });
+                 trans.play();
                 playtip.setText("pause");
                 playbtn.setTooltip(playtip);
-  
                 playbtn.setGraphic(new ImageView(pause));
-                player.setOnEndOfMedia(new Runnable() {
+       player.setOnEndOfMedia(new Runnable() {
             @Override public void run() {
                 try {
                        resetmedia();
                        playtip.setText("play");
                        playbtn.setTooltip(playtip);
                        playbtn.setGraphic(new ImageView(playimage));
+                       
                 } catch (MalformedURLException ex) {
                        Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -1332,6 +1358,69 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
                  });
         
          }
+            
+         else if (status == MediaPlayer.Status.PLAYING ){
+         player.pause();
+         trans.pause();
+         playtip.setText("play");
+         playbtn.setTooltip(playtip);
+         playbtn.setGraphic(new ImageView(pause));
+         playbtn.setGraphic(new ImageView(playimage));
+         
+         }
+         else if(status == MediaPlayer.Status.PAUSED){
+          player.play();
+          player.currentTimeProperty().addListener(new ChangeListener<Duration> () {
+   @Override
+   //is usually updated every 100 ms
+   public void changed(ObservableValue<? extends Duration> observable,
+     Duration oldValue, Duration newValue) {
+       
+      double a = player.getCurrentTime().toMillis();
+      int aa = (int)a;
+       
+       int milli=(int)aa%1000;
+          String mm=String.valueOf(milli);
+          
+          int second=(int)aa/1000;
+          String ss=String.valueOf(second);
+          if(ss.length()<2){
+          ss= "0"+ss;
+          }
+          if(mm.length()==1){
+          mm= "00"+mm;
+          }
+          if (mm.length()==2){
+          mm= "0"+mm;
+          }
+              
+          milisec.setText(mm);
+          sec.setText(ss);
+          
+           
+   }
+        });
+                trans.play();
+                
+                playtip.setText("pause");
+                playbtn.setTooltip(playtip);
+                playbtn.setGraphic(new ImageView(pause));
+               player.setOnEndOfMedia(new Runnable() {
+            @Override public void run() {
+                try {
+                       resetmedia();
+                       System.out.println("M ON");
+                       playtip.setText("play");
+                       playbtn.setTooltip(playtip);
+                       playbtn.setGraphic(new ImageView(playimage));
+                       
+                } catch (MalformedURLException ex) {
+                       Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+                 });
+                 }
+         
      }
     
   @FXML
@@ -1342,10 +1431,12 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
          {
               Image playimage = new Image("file:\\C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEnd\\src\\Icons\\play-arrow-(1).png",15,17,false,false);
               player.stop();
+              trans.stop();
               resetmedia();
               playtip.setText("play");
               playbtn.setTooltip(playtip);
               playbtn.setGraphic(new ImageView(playimage));
+              
          }
 
     }
@@ -1354,14 +1445,14 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
     void forwardseek(ActionEvent event) {
         
         player.seek(player.getCurrentTime().multiply(1.5));
-
+        trans.playFrom(trans.getCurrentTime().multiply(1.5));
     }
     
     
     @FXML
     void rewindseek(ActionEvent event) {
         player.seek(player.getCurrentTime().divide(1.5));
-
+        trans.playFrom(trans.getCurrentTime().divide(1.5));
     }
     
     
@@ -1386,7 +1477,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
         stoptip.setText("stop");
         stopbtn.setTooltip(stoptip);
     }
-     @FXML
+     @FXML                                                          
     void recordenter(MouseEvent event) {
         recordtip.setText("record");
         recordbtn.setTooltip(recordtip);
@@ -1397,8 +1488,16 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
       File file = new File(filename);
           pick = new Media(file.toURI().toURL().toExternalForm());
           player = new MediaPlayer(pick);
-          
-    
+         // trans= new TranslateTransition();
+          trans.stop();
+      
+           marker.setTranslateX(0);
+           milisec.setText("000");
+           sec.setText("00");
+         
+         
+         // System.out.println("The marker translate is :"+marker.getTranslateX());
+          //System.out.println("The getX of the marker is :"+marker.getLayoutX());
     }
         
     }

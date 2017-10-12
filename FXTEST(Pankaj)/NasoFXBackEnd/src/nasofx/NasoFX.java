@@ -86,7 +86,7 @@ public class NasoFX extends Application {
     }
     
     
-    public void startforplotwave(Stage stage,double[] samples,int numsamples,String filename,Tab tab1 ,TabPane TP,ScrollPane wavepane,Double factor,Double sam_freq,double duration) throws Exception {
+    public void startforplotwave(Stage stage,double[] samples,int numsamples,String filename,Tab tab1 ,TabPane TP,ScrollPane wavepane,Double sam_freq,double duration) throws Exception {
      xAxis= new NumberAxis("",0d,duration,0.1);
        NumberAxis yAxis = new NumberAxis("", -1d, 1d, 1);
        lineChart= new LineChart(xAxis, yAxis);
@@ -180,7 +180,8 @@ public class NasoFX extends Application {
      //lineChart.setMaxSize(1300, 402);
    // lineChart.setMinSize(1300,402);
     lineChart.setStyle(this.getClass().getResource("test.css").toExternalForm());
-     wavepane.setPannable(true);
+   // wavepane.setStyle(this.getClass().getResource("test.css").toExternalForm());
+    // wavepane.setPannable(true);
     // wavepane.setStyle(".scroll-pane > .viewport{-fx-background-color:#232323 ;\n" +
      //"-fx-control-inner-background: transparent;}");
      wavepane.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
@@ -445,6 +446,7 @@ public class NasoFX extends Application {
     if(value<10)
     {
     this.lineChart.setMinWidth(1180);
+    xAxis.setTickUnit(.1);
     
     //xAxis= new NumberAxis("", 0d, duration, .001);
     
@@ -454,24 +456,57 @@ public class NasoFX extends Application {
       
  
     }
-    else if(value>=10&&value<50){
+    else if(value>=10&&value<30){
      this.lineChart.setMinWidth(1180+value*250);
     //xAxis.setTickUnit(value*.1);////////////////set the value
-     xAxis.setTickUnit(.1);
+     xAxis.setTickUnit(.08);
      
-     wavepane.setHvalue(125);
+     wavepane.setHvalue(50);
      
     // scrollbar.setVisibleAmount(100-value);
     // scrollbar.setValue(50);
     
     }
-    else if(value>50)
+    else if(value>=30&&value<50){
+     this.lineChart.setMinWidth(1180+value*250);
+    //xAxis.setTickUnit(value*.1);////////////////set the value
+     xAxis.setTickUnit(.05);
+     
+     wavepane.setHvalue(40);
+     
+    // scrollbar.setVisibleAmount(100-value);
+    // scrollbar.setValue(50);
+    
+    }
+    else if(value>=50&&value<70){
+     this.lineChart.setMinWidth(1180+value*250);
+    //xAxis.setTickUnit(value*.1);////////////////set the value
+     xAxis.setTickUnit(.03);
+     
+     wavepane.setHvalue(30);
+     
+    // scrollbar.setVisibleAmount(100-value);
+    // scrollbar.setValue(50);
+    
+    }
+    else if(value>=70&&value<90){
+     this.lineChart.setMinWidth(1180+value*250);
+    //xAxis.setTickUnit(value*.1);////////////////set the value
+     xAxis.setTickUnit(.02);
+     
+     wavepane.setHvalue(20);
+     
+    // scrollbar.setVisibleAmount(100-value);
+    // scrollbar.setValue(50);
+    
+    }
+    else if(value>90)
             {
                 this.lineChart.setMinWidth(1180+value*250);
     //xAxis.setTickUnit(value*.1);////////////////set the value
      xAxis.setTickUnit(.01);
      
-     wavepane.setHvalue(125);
+     wavepane.setHvalue(10);
     }
     }
    /* public void dozoomout(){

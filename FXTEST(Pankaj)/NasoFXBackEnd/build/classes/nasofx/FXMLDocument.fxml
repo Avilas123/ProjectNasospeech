@@ -129,7 +129,7 @@
                   <AnchorPane fx:id="tab1ap">
                      <children>
                         <ScrollPane fx:id="wavepane" fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="346.0" prefWidth="1180.0" style="-fx-background-color: #232323;" stylesheets="@test.css" vbarPolicy="NEVER" />
-                        <ImageView fx:id="marker" fitHeight="346.0" fitWidth="29.0" layoutX="5.0" onMouseDragged="#markerdrag" onMousePressed="#markerpress" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="marker" fitHeight="346.0" fitWidth="29.0" layoutX="21.0" onMouseDragged="#markerdrag" onMousePressed="#markerpress" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Icons/marker.png" />
                            </image>
