@@ -46,6 +46,9 @@ and open the template in the editor.
 
 .chart-vertical-grid-lines {
     -fx-stroke: #C1C1C1;
+    -fx-stroke-dash-array: 1000 12 12 1000;
+   
+    
     -fx-opacity: 0.5;
 }
 
@@ -68,6 +71,10 @@ and open the template in the editor.
 .chart-horizontal-zero-line{
     -fx-stroke: transparent;
     -fx-stroke-width: 5px;
+}
+.scroll-bar:horizontal{
+    
+    -fx-cursor:  hand;
 }
 
  //.series{ -fx-stroke-width: 2px;

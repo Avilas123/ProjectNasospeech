@@ -64,7 +64,7 @@ public class NasoFX extends Application {
     double array[]={};
      @FXML 
  static  double  valuefromc;
-    
+     XYChart.Data<Double,Double> dd;
     
     
     @Override
@@ -78,7 +78,7 @@ public class NasoFX extends Application {
       stage.setResizable(false);
        stage.setMaxWidth(1190);
        stage.setMaxHeight(630);
-      stage.setTitle("NasoSpeech");
+      stage.setTitle("                                                                                                                                                                                  NasoSpeech");
       
         stage.setScene(scene);
          stage.centerOnScreen();
@@ -87,7 +87,7 @@ public class NasoFX extends Application {
     
     
     public void startforplotwave(Stage stage,double[] samples,int numsamples,String filename,Tab tab1 ,TabPane TP,ScrollPane wavepane,Double sam_freq,double duration) throws Exception {
-     xAxis= new NumberAxis("",0d,duration,0.1);
+     xAxis= new NumberAxis("",0d,duration,0.05);
        NumberAxis yAxis = new NumberAxis("", -1d, 1d, 1);
        lineChart= new LineChart(xAxis, yAxis);
          java.nio.file.Path p=Paths.get(filename);
@@ -112,7 +112,7 @@ public class NasoFX extends Application {
          // data = new XYChart.Data<Integer,Double>( i, samples[i]);
          
          
-         XYChart.Data<Double,Double> dd = new XYChart.Data<>(i/sam_freq,samples[i]);
+         dd = new XYChart.Data<>(i/sam_freq,samples[i]);
          
          //dd.setNode(new HoveredThresholdNode(samples[i]));
          data.add(dd);
@@ -172,10 +172,13 @@ public class NasoFX extends Application {
    //  lineChart.getYAxis().setOpacity(0);
         tab1.setText(substring);
         TP.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
-     
+    
    //lineChart.setPrefHeight(402);
      lineChart.setPrefWidth(1180);
      lineChart.setMinWidth(1180);
+     //lineChart.setPrefHeight(352);
+     //lineChart.setMinHeight(352);
+   
          double height = lineChart.getHeight();//System.out.println("linechartheight"+height);
      //lineChart.setMaxSize(1300, 402);
    // lineChart.setMinSize(1300,402);
@@ -191,15 +194,37 @@ public class NasoFX extends Application {
      wavepane.setContent(lineChart);
      
      lineChart.setOnMouseClicked(new EventHandler<MouseEvent>() 
-     {
+     {  
       @Override public void handle(MouseEvent mouseEvent) {
+          double xxx=(double)xAxis.getValueForDisplay(mouseEvent.getX());
           System.out.println("xaxis value print-->"+
           String.format(
-            "x = %.2f",
-          xAxis.getValueForDisplay(mouseEvent.getX())
+            "x =",xxx  
           )
         );
-         // System.out.println("series data-->"+series.getData().toString());////////////////gives the data
+        //  xAxis.animatedProperty().asString();
+          //lineChart.getXAxis().getLabel();
+          
+          
+      // xAxis.setClip(new HoveredThresholdNode(xxx));
+  //HoveredThresholdNode xxx=new HoveredThresholdNode();  
+//xxx.
+   //dd.setNode(new Label("xxx"));
+        //  final Label label=new Label("xxxxx");
+        //  lineChart.getEffect().notify();
+//xAxis.getChildren().setAll(label);
+//StackPane ss=new StackPane();
+//ss.getChildren().add(ss);
+// xAxis.getAnimated();
+          //   xAxis.setCursor(Cursor.CROSSHAIR);
+          // ss.toFront();
+          // label.toFront();
+         // boolean hover = xAxis.isHover();
+// System.out.println("series data-->"+series.getData().toString());////////////////gives the data
+   
+      
+     
+      
       }
     });
      lineChart.setOnDragOver(new EventHandler<DragEvent>() {
@@ -446,7 +471,7 @@ public class NasoFX extends Application {
     if(value<10)
     {
     this.lineChart.setMinWidth(1180);
-    xAxis.setTickUnit(.1);
+    xAxis.setTickUnit(.05);
     
     //xAxis= new NumberAxis("", 0d, duration, .001);
     
@@ -461,7 +486,7 @@ public class NasoFX extends Application {
     //xAxis.setTickUnit(value*.1);////////////////set the value
      xAxis.setTickUnit(.08);
      
-     wavepane.setHvalue(50);
+     wavepane.setHvalue(.50);
      
     // scrollbar.setVisibleAmount(100-value);
     // scrollbar.setValue(50);
@@ -472,7 +497,7 @@ public class NasoFX extends Application {
     //xAxis.setTickUnit(value*.1);////////////////set the value
      xAxis.setTickUnit(.05);
      
-     wavepane.setHvalue(40);
+     wavepane.setHvalue(.40);
      
     // scrollbar.setVisibleAmount(100-value);
     // scrollbar.setValue(50);
@@ -483,7 +508,7 @@ public class NasoFX extends Application {
     //xAxis.setTickUnit(value*.1);////////////////set the value
      xAxis.setTickUnit(.03);
      
-     wavepane.setHvalue(30);
+     wavepane.setHvalue(.30);
      
     // scrollbar.setVisibleAmount(100-value);
     // scrollbar.setValue(50);
@@ -494,7 +519,7 @@ public class NasoFX extends Application {
     //xAxis.setTickUnit(value*.1);////////////////set the value
      xAxis.setTickUnit(.02);
      
-     wavepane.setHvalue(20);
+     wavepane.setHvalue(.20);
      
     // scrollbar.setVisibleAmount(100-value);
     // scrollbar.setValue(50);
@@ -506,7 +531,7 @@ public class NasoFX extends Application {
     //xAxis.setTickUnit(value*.1);////////////////set the value
      xAxis.setTickUnit(.01);
      
-     wavepane.setHvalue(10);
+     wavepane.setHvalue(.10);
     }
     }
    /* public void dozoomout(){
@@ -746,6 +771,10 @@ class HoveredThresholdNode extends StackPane {
       
       
   }
+
+    HoveredThresholdNode() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
      private Label createDataThresholdLabel(double value) {
       final Label label = new Label(value + "");
       label.getStyleClass().addAll("default-color0", "chart-line-symbol", "chart-series-line");

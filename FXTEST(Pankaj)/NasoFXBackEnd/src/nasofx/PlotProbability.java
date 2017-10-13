@@ -57,7 +57,7 @@ public class PlotProbability  {
         //panel.setBackground(Color.BLACK);
        //llllwindow.getContentPane().add(panel);
      //   getfille(pWave);
-        window.setSize(785,785);
+        window.setSize(1000,1000);
         window.setTitle("Hypernasality");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setVisible(true);

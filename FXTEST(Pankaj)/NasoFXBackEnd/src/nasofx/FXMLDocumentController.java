@@ -248,7 +248,7 @@ public class FXMLDocumentController extends Application {
           
           hour.setText("00");
           min.setText("00");
-          double width=1189;
+          double width=1135;
           double factor=(frames_per_pixel*1000)/width;
           double movefactor=newTranslateX*factor;
           int milli=(int)movefactor%1000;
