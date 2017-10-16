@@ -6,6 +6,7 @@
 package nasofx;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.nio.file.Paths;
@@ -13,6 +14,8 @@ import java.util.Random;
 //import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -41,6 +44,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javax.sound.sampled.AudioInputStream;
 //import static nasofx.FXMLDocumentController.valuefromc;
 //import static nasofx.FXMLDocumentController.valuefromc;
 /**
@@ -86,7 +90,7 @@ public class NasoFX extends Application {
     }
     
     
-    public void startforplotwave(Stage stage,double[] samples,int numsamples,String filename,Tab tab1 ,TabPane TP,ScrollPane wavepane,Double sam_freq,double duration) throws Exception {
+    public void startforplotwave(Stage stage,double[] samples,int numsamples,String filename,Tab tab1 ,TabPane TP,ScrollPane wavepane,Double sam_freq,double duration,AudioInputStream audioInputStream) throws Exception {
      xAxis= new NumberAxis("",0d,duration,0.05);
        NumberAxis yAxis = new NumberAxis("", -1d, 1d, 1);
        lineChart= new LineChart(xAxis, yAxis);
@@ -199,7 +203,7 @@ public class NasoFX extends Application {
           double xxx=(double)xAxis.getValueForDisplay(mouseEvent.getX());
           System.out.println("xaxis value print-->"+
           String.format(
-            "x =",xxx  
+            "x =.2f",xxx  
           )
         );
         //  xAxis.animatedProperty().asString();
@@ -227,8 +231,8 @@ public class NasoFX extends Application {
       
       }
     });
-     lineChart.setOnDragOver(new EventHandler<DragEvent>() {
-    public void handle(DragEvent event) {
+   //  lineChart.setOnDragOver(new EventHandler<DragEvent>() {
+  //  public void handle(DragEvent event) {
         /* data is dragged over the target */
         /* accept it only if it is not dragged from the same node 
          * and if it has a string data */
@@ -238,16 +242,163 @@ public class NasoFX extends Application {
             event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
         }
         */
+    //  if(mousePosX1==0){
+    //  mousePosX1=event.getX();
+    //      System.out.println("position1"+mousePosX1);
+    //  }
+    //  else{
+       //   mousePosX2=event.getX();
+       //   System.out.println("position2"+mousePosX2);
+      
+    //  }
+       
+       
       
        
        
+      //  event.consume();
+    //}
+//});
+
+     
+     lineChart.setOnMouseDragged(new EventHandler<MouseEvent>() 
+    {  
+      @Override public void handle(MouseEvent mouseEvent) {
+          //double xxx=(double)xAxis.getValueForDisplay(mouseEvent.getX());
+         // System.out.println("xaxis value print-->"+
+         // String.format(
+          //  "x =",xxx  
+         // )
+         
+       if(mousePosX1==0){
+     mousePosX1=mouseEvent.getX();
+         // System.out.println("position1"+mousePosX1);
+     }
+     else{
+         mousePosX2=mouseEvent.getX();
+        //  System.out.println("position2"+mousePosX2);
       
-       
-       
-        event.consume();
-    }
-});
-/*
+     }
+          System.out.println("\nposition1->\t"+mousePosX1);
+          System.out.println("\nposition2->\t"+mousePosX2);
+          getSamplingPositions(mousePosX1,mousePosX2,numsamples,duration);
+               int startSample = getStartSamples();
+                            int endSample = getEndSamples();
+String input="\nStarting MousePosition-->\n"+mousePosX1+"\nMouse_End_Position-->\n"+mousePosX2+"\nStartSample-->\n"+startSample+"\nendSample-->\n"+endSample;
+System.out.print("\nStartSample\t"+startSample+"\nendSample\t"+endSample);
+                              
+//////////////write to the file for articulation
+
+ String currentDir = System.getProperty("user.dir");
+                       // System.out.println("cu");
+                        String cexedir = currentDir + "/cexe/";
+                        String filename=cexedir+"Input_For_Articulation.txt";
+
+
+ File file = new File(filename);
+  
+          try {
+              //Create the file
+              if (file.createNewFile()){
+                  System.out.println("File is created!");
+              }else{
+                  System.out.println("File already exists.");
+              }
+          } catch (IOException ex) {
+              Logger.getLogger(NasoFX.class.getName()).log(Level.SEVERE, null, ex);
+          }
+           
+          //Write Content
+          FileWriter writer = null;
+          try {
+              writer = new FileWriter(file);
+          } catch (IOException ex) {
+              Logger.getLogger(NasoFX.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          try {
+              writer.write(input);
+          } catch (IOException ex) {
+              Logger.getLogger(NasoFX.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          try {
+              writer.close();
+              
+          } catch (IOException ex) {
+              Logger.getLogger(NasoFX.class.getName()).log(Level.SEVERE, null, ex);
+          }
+              
+  /////end of the file writer////////////////            
+                  
+              
+ CutAudioWave cutW = new CutAudioWave();
+ cutW.cutPortion(streamBytes.getCurrent(), startSample, endSample);
+
+ if (cutW.getresultByteArray() == null) {
+     System.out.println("i have entered");
+     return;
+ }
+ if (CutAudioInputStream.getCutWave() == null) {
+     System.out.println("i have entered");
+     return;
+ }
+          
+   // String currentDir = System.getProperty("user.dir");
+                       // System.out.println("cu");
+                    //    String cexedir = currentDir + "/cexe/";
+                    //    System.out.println("correct format"+cexedir);
+                       // JFrame jf = new JFrame("test");
+                        //String name = JOptionPane.showInputDialog(jf,
+                        //currentDir, null);
+                        
+                 
+                        
+                        String filelocName=cexedir+"temp.wav";
+                        StreamConverter.byteTowavefile(CutAudioInputStream.getCutWave(),audioInputStream , filelocName);
+                        CutAudioInputStream.setCutWave(null);
+                        
+                        /////////////hypernasality////////////
+  //CheckHypernasality(filelocName);
+                        //////////////hypernasality//////////
+                       
+ 
+          
+          
+          
+      }
+    });
+
+      
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     /*
     xAxis.setOnMouseMoved(new EventHandler<MouseEvent>() {
       @Override public void handle(MouseEvent mouseEvent) {
           System.out.println("xaxis value print-->"+
@@ -344,7 +495,7 @@ public class NasoFX extends Application {
     
     public void getSamplingPositions(double mousePosX1,double mousePosX2,int numsamples,double duration) {
         try {
-            int width = 1189;//pWave.samplingGraph.getSize().width;
+            int width = 1180;//pWave.samplingGraph.getSize().width;
             int inPos = (int) mousePosX1, enPos = (int) mousePosX2;
 
             if (inPos < 1) {
@@ -370,8 +521,8 @@ public class NasoFX extends Application {
                 startSample = startTime;
                 endSample = endTime;
             }
-            System.out.println("startSample inside"+startSample);
-            System.out.println("endSample inside"+endSample);
+          //  System.out.println("startSample inside"+startSample);
+           // System.out.println("endSample inside"+endSample);
             setStartSamples(startSample);
             setEndSamples(endSample);
         } catch (Exception er) {
@@ -444,6 +595,146 @@ public class NasoFX extends Application {
         
         
     }
+    
+    //////////////////////////select&CheckHypernasality////////////////////////////
+       private double CheckHypernasality(String filelocName) 
+       {
+             
+               try {        String currentDir = System.getProperty("user.dir");
+                       // System.out.println("cu");
+                        String cexedir = currentDir + "/cexe/";
+                          Process p1;
+                          //System.out.println("getting filename"+pWave.abbfilePath);
+                          //filenamedummy = pWave.abbfilePath;
+                         // System.out.println("filenamedummy"+filename);
+                          ProcessBuilder pb1=new ProcessBuilder
+                            (cexedir+"mfcc_final_version_working",
+                                    filelocName,
+                                    "1001",
+                                    cexedir+"start.txt",
+                                    cexedir+"end.txt",
+                                    cexedir+"vunv.txt",
+                                    cexedir+"spfr.txt",
+                                    cexedir+"avg.txt",
+                                    cexedir+"N.txt",
+                                    cexedir+"F.txt",
+                                    cexedir+"mfcc_output_13dim.txt"
+                            );
+                          
+                          
+                          p1 = pb1.start();
+                          System.out.println("fdgdfhdfhdfhdfhfdhdf");     
+                          
+                          p1.waitFor();
+                         
+                             
+                          LineNumberReader  lnr = new LineNumberReader(new FileReader(new File(cexedir+"mfcc_output_13dim.txt")));
+                            lnr.skip(Long.MAX_VALUE);
+                            System.out.println(lnr.getLineNumber() + 1); //Add 1 because line index starts at 0
+                                    // Finally, the LineNumberReader object should be closed to prevent resource leak
+                            int numFrames = lnr.getLineNumber();
+                         //   System.out.println("The number of frames is AAAAAAA"+numFrames);
+                            lnr.close();
+                            System.out.println("num frames = "+numFrames);
+                                  ProcessBuilder pb = new ProcessBuilder(cexedir+"posteriorcomputation" ,
+                                          cexedir+"mfcc_output_13dim.txt",
+                                          cexedir+"mean_norm.txt",
+                                          cexedir+"var_norm.txt",
+                                          cexedir+"weight_norm.txt",
+                                          cexedir+"mean_clp.txt",
+                                          cexedir+"var_clp.txt",
+                                          cexedir+"weight_clp.txt",
+                                          cexedir+"output_norm.txt",
+                                          cexedir+"output_clp.txt", "16", "13", Integer.toString(numFrames));
+                                 // 
+                                  //  ProcessBuilder pb = new ProcessBuilder("tree");
+                                  
+                                  
+                                  try {
+                                      //System.out.println("i am here");
+                                      Process p = pb.start();
+                                      /*try {
+                                      pb.wait(0);
+                                      } catch (InterruptedException ex) {
+                                      Logger.getLogger(RightClickEvent.class.getName()).log(Level.SEVERE, null, ex);
+                                      }
+                                      */
+                              // s p.waitFor();
+                              int waitFor = p.waitFor();
+                              p.isAlive();
+                                      System.out.println("wait for value"+waitFor);
+                                   //   BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                                      Scanner sc=new Scanner(p.getInputStream());
+                                     valuefromc= Double.parseDouble(sc.next());
+                                     
+                                    // System.out.println("xxxxxxxxxxxxx---->"+br.readLine());
+                                     //String st= br.readLine();
+                                      //Double.parseDouble(br.readLine());
+                                      //valuefromc=Float.parseFloat(br.readLine());
+                                    //System.out.println("float of xxxxxxxx----->"+Double.parseDouble(br.readLine()));
+                                    // valuefromc = Double.parseDouble(br.readLine());
+                                      //(float) 0.27;//Double.parseDouble(br.readLine());//br.readLine();
+                                     //System.out.println("%f i am  getting this value from c---->"+valuefromc);
+                                      //br.readLine();
+                                      
+                                      //  System.out.println(" i am  getting this value from c---->");
+                                      
+                                      //System.out.println("value getting"+br);//br.readLine());
+                                      // String probability =br.readLine();
+                                      //double probnew = Double.parseDouble(probability);
+                                      
+                                                               
+                                      //System.out.println(" i am  getting this value after converting from double---->"+valuefromc);
+                                     // PlotProbability plot=new  PlotProbability();
+                                      //plot.plotfunction();
+                                     PlotProbability plot1=new  PlotProbability(this);
+                                       plot1.plotfunction();
+                                    //  plot1.plotfunction1();
+                                      //pWave.mainFrame.createIvectorInternalFrame("Speaker Identification", "word/Assamese/part2");
+                                 
+                                  }
+                                  catch (IOException ex)
+                                  {
+                                    //  Logger.getLogger(RightClickEvent.class.getName()).log(Level.SEVERE, null, ex);
+                                  }
+                                  
+                                  
+                      }
+                      catch (IOException ex) 
+                         {
+                       // Logger.getLogger(RightClickEvent.class.getName()).log(Level.SEVERE, null, ex);
+                         } catch (InterruptedException ex)
+                         {
+                       // Logger.getLogger(RightClickEvent.class.getName()).log(Level.SEVERE, null, ex);
+                         }
+                return valuefromc;
+         }
+             
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -612,7 +903,7 @@ public class NasoFX extends Application {
 
             
  @FXML
- public void Hypernasality(String filename){
+ public double Hypernasality(String filename){
  
  
     
@@ -734,7 +1025,7 @@ public class NasoFX extends Application {
             
             
             
-            
+            return valuefromc;
             
             
             

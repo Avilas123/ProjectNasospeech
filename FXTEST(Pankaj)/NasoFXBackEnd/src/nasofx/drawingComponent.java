@@ -222,9 +222,9 @@ public class drawingComponent extends JComponent {
         g2.setColor(Color.BLACK);
         g2.drawString("Rating:", 250,175 );
         g2.setFont(new Font("Myraid pro", Font.BOLD,25));
-        g2.drawString("FileName:", 250,225 );
+     //   g2.drawString("FileName:", 250,225 );
         g2.setFont(new Font("Myraid pro", Font.BOLD,25));
-        g2.drawString(drawingComponent.this.ReturnFilename, 380,225 );
+     //   g2.drawString(drawingComponent.this.ReturnFilename, 380,225 );
         g2.setFont(new Font("Myraid pro", Font.BOLD,25));
         
         probability1=1- probability ;

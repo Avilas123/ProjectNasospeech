@@ -46,6 +46,9 @@ import javafx.scene.text.Text;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import static javafx.scene.paint.Color.color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -444,7 +447,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
        // dataSeries1.getData().add(new XYChart.Data( i, samples[i]));
        //   }
      //wave.getData().add(dataSeries1);
-   nfx.startforplotwave(classStage,samples,numSamples,filename,tab1,TP,wavepane,sampling_freq,frames_per_pixel);
+   nfx.startforplotwave(classStage,samples,numSamples,filename,tab1,TP,wavepane,sampling_freq,frames_per_pixel,this.audioInputStream);
   // System.out.println("filename_in 2nd time load-------->>>>>>\t"+filename);   
   
     
@@ -1278,9 +1281,27 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
             TP.getTabs().add(tab);
             TP.getSelectionModel().select(tab);
             TP.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
-             nfx.Hypernasality(filename);
+            double probability = nfx.Hypernasality(filename);
           
+     System.out.println("The probability value is:"+probability);
+     
+     
+    Rectangle rect = new Rectangle(40,100,100 ,40);
+    rect.setX(50);
+    rect.setY(50);
+    
+    rect.setFill(Color.rgb(0, 156, 73));
 
+    rect.setStroke(Color.BLACK);
+    
+    Text t = new Text();
+    String value = Double.toString(probability);
+    t.setText("The Hypernasality Score is :"+value);
+    t.setFont(Font.font ("Verdana", 20));
+    t.setFill(Color.RED);
+   
+    tab.setContent(t);
+   
     }
  
  

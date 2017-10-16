@@ -1,0 +1,9 @@
+
+Starting MousePosition-->
+245.22222222222223
+Mouse_End_Position-->
+1162.5555555555557
+StartSample-->
+5280455
+endSample-->
+25044446
