@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="masterap" prefHeight="610.0" prefWidth="1200.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nasofx.FXMLDocumentController">
+<AnchorPane id="AnchorPane" fx:id="masterap" prefHeight="610.0" prefWidth="1200.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nasofx.FXMLDocumentController">
    <children>
       <AnchorPane layoutY="477.0" prefHeight="152.0" prefWidth="1200.0" styleClass="linear-grad-to-bottom3" stylesheets="@menu.css">
          <children>
@@ -92,13 +92,13 @@
               <MenuItem fx:id="open_menu_item" mnemonicParsing="false" onAction="#open_button_Event" text="Open" />
                   <MenuItem mnemonicParsing="false" text="New" />
                   <MenuItem mnemonicParsing="false" text="Save" />
-                  <MenuItem mnemonicParsing="false" text="Save as" />
+                  <MenuItem fx:id="saveas" mnemonicParsing="false" onAction="#saveas" text="Save as" />
                   <MenuItem fx:id="closebtn" mnemonicParsing="false" onAction="#closesystem" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-              <MenuItem mnemonicParsing="false" text="Select all" />
+              <MenuItem fx:id="selectall" mnemonicParsing="false" onAction="#selectallfunction" text="Select all" />
                   <MenuItem mnemonicParsing="false" text="Select inverse" />
                   <MenuItem mnemonicParsing="false" text="Cut" />
                   <MenuItem mnemonicParsing="false" text="Copy" />

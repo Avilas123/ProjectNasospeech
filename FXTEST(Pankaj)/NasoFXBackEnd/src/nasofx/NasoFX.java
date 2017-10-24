@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package nasofx;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -40,10 +43,13 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 //import static nasofx.FXMLDocumentController.valuefromc;
 //import static nasofx.FXMLDocumentController.valuefromc;
@@ -56,19 +62,23 @@ public class NasoFX extends Application {
     /**
      *
      */
-   
-    public StreamBytes streamBytes=new StreamBytes();
+    private AnchorPane objectsLayer;
+    public StreamBytes streamBytes;
     public int startSam, endSam;
      
-      public double mousePosX1, mousePosX2, mouseMoveX1, mousePosY1;
+    public double mousePosX1, mousePosX2, mouseMoveX1, mousePosY1;
       
-      LineChart lineChart ;
-       NumberAxis xAxis ;
+    LineChart lineChart ;
+    NumberAxis xAxis ;
   //  FXMLDocumentController fxmlobject =new FXMLDocumentController();
     double array[]={};
      @FXML 
- static  double  valuefromc;
+    static  double  valuefromc;
      XYChart.Data<Double,Double> dd;
+
+    public NasoFX() {
+        this.streamBytes = new StreamBytes();
+    }
     
     
     @Override
@@ -82,7 +92,7 @@ public class NasoFX extends Application {
       stage.setResizable(false);
        stage.setMaxWidth(1190);
        stage.setMaxHeight(630);
-      stage.setTitle("                                                                                                                                                                                  NasoSpeech");
+      stage.setTitle(" NasoSpeech");
       
         stage.setScene(scene);
          stage.centerOnScreen();
@@ -263,6 +273,9 @@ public class NasoFX extends Application {
      
      lineChart.setOnMouseDragged(new EventHandler<MouseEvent>() 
     {  
+        
+      // lineChart.getData().clear();
+        
       @Override public void handle(MouseEvent mouseEvent) {
           //double xxx=(double)xAxis.getValueForDisplay(mouseEvent.getX());
          // System.out.println("xaxis value print-->"+
@@ -272,13 +285,15 @@ public class NasoFX extends Application {
          
        if(mousePosX1==0){
      mousePosX1=mouseEvent.getX();
+    // mouseEvent.consume();
          // System.out.println("position1"+mousePosX1);
      }
      else{
          mousePosX2=mouseEvent.getX();
         //  System.out.println("position2"+mousePosX2);
-      
+     
      }
+       
           System.out.println("\nposition1->\t"+mousePosX1);
           System.out.println("\nposition2->\t"+mousePosX2);
           getSamplingPositions(mousePosX1,mousePosX2,numsamples,duration);
@@ -286,7 +301,8 @@ public class NasoFX extends Application {
                             int endSample = getEndSamples();
 String input="\nStarting MousePosition-->\n"+mousePosX1+"\nMouse_End_Position-->\n"+mousePosX2+"\nStartSample-->\n"+startSample+"\nendSample-->\n"+endSample;
 System.out.print("\nStartSample\t"+startSample+"\nendSample\t"+endSample);
-                              
+        //lineChart.getData().clear();
+ 
 //////////////write to the file for articulation
 
  String currentDir = System.getProperty("user.dir");
@@ -330,17 +346,17 @@ System.out.print("\nStartSample\t"+startSample+"\nendSample\t"+endSample);
   /////end of the file writer////////////////            
                   
               
- CutAudioWave cutW = new CutAudioWave();
- cutW.cutPortion(streamBytes.getCurrent(), startSample, endSample);
+// CutAudioWave cutW = new CutAudioWave();
+ //cutW.cutPortion(streamBytes.getCurrent(), startSample, endSample);
 
- if (cutW.getresultByteArray() == null) {
-     System.out.println("i have entered");
-     return;
- }
- if (CutAudioInputStream.getCutWave() == null) {
-     System.out.println("i have entered");
-     return;
- }
+ //if (cutW.getresultByteArray() == null) {
+   //  System.out.println("i have entered");
+     //return;
+// }
+ //if (CutAudioInputStream.getCutWave() == null) {
+   //  System.out.println("i have entered");
+    // return;
+ //}
           
    // String currentDir = System.getProperty("user.dir");
                        // System.out.println("cu");
@@ -482,6 +498,168 @@ System.out.print("\nStartSample\t"+startSample+"\nendSample\t"+endSample);
      
    // lineChart.setScaleX(2.0);
     }
+    
+     public void paint() 
+    { //System.out.println("i am here");
+      //  Graphics2D g2 = (Graphics2D) g;
+        
+       // Draw Selection portion 
+                      //  Color mouseDraggedbg = new Color(255, 255, 153);
+                         
+                        //java.awt.Color mouseDraggedbg = new java.awt.Color(51, 153, 255);
+                        
+                       // g2.setColor(mouseDraggedbg);
+                        
+       // objectsLayer = new AnchorPane();
+      //  objectsLayer.prefHeightProperty().bind(heightProperty());
+      ///  objectsLayer.prefWidthProperty().bind(widthProperty());
+        
+        
+        
+        
+        
+                         mousePosX1=0;
+                         mousePosX2=1180;
+                        int widthPos1 = (int) (mousePosX1 - mousePosX2);
+                        int minValue1 = (int) (widthPos1 < 0 ? mousePosX1 : mousePosX2);
+                        widthPos1 = (widthPos1 < 0 ? -1 * widthPos1 : widthPos1);
+                        System.out.println("widthPos1\t"+widthPos1+"minValue1\t"+minValue1);
+                        Rectangle r=new Rectangle((int) minValue1,0,1180,350);
+                        //lineChart.setStyle("");
+                        r.setFill(Color.AQUA);
+                     //   objectsLayer.getChildren().remove(r);
+                      //  objectsLayer.getChildren().add(r);
+                      //  lineChart.getData().add(objectsLayer);
+                      
+                        if (minValue1 != 0) {
+                            r.setFill(Color.CYAN);
+                           // g2.fillRect((int) minValue1, 0, 1180, 350);/// 0 to 1180 x,y,width=1180,height=352
+                            System.out.println("mousePosY1"+mousePosY1);
+                            if (mousePosY1 > 195) {
+                                try {
+                                    BufferedImage image2 = ImageIO.read(new File("conf/img/L_01.jpg"));
+                                  //  g2.drawImage(image2, (int) mousePosX2, (int) h - INFOPAD - 2, null);
+                                  //  samplingGraph.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                                } catch (IOException ex) {
+                                  //  Logger.getLogger(PlotWave.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
+                        }
+    
+    
+    
+    
+    }
+    
+    public void saveas(AudioInputStream audioInputStream,int numsamples,double duration)//audioinputstream,numsamples,duration
+    {
+    
+          if (this.mousePosX1 != 0 && this.mousePosX2 != 0) 
+                            {
+                                this.getSamplingPositions(mousePosX1, mousePosX2, numsamples, duration);//getSamplingPositions();
+                                int startSample = this.getStartSamples();//getStartSamples();
+                                int endSample = this.getEndSamples();//getEndSamples();
+                                
+                                
+                                 byte[] audioBytes = StreamConverter.streamTobyte(audioInputStream);
+                                   if (audioBytes == null)
+                                   {
+                                        audioInputStream = null;
+                                        return;
+                                   }
+                                 streamBytes.setCurrent(audioBytes);
+                                   audioBytes = null;
+                                  audioInputStream = StreamConverter.byteTostream(streamBytes.getCurrent(), audioInputStream);
+                                 
+                                 
+                                System.out.print("StartSample in saveas\t"+startSample+"endSample in saveas\t"+endSample);
+                                CutAudioWave cutW = new CutAudioWave();
+                             //   streamBytes.setCurrent(audioBytes);
+                                cutW.cutPortion(streamBytes.getCurrent(), startSample, endSample);
+
+                                if (cutW.getresultByteArray() == null) 
+                                {
+                                     System.out.println("i have entered in saveas getresult");
+                                     return;
+                                }
+                                if (CutAudioInputStream.getCutWave() == null)
+                                {
+                                     System.out.println("i have entered in saveas");
+                                     return;
+                                }
+                                 //String currentDir = System.getProperty("user.dir");
+                                 //System.out.println("cu");
+                                 //String cexedir = currentDir + "\\cexe\\";
+                                // createTempFile("wave",".wav"," C:\\Users\\user\\Documents\\NetBeansProjects\\HypernasalityFinal\\");
+                                String filelocName =saveLocation();//"C:\\Users\\user\\Documents\\NetBeansProjects\\HypernasalityFinal\\temp.wav";//saveLocation(); //drawingComponent.this.ReturnFilename;saveLocation();
+                                System.out.println("filelocName Saved\t"+filelocName);
+                                StreamConverter.byteTowavefile(CutAudioInputStream.getCutWave(),audioInputStream, filelocName);
+
+                                CutAudioInputStream.setCutWave(null);
+         
+         
+         
+         
+         
+     
+                            }    
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+    }
+    
+    
+    
+    
+    
+      public String saveLocation()
+    {        
+        
+   String filename="";
+   File fileDir = new File(System.getProperty("user.dir"));      
+   FileChooser fc=new FileChooser();
+   fc.setInitialDirectory(fileDir);
+   fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("wave files","*.wav","*.wma","*.mp3"));
+    
+    File selectedfile=fc.showOpenDialog(null);
+   
+   return selectedfile.getAbsolutePath();  
+   
+}   
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public void showHover(Float value)
     {  
     
@@ -1039,6 +1217,78 @@ System.out.print("\nStartSample\t"+startSample+"\nendSample\t"+endSample);
     {
         return valuefromc;
     }
+   
+      public void selectAll(int numsamples,double duration)
+              
+{                    
+    
+                         
+                         System.out.println("numsamples"+numsamples);
+                         System.out.println("duration"+duration);
+                 //////mouse drag paint////////        
+            //     this.paint(g);
+            
+            
+           
+              
+                try{
+                           int inPos = 0;//(int) mousePosX1,
+                           int enPos = 1180;//(int) ((pWave.samplingGraph.getSize().width) - 10);
+
+                            if (inPos < 1) {
+                                inPos = 1;
+                            }
+
+                            if (enPos < 1) {
+                                enPos = 1;
+                            }
+                            if (inPos > (enPos - 10)) {
+                                inPos = enPos - 10;
+                            }
+                            //double bytesPerSecond = pWave.audioInputStream.getFormat().getFrameSize() * (double) pWave.audioInputStream.getFormat().getFrameRate();
+                            int startTime = (int)((inPos * duration) * numsamples);
+                            int endTime = (int)((enPos * duration) * numsamples);
+                           // System.out.println("CK " + ((inPos * pWave.frames_per_pixel) / pWave.audioInputStream.getFormat().getFrameRate()) * 1000 + " " + ((enPos * pWave.frames_per_pixel) / pWave.audioInputStream.getFormat().getFrameRate()) * 1000);
+
+
+                           //mousePosX1 = startTime;
+                          // mousePosX2 = endTime;
+                           System.out.println("starttime\t"+startTime+" endtime\t"+endTime+" mousestart\t"+inPos +" mouseend\t"+enPos);
+                          //  pWave.samplingGraph.repaint();
+                          
+                        } catch (Exception er) {
+                            System.err.println(er);
+                        }
+                this.paint();
+}
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 }
 class HoveredThresholdNode extends StackPane {
     HoveredThresholdNode(double value) {

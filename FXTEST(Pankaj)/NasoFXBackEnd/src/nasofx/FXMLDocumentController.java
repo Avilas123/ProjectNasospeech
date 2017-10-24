@@ -6,7 +6,11 @@
 package nasofx;
 
 //import java.awt.event.MouseEvent;
+import java.awt.Cursor;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -15,6 +19,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Vector;
@@ -52,6 +57,7 @@ import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -85,6 +91,8 @@ public class FXMLDocumentController extends Application {
     @FXML
     private MenuItem scorecard;
     
+        @FXML
+    private MenuItem saveas;
      @FXML
     public ImageView marker;
      
@@ -123,7 +131,8 @@ public class FXMLDocumentController extends Application {
 
     @FXML
     private Button recordbtn;
-    
+     @FXML
+    private MenuItem selectall;
 
   
     final Tooltip playtip = new Tooltip();
@@ -186,7 +195,8 @@ public class FXMLDocumentController extends Application {
     private LineChart wave;
     NasoFX nfx=new NasoFX();
     double factor;
-    
+     int numSamples;
+     
     @FXML
     void Zoomfunction(MouseEvent event) {
         
@@ -390,7 +400,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
     
     
     
-    
+   
     
     
     
@@ -422,7 +432,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
         System.out.println("bytes read = "+ bytesRead);
     format = audioInputStream.getFormat();
     double sampling_freq=format.getSampleRate();
-    int numSamples = (int) this.audioInputStream.getFrameLength();
+     numSamples = (int) this.audioInputStream.getFrameLength();
         System.out.println("audio data length"+audioData.length);
    // frames_per_pixel=audioData.length/1292;
      //   System.out.println("frames_per_pixel"+frames_per_pixel);
@@ -1520,6 +1530,63 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
          // System.out.println("The marker translate is :"+marker.getTranslateX());
           //System.out.println("The getX of the marker is :"+marker.getLayoutX());
     }
+    
+    
+      @FXML
+    void selectallfunction(ActionEvent event) {
+           //Graphics g;
+        
+       // this.paint(g);
+       
+        nfx.selectAll(numSamples, frames_per_pixel);
+        
+        
+        
+        
+        
+        
+
+    }
+    //@FXML
+   
+
+                        //End Selection
+        
+        
+        /////////////saveas function/////////
+        
+        @FXML
+     void saveas(ActionEvent event)
+        {
+          // byte[] current = streamBytes.getCurrent();
+         //   System.out.println("current"+Arrays.toString(current));
+        nfx.saveas(this.audioInputStream,numSamples,frames_per_pixel);
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
         
     }
     

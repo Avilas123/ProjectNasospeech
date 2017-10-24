@@ -4,6 +4,8 @@
  */
 package nasofx;
 
+import java.util.Arrays;
+
 /**
  *
  *  @author Tatapower SED
@@ -31,7 +33,7 @@ public class StreamBytes {
     }
 
     public byte[] getCurrent() {
-        //System.out.println("getcurent value"+this.current);
+       // System.out.println("getcurent value"+Arrays.toString(this.current));
         return this.current;
     }
 

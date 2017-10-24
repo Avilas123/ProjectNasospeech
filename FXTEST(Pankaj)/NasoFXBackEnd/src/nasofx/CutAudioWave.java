@@ -29,7 +29,7 @@ public class CutAudioWave {
     }
 
     public void cutPortion(byte[] audioBytes, double startSample, double endSample) {
-
+          System.out.println("in the cutprotion");
         //  AudioInputStream shortenedStream = null;
         //  AudioInputStream outputStream = null;
 
@@ -38,6 +38,7 @@ public class CutAudioWave {
 
 
             if (audioBytes == null) {
+                System.out.println("audiobyte null");
                 return;
             }
 
@@ -88,6 +89,7 @@ public class CutAudioWave {
     }
 
     private void getStreemPart(double startSample, double endSample, byte[] audioBytes) {
+        System.out.println("in streamPart");
 
         byte[] newAudioBytes = null;
         byte[] cutnewAudioBytes = null;
@@ -117,6 +119,8 @@ public class CutAudioWave {
                 }
 
             }
+            System.out.println("newAudioBytes"+newAudioBytes);
+            System.out.println("cutnewAudioBytes"+cutnewAudioBytes);
             setresultByteArray(newAudioBytes);
             setcutByteArray(cutnewAudioBytes);
 
