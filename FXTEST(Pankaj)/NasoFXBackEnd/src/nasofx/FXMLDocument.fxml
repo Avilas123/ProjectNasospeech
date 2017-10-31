@@ -70,6 +70,7 @@
                   </Button>
               </items>
             </ToolBar>
+            <Button fx:id="recordbtn" layoutX="776.0" layoutY="63.0" mnemonicParsing="false" onAction="#record" text="recordbtn" />
          </children></AnchorPane>
       <AnchorPane layoutX="1.0" layoutY="1.0">
          <children>
@@ -101,8 +102,8 @@
               <MenuItem fx:id="selectall" mnemonicParsing="false" onAction="#selectallfunction" text="Select all" />
                   <MenuItem mnemonicParsing="false" text="Select inverse" />
                   <MenuItem mnemonicParsing="false" text="Cut" />
-                  <MenuItem mnemonicParsing="false" text="Copy" />
-                  <MenuItem mnemonicParsing="false" text="Paste" />
+                  <MenuItem fx:id="copy" mnemonicParsing="false" onAction="#copy" text="Copy" />
+                  <MenuItem fx:id="pasteitem" mnemonicParsing="false" onAction="#paste" text="Paste" />
                   <MenuItem mnemonicParsing="false" text="Select and Play" />
             </items>
           </Menu>

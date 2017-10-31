@@ -99,6 +99,7 @@ public class CutAudioWave {
             int startPos = (int) startSample;
             int endPos = (int) endSample;
             System.out.println("startPos"+startPos+"endPos"+endPos);
+            System.out.println("audiobyteslength\t"+(int) (audioBytes.length));
             int newLength = (int) (audioBytes.length) - (endPos - startPos) + 10;
             System.out.println("newLength\t"+newLength);
             int newCutln = (int) (endPos - startPos) + 10;
@@ -111,16 +112,17 @@ public class CutAudioWave {
 
                 if (i < startPos || i >= endPos) {
                     newAudioBytes[j++] = audioBytes[i];
+                    System.out.println("newauio");
 
 
                 } else {
-
+                    System.out.println("cutnew");
                     cutnewAudioBytes[cutin++] = audioBytes[i];
                 }
 
             }
-            System.out.println("newAudioBytes"+newAudioBytes);
-            System.out.println("cutnewAudioBytes"+cutnewAudioBytes);
+           // System.out.println("newAudioBytes"+newAudioBytes);
+           // System.out.println("cutnewAudioBytes"+cutnewAudioBytes);
             setresultByteArray(newAudioBytes);
             setcutByteArray(cutnewAudioBytes);
 

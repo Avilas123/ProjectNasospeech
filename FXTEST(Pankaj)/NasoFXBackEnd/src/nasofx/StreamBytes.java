@@ -29,6 +29,7 @@ public class StreamBytes {
     }
 
     public void setCurrent(byte[] audioBytes) {
+        System.out.println("setcurrent executed");
         this.current = audioBytes;
     }
 

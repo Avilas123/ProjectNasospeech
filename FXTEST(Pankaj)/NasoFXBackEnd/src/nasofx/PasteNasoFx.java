@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package nasofx;
+//package nasofx;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -13,6 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Random;
 //import java.nio.file.Paths;
 import java.util.Scanner;
@@ -20,6 +22,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -50,50 +53,43 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
-import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
-import static nasofx.FXMLDocumentController.classStage;
+import static nasofx.NasoFX.valuefromc;
 //import static nasofx.FXMLDocumentController.valuefromc;
 //import static nasofx.FXMLDocumentController.valuefromc;
 /**
  *
- * @author IITG
+ * @author DoD
  */
-public class NasoFX extends Application {
-
-    public PasteNasoFx pastenfx;
-     private AudioFormat format;  
-/**
-     *
-     */
-        private AnchorPane objectsLayer;
+public class PasteNasoFx extends Application {
+    private AnchorPane objectsLayer;
     public StreamBytes streamBytes;
     public int startSam, endSam;
     private int copy_from_ms = 0, copy_to_ms = 0, ann_fLength, ann_oldfLength,startPix,endPix; 
     public double mousePosX1, mousePosX2, mouseMoveX1, mousePosY1;
-      public SignalProc sigProc;
+      
     LineChart lineChart ;
     NumberAxis xAxis ;
   //  FXMLDocumentController fxmlobject =new FXMLDocumentController();
     double array[]={};
-     int numSamples;
-     float frameRate;
-      int frameSize;
-      int actual_frames_per_pixel;
-      public  double frames_per_pixel;
      @FXML 
     static  double  valuefromc;
      XYChart.Data<Double,Double> dd;
 
-    public NasoFX() {
-        this.pastenfx = new PasteNasoFx();
+    public PasteNasoFx() {
         this.streamBytes = new StreamBytes();
     }
     
     
+    
+    
+    
+    
+    
+    
     @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));     
+    public void start(Stage stage) throws IOException {
+       Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));     
         Scene scene;
         scene = new Scene(root);
      // scene.getStylesheets().add(this.getClass().getResource("test.css").toExternalForm());
@@ -102,21 +98,23 @@ public class NasoFX extends Application {
       stage.setResizable(false);
        stage.setMaxWidth(1190);
        stage.setMaxHeight(630);
-      stage.setTitle(" NasoSpeech");
+      //stage.setTitle(" NasoSpeech");
       
         stage.setScene(scene);
          stage.centerOnScreen();
         stage.show();
     }
-    
-    
-    public void startforplotwave(Stage stage,double[] samples,int numsamples,String filename,Tab tab1 ,TabPane TP,ScrollPane wavepane,Double sam_freq,double duration,AudioInputStream audioInputStream,float frameSize,int actual_frames_per_pixel) throws Exception 
-    {
+
+    /**
+     * @param args the command line arguments
+     */
+    public void startforplotwave(Stage stage,double[] samples,int numsamples,String filename,Tab tab1 ,TabPane TP,ScrollPane wavepane,Double sam_freq,double duration,AudioInputStream audioInputStream,float frameSize,int actual_frames_per_pixel) throws Exception {
      //   System.out.println("duration as frame_per_pixel"+duration);
+        System.out.println(" sam_freq duration"+sam_freq +"numsamples"+numsamples+"sam_freq"+sam_freq+"duration"+duration+"frameSize"+frameSize+"actual_frames_per_pixel"+actual_frames_per_pixel);
         xAxis= new NumberAxis("",0d,duration,0.05);
-       NumberAxis yAxis = new NumberAxis("", -1d, 1d, 1);
-       lineChart= new LineChart(xAxis, yAxis);
-         java.nio.file.Path p=Paths.get(filename);
+        NumberAxis yAxis = new NumberAxis("", -1d, 1d, 1);
+        lineChart= new LineChart(xAxis, yAxis);
+        java.nio.file.Path p=Paths.get(filename);
       
        String substring= p.getFileName().toString();
        stage.setTitle(substring);
@@ -137,7 +135,7 @@ public class NasoFX extends Application {
       
          // data = new XYChart.Data<Integer,Double>( i, samples[i]);
          
-         
+           System.out.println("for loop"+i);
          dd = new XYChart.Data<>(i/sam_freq,samples[i]);
          
          //dd.setNode(new HoveredThresholdNode(samples[i]));
@@ -161,7 +159,7 @@ public class NasoFX extends Application {
    
      lineChart.setCreateSymbols(false);
      
-     lineChart.getData().clear();
+ //1 lineChart.getData().clear();
      //lineChart.getData().add(10, series);
     // int index=346/2;
     // lineChart.getData().add(150, series);
@@ -208,7 +206,7 @@ public class NasoFX extends Application {
          double height = lineChart.getHeight();//System.out.println("linechartheight"+height);
      //lineChart.setMaxSize(1300, 402);
    // lineChart.setMinSize(1300,402);
-    lineChart.setStyle(this.getClass().getResource("test.css").toExternalForm());
+//2    lineChart.setStyle(this.getClass().getResource("test.css").toExternalForm());
    // wavepane.setStyle(this.getClass().getResource("test.css").toExternalForm());
     // wavepane.setPannable(true);
     // wavepane.setStyle(".scroll-pane > .viewport{-fx-background-color:#232323 ;\n" +
@@ -485,7 +483,7 @@ System.out.print("\nStartSample\t"+startSample+"\nendSample\t"+endSample);
      
      
 
-    wavepane.getStylesheets().add(this.getClass().getResource("test.css").toExternalForm());
+//3    wavepane.getStylesheets().add(this.getClass().getResource("test.css").toExternalForm());
     /* scrollbar.valueProperty().addListener(new ChangeListener<Number>() {
         @Override
         public void changed(ObservableValue<? extends Number> ov,
@@ -705,7 +703,7 @@ public void copy(AudioInputStream audioInputStream,int frameSize,int actual_fram
 }
             //End copy
         
-       public void paste(AudioInputStream audioInputStream,Tab tab1 ,TabPane TP,ScrollPane wavepane) throws Exception
+       public void paste(AudioInputStream audioInputStream)
      { 
          
      
@@ -721,41 +719,7 @@ public void copy(AudioInputStream audioInputStream,int frameSize,int actual_fram
                             newInputStream = StreamConverter.byteTostream(CutAudioInputStream.getCutWave(), audioInputStream);
                            // new InsertAnnotation(pWave.mainFrame.getConn()).insertCopySAnnotation(newAnn_file, copy_from_ms, 0, ann_id);
                           // pWave.mainFrame.createCopyPanel("Copy/Paste", newInputStream);
-                          int size = (int) newInputStream.getFrameLength()*2;
-                          byte audioData [] = new byte[size];
-                          System.out.println("ffffff = "+  newInputStream.getFrameLength() + "  " + newInputStream.getFormat());
- /////ask about this read function                         int bytesRead = newInputStream.read(audioData);
-            //               System.out.println("bytes read = "+ bytesRead);
-                           format = audioInputStream.getFormat();
-                           double sampling_freq=format.getSampleRate();
-                         numSamples = (int) newInputStream.getFrameLength();
-                           System.out.println("audio data length"+audioData.length);
-   // frames_per_pixel=audioData.length/1292;
-     //   System.out.println("frames_per_pixel"+frames_per_pixel);
-                          double samples[] = readAudioData(audioData);
-                           long audioFileLength = audioData.length+44;//new File( filename).length();/////////////////////////adding 44 to match new File() length
-                         frameSize = format.getFrameSize();
-                          frameRate = format.getFrameRate();
-                       frames_per_pixel = (audioFileLength / (frameSize * frameRate));///////in fact this is duration
-                      actual_frames_per_pixel=audioData.length/1180/2;
-                       System.out.println("actual_frames_per_pixel\t"+actual_frames_per_pixel);
-                       String filename="copy&Paste";
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                         pastenfx.startforplotwave(classStage,samples,numSamples,filename,tab1,TP,wavepane,sampling_freq,frames_per_pixel,newInputStream,frameSize,actual_frames_per_pixel);
+                           
                             CutAudioInputStream.setCutWave(null);
                         }
                     }
@@ -763,87 +727,7 @@ public void copy(AudioInputStream audioInputStream,int frameSize,int actual_fram
             
      }  
     
-        
- double[] readAudioData(byte audioBytes[]){
-     
-     
-      int audioData[]  = {};
-      if (format.getSampleSizeInBits() == 16) {
-                    int nlengthInSamples = audioBytes.length / 2;
-                    audioData = new int[nlengthInSamples];
-                    if (format.isBigEndian()) {
-                        for (int i = 0; i < nlengthInSamples; i++) {
-                            /* First byte is MSB (high order) */
-                            int MSB = (int) audioBytes[2 * i];
-                            /* Second byte is LSB (low order) */
-                            int LSB = (int) audioBytes[2 * i + 1];
-                            audioData[i] = MSB << 8 | (255 & LSB);
-                        }
-                    } else {
-                        for (int i = 0; i < nlengthInSamples; i++) {
-                            /* First byte is LSB (low order) */
-                            int LSB = (int) audioBytes[2 * i];
-                            /* Second byte is MSB (high order) */
-                            int MSB = (int) audioBytes[2 * i + 1];
-                            audioData[i] = MSB << 8 | (255 & LSB);
-                            
-                            
-                           /* File fi=new File("C:\\TATA-V-42\\src\\Speech\\WavePanel\\Au.txt");
-	                    FileWriter fw=new FileWriter(fi,true);
-                            BufferedWriter tout = new BufferedWriter(fw);
-	                    tout.write(String.valueOf(audioData[i]));
-                            tout.newLine();
-                            tout.flush();
-                            tout.close();  */
-                            //System.out.println(audioData[i]);
-                        }
-                        
-//calculating the maximum and minimum amplitude 
-                           int maximum = audioData[0];   // start with the first value
-                           for (int m=1; m<audioData.length; m++) {
-                           if (audioData[m] > maximum) {
-                           maximum = audioData[m];   // new maximum
-                           
-                            }
-                        }
-                           
-                         
-                           int minimum = audioData[0];   // start with the first value
-                           for (int k=1; k<audioData.length; k++) {
-                           if (audioData[k] < minimum) {
-                           minimum = audioData[k];   // new maximum
-                           
-                            }
-                        }
-                           
-                            }
-                        }
-                                
-                                     
-                                
-                            
-                           
-                 else if (format.getSampleSizeInBits() == 8) {
-                    int nlengthInSamples = audioBytes.length;
-                    audioData = new int[nlengthInSamples];
-                    if (format.getEncoding().toString().startsWith("PCM_SIGN")) {
-                        for (int i = 0; i < audioBytes.length; i++) {
-                            audioData[i] = audioBytes[i];
-
-                        }
-                    } else {
-                        for (int i = 0; i < audioBytes.length; i++) {
-                            audioData[i] = audioBytes[i] - 128;
-
-                        }
-                    }
-                }
-      
-                    sigProc = new SignalProc();
-                    double[] audioDataNormalize1 = sigProc.normalize(sigProc.intToDouble(audioData), 1400);
-      
-      return audioDataNormalize1;
- }
+    
     
     
     
@@ -1126,10 +1010,11 @@ public void copy(AudioInputStream audioInputStream,int frameSize,int actual_fram
                                       
                                                                
                                       //System.out.println(" i am  getting this value after converting from double---->"+valuefromc);
-                                     // PlotProbability plot=new  PlotProbability();
+   
+                                      // PlotProbability plot=new  PlotProbability();
                                       //plot.plotfunction();
-                                     PlotProbability plot1=new  PlotProbability(this);
-                                       plot1.plotfunction();
+///do it later                                     PlotProbability plot1=new  PlotProbability(this);
+//                                       plot1.plotfunction();
                                     //  plot1.plotfunction1();
                                       //pWave.mainFrame.createIvectorInternalFrame("Speaker Identification", "word/Assamese/part2");
                                  
@@ -1440,8 +1325,8 @@ public void copy(AudioInputStream audioInputStream,int frameSize,int actual_fram
                                       //System.out.println(" i am  getting this value after converting from double---->"+valuefromc);
                                      // PlotProbability plot=new  PlotProbability();
                                       //plot.plotfunction();
-                                     PlotProbability plot1=new  PlotProbability(this);
-                                       plot1.plotfunction();
+/////do it later                                     PlotProbability plot1=new  PlotProbability(this);
+    //                                   plot1.plotfunction();
                                     //  plot1.plotfunction1();
                                       //pWave.mainFrame.createIvectorInternalFrame("Speaker Identification", "word/Assamese/part2");
                                  
@@ -1544,59 +1429,14 @@ public void copy(AudioInputStream audioInputStream,int frameSize,int actual_fram
    
    
    
-}
-class HoveredThresholdNode extends StackPane {
-    HoveredThresholdNode(double value) {
-      setPrefSize(15, 15);
 
-      final Label label = createDataThresholdLabel(value);
-
-      setOnMouseEntered(new EventHandler<MouseEvent>() {
-        @Override public void handle(MouseEvent mouseEvent) {
-          getChildren().setAll(label);
-          setCursor(Cursor.NONE);
-          toFront();
-        }
-      });
-      setOnMouseExited(new EventHandler<MouseEvent>() {
-        @Override public void handle(MouseEvent mouseEvent) {
-          getChildren().clear();
-          setCursor(Cursor.CROSSHAIR);
-        }
-      });
-      
-      
-  }
-
-    HoveredThresholdNode() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-     private Label createDataThresholdLabel(double value) {
-      final Label label = new Label(value + "");
-      label.getStyleClass().addAll("default-color0", "chart-line-symbol", "chart-series-line");
-      label.setStyle("-fx-font-size: 20; -fx-font-weight: bold;");
-
-     /*if (priorValue == 0) {
-       label.setTextFill(Color.DARKGRAY);
-      } else if (value > priorValue) {
-        label.setTextFill(Color.FORESTGREEN);
-      } else {
-        label.setTextFill(Color.FIREBRICK);
-      }
-
-      label.setMinSize(Label.USE_PREF_SIZE, Label.USE_PREF_SIZE);
-      
-    }*/
-    
-    return label;
-    
     
     
 }
 
       
       
-}    
+    
       
       
     

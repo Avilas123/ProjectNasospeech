@@ -72,7 +72,10 @@ import javazoom.jl.decoder.JavaLayerException;
  * @author IITG
  */
 public class FXMLDocumentController extends Application {
-    
+    @FXML
+    private MenuItem copy;
+    @FXML
+    private MenuItem pasteitem;
        @FXML
     private Slider slider;
         @FXML
@@ -184,7 +187,7 @@ public class FXMLDocumentController extends Application {
     private boolean buffStatus = true;
     private boolean lineStatus = false;
     public static String filenamefortab;
-    static Stage classStage = new Stage();
+    public static Stage classStage = new Stage();
     private Thread thread;
     private AudioFormat format;  
     private int[] audioDataNormalize;
@@ -196,7 +199,9 @@ public class FXMLDocumentController extends Application {
     NasoFX nfx=new NasoFX();
     double factor;
      int numSamples;
-     
+     float frameRate;
+      int frameSize;
+      int actual_frames_per_pixel;
     @FXML
     void Zoomfunction(MouseEvent event) {
         
@@ -315,7 +320,8 @@ public class FXMLDocumentController extends Application {
 
     
   //  @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) 
+    {
         // TODO
        
     slider.setMin(0);
@@ -433,7 +439,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
     format = audioInputStream.getFormat();
     double sampling_freq=format.getSampleRate();
      numSamples = (int) this.audioInputStream.getFrameLength();
-        System.out.println("audio data length"+audioData.length);
+        
    // frames_per_pixel=audioData.length/1292;
      //   System.out.println("frames_per_pixel"+frames_per_pixel);
     double samples[] = readAudioData(audioData);
@@ -441,10 +447,15 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
     
    // AudioFormat format = audioInputStream.getFormat();
     long audioFileLength = new File( filename).length();
-    int frameSize = format.getFrameSize();
-    float frameRate = format.getFrameRate();
-    frames_per_pixel = (audioFileLength / (frameSize * frameRate));
+    frameSize = format.getFrameSize();
+    frameRate = format.getFrameRate();
+    frames_per_pixel = (audioFileLength / (frameSize * frameRate));///////in fact this is duration
+   actual_frames_per_pixel=audioData.length/1180/2;
+        System.out.println("actual_frames_per_pixel\t"+actual_frames_per_pixel);
+        System.out.println("audio data length\t"+audioData.length+"audioFileLength\t"+audioFileLength);
+        //System.out.println("frames_per_pixel"+frames_per_pixel);
    // System.out.println("durationInSeconds"+frames_per_pixel);
+   
      sendfilename(filename);
     
     
@@ -457,7 +468,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
        // dataSeries1.getData().add(new XYChart.Data( i, samples[i]));
        //   }
      //wave.getData().add(dataSeries1);
-   nfx.startforplotwave(classStage,samples,numSamples,filename,tab1,TP,wavepane,sampling_freq,frames_per_pixel,this.audioInputStream);
+   nfx.startforplotwave(classStage,samples,numSamples,filename,tab1,TP,wavepane,sampling_freq,frames_per_pixel,this.audioInputStream,frameSize,actual_frames_per_pixel);
   // System.out.println("filename_in 2nd time load-------->>>>>>\t"+filename);   
   
     
@@ -1015,12 +1026,15 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
     
     
     
-        class Capture implements Runnable {
+        class Capture implements Runnable 
+        {
 
         TargetDataLine line;
         Thread thread;
 
-        public void start() {
+        public void start() 
+        {
+            System.out.println("inside capture");
             errStr = null;
             thread = new Thread(this);
             thread.setName("Capture");
@@ -1094,7 +1108,9 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
                             return;
                         }
 
-                    } catch (Exception er) {
+                    } catch (Exception er) 
+                    {
+                        
                     }
 
                     // get and open the target data line for capture.
@@ -1163,7 +1179,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
                     ByteArrayInputStream bais = new ByteArrayInputStream(audioBytes);
                     audioInputStream = new AudioInputStream(bais, format, audioBytes.length / frameSizeInBytes);
 
-                    String recordFile = "";//rightClick.saveLocation();       later add record here
+                   String recordFile = "/Users/DoD/NetBeansProjects/NasoFXBackEnd/cexe/recorfile.wav";//rightClick.saveLocation();                           later add record here
                        if (recordFile == null) {
                         recordFile = "temp.wav";
                     }
@@ -1533,7 +1549,8 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
     
     
       @FXML
-    void selectallfunction(ActionEvent event) {
+    void selectallfunction(ActionEvent event) 
+    {
            //Graphics g;
         
        // this.paint(g);
@@ -1560,13 +1577,84 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
         {
           // byte[] current = streamBytes.getCurrent();
          //   System.out.println("current"+Arrays.toString(current));
-        nfx.saveas(this.audioInputStream,numSamples,frames_per_pixel);
+        nfx.saveas(this.audioInputStream,frameSize, actual_frames_per_pixel);
         }
         
+     
+        @FXML
+     void copy(ActionEvent event)
+        {
+          // byte[] current = streamBytes.getCurrent();
+         //   System.out.println("current"+Arrays.toString(current));
+       // nfx.saveas(this.audioInputStream,numSamples,frames_per_pixel);
+            nfx.copy(this.audioInputStream, frameSize , actual_frames_per_pixel, frameRate);
+            
+        }
+        @FXML
+        void paste(ActionEvent event) throws Exception
+        {
+           
+            
+            Tab tab1 = new Tab();
+            tab1.setText("untitled ");
+           //String filename = this.getfilename(); //fileName);
+           ScrollPane wavepane1=new ScrollPane();
+           tab1.setContent(wavepane1);
+           
+            TP.getTabs().add(tab1);
+            TP.getSelectionModel().select(tab1);
+            TP.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
+            
+            
+            
+            
+            nfx.paste(this.audioInputStream,tab1,TP,wavepane1);
+            
+        
+        }
+     
+            @FXML
+             void record(ActionEvent event)
+             {
+           //  if (recordbtn.getToolTipText().equals("Record")&&recordbtn.getToolTipText().equals("record")) {
+ //                stopRecord();
+               //  playBtn.setEnabled(true);
+             //} else {
+                 recordSound();
+               //  pausBtn.setEnabled(false);
+                 //playBtn.setEnabled(false);
+             //}
+                 
+                 
+                 
+             
+             
+             
+             
+             
+             }
         
         
-        
-        
+        public void recordSound() 
+        {
+        try 
+        {
+            file = null;
+            capture.start();
+            fileName = "untitled";
+        //  recordGraph.start();
+//            loadB.setEnabled(false);
+     //       playBtn.setEnabled(false);
+     //       pausBtn.setEnabled(true);
+
+           // waveB.setEnabled(false);
+     //      captBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Speech.icons1/record.png")));
+     //       captBtn.setToolTipText("stop");
+        } 
+        catch (Exception er) {
+            System.err.println(er);
+        }
+    }
         
         
         
