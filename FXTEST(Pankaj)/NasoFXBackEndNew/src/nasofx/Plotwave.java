@@ -41,6 +41,15 @@ public class Plotwave
         return selectedfile.getAbsolutePath();  
    } //// fileopen method ends here
     
+   
+   
+   
+   
+   
+   
+   
+   
+   
     
     
     public double[] readWaveData(String filename) throws UnsupportedAudioFileException, IOException{  

@@ -455,9 +455,61 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
   
        
     }
- 
+ /////////////////////conversion/////////////
+  @FXML
+    public String SampleRateConversion(File SourceFile, float dSampleRate) throws UnsupportedAudioFileException, IOException
+            
+    { 
+        float fTargetSampleRate = dSampleRate;
+        AudioFileFormat SourceFileFormat = AudioSystem.getAudioFileFormat(SourceFile);
+        AudioFileFormat.Type TargetFileType = SourceFileFormat.getType();
+        AudioInputStream SourceStream = null;
+        SourceStream = AudioSystem.getAudioInputStream(SourceFile);
+        AudioFormat SourceFormat = SourceStream.getFormat();
+        float fTargetFrameRate = fTargetSampleRate;
+        
+        AudioFormat TargetFormat = new AudioFormat(
+                                        SourceFormat.getEncoding(),
+                                        fTargetSampleRate,
+                                        SourceFormat.getSampleSizeInBits(),
+                                        SourceFormat.getChannels(),
+                                        SourceFormat.getFrameSize(),
+                                        fTargetFrameRate,
+                                        SourceFormat.isBigEndian()
+        
+                                    );
+                
+        
+        AudioInputStream TargetStream = AudioSystem.getAudioInputStream(TargetFormat, SourceStream);
+        //OutputStream targetFile = null;
+        File targetFile = new File("converted.wav");
+        
+        int nWrittenBytes = AudioSystem.write(TargetStream, TargetFileType, targetFile);
     
+    
+      return targetFile.getAbsolutePath();
+    
+    
+    }
+   
 
+   
+    
+  @FXML
+    void convert(ActionEvent event) throws UnsupportedAudioFileException, IOException {
+      String  filename = getfilename();
+      File sendfile = new File(filename);
+     
+      String newFilename = null;
+      
+      newFilename = SampleRateConversion(sendfile, (float) 8000.0);
+        System.out.println("The converted file is "+ newFilename);
+
+    }   
+    
+    
+    
+ ///////////////////////////////////////////    
     @Override
     public void start(Stage primaryStage) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -847,7 +899,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
                  trans1.setToX(1140);
                  trans1.setNode(marker);
                  trans1.play();
-     /*     
+  /*       
                  //  NumberAxis xAxis= new NumberAxis("",0d,100,0.05);
                //  NumberAxis yAxis = new NumberAxis("", 0, 1000, 1);
                 // recordinglinechart=new LineChart(xAxis,yAxis);
@@ -869,7 +921,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
         trans2.setNode(recordinglinechart);
         //trans2.setDuration(Duration.millis(10000));
         trans2.play();
-        */
+      */ 
      /*
          Plotwave plot=new Plotwave();
         String filenamedis="C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEndNew\\cexe\\recordfile.wav";
@@ -939,6 +991,8 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
                  cap.stop();
                  variable=false;
                  trans1.stop();
+                 marker.setTranslateX(0);
+                 
                //  trans1.pause();
                  //playbtn.setDisable(false);
                 // stopbtn.setDisable(true);
