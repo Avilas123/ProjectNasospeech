@@ -2131,7 +2131,14 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
         }
     }
 
-    public class RecordWaveGraph implements Runnable {
+    
+    
+    
+    
+    
+    
+    public class RecordWaveGraph implements Runnable 
+    {
 
         private Thread thread;
 
@@ -2151,7 +2158,8 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
 
         @Override
         public void run() {
-            try {
+            try 
+            {
 
                 samplingPanel.setPreferredSize(new java.awt.Dimension((int) (tk.getScreenSize().getWidth() * 0.764), graphVerticalSize));
                 sg.setSize(new java.awt.Dimension((int) (tk.getScreenSize().getWidth() - graphFromScreen), graphVerticalSize));
@@ -2160,7 +2168,8 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                 boolean audioFormate = true;
                 int sWidth = 100000000;
                 thread.sleep(500);
-                while (thread != null) {
+                while (thread != null) 
+                {
 
                     try {
                         if (capOut == null) {
