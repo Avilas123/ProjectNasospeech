@@ -187,7 +187,7 @@ class Capture implements Runnable
                     ByteArrayInputStream bais = new ByteArrayInputStream(audioBytes);
                     audioInputStream = new AudioInputStream(bais, format, audioBytes.length / frameSizeInBytes);
 
-                   String recordFile ="C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEndNew\\cexe\\recordfile.wav";//rightClick.saveLocation();                           later add record here
+                   String recordFile ="C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEndNew\\cexe\\untitled.wav";//rightClick.saveLocation();                           later add record here
                        if (recordFile == null) 
                        {
                         recordFile = "temp.wav";

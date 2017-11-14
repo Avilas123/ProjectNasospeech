@@ -29,6 +29,7 @@ public class Plotwave
     String filename="";
     public double duration;
     public int startSample,endSample,totalSample;
+    public double posStart,posEnd;
    public String fileopenmethod(){        
         
         String filename="";
@@ -181,7 +182,27 @@ public class Plotwave
         
         return totalSample;
     }    
-    
+
+    void setMouseEndpos(double valueForDisplay) {
+        posEnd=valueForDisplay;
+        
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    double getMouseEndpos() {
+        return posEnd;
+        
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    void setMouseStartpos(double valueForDisplay) {
+        posStart=valueForDisplay;
+        
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    double getMouseStartpos() {
+        return posStart;
+        
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     

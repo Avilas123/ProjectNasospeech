@@ -15,6 +15,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.nio.file.Paths;
+import java.util.Optional;
 import java.util.Random;
 //import java.nio.file.Paths;
 import java.util.Scanner;
@@ -24,6 +25,7 @@ import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -39,6 +41,10 @@ import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 //import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
@@ -47,7 +53,9 @@ import javafx.scene.control.TabPane;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
@@ -55,6 +63,8 @@ import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import static nasofx.FXMLDocumentController.classStage;
 //import static nasofx.FXMLDocumentController.valuefromc;
 //import static nasofx.FXMLDocumentController.valuefromc;
@@ -63,7 +73,16 @@ import static nasofx.FXMLDocumentController.classStage;
  * @author IITG
  */
 public class NasoFX extends Application {
+   
+    Rectangle rect;
+    SimpleDoubleProperty rectinitX = new SimpleDoubleProperty();
+    SimpleDoubleProperty rectinitY = new SimpleDoubleProperty();
+    SimpleDoubleProperty rectX = new SimpleDoubleProperty();
+    SimpleDoubleProperty rectY = new SimpleDoubleProperty();
 
+    
+    
+    
     public PasteNasoFx pastenfx;
      private AudioFormat format;  
 /**
@@ -84,37 +103,207 @@ public class NasoFX extends Application {
       int frameSize;
       int actual_frames_per_pixel;
       public  double frames_per_pixel;
-     @FXML 
+     
+      public boolean Is_record_done=false;
+     
+      @FXML 
     static  double  valuefromc;
      XYChart.Data<Double,Double> dd;
      Plotwave plot;
-
+// GridPane pane = new GridPane();
+ Scene scene;
     public NasoFX() {
         this.plot = new Plotwave();
         this.pastenfx = new PasteNasoFx();
         this.streamBytes = new StreamBytes();
-            
+           
     }
     
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));     
-        Scene scene;
-        scene = new Scene(root);
+       Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));     
+        
+       scene = new Scene(root);
      // scene.getStylesheets().add(this.getClass().getResource("test.css").toExternalForm());
        // scene.getStylesheets().add("test.css");
         
-      stage.setResizable(false);
+       stage.setResizable(false);
        stage.setMaxWidth(1190);
        stage.setMaxHeight(630);
-      stage.setTitle(" NasoSpeech");
+       stage.setTitle(" NasoSpeech");
       
-        stage.setScene(scene);
-         stage.centerOnScreen();
+       stage.setScene(scene);
+     //   scene.setOnMouseDragged(mouseHandler);
+       // scene.setOnMousePressed(mouseHandler);
+       // scene.setOnMouseReleased(mouseHandler);
+       // rect = getNewRectangle();
+      //  rect.widthProperty().bind(rectX.subtract(rectinitX));
+      //  rect.heightProperty().bind(rectY.subtract(rectinitY));
+       // lineChart.getData().add(rect);
+     
+       
+        stage.centerOnScreen();
         stage.show();
+        stage.setOnHidden(e->{try {
+        shutdown();
+            } catch (UnsupportedAudioFileException ex) {
+                Logger.getLogger(NasoFX.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(NasoFX.class.getName()).log(Level.SEVERE, null, ex);
+            }
         
+        });    
+      /*  stage.setOnCloseRequest(e->{try {
+            shutdown();
+            } catch (UnsupportedAudioFileException ex) {
+                Logger.getLogger(NasoFX.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(NasoFX.class.getName()).log(Level.SEVERE, null, ex);
+            }
+});*/
     }
+    
+public void shutdown() throws UnsupportedAudioFileException, IOException{
+         
+///////////////////////show alert to save for recording as sir said///////////////////          
+         if(Is_record_done==true)
+         {
+         
+          Platform.exit();
+          
+         }
+         else
+         {
+            Platform.runLater(() -> {try {
+                alertAction();
+                } catch (UnsupportedAudioFileException ex) {
+                    Logger.getLogger(NasoFX.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(NasoFX.class.getName()).log(Level.SEVERE, null, ex);
+                }
+});  
+
+        }
+}
+ ///////////alert button action/////////// 
+ 
+public void alertAction() throws UnsupportedAudioFileException, IOException{
+
+Alert alert = new Alert(AlertType.CONFIRMATION);
+alert.setTitle("Confirmation Dialog ");
+alert.setHeaderText("Do you want to save untitled.wav?");
+alert.setContentText("Choose your option.");
+
+ButtonType buttonTypeDont = new ButtonType("Don't");
+
+ButtonType buttonTypeSave = new ButtonType("Save as");
+ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+
+alert.getButtonTypes().setAll(buttonTypeDont, buttonTypeSave, buttonTypeCancel);
+
+Optional<ButtonType> result = alert.showAndWait();
+if (result.get() == buttonTypeDont){
+    Platform.exit();
+} else if (result.get() == buttonTypeSave) {
+    
+    //////////////////////////////////////do//////////////
+    
+    AfterRecordSave();
+   
+    System.exit(0);
+    
+   
+    
+    
+    ///////////////save the file/////////////////////
+} else 
+{
+  alert.close();  
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////   
+   
+///////savefile after record//////
+   public void AfterRecordSave() throws UnsupportedAudioFileException, IOException{
+   
+    String filename="C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEndNew\\cexe\\untitled.wav";
+
+    String saveLocation = saveLocation();
+          AudioInputStream audioInputStream = 
+        AudioSystem.getAudioInputStream(new File(filename));
+        //AudioSystem.write(audioInputStream, , saveLocation);
+       int size = (int) audioInputStream.getFrameLength()*2;
+        byte audioData [] = new byte[size];
+                System.out.println("size of the arrary"+size);
+       StreamConverter.streamTowavefile(saveLocation, audioInputStream);
+          
+    
+   
+   
+   
+   }
+    
+   ///////////////////////////////////// 
+    
+ ////////////////////rect for dragging/////////////////   
+    private Rectangle getNewRectangle() {
+        Rectangle r = new Rectangle();
+        r.setFill(Color.web("blue", 0.1));
+        r.setStroke(Color.BLUE);
+        r.setArcHeight(40);
+        r.setArcWidth(40);
+        return r;
+    }
+    
+    ////////////////////mousehandler////////////////////////////
+ EventHandler<MouseEvent> mouseHandler = new EventHandler<MouseEvent>() {
+
+        @Override
+        public void handle(MouseEvent mouseEvent) {
+
+            if (mouseEvent.getEventType() == MouseEvent.MOUSE_PRESSED) {
+                rect.setX(mouseEvent.getX());
+                rect.setY(mouseEvent.getY());
+                rectinitX.set(mouseEvent.getX());
+                rectinitY.set(mouseEvent.getY());
+            } else if (mouseEvent.getEventType() == MouseEvent.MOUSE_DRAGGED) {
+                System.out.println("mouse is dragged inside eventhandler");
+                rectX.set(mouseEvent.getX());
+                rectY.set(mouseEvent.getY());
+            } else if (mouseEvent.getEventType() == MouseEvent.MOUSE_RELEASED) {
+                // Clone the rectangle
+                Rectangle r = getNewRectangle();
+                r.setX(rect.getX());
+                r.setY(rect.getY());
+                r.setWidth(rect.getWidth());
+                r.setHeight(rect.getHeight());
+  //modify here pane.getChildren().add(r);
+                lineChart.getData().add(r);
+
+                // Hide the rectangle
+                rectX.set(0);
+                rectY.set(0);
+            }
+        }
+    };
+    
+    /////////////////////////mousehandler////////////////////
     
     
     public void startforplotwave(Stage stage,double[] samples,int numsamples,String filename,Tab tab1 ,TabPane TP,ScrollPane wavepane,Double sam_freq,double duration,AudioInputStream audioInputStream,float frameSize,int actual_frames_per_pixel) throws Exception 
@@ -526,14 +715,15 @@ System.out.print("\nStartSample\t"+startSample+"\nendSample\t"+endSample);
    // lineChart.setScaleX(2.0);
     }
     public void tempplot(Stage stage,String filename,double[] samples,int numsamples,Tab tab1,TabPane TP,ScrollPane wavepane,Double sam_freq,double duration )throws Exception{
-       xAxis= new NumberAxis("",0d,duration,0.05);
+      
+        xAxis= new NumberAxis("",0d,duration,0.05);
        NumberAxis yAxis = new NumberAxis("", -1d, 1d, 1);
        lineChart= new LineChart(xAxis, yAxis);
-        java.nio.file.Path p=Paths.get(filename);
+       java.nio.file.Path p=Paths.get(filename);
       
        String substring= p.getFileName().toString();
-      stage.setTitle(substring);
-      tab1.setText(substring);  
+       stage.setTitle(substring);
+       tab1.setText(substring);  
         
         yAxis.tickMarkVisibleProperty();
        
@@ -648,19 +838,42 @@ System.out.print("\nStartSample\t"+startSample+"\nendSample\t"+endSample);
     );
         
    */ 
-   lineChart.addEventHandler(MouseEvent.DRAG_DETECTED, 
+   
+//pane.setHgap(10);
+//pane.setVgap(10);
+//VBox root = new VBox();
+//root.getChildren().add(pane);
+//scene = new Scene(root);
+lineChart.setOnMouseDragged(mouseHandler);
+lineChart.setOnMousePressed(mouseHandler);
+lineChart.setOnMouseReleased(mouseHandler);
+rect = getNewRectangle();
+rect.widthProperty().bind(rectX.subtract(rectinitX));
+rect.heightProperty().bind(rectY.subtract(rectinitY));
+//lineChart.getData().add(rect);
+//wavepane.setContent(rect);///////add the rect 
+
+
+
+
+
+/*
+lineChart.addEventHandler(MouseEvent.DRAG_DETECTED, 
     new EventHandler<MouseEvent>() {
         @Override public void handle(MouseEvent e) {
             mousePosX1=e.getX();
             mousePosX2=0;
             Number valueForDisplay = xAxis.getValueForDisplay(mousePosX1);
             double doubleValue = valueForDisplay.doubleValue();
+            plot.setMouseStartpos(doubleValue);
             double d=doubleValue*sam_freq;
             plot.setStartSample(d);
             System.out.println("startposition"+xAxis.getValueForDisplay(mousePosX1)+"startsample"+d);
            // Rectangle r=new Rectangle(0,0,1180,350);
            // wavepane.setContent(r);
-            
+           //stage.setScene(scene);
+           //stage.show();
+
         }
 });
    
@@ -674,13 +887,71 @@ System.out.print("\nStartSample\t"+startSample+"\nendSample\t"+endSample);
             double doubleValue = valueForDisplay.doubleValue();
             double d=doubleValue*sam_freq;
             plot.setEndSample(d);
-            System.out.println("\nendposition"+xAxis.getValueForDisplay(mousePosX2)+"endsample"+d);
-             
+            plot.setMouseEndpos(doubleValue);
+           // System.out.println("\nendposition"+xAxis.getValueForDisplay(mousePosX2)+"endsample"+d);
+           // System.out.println("total sample\t"+plot.getSamplingPositions());
+           System.out.println("startsample after dragover\t"+plot.getStartSample()+"endsample after dragover\t"+plot.getEndSample());
+           String input="\nMouseStartPosition\t"+plot.getMouseStartpos()+"\nMouseEndPosition\t"+plot.getMouseEndpos()+"\nStartSample-->\t"+plot.getStartSample()+"\nendSample-->\n"+plot.getEndSample();
+           generate_text_file(input);      
+           
         }
-});
+
+           
+       });
      
         }
     
+  */} 
+  private void generate_text_file(String input) {
+         
+//////////////write to the file for articulation
+
+ String currentDir = System.getProperty("user.dir");
+                       // System.out.println("cu");
+  String cexedir = currentDir + "/cexe/";
+                        String filename=cexedir+"Input_For_Articulation.txt";
+
+
+File file = new File(filename);
+  
+          try {
+              //Create the file
+              if (file.createNewFile()){
+                  System.out.println("File is created!");
+              }else{
+                  System.out.println("File already exists.");
+              }
+          } catch (IOException ex) {
+              Logger.getLogger(NasoFX.class.getName()).log(Level.SEVERE, null, ex);
+          }
+           
+          //Write Content
+          FileWriter writer = null;
+          try {
+              writer = new FileWriter(file);
+          } catch (IOException ex) {
+              Logger.getLogger(NasoFX.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          try {
+              writer.write(input);
+          } catch (IOException ex) {
+              Logger.getLogger(NasoFX.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          try {
+              writer.close();
+              
+          } catch (IOException ex) {
+              Logger.getLogger(NasoFX.class.getName()).log(Level.SEVERE, null, ex);
+          }
+              
+  /////end of the file writer////////////////            
+           
+        
+
+
+
+//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+           }
     
     
     

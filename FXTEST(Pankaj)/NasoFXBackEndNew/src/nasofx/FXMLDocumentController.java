@@ -221,6 +221,14 @@ public class FXMLDocumentController extends Application {
       return classStage;
       }
       
+      @FXML
+      void shutdown(){
+          System.out.println("hjkgvkhgvkhgkhlhl");
+      }
+      
+      
+      
+      
     @FXML
     void Zoomfunction(MouseEvent event) {
         
@@ -435,7 +443,8 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
     
     public void open_button_Event(ActionEvent event) throws Exception
     { 
-        
+        //Tab tab1=new Tab();
+        //TP.getTabs().add(tab1);
         Plotwave plot=new Plotwave();
         
         String filename;
@@ -860,12 +869,14 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
      
         @FXML
      void copy(ActionEvent event)
-        {
+        { Plotwave plot=new Plotwave();
           // byte[] current = streamBytes.getCurrent();
          //   System.out.println("current"+Arrays.toString(current));
        // nfx.saveas(this.audioInputStream,numSamples,frames_per_pixel);
 ///do            nfx.copy(this.audioInputStream, frameSize , actual_frames_per_pixel, frameRate);
+         
             
+            System.out.println("copy start sample"+plot.getStartSample()+"sample in copy"+plot.getSamplingPositions());
         }
         @FXML
         void paste(ActionEvent event) throws Exception
@@ -892,7 +903,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
      
             @FXML
              void record(ActionEvent event) throws UnsupportedAudioFileException, IOException, Exception
-             {
+             {   nfx.Is_record_done=true;
                  variable=true;              
                  cap.start();
                  trans1.setDuration(Duration.millis(5000));
@@ -992,7 +1003,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
                  variable=false;
                  trans1.stop();
                  marker.setTranslateX(0);
-                 
+                 nfx.Is_record_done=true;
                //  trans1.pause();
                  //playbtn.setDisable(false);
                 // stopbtn.setDisable(true);
@@ -1010,7 +1021,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
         Plotwave plot=new Plotwave();
         Thread.sleep(2000);
        
-        String filename="C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEndNew\\cexe\\recordfile.wav";
+        String filename="C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEndNew\\cexe\\untitled.wav";
         
         double[] samples = plot.readWaveData(filename);
         pick = new Media(new File(filename).toURI().toURL().toExternalForm());
@@ -1021,6 +1032,9 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
         factor=plot.getsampfrq();
         numSamples=plot.getnumsamples();
         nfx.tempplot(classStage,filename, samples, numSamples, tab1, TP, wavepane, factor, duration);
+        
+        
+    /*    
         String saveLocation = nfx.saveLocation();
           AudioInputStream audioInputStream = 
         AudioSystem.getAudioInputStream(new File(filename));
@@ -1036,9 +1050,9 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
        numSamples=plot.getnumsamples();
        System.out.println("duration"+duration+" factor"+factor+" numSamples"+numSamples);
        nfx.tempplot(classStage,saveLocation, samples1, numSamples, tab1, TP, wavepane, factor, duration);
-        
+       */ 
        
-       
+      
        
        
        
