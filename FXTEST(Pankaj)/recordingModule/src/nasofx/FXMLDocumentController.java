@@ -210,6 +210,8 @@ public class FXMLDocumentController extends Application {
  // public  LineChart lineChart ;
       boolean variable=false;
       XYChart.Data<String,Double> dd;
+      double[] samples;
+      boolean recordstop=false;
     @FXML
     private LineChart wave;
     
@@ -217,7 +219,7 @@ public class FXMLDocumentController extends Application {
     private NumberAxis recordxaxis;
     @FXML
     private LineChart<? ,? > recordinglinechart;
-
+    Thread recordplot;
     NasoFX nfx=new NasoFX();
     double factor;
     int numSamples;
@@ -225,6 +227,8 @@ public class FXMLDocumentController extends Application {
     int frameSize;
     int actual_frames_per_pixel;
     Object source ;
+    ByteArrayOutputStream capOut1;
+      
     Stage getstage(){
       return classStage;
       }
@@ -464,7 +468,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
         pick = new Media(new File(filename).toURI().toURL().toExternalForm());
         player = new MediaPlayer(pick);
         trans= new TranslateTransition();
-      
+        
         double[] samples = plot.readWaveData(filename);
     
         sendfilename(filename);
@@ -685,7 +689,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
                 playtip.setText("pause");
                 playbtn.setTooltip(playtip);
                 playbtn.setGraphic(new ImageView(pause));
-             player.setOnEndOfMedia(new Runnable() {
+                player.setOnEndOfMedia(new Runnable() {
             @Override public void run() {
                 try {
                        resetmedia();
@@ -916,12 +920,18 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
      
             @FXML
              void record(ActionEvent event) throws UnsupportedAudioFileException, IOException, Exception
-             {  
-                 int Is=1;
-                 variable=true;              
-                 cap.start();
-                 RecordTask task=new RecordTask();
-                 recordlabel.textProperty().bind(task.messageProperty());
+             {
+               String filename="C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEndNew\\cexe\\untitled.wav";
+               AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(filename));
+               format= audioInputStream.getFormat();
+               float freq = format.getSampleRate();
+                // variable=true;              
+               cap.start();
+                 
+ /////////////////plot waveform while recording////////////////////////////////////////          
+  
+ //  RecordTask task=new RecordTask();
+            //     recordlabel.textProperty().bind(task.messageProperty());
         //  final ObservableList<XYChart.Data<String,Double>> data = FXCollections.<XYChart.Data<String,Double>>observableArrayList();
        // for(int i=0;i<10;i++)
       //  {
@@ -929,46 +939,96 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
      //   data.add(dd);
       // } 
           XYChart.Series series = new XYChart.Series();
-        //  
-          lineChartForRecord.getData().add(series);
-          //series.dataProperty().bind(task.valueProperty());
-         // series.setData(task.getValue());
-         // lineChartForRecord.dataProperty().b
-               new Thread(()-> {
-             try{
-            // Thread.sleep(500);
-             for(int i=0;i<100;i++){
+           //  wavepane.setStyle(this.getClass().getResource("test.css").toExternalForm());
+           lineChartForRecord.getData().clear();
+           lineChartForRecord.getData().add(series);
+          
+        //  series.dataProperty().bind(task.valueProperty());
+        //  series.setData(task.getValue());
+          Plotwave plot=new Plotwave();
+          
+          // String filename="C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEndNew\\cexe\\untitled.wav";
+          // samples = plot.readWaveData(filename);
+          // factor=plot.getsampfrq();
+         //  numSamples=plot.getnumsamples();
+         //  duration=plot.getduration();
+            
+          // lineChartForRecord.dataProperty().b
+          //double in=20,j=20*1.5;
+          //series.getData().add(new XYChart.Data<>(in, j));
+          Thread.sleep(1000);
+          
+            recordplot=  new Thread (()-> {
+                 try{
+                   //   Thread.sleep(100);
+                     ///open this thread /
+                     int start=0;
+                  while(nfx.Is_record!=1)
+           {
+                     capOut1 = cap.getcapout();
+                     byte audioBytes[] = capOut1.toByteArray();
+                     double[] samples = plot.readAudioData(audioBytes, format);
+                     RamerDouglasPeuckerFilter rdpf = new RamerDouglasPeuckerFilter(0.01);
+                     double[] fpoints;
+                     fpoints= rdpf.filter(samples);
+                     int numsamples=fpoints.length;
+                     System.out.println("in record numsamples-->"+numsamples);
+                       //  String ff="";
+                  //  double d=2;
+                  //  dd=new XYChart.Data<>(null,null);
+                      // numsamples=500;
+                      //Thread.sleep(2000);
+                      
+                     for(int i=start;i<numsamples;i++)
+                    { 
+                     int finalI=i;  
+                     Platform.runLater(()->
+                             
+series.getData().add(new XYChart.Data<>(finalI/freq,fpoints[finalI])));
+                             
+                     }
+                    start=numsamples;
+                     System.out.println("start"+start);
+                     Thread.sleep(500); 
+                    
+              /*     
+                 for(int i=0;i<numsamples;i++){
                  int finalI=i;
-             Platform.runLater(()->series.getData().add(new XYChart.Data<>(String.valueOf(finalI),finalI*1.5)));
-             Thread.sleep(50);
-             }
-             
-             
-             
-             }catch(InterruptedException e){}      
-             
-             
-             
-             
-                 }).start();
-      
-          
-          
-          
-          
-          
-          
-          
+                 Platform.runLater(()->
+                 series.getData().add(new XYChart.Data<>(String.valueOf(finalI/factor),samples[finalI]))
+                 );
                  
+                 Thread.sleep(1);
+             
+                }
+*/
+/////////////////////just/////////////////////////////
+  /*               Platform.runLater(new Runnable() {
+                     @Override
+                     public void run() {
+                         
+                         try {
+                             nfx.tempplot(classStage, fileName, samples, numSamples, tab1, TP, wavepane, factor, duration);
+                             //     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                         } catch (Exception ex) {
+                             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                         }
+                     }
+                 });
+             Thread.sleep(1);
+    */        
+   ////////////////end of just////////////////////////////////          
+       //    
+           }
+                   }catch(InterruptedException e){}      
+             
+                  });
+            recordplot.start();
+                  
           
-          new Thread(task).start();
+//          new Thread(task).start();
                  
-                  
-                  
-                  
-                  
-                  
-                  
+ /////////////////////////////end of the plotwave/////////////////               
                  trans1.setDuration(Duration.millis(5000));
                  trans1.setToX(1140);
                  trans1.setNode(marker);
@@ -1062,6 +1122,11 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
             @FXML
             void stopRecord(ActionEvent event) throws Exception
             {   // nfx.Is_record_done=1;
+                 recordstop=true;
+                 nfx.Is_record=1;
+                 recordplot.stop();
+                 recordplot.suspend();
+                 
                  cap.stop();
                  variable=false;
                  trans1.stop();
@@ -1081,7 +1146,10 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
         //nfx.tempplot(classStage, samplesfromrecord, numsamples, tab1, TP, wavepane, factor, duration1);
       
        // Thread.sleep(1000);
-        Plotwave plot=new Plotwave();
+       
+       
+   //////////////////// display the recorded file///////////    
+  /*      Plotwave plot=new Plotwave();
         Thread.sleep(2000);
        
         String filename="C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEndNew\\cexe\\untitled.wav";
@@ -1097,8 +1165,8 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
         nfx.tempplot(classStage,filename, samples, numSamples, tab1, TP, wavepane, factor, duration);
         nfx.getrecord(1);//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         nfx.Is_record=1;
-                       
-        
+     */                  
+      ///////////end of the displayed recored file/////////////  
         
     /*    
         String saveLocation = nfx.saveLocation();

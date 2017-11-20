@@ -37,7 +37,7 @@ class Capture implements Runnable
         public double samples[];
         public double duration ;
         public double sam_freq;
- 
+        byte[] data ;
       //  public  TranslateTransition trans;
         public void start() 
         {  //  String filename="C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEndNew\\cexe\\recordfile.wav";
@@ -144,7 +144,7 @@ class Capture implements Runnable
                     int frameSizeInBytes = format.getFrameSize();
                     int bufferLengthInFrames = line.getBufferSize() / 8;
                     int bufferLengthInBytes = bufferLengthInFrames * frameSizeInBytes;
-                    byte[] data = new byte[bufferLengthInBytes];
+                     data = new byte[bufferLengthInBytes];
                     int numBytesRead, noofwrites = 1;
 
 
@@ -233,6 +233,13 @@ class Capture implements Runnable
             System.err.println(er);
     }
 }
+        
+        
+public ByteArrayOutputStream  getcapout(){
+return capOut;
+}        
+        
+        
 public double[] getsamplesfromrecord(){
 return samples;
 }

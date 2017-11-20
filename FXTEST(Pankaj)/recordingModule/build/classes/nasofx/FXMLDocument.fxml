@@ -135,9 +135,9 @@
                      <children>
                         <ScrollPane fx:id="wavepane" fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS" pannable="true" prefHeight="346.0" prefWidth="1180.0" style="-fx-background-color: #232323;" stylesheets="@test.css" vbarPolicy="NEVER">
                            <content>
-                              <LineChart fx:id="lineChartForRecord">
+                              <LineChart fx:id="lineChartForRecord" createSymbols="false" horizontalZeroLineVisible="false" legendVisible="false" stylesheets="@test.css" verticalZeroLineVisible="false">
                                 <xAxis>
-                                  <CategoryAxis side="BOTTOM" />
+                                  <NumberAxis side="BOTTOM" />
                                 </xAxis>
                                 <yAxis>
                                   <NumberAxis side="LEFT" />

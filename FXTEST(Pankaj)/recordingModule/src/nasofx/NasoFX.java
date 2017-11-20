@@ -399,7 +399,7 @@ if (result.get() == buttonTypeDont){
         //XYChart.Series<Integer,Double> dataSeries1 = new XYChart.Series<>();
       //  XYChart.Data<Integer,Double> data = new XYChart.Data<>();
        
-   final   ObservableList<XYChart.Data<Double,Double>> data = FXCollections.<XYChart.Data<Double,Double>>observableArrayList();
+final   ObservableList<XYChart.Data<Double,Double>> data = FXCollections.<XYChart.Data<Double,Double>>observableArrayList();
    
      
       
