@@ -470,12 +470,21 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
         trans= new TranslateTransition();
         
         double[] samples = plot.readWaveData(filename);
-    
         sendfilename(filename);
-        duration=plot.getduration();
+    RamerDouglasPeuckerFilter rdpf = new RamerDouglasPeuckerFilter(0.01);
+    
+        
+        //duration=plot.getduration();
         factor=plot.getsampfrq();
-        numSamples=plot.getnumsamples();
-        nfx.tempplot(classStage,filename,samples, numSamples, tab1, TP, wavepane, factor, duration);
+        //numSamples=plot.getnumsamples();
+                     double[] fpoints;
+                     fpoints= rdpf.filter(samples);
+                     int numsamples=fpoints.length;
+        
+        double duration=numsamples/ factor;
+        
+        
+        nfx.tempplot(classStage,filename,fpoints, numsamples, tab1, TP, wavepane, factor, duration);
   
        
     }
@@ -972,7 +981,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
                      double[] fpoints;
                      fpoints= rdpf.filter(samples);
                      int numsamples=fpoints.length;
-                     System.out.println("in record numsamples-->"+numsamples);
+                //     System.out.println("in record numsamples-->"+numsamples);
                        //  String ff="";
                   //  double d=2;
                   //  dd=new XYChart.Data<>(null,null);
@@ -988,10 +997,10 @@ series.getData().add(new XYChart.Data<>(finalI/freq,fpoints[finalI])));
                              
                      }
                     start=numsamples;
-                     System.out.println("start"+start);
-                     Thread.sleep(500); 
+                   //  System.out.println("start"+start);
+                     Thread.sleep(600); 
                     
-              /*     
+             /*     
                  for(int i=0;i<numsamples;i++){
                  int finalI=i;
                  Platform.runLater(()->
