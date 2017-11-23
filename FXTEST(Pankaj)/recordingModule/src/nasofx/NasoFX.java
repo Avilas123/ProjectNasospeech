@@ -102,7 +102,7 @@ public class NasoFX extends Application {
     LineChart lineChart ;
     NumberAxis xAxis ;
 //  FXMLDocumentController fxmlobject =new FXMLDocumentController();
-  
+   static int Copied_Samples;
     
     
     
@@ -161,9 +161,9 @@ public class NasoFX extends Application {
         vb.getChildren().add(rect);
         
         scene = new Scene(vb);
-        //scene.setOnMouseDragged(mouseHandler);
-        //scene.setOnMousePressed(mouseHandler);
-      //  scene.setOnMouseReleased(mouseHandler);
+        scene.setOnMouseDragged(mouseHandler);
+        scene.setOnMousePressed(mouseHandler);
+       scene.setOnMouseReleased(mouseHandler);
         
         stage.setScene(scene);
         //      gp.getChildren().add(rect);
@@ -947,10 +947,11 @@ lineChart.addEventHandler(MouseEvent.DRAG_DETECTED,
             double d=doubleValue*sam_freq;
             plot.setStartSample(d);
             System.out.println("startposition"+xAxis.getValueForDisplay(mousePosX1)+"startsample"+d);
-           // Rectangle r=new Rectangle(0,0,1180,350);
-           // wavepane.setContent(r);
-           //stage.setScene(scene);
-           //stage.show();
+          // Rectangle r=new Rectangle(0,0,1180,350);
+          // wavepane.setContent(r);
+         //  scene =new Scene(r);
+         //  stage.setScene(scene);
+         //  stage.show();
             
         }
 });
@@ -970,9 +971,14 @@ lineChart.addEventHandler(MouseEvent.DRAG_DETECTED,
            // System.out.println("total sample\t"+plot.getSamplingPositions());
            System.out.println("startsample after dragover\t"+plot.getStartSample()+"endsample after dragover\t"+plot.getEndSample());
            String input="\nMouseStartPosition\t"+plot.getMouseStartpos()+"\nMouseEndPosition\t"+plot.getMouseEndpos()+"\nStartSample-->\t"+plot.getStartSample()+"\nendSample-->\n"+plot.getEndSample();
-           generate_text_file(input);      
+           Copied_Samples=plot.getEndSample()-plot.getStartSample();
+           System.out.println("Copied_Samples"+Copied_Samples);    
+           SeT_No_Of_Samples_Copied(Copied_Samples);
+           generate_text_file(input);
            
         }
+
+            
 
            
        });
@@ -980,13 +986,32 @@ lineChart.addEventHandler(MouseEvent.DRAG_DETECTED,
         
     
   } 
+    
+  public void SeT_No_Of_Samples_Copied(int setSample) {
+            Copied_Samples=setSample;
+              //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }  
+    
+    
+    public int Get_No_Of_Samples_Copied(){
+    return Copied_Samples;    
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
   private void generate_text_file(String input) {
          
 //////////////write to the file for articulation
 
  String currentDir = System.getProperty("user.dir");
                        // System.out.println("cu");
-  String cexedir = currentDir + "/cexe/";
+  String cexedir = currentDir + "//cexe//";
                         String filename=cexedir+"Input_For_Articulation.txt";
 
 

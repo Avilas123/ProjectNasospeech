@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
@@ -140,11 +139,31 @@
                                   <NumberAxis side="BOTTOM" />
                                 </xAxis>
                                 <yAxis>
-                                  <NumberAxis side="LEFT" />
+                                  <NumberAxis lowerBound="-1.0" side="LEFT" upperBound="1.0" />
                                 </yAxis>
                               </LineChart>
                            </content></ScrollPane>
                         <ImageView fx:id="marker" fitHeight="346.0" fitWidth="29.0" layoutX="21.0" onMouseDragged="#markerdrag" onMousePressed="#markerpress" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Icons/marker.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="H_RESIZE" />
+                           </cursor>
+                        </ImageView>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="tabForPaste">
+               <content>
+                  <AnchorPane fx:id="tab1ap1">
+                     <children>
+                        <ScrollPane fx:id="wavepaneForPaste" fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS" pannable="true" prefHeight="346.0" prefWidth="1180.0" style="-fx-background-color: #232323;" stylesheets="@test.css" vbarPolicy="NEVER" />
+                        <ImageView fx:id="marker1" fitHeight="346.0" fitWidth="29.0" layoutX="21.0" onMouseDragged="#markerdrag" onMousePressed="#markerpress" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Icons/marker.png" />
                            </image>

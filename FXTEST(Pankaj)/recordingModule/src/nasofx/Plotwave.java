@@ -57,21 +57,21 @@ public class Plotwave
          
         audioInputStream = AudioSystem.getAudioInputStream(new File(filename));
         int size = (int) this.audioInputStream.getFrameLength()*2;
+        System.out.println("size"+size);
         byte audioData [] = new byte[size];
-    
         System.out.println("ffffff = "+  this.audioInputStream.getFrameLength() + "  " + this.audioInputStream.getFormat());
-    
         int bytesRead = this.audioInputStream.read(audioData);
         System.out.println("bytes read = "+ bytesRead);
         format = audioInputStream.getFormat();
         sampling_freq=format.getSampleRate();
         numSamples = (int) this.audioInputStream.getFrameLength();
+        System.out.println("numSamples"+numSamples);
         duration=numSamples/sampling_freq;
-        
         samples = readAudioData(audioData,format);
         return samples;
         
-    } ///////  readwave data method ends here
+    } 
+///////  readwave data method ends here
     
     
     double[] readAudioData(byte audioBytes[],AudioFormat format){

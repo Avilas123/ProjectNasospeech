@@ -38,6 +38,8 @@ class Capture implements Runnable
         public double duration ;
         public double sam_freq;
         byte[] data ;
+        String recordFile ="C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEndNew\\cexe\\record.wav";//rightClick.saveLocation();                           later add record here
+                   
       //  public  TranslateTransition trans;
         public void start() 
         {  //  String filename="C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEndNew\\cexe\\recordfile.wav";
@@ -165,6 +167,12 @@ class Capture implements Runnable
                             System.err.println("Error: " + e1.getMessage());
                         }
                         capOut.write(data, 0, numBytesRead);
+                         byte audioBytes[] = capOut.toByteArray();
+                     ByteArrayInputStream bais = new ByteArrayInputStream(audioBytes);
+                    audioInputStream = new AudioInputStream(bais, format, audioBytes.length / frameSizeInBytes);
+                     StreamConverter.streamTowavefile(recordFile, audioInputStream);
+                        
+                        
                     }
 
                     // we reached the end of the stream.  stop and close the line.
@@ -182,11 +190,11 @@ class Capture implements Runnable
 
                     // load bytes into the audio input stream for playback
 
-                    byte audioBytes[] = capOut.toByteArray();
+             //       byte audioBytes[] = capOut.toByteArray();
 
 
-                    ByteArrayInputStream bais = new ByteArrayInputStream(audioBytes);
-                    audioInputStream = new AudioInputStream(bais, format, audioBytes.length / frameSizeInBytes);
+               //     ByteArrayInputStream bais = new ByteArrayInputStream(audioBytes);
+               //     audioInputStream = new AudioInputStream(bais, format, audioBytes.length / frameSizeInBytes);
 
                    String recordFile ="C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEndNew\\cexe\\untitled.wav";//rightClick.saveLocation();                           later add record here
                        if (recordFile == null) 
@@ -238,7 +246,13 @@ class Capture implements Runnable
 public ByteArrayOutputStream  getcapout(){
 return capOut;
 }        
-        
+  
+public AudioInputStream getAudioInputStream(){
+
+return  audioInputStream;
+}
+
+
         
 public double[] getsamplesfromrecord(){
 return samples;

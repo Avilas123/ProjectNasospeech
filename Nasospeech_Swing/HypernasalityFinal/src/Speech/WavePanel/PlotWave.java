@@ -1566,8 +1566,8 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                 lines.removeAllElements();
                 double inc = 0.02;
                 // Calculate Screen Pixels                   
-                for (double x = startPaint; x < endPaint && audioDataNormalize != null; x = x + 0.02) {
-                    inc = inc + 0.02;
+                for (double x = startPaint; x < endPaint && audioDataNormalize != null; x = x + 0.02) 
+                {   inc = inc + 0.02;
                     int idx = (int) (frames_per_pixel * numChannels * inc);
                     
 
@@ -1581,6 +1581,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
                         my_byte = (byte) (2100 * audioDataNormalize[idx] / 32000);
                     }
                     double y_new = (double) (h * (100 - my_byte) / 240);
+                    System.out.println("also");
                     lines.add(new Line2D.Double(x, y_last, x, y_new));
                     y_last = y_new;
 
@@ -1619,6 +1620,7 @@ public class PlotWave extends javax.swing.JPanel implements ActionListener, Cont
 
         @Override
         public void paint(Graphics g) {
+            
             try {
                 
                 Dimension d = this.getSize();
@@ -1925,11 +1927,14 @@ System.out.println("i am here2");
                         //Color linecolor = new Color(128, 128, 128);
                         Color linecolor = new Color(0,0,100);
                         g2.setColor(linecolor);
+                        System.out.println("audioinutstream"+audioInputStream.getFrameLength());
+                        System.out.println("lines size"+lines.size());
                         for (int i = 0; i < lines.size(); i++) {
 
                             // Draw Signal Graph
                             try {
                                 if (((Line2D) lines.get(i)).getY2() != 0 && ((Line2D) lines.get(i)).getY1() != 0) {
+                                   // System.out.println("signal draw"+i);
                                     g2.draw((Line2D) lines.get(i));
                                 }
                             } catch (Exception er) {

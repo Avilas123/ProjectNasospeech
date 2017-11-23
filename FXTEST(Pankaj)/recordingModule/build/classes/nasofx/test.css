@@ -40,7 +40,6 @@
     
     -fx-opacity: 0.5;
 }
-
 .chart-horizontal-grid-lines {
     -fx-stroke: transparent;
     -fx-opacity: 0.5;

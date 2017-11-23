@@ -95,12 +95,14 @@ public class FXMLDocumentController extends Application {
     private Slider slider;
         @FXML
     private Tab tab1;
+    @FXML
+    private Tab tabForPaste;    
            @FXML
     private TabPane TP;
          @FXML
     private ScrollPane wavepane;
-          @FXML
-    private Button playbtn;
+    @FXML
+    private ScrollPane wavepaneForPaste;      
  
     @FXML
     private AnchorPane tab1ap;
@@ -146,7 +148,10 @@ public class FXMLDocumentController extends Application {
     private Button rewindbtn;
     @FXML
     private Button stopbtn;
-
+    @FXML
+    private Button playbtn;
+    
+    
     @FXML
     private Button recordbtn;
      @FXML
@@ -178,7 +183,7 @@ public class FXMLDocumentController extends Application {
     private Toolkit tk;
     public double mousePosX1, mousePosX2, mouseMoveX1, mousePosY1;
     public JPopupMenu menu;
-  public StreamBytes streamBytes;
+    public StreamBytes streamBytes;
   //  public MainFrame mainFrame;
    // public Mainpopup mainpopup;
 //    private SamplingGraph sg;
@@ -461,7 +466,6 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
         //Tab tab1=new Tab();
         //TP.getTabs().add(tab1);
         Plotwave plot=new Plotwave();
-        
         String filename;
         filename=plot.fileopenmethod();//fileopenmethod();
         System.out.println("filename_in 1st time load-------->>>>>>\t"+filename);
@@ -471,14 +475,14 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
         
         double[] samples = plot.readWaveData(filename);
         sendfilename(filename);
-    RamerDouglasPeuckerFilter rdpf = new RamerDouglasPeuckerFilter(0.01);
+    RamerDouglasPeuckerFilter rdpf = new RamerDouglasPeuckerFilter(0.3);
     
         
         //duration=plot.getduration();
         factor=plot.getsampfrq();
         //numSamples=plot.getnumsamples();
                      double[] fpoints;
-                     fpoints= rdpf.filter(samples);
+                    fpoints= rdpf.filter(samples);
                      int numsamples=fpoints.length;
         
         double duration=numsamples/ factor;
@@ -895,29 +899,68 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
      
         @FXML
      void copy(ActionEvent event)
-        { Plotwave plot=new Plotwave();
+        {    Plotwave plot=new Plotwave();
           // byte[] current = streamBytes.getCurrent();
-         //   System.out.println("current"+Arrays.toString(current));
-       // nfx.saveas(this.audioInputStream,numSamples,frames_per_pixel);
-///do            nfx.copy(this.audioInputStream, frameSize , actual_frames_per_pixel, frameRate);
-         
+          //   System.out.println("current"+Arrays.toString(current));
+          // nfx.saveas(this.audioInputStream,numSamples,frames_per_pixel);
+///do  nfx.copy(this.audioInputStream, frameSize , actual_frames_per_pixel, frameRate);
+          
             
-            System.out.println("copy start sample"+plot.getStartSample()+"sample in copy"+plot.getSamplingPositions());
+            System.out.println("NoOfSampledCopied-->"+nfx.Get_No_Of_Samples_Copied() );
         }
         @FXML
         void paste(ActionEvent event) throws Exception
-        {
-           
-            
-            Tab tab1 = new Tab();
-            tab1.setText("untitled ");
+        {   int Samples_Copied = nfx.Get_No_Of_Samples_Copied();
+           // Tab tab1 = new Tab();
+           // tab1.setText("untitled ");
            //String filename = this.getfilename(); //fileName);
-           ScrollPane wavepane1=new ScrollPane();
-           tab1.setContent(wavepane1);
-           
-            TP.getTabs().add(tab1);
-            TP.getSelectionModel().select(tab1);
-            TP.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
+           // ScrollPane wavepane1=new ScrollPane();
+           // tab1.setContent(wavepane1);
+          //  TP.getTabs().add(tab1);
+          //  TP.getSelectionModel().select(tab1);
+           // TP.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
+            AudioInputStream inputStream = null;
+           AudioInputStream shortenedStream = null;
+    
+      File file = new File(getfilename());
+      AudioFileFormat fileFormat = AudioSystem.getAudioFileFormat(file);
+      AudioFormat format = fileFormat.getFormat();
+      inputStream = AudioSystem.getAudioInputStream(file);
+    //  int bytesPerSecond = format.getFrameSize() * (int)format.getFrameRate();
+     // inputStream.skip(startSecond * bytesPerSecond);
+      //long framesOfAudioToCopy = secondsToCopy * (int)format.getFrameRate();
+      shortenedStream = new AudioInputStream(inputStream, format, Samples_Copied);
+      String pasteFile ="C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEndNew\\cexe\\paste.wav";//rightClick.saveLocation();                           later add record here
+       File destinationFile = new File(pasteFile);
+      AudioSystem.write(shortenedStream, fileFormat.getType(), destinationFile);
+     Plotwave plot=new Plotwave();
+      
+     double[] samples = plot.readWaveData(pasteFile);
+     sendfilename(pasteFile);
+     //RamerDouglasPeuckerFilter rdpf = new RamerDouglasPeuckerFilter(0.01);
+     //duration=plot.getduration();
+        factor=plot.getsampfrq();
+        //numSamples=plot.getnumsamples();
+                     double[] fpoints;
+                    // fpoints= rdpf.filter(samples);
+                     int numsamples=samples.length;
+        double duration=numsamples/ factor;
+        nfx.tempplot(classStage,pasteFile,samples, numsamples, tabForPaste, TP, wavepaneForPaste, factor, duration);
+  
+      
+      
+      
+      
+      
+      
+      
+      
+    //  nfx.tempplot(classStage, pasteFile, samples, numSamples, tabForPaste, TP, wavepaneForPaste, factor, duration);
+            
+            
+            
+            
+            
             
             
             
@@ -929,11 +972,18 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
      
             @FXML
              void record(ActionEvent event) throws UnsupportedAudioFileException, IOException, Exception
-             {
+             {  
+                // rewindbtn.setDisable(true);
+               //  fwdbtn.setDisable(true);
+               ///  stopbtn.setDisable(true);
+               //  playbtn.setDisable(true);
+      //    String filenameForRecord="C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEndNew\\cexe\\record.wav";             
+       //       byte[] audiobytes = StreamConverter.wavefileToBytes(new File(filenameForRecord));
                String filename="C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEndNew\\cexe\\untitled.wav";
                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(filename));
                format= audioInputStream.getFormat();
                float freq = format.getSampleRate();
+               
                 // variable=true;              
                cap.start();
                  
@@ -965,40 +1015,65 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
           // lineChartForRecord.dataProperty().b
           //double in=20,j=20*1.5;
           //series.getData().add(new XYChart.Data<>(in, j));
-          Thread.sleep(1000);
+          Thread.sleep(500);
           
             recordplot=  new Thread (()-> {
-                 try{
-                   //   Thread.sleep(100);
+                     try{
+                    //  Thread.sleep(100);
                      ///open this thread /
-                     int start=0;
-                  while(nfx.Is_record!=1)
-           {
-                     capOut1 = cap.getcapout();
-                     byte audioBytes[] = capOut1.toByteArray();
-                     double[] samples = plot.readAudioData(audioBytes, format);
-                     RamerDouglasPeuckerFilter rdpf = new RamerDouglasPeuckerFilter(0.01);
-                     double[] fpoints;
-                     fpoints= rdpf.filter(samples);
-                     int numsamples=fpoints.length;
-                //     System.out.println("in record numsamples-->"+numsamples);
+                     int start=2;
+                     while(nfx.Is_record!=1)
+           {        // AudioInputStream audioInputStream1 = cap.getAudioInputStream();
+           
+              // String filenameForRecord="C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEndNew\\cexe\\record.wav";             
+            //   byte[] audiobytes = StreamConverter.wavefileToBytes(new File(filenameForRecord));
+          //     double[] samples = plot.readAudioData(audiobytes, format);
+                    capOut1 = cap.getcapout();
+                    byte audioBytes[] = capOut1.toByteArray();
+                    double[] samples = plot.readAudioData(audioBytes, format);
+                    int Checknumsamples=0;
+                    Checknumsamples=samples.length+Checknumsamples;
+                    double[] fpoints;
+                    int numsamples=0;
+       
+                    
+                    
+                    
+                    
+                  if( Checknumsamples<5000)
+                {
+                    RamerDouglasPeuckerFilter rdpf = new RamerDouglasPeuckerFilter(0.01);
+                    fpoints= rdpf.filter(samples);
+                    numsamples=fpoints.length;
+                }
+                  else
+                    {  RamerDouglasPeuckerFilter rdpf1 = new RamerDouglasPeuckerFilter(0.3);
+                     fpoints= rdpf1.filter(samples);
+                     numsamples=fpoints.length;
+                    }
+                     System.out.println("in record numsamples-->"+numsamples);
                        //  String ff="";
                   //  double d=2;
                   //  dd=new XYChart.Data<>(null,null);
                       // numsamples=500;
                       //Thread.sleep(2000);
-                      
+                    
                      for(int i=start;i<numsamples;i++)
                     { 
                      int finalI=i;  
                      Platform.runLater(()->
                              
 series.getData().add(new XYChart.Data<>(finalI/freq,fpoints[finalI])));
-                             
-                     }
+                    
+                    }
                     start=numsamples;
+                    //lineChartForRecord.getData().clear();
                    //  System.out.println("start"+start);
-                     Thread.sleep(600); 
+                   
+                   
+                   
+                   
+                   Thread.sleep(600); 
                     
              /*     
                  for(int i=0;i<numsamples;i++){
@@ -1027,21 +1102,24 @@ series.getData().add(new XYChart.Data<>(finalI/freq,fpoints[finalI])));
              Thread.sleep(1);
     */        
    ////////////////end of just////////////////////////////////          
-       //    
-           }
+       //   
+       
+          }
                    }catch(InterruptedException e){}      
              
                   });
-            recordplot.start();
+           recordplot.start();
                   
           
 //          new Thread(task).start();
                  
  /////////////////////////////end of the plotwave/////////////////               
-                 trans1.setDuration(Duration.millis(5000));
+                 trans1.setDuration(Duration.millis(25000));
                  trans1.setToX(1140);
                  trans1.setNode(marker);
                  trans1.play();
+                 
+                  
   /*       
                  //  NumberAxis xAxis= new NumberAxis("",0d,100,0.05);
                //  NumberAxis yAxis = new NumberAxis("", 0, 1000, 1);
@@ -1131,6 +1209,11 @@ series.getData().add(new XYChart.Data<>(finalI/freq,fpoints[finalI])));
             @FXML
             void stopRecord(ActionEvent event) throws Exception
             {   // nfx.Is_record_done=1;
+                 rewindbtn.setDisable(false);
+                 fwdbtn.setDisable(false);
+                 stopbtn.setDisable(false);
+                 playbtn.setDisable(false);
+                 
                  recordstop=true;
                  nfx.Is_record=1;
                  recordplot.stop();
@@ -1158,8 +1241,8 @@ series.getData().add(new XYChart.Data<>(finalI/freq,fpoints[finalI])));
        
        
    //////////////////// display the recorded file///////////    
-  /*      Plotwave plot=new Plotwave();
-        Thread.sleep(2000);
+   /*    Plotwave plot=new Plotwave();
+        Thread.sleep(100);
        
         String filename="C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEndNew\\cexe\\untitled.wav";
         
@@ -1168,13 +1251,21 @@ series.getData().add(new XYChart.Data<>(finalI/freq,fpoints[finalI])));
         player = new MediaPlayer(pick);
         trans= new TranslateTransition();
         sendfilename(filename);
-        duration=plot.getduration();
-        factor=plot.getsampfrq();
-        numSamples=plot.getnumsamples();
-        nfx.tempplot(classStage,filename, samples, numSamples, tab1, TP, wavepane, factor, duration);
-        nfx.getrecord(1);//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        nfx.Is_record=1;
-     */                  
+        RamerDouglasPeuckerFilter rdpf = new RamerDouglasPeuckerFilter(0.3);
+                     double[] fpoints;
+                     fpoints= rdpf.filter(samples);
+                     int numsamples=fpoints.length;
+        
+      
+        
+        double duration=numsamples/ factor;
+        
+        
+        nfx.tempplot(classStage,filename,fpoints, numsamples, tab1, TP, wavepane, factor, duration);
+  
+       // nfx.getrecord(1);//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       // nfx.Is_record=1;
+   */                   
       ///////////end of the displayed recored file/////////////  
         
     /*    
