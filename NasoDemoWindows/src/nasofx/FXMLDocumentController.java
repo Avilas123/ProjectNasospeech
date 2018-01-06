@@ -6,6 +6,7 @@
 package nasofx;
 
 //import java.awt.event.MouseEvent;
+import static java.awt.SystemColor.window;
 import java.awt.Toolkit;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -27,12 +28,16 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Label;
@@ -61,7 +66,11 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JPopupMenu;
+import javax.swing.SwingUtilities;
 //import javazoom.jl.decoder.JavaLayerException;
 /**
  *
@@ -355,7 +364,6 @@ public class FXMLDocumentController extends Application {
           
           if(milli>=0 && movefactor < (frames_per_pixel*1000))
           {
-              
           milisec.setText(mm);
           sec.setText(ss);
           
@@ -390,7 +398,7 @@ public class FXMLDocumentController extends Application {
     public void initialize() 
     {
         // TODO
-     /*  
+     /* 
     slider.setMin(0);
     slider.setMax(100);
     slider.setValue(40);
@@ -455,7 +463,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
  
   TP.getTabs().addAll(tab1);  
         */
-         resultpane.setTranslateX(351);
+        resultpane.setTranslateX(351);
   
     
  
@@ -510,6 +518,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
         
         duration=plot.getduration();
         factor=plot.getsampfrq();
+        frames_per_pixel=plot.getduration();
         //numSamples=plot.getnumsamples();
                    //  double[] fpoints;
                    // fpoints= rdpf.filter(samples);
@@ -955,22 +964,24 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
    
  @FXML
     void hypernalasityclick(ActionEvent event) {
-        
-        TranslateTransition openNav=new TranslateTransition(new Duration(350), resultpane);
-           openNav.setToX(0);
-           openNav.play();
-        Tab tab = new Tab();
-          tab.setText("Hypernasality  ");
+          final SwingNode swingNode = new SwingNode();
+          createAndSetSwingContent(swingNode);
+        //  resultpane.getChildren().add((swingNode));
+      //    TranslateTransition openNav=new TranslateTransition(new Duration(350), resultpane);
+      //     openNav.setToX(0);
+      //     openNav.play();
+         // Tab tab = new Tab();
+      //    tab.setText("Hypernasality  ");
            String filename = this.getfilename(); //fileName);
            
-            TP.getTabs().add(tab);
-            TP.getSelectionModel().select(tab);
-            TP.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
+      //      TP.getTabs().add(tab);
+       //     TP.getSelectionModel().select(tab);
+      //      TP.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
             double probability = nfx.Hypernasality(filename,resultpane);
           
      System.out.println("The probability value is:"+probability);
      
-     
+   /*  
     Rectangle rect = new Rectangle(40,100,100 ,40);
     rect.setX(50);
     rect.setY(50);
@@ -984,14 +995,34 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
     t.setText("The Hypernasality Score is :"+value);
     t.setFont(Font.font ("Verdana", 20));
     t.setFill(Color.RED);
-    Label label=new Label("ttttttttttt");
-    
-    
-    resultpane.getChildren().add(label);
+   
     tab.setContent(t);
-     
+   */ 
+    
+  //  classStage.setScene(new Scene(resultpane));
+    //classStage.show();
     }
- 
+  private void createAndSetSwingContent(final SwingNode swingNode) {
+          JFrame window = new JFrame(); 
+           
+        //  window.add(DC);
+      SwingUtilities.invokeLater(new Runnable() {
+                  @Override
+                 public void run() {
+                   //  swingNode.setContent((JComponent) window.getContentPane());
+                  // drawingComponent DC = new drawingComponent();
+                  // swingNode.setContent(DC);
+                 
+                 }
+             });
+         }
+    
+    
+    
+    
+    
+    
+    
  
     @FXML
     void playsound(ActionEvent event) throws FileNotFoundException, IOException, UnsupportedAudioFileException, LineUnavailableException {
@@ -1245,14 +1276,63 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
         /////////////saveas function/////////
         
         @FXML
-     void saveas(ActionEvent event)
+     void saveas(ActionEvent event) throws UnsupportedAudioFileException, IOException, LineUnavailableException, Exception
              
-        { // Plotwave plot=new Plotwave();
+        { 
+          Plotwave plot=new Plotwave();
             //System.out.println("sampling positions"+plot.getSamplingPositions());
     
           // byte[] current = streamBytes.getCurrent();
          //   System.out.println("current"+Arrays.toString(current));
 //do        nfx.saveas(this.audioInputStream,frameSize, actual_frames_per_pixel);
+        
+        if(nfx.Is_record==1)
+        {
+            String filename = nfx.AfterRecordSave();
+            Alert alert = new Alert(AlertType.INFORMATION);
+alert.setTitle("Information Dialog");
+alert.setHeaderText(null);
+alert.setContentText("File is saved successfully!");
+
+alert.showAndWait();
+            
+  /*         
+            pick = new Media(new File(filename).toURI().toURL().toExternalForm());
+            player = new MediaPlayer(pick);
+            trans= new TranslateTransition();
+        
+             double[] samples = plot.readWaveData(filename);
+             sendfilename(filename);
+             this.audioInputStream = AudioSystem.getAudioInputStream(new File(filename));
+             AudioFormat audioFormat = audioInputStream.getFormat();
+             float sampleRate = audioFormat.getSampleRate();
+             System.out.println("The sample rate is : "+sampleRate);
+             clearcheckmenuitem();
+             tickmenuitem(sampleRate);
+           
+   //end of tickmenu function
+        
+        duration=plot.getduration();
+        factor=plot.getsampfrq();
+        frames_per_pixel=plot.getduration();
+        //numSamples=plot.getnumsamples();
+                   //  double[] fpoints;
+                   // fpoints= rdpf.filter(samples);
+                   //  int numsamples=fpoints.length;
+                   int numsamples=samples.length;
+        
+        //double duration=numsamples/ factor;
+        
+        
+  nfx.tempplot(classStage,filename,samples, numsamples, tabForPaste, TP, wavepane, factor, duration);
+  
+     */       
+            
+            
+            
+        
+        }
+        
         }
         
      
@@ -1345,6 +1425,41 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
             @FXML
              void record(ActionEvent event) throws UnsupportedAudioFileException, IOException, Exception
              {  
+                 
+         Image pause = new Image("file:\\C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEnd\\src\\Icons\\pausebtn.png",27,27,false,false);
+         Image record = new Image("file:\\C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEnd\\src\\Icons\\record_1.png",27,27,false,false);
+         
+         if(count%2==0){
+         
+         recordbtn1.setGraphic(new ImageView(pause));
+         count++;
+        
+         }
+         else
+         {
+         /////record stop////////////////    
+                   timeline.stop();
+                
+                   recordstop=true;
+                   nfx.Is_record=1;
+                   recordplot.stop();
+                   recordplot.suspend();
+                 
+                   cap.stop();
+                   variable=false;
+                   trans1.stop();
+                   marker.setTranslateX(0);
+                   String filename ="C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEndNew\\cexe\\record.wav";
+                   pick = new Media(new File(filename).toURI().toURL().toExternalForm());
+                   player = new MediaPlayer(pick);
+                   trans= new TranslateTransition();
+                   sendfilename(filename);   
+          
+                   //////////////end of record stop///////////////////////    
+                    recordbtn1.setGraphic(new ImageView(record));
+                      count++;
+                    return;
+         }
                 // rewindbtn.setDisable(true);
                //  fwdbtn.setDisable(true);
                ///  stopbtn.setDisable(true);
@@ -1387,7 +1502,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
                           
                  
               //////////end of the timer/////////////   
-               String filename="C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEndNew\\cexe\\untitled.wav";
+               String filename="C:\\Users\\Naso\\Documents\\NetBeansProjects\\NasoDemoWindows\\cexe\\sahana_s1.wav";
                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(filename));
                format= audioInputStream.getFormat();
                float freq = format.getSampleRate();
@@ -1450,9 +1565,7 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
        
                     
                     
-                    
-                    
-                  if( Checknumsamples<5000)
+                    if( Checknumsamples<5000)
                 {
                     RamerDouglasPeuckerFilter rdpf = new RamerDouglasPeuckerFilter(0.01);
                     fpoints= rdpf.filter(samples);
@@ -1637,7 +1750,11 @@ for (i = 3,a=0; i <2100; i+=50,a+=1)
                  variable=false;
                  trans1.stop();
                  marker.setTranslateX(0);
-                 
+                   String filename ="C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEndNew\\cexe\\record.wav";
+                   pick = new Media(new File(filename).toURI().toURL().toExternalForm());
+                   player = new MediaPlayer(pick);
+                   trans= new TranslateTransition();
+                   sendfilename(filename);
                //  trans1.pause();
                  //playbtn.setDisable(false);
                 // stopbtn.setDisable(true);

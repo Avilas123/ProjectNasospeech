@@ -108,7 +108,7 @@ public class NasoFX extends Application {
    static int Copied_Samples;
     
     
-    
+      public static int is_SaveAs_done=0;
       double array[]={};
       int numSamples;
       float frameRate;
@@ -236,7 +236,7 @@ public void shutdown() throws UnsupportedAudioFileException, IOException, Interr
 ///////////////////////show alert to save for recording as sir said///////////////////          
  System.out.println("inside shutdown"+ Is_record);
 
-if(Is_record==1)
+if(Is_record==1 && is_SaveAs_done==0)
          {
          
           alertAction();
@@ -311,18 +311,19 @@ if (result.get() == buttonTypeDont){
           //////////////////////////////////////   
    
 ///////savefile after record//////
-   public void AfterRecordSave() throws UnsupportedAudioFileException, IOException{
+   public String AfterRecordSave() throws UnsupportedAudioFileException, IOException{
    
         String filename="C:\\Users\\Naso\\Documents\\NasoSpeech Team\\CurrentlyWorking\\NasoFXBackEndNew\\cexe\\record.wav";
         String saveLocation = saveLocation();
         AudioInputStream audioInputStream = 
         AudioSystem.getAudioInputStream(new File(filename));
+         is_SaveAs_done=1;
         //AudioSystem.write(audioInputStream, , saveLocation);
         int size = (int) audioInputStream.getFrameLength()*2;
         byte audioData [] = new byte[size];
         System.out.println("size of the arrary"+size);
         StreamConverter.streamTowavefile(saveLocation, audioInputStream);
-          
+       return saveLocation;
     
    
    

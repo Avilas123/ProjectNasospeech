@@ -2,14 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/IITG/Documents/NetBeansProjects/LoginModule/src/loginmodule/FXMLDocumentController.java</file>
-            <file>file:/C:/Users/IITG/Documents/NetBeansProjects/LoginModule/src/loginmodule/LoginModule.java</file>
-            <file>file:/C:/Users/IITG/Documents/NetBeansProjects/LoginModule/src/loginmodule/LoginController.java</file>
-            <file>file:/C:/Users/IITG/Documents/NetBeansProjects/LoginModule/src/loginmodule/Login.fxml</file>
-            <file>file:/C:/Users/IITG/Documents/NetBeansProjects/LoginModule/src/loginmodule/PatientRegistration.fxml</file>
-            <file>file:/C:/Users/IITG/Documents/NetBeansProjects/LoginModule/src/loginmodule/FXMLDocument.fxml</file>
-            <file>file:/C:/Users/IITG/Documents/NetBeansProjects/LoginModule/src/loginmodule/PatientRegistrationController.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

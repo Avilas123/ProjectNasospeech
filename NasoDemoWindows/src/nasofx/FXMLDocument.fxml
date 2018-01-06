@@ -62,7 +62,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="recordbtn1" layoutX="112.0" layoutY="8.0" mnemonicParsing="false" onAction="#recordAction" onMouseEntered="#recordenter" opacity="0.9" prefHeight="32.0" prefWidth="47.0" styleClass="linear-grad-to-bottom-left" stylesheets="@button.css">
+                  <Button fx:id="recordbtn1" layoutX="112.0" layoutY="8.0" mnemonicParsing="false" onAction="#record" onMouseEntered="#recordenter" opacity="0.9" prefHeight="32.0" prefWidth="47.0" styleClass="linear-grad-to-bottom-left" stylesheets="@button.css">
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -73,8 +73,8 @@
                   </Button>
               </items>
             </ToolBar>
-            <Button fx:id="recordbtn" layoutX="776.0" layoutY="63.0" mnemonicParsing="false" onAction="#record" text="recordbtn" />
-            <Button fx:id="recordstop" layoutX="871.0" layoutY="64.0" mnemonicParsing="false" onAction="#stopRecord" text="recordstop" />
+            <Button fx:id="recordbtn" disable="true" layoutX="776.0" layoutY="63.0" mnemonicParsing="false" onAction="#record" text="recordbtn" />
+            <Button fx:id="recordstop" disable="true" layoutX="871.0" layoutY="64.0" mnemonicParsing="false" onAction="#stopRecord" text="recordstop" />
          </children></AnchorPane>
       <AnchorPane layoutX="1.0" layoutY="1.0">
          <children>
@@ -95,20 +95,20 @@
           <Menu mnemonicParsing="false" text="File">
             <items>
               <MenuItem fx:id="open_menu_item" mnemonicParsing="false" onAction="#open_button_Event" text="Open" />
-                  <MenuItem mnemonicParsing="false" text="New" />
-                  <MenuItem mnemonicParsing="false" text="Save" />
+                  <MenuItem disable="true" mnemonicParsing="false" text="New" />
+                  <MenuItem disable="true" mnemonicParsing="false" text="Save" />
                   <MenuItem fx:id="saveas" mnemonicParsing="false" onAction="#saveas" text="Save as" />
                   <MenuItem fx:id="closebtn" mnemonicParsing="false" onAction="#closesystem" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-              <MenuItem fx:id="selectall" mnemonicParsing="false" onAction="#selectallfunction" text="Select all" />
-                  <MenuItem mnemonicParsing="false" text="Select inverse" />
-                  <MenuItem mnemonicParsing="false" text="Cut" />
-                  <MenuItem fx:id="copy" mnemonicParsing="false" onAction="#copy" text="Copy" />
-                  <MenuItem fx:id="pasteitem" mnemonicParsing="false" onAction="#paste" text="Paste" />
-                  <MenuItem mnemonicParsing="false" text="Select and Play" />
+              <MenuItem fx:id="selectall" disable="true" mnemonicParsing="false" onAction="#selectallfunction" text="Select all" />
+                  <MenuItem disable="true" mnemonicParsing="false" text="Select inverse" />
+                  <MenuItem disable="true" mnemonicParsing="false" text="Cut" />
+                  <MenuItem fx:id="copy" disable="true" mnemonicParsing="false" onAction="#copy" text="Copy" />
+                  <MenuItem fx:id="pasteitem" disable="true" mnemonicParsing="false" onAction="#paste" text="Paste" />
+                  <MenuItem disable="true" mnemonicParsing="false" text="Select and Play" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Re-sample">
@@ -134,7 +134,7 @@
             </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem disable="true" mnemonicParsing="false" text="About" />
             </items>
           </Menu>
         </menus>
