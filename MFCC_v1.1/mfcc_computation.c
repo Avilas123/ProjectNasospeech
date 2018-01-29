@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include<math.h> 
+#include<math.h>
 #include "mfcc_defines.h"
 #include "mfcc_globals.h"
 
@@ -11,14 +11,13 @@ void     dft(float real_input[], float final_arg[]);
 void     frequency_warping_spectrum(float Filter_resp[][DFT_POINT], float dft_value[], float spectrum_out[]);
 void     Log_spectrum(float energy_output[], float log_out[]);
 void     twoDimensional_DCT(float log_out[], float A_out[],int totalFrames);
-void     automatic_selection( float mahal_out[],char *x, int totalFrames);
 void     IDCT(float log_values[], float IDCT_out[]);
 void     cms(float **mfccCoeffs, int totalFrames,int numCoeffs);
 void     ZeroMeanUnitVariance(float **features, int totalFrames,int numCoeffs);
 void     filter_bank(float sample_rate, float Filter_resp[][DFT_POINT]);
 float    **ComputeDeltaCoefficients(float **inpFeatures, int numFeatures, int dimFeats, int K);
 char     *mfcc_computation(char id[], int total_no_of_frames, char fullpath_input[], int nof_fsize, char DirNameforMfccFeatures[]);
-float    **ComputeMFCC(char waveName[], int numSpeechFrames, short *speechNonSpeech, int nof_fsize, int totalFrames,char *x);
+float    **ComputeMFCC(char waveName[], int numSpeechFrames, short *speechNonSpeech, int nof_fsize, int totalFrames);
 float    **ConcatenateFeatures(float **feature1, int rows1, int cols1, float **feature2, int rows2, int cols2);
 float    **ConcatenateFeaturesWithOffset(float **feature1, int rows1, int cols1, float **feature2, int rows2, int cols2, int offset);
 
@@ -60,7 +59,7 @@ float **ConcatenateFeatures(float **feature1, int rows1, int cols1, float **feat
     float **concatfeat1feat2 = (float **) calloc(rows2, sizeof(float *));
     int iter, dimIter;
     if (rows1 != rows2){
-         //printf("Error in Concatenating ");
+         printf("Error in Concatenating ");
          return concatfeat1feat2;
                        }
                   
@@ -87,9 +86,9 @@ float **ConcatenateFeatures(float **feature1, int rows1, int cols1, float **feat
 
 
 FILE *SAMPLES_1, *SAMPLES_2, *SAMPLES_OUT;
-float **ComputeMFCC(char waveName[], int numSpeechFrames, short *speechNonSpeech, int nof_fsize, int totalFrames,char *x){
+float **ComputeMFCC(char waveName[], int numSpeechFrames, short *speechNonSpeech, int nof_fsize, int totalFrames){
 short     *ptr;
-int        i,j,k=0,m=0,shift=0, w,count=0; 
+int        i,j,k=0,m=0,shift=0, w,count=0;
 int static count1;
 int        frameNo = 0, speechFrame = 0;
 FILE      *fp_input;
@@ -101,17 +100,17 @@ float      **mfccCoeffs;
 SAMPLES_1 = fopen("Samples_1.txt", "a");
 SAMPLES_2 = fopen("Samples_2.txt", "a");
 SAMPLES_OUT = fopen("Samples_out.txt", "a");
-//printf("parameter recived is-->%c",*x);
-//printf("TOTAL NO OF FRAMES \t %d\n",totalFrames);
+
+printf("TOTAL NO OF FRAMES \t %d\n",totalFrames);
 
   
 
 
-///printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n\n\n\n\n\n\n",totalFrames);
+//printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n\n\n\n\n\n\n",totalFrames);
 
 mfccCoeffs = (float **) calloc(totalFrames, sizeof(float *));  // Define the Mfcc Coefficients to have <<< NUMSPEECHFRAMES >>>  
 if( ( fp_input=fopen(waveName,"rb") ) == NULL){
-   //printf("Cannot open the file");
+   printf("Cannot open the file");
    exit(0);
                                                }
 else{    
@@ -123,28 +122,28 @@ else{
 filter_bank(globDataSpeechRecgStruct.header.Sample_Rate, globDataSpeechRecgStruct.Filter_resp); // Returns the Filter response which is a 2d matrix of 22*256 elements
 ptr = (short*)malloc((FRAMESIZE * nof_fsize) * sizeof(short));    // For Storing the entire Data .... 
 
-fread(ptr, sizeof(short), nof_fsize*FRAMESIZE, fp_input);          //reading complete data as single chunk
+fread(ptr, sizeof(short), nof_fsize*FRAMESIZE, fp_input);         //reading complete data as single chunk
 fclose(fp_input);
-//printf("ptr is %hd \n",*ptr);
+printf("ptr is %hd \n",*ptr);
 
 
 for(int i=0; i<FRAMESIZE * nof_fsize; i++)
 {
-    ///printf("*PTR %d IS  \t%hd\t",i,*ptr);
+    //printf("*PTR %d IS  \t%hd\t",i,*ptr);
    // ptr++;
 }
 
-eoinput = (nof_fsize * FRAMESIZE) - FRAMESHIFT;  
-//printf("no F size is %d \n",nof_fsize);
-//printf("end of input is (mfcc_comp) %ld \n",eoinput);
+eoinput= nof_fsize * FRAMESIZE - FRAMESHIFT;  
+printf("no F size is %d \n",nof_fsize);
+printf("end of input is (mfcc_comp) %ld \n",eoinput);
 
 
 
-///printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n",shift);
+//printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n",shift);
 
           while((shift != eoinput)){
               count++;
-              ////printf("*PTR 0 IS  \t%hd\n",*ptr);
+              //printf("*PTR 0 IS  \t%hd\n",*ptr);
              
            //   if (speechNonSpeech[frameNo] == 1){ // Check Whether the frame is Speech or not .... 
                           // Declare the array to contain sufficient number of MFCC Coefficients ..... 
@@ -152,32 +151,32 @@ eoinput = (nof_fsize * FRAMESIZE) - FRAMESHIFT;
                            mfccCoeffs[speechFrame] = (float *) calloc(NUM_OF_COEFFICIENTS, sizeof(float )); 
                             
                            for(i=0; i<DFT_POINT; i++) {
-                              ///printf("Count1 is \t\t%d\n",count1);
+                              //printf("Count1 is \t\t%d\n",count1);
 					      if(i<FRAMESIZE){
-                                                  ///printf("BITS_PER_SAMPL: \t %hd\n", globDataSpeechRecgStruct.header.Bits_Per_Sample);
-                                                   // /printf("%hd\t",*ptr);
+                                                  //printf("BITS_PER_SAMPL: \t %hd\n", globDataSpeechRecgStruct.header.Bits_Per_Sample);
+                                                   // printf("%hd\t",*ptr);
                                                   
                                                   	globDataSpeechRecgStruct.sample_value[i] = (float)(*ptr)/(float)pow(2,(globDataSpeechRecgStruct.header.Bits_Per_Sample)-1);  
-                                                        ptr++;
+                                                        //ptr++;
                                                         count1++;
                                                         fprintf(SAMPLES_1," \t%f\t", globDataSpeechRecgStruct.sample_value[i] );
                                                          
-                                                        ///printf(" %f\t ", globDataSpeechRecgStruct.sample_value[i]);
+                                                        //printf(" %f\t ", globDataSpeechRecgStruct.sample_value[i]);
                                                         count1++;
-                                                        ///printf("Count1 is \t%d\t",count1);
-                                                        ///printf("*PTR %d IS  \t%hd\t ",i,*ptr);
+                                                        //printf("Count1 is \t%d\t",count1);
+                                                        //printf("*PTR %d IS  \t%hd\t ",i,*ptr);
                                                         
                                                         if(shift>=5500)
                                                         {
-                                                           ///printf(" the req val is \t%f\t ", globDataSpeechRecgStruct.sample_value[i]); 
+                                                           printf(" the req val is \t%f\t ", globDataSpeechRecgStruct.sample_value[i]); 
                                                         }
                                                     
-                                                  //ptr++;
+                                                  ptr++;
 						  }
                                               
 				              else{
 							globDataSpeechRecgStruct.sample_value[i] = 0;     //assigning zero from 161 to 512 samples
-                                                         ///printf("sample_values 1 \t %f\n", globDataSpeechRecgStruct.sample_value[i]);
+                                                         //printf("sample_values 1 \t %f\n", globDataSpeechRecgStruct.sample_value[i]);
                                                         fprintf(SAMPLES_2," %f \t", globDataSpeechRecgStruct.sample_value[i] );
 						  }
 	
@@ -202,34 +201,34 @@ eoinput = (nof_fsize * FRAMESIZE) - FRAMESHIFT;
                                         IDCT(globDataSpeechRecgStruct.log_magnitude1, globDataSpeechRecgStruct.IDCT_Output1);                 //computes the Inverse Discrete cosine transform                      
 
 
-                                       // /printf(" Printing the MFCC COeffs \n");
+                                       // printf(" Printing the MFCC COeffs \n");
                                         for(i=1; i<=NUM_OF_COEFFICIENTS; i++){
                                                mfccCoeffs[speechFrame][i-1] =   globDataSpeechRecgStruct.IDCT_Output1[i]; // Finally Storing the MFCC_COEFS in
-                                              // /printf("  %f ",     mfccCoeffs[speechFrame][i-1]);                                                                     
+                                              // printf("  %f ",     mfccCoeffs[speechFrame][i-1]);                                                                     
 						//	fprintf(fp_coeff, "%1.10f\n", globDataSpeechRecgStruct.IDCT_Output1[i]);             //printing the mfcc coefficients to coefficients.txt file 
 						                              } 
                                         speechFrame++; // Increment the Counter of number Of Speech Frames ....  
                                          				 
                                                                   //    } // END_OF_IF_LOOP <<< if (speechNonSpeech[frameNo] == 1)>> I.E. SPEECH_FRAME 
                        frameNo++;
-                      // //printf("FRAME NO IS\t%d\n",frameNo);
-                      // //printf("*PTR 2 IS\t%hd\n\n",*ptr);
+                      // printf("FRAME NO IS\t%d\n",frameNo);
+                      // printf("*PTR 2 IS\t%hd\n\n",*ptr);
                        shift = shift + (FRAMESHIFT);                                // shift incremented by FRAMESHIFT
-                       ptr = ptr - (FRAMESIZE - FRAMESHIFT);                                      // ptr decremented by frameshift
+                       ptr = ptr - (FRAMESHIFT);                                      // ptr decremented by frameshift
                        k=k+1;
-                       ////printf("*PTR o/p IS\t%hd\n",*ptr);
-                       ////printf("\t\tCOUNT IS %d\n\n", count);
+                       //printf("*PTR o/p IS\t%hd\n",*ptr);
+                       //printf("\t\tCOUNT IS %d\n\n", count);
         
-////printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n",shift);  
-////printf("%d", k);
-          }     // while LOOP ends
-////printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n",shift);  
+//printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n",shift);  
+//printf("%d", k);
+    }     // while LOOP ends
+//printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n",shift);  
 
 
-ptr = ptr - eoinput;
+//ptr = ptr - eoinput;
 
 
- //free(ptr);	// Free the allocated Pointer ....... 
+ free(ptr);	// Free the allocated Pointer ....... 
 
 //  Cepstral Mean Subtraction Logic is implemented only if CHANNELFLAG is 1. 
 
@@ -240,13 +239,8 @@ ptr = ptr - eoinput;
  
  
  
-  //printf("\n Checkline");
-  
-  automatic_selection(globDataSpeechRecgStruct.mahal_out,x, totalFrames);
-  
-                // patching and 2DDCT
- //printf("%c x before use\t",*x);
- 
+  printf("\n Checkline");
+// twoDimensional_DCT(globDataSpeechRecgStruct.log_magnitude1,globDataSpeechRecgStruct.A_out, totalFrames );     // patching and 2DDCT
  
  
  fclose(SAMPLES_1);
@@ -275,7 +269,7 @@ float **ComputeDeltaCoefficients(float **inpFeatures, int numFeatures, int dimFe
      int   iter, dimIter, kIter;
      float prevVal, nextVal;
      deltaFeatVect = (float **) calloc(numFeatures, sizeof(float *));
-     //printf(" In Delta Now ....  %d Limit and NNUM_FEATURES = %d", numFeatures, numFeatures -  2 * K);
+     printf(" In Delta Now ....  %d Limit and NNUM_FEATURES = %d", numFeatures, numFeatures -  2 * K);
      float normVals = 0;
      
 // computing the Normalizing Coefficients .... now 
@@ -290,7 +284,7 @@ float **ComputeDeltaCoefficients(float **inpFeatures, int numFeatures, int dimFe
      for(iter = 0; iter < numFeatures; iter++){ // The Iterator is for the Input_Feature_Vector .. THE OP_FEAT_VECT should starts from [iter - K] locs
            
            deltaFeatVect[iter] =  (float *) calloc(dimFeats, sizeof(float));
-           ////printf(" \n Printing the Values for iteration No = %d \n", iter - K );  
+           //printf(" \n Printing the Values for iteration No = %d \n", iter - K );  
            for(dimIter = 0; dimIter < dimFeats; dimIter++){  //  Make it feel like a Vector ....   It does exactly that  ....
                    prevVal   = 0;   // For Each dimension Accumulate the MFCC values span-wise
                    nextVal   = 0;
@@ -308,14 +302,14 @@ float **ComputeDeltaCoefficients(float **inpFeatures, int numFeatures, int dimFe
                                                         }
                   
                                
-                   ////printf(" %f ",  deltaFeatVect[iter - K][dimIter]);
+                   //printf(" %f ",  deltaFeatVect[iter - K][dimIter]);
                    deltaFeatVect[iter][dimIter] = ((nextVal + prevVal)/normVals);                               
-                   ////printf(" %f ",  deltaFeatVect[iter - K][dimIter]);                                        
+                   //printf(" %f ",  deltaFeatVect[iter - K][dimIter]);                                        
                                                             } // END_OF_FOR_LOOP of Variable <<< dimIter >>> 
 
                                                 }// END_OF_FOR_LOOP of Variable <<< iter >>>  
 
-    // //printf(" NUMBER OF ITERATION = %d\n", iteration);
+    // printf(" NUMBER OF ITERATION = %d\n", iteration);
      return deltaFeatVect;
     
                                                                                      }
@@ -745,7 +739,7 @@ void dft(float real_input[], float final_arg[])
 		{
 			final_arg[i] = (float)arg_output[i];
                         //printf("DFT IS\t%f\n",final_arg[i]);
-                        fprintf(dft_compute, " %f \t", final_arg[i]);   
+                        fprintf(dft_compute, " %f \t", final_arg[i]);
 
 		}
         fprintf(dft_compute," \n");
@@ -796,13 +790,12 @@ void frequency_warping_spectrum(float Filter_resp[][DFT_POINT], float dft_value[
                         
                         
 		}
-         fprintf(fp," \n" );
 fclose(fp);    	
 	
 }	//frequency_warping_spectrum() ends here
 
 
-  
+
 /** 
 Function Name: Log_spectrum
 Function Syntax: void Log_spectrum(float spectrum_output[], float log_out[])
@@ -819,14 +812,13 @@ Outputs:
                Logic : Log_spectrum () computes the logarithm of the frequency warped spectrum on mel scale and returns the values in an array log_out[].
 
 */
-
 FILE *fp1; 
 void Log_spectrum(float spectrum_output[], float log_out[])
 
 {
    
         fp1 = fopen("2.txt","a");
-	int i,count=0; 
+	int i,count=0;
         float Log_var[FRAMESIZE][NUM_OF_FILTER];
         
        
@@ -835,7 +827,7 @@ void Log_spectrum(float spectrum_output[], float log_out[])
 		{
 			log_out[i] = (float)log(spectrum_output[i])/(float)log(10);  // taking the logarithm of frequency warped spectrum 
 			//log_out[i] = (spectrum_output[i])/10.0;
-			//printf("\tlog=%f\t", log_out[i]);
+			//printf("\nlog=%f\n", log_out[i]);
                        
                         fprintf(fp1 ,"%f \t", log_out[i] );
                         //printf("\n%d", i);
@@ -848,82 +840,28 @@ void Log_spectrum(float spectrum_output[], float log_out[])
         
        
         fprintf(fp1," \n" );
-        //fclose (fp1);
-        fflush(fp1);
+        fclose (fp1);
         
         
 
         
         
 }
-
         
 	//Log_spectrum() ends here
 
 FILE *myfile1;
-FILE *myfile2, *MATRIX1,*MATRIX2, *transpose_1,*transpose_2,*transpose_3, *target_A, *mean_in_KAKA,*mean_in_PAPA,*mean_in_TATA,*mean_in_tata,*malo_1T,*twoDDCT_IN,*covar_in, *malo_2I,*DFT_IN,*check_NW1,*check_NW2,*check_NW3;
+FILE *myfile2;
 void twoDimensional_DCT(float log_out[], float A_out[], int totalFrames)
 {
    
-    myfile1 = fopen("2.txt","r");
-    MATRIX1 = fopen("C1.txt","r");
-    MATRIX2 = fopen("C2.txt","r");
-    myfile2 = fopen("PATCHING.txt","w");    
-    transpose_1 = fopen("T_1.txt","w");
-    transpose_2 = fopen("T_2.txt","w");
-    transpose_3 = fopen("2DDCT.txt","w");
-    malo_1T = fopen ("T_4.txt","w");
-    target_A = fopen("A_111.txt","r");
-    mean_in_KAKA = fopen("mean_k.txt", "r");
-    mean_in_PAPA = fopen("mean_p.txt", "r");
-    mean_in_TATA = fopen("mean_T1.txt","r");                                      ///////////THE MEANs//////////////
-    mean_in_tata = fopen("mean_t.txt", "r");
-    twoDDCT_IN = fopen("C.txt","r");
-    covar_in = fopen("cov_NEW.txt", "r");
-    malo_2I = fopen("(C-M).txt", "r");
-    DFT_IN = fopen ("DFT_compute.txt", "r");
-    check_NW1 = fopen ("TEST1.txt", "w");
-    check_NW2 = fopen ("TEST2.txt", "w");
-    check_NW3 = fopen ("TEST3.txt", "w");
-    //float DFT_transpose[250][950];
-    
-    int k,l,m,i,j,p,q,r,a,b,c,d,e,f,g,h,p1,r1,x,y,x1,y1,f1,f2;
+    myfile1 = fopen("2.txt", "r");
+    myfile2 = fopen("A_OUT.txt", "w");
+    int k,l,m;
     int rslt;
     float arr1[totalFrames];
     float NEW[totalFrames][NUM_OF_FILTER];
-    float NEW_patching_1[totalFrames][100];
-    //float NEW_patching_2[NUM_OF_FILTER][totalFrames];
-    //float Arrey_out[6][NUM_OF_FILTER];
-    float matrix1[60][60];
-    float matrix2[3][60];
-    float transpose_C1[22][9];
-    float multiply1[70][70];
-    //float transpose_C2[60][60];
-    //float transpose_C3[60][60];
-    float multiply2[70][70];
-    float mult_NEW[30][5];
-    float mult_new[70][70],covar_mult[1][27],covar_mult1[1][1];
-    float malo1_transpose[1][27];
-    float A_tar[60][60];
-    float mean[27][1],covariance[28][28],substract_transpose[27][1];
-    float TWOddct[27][1];
-    float sum=0,sum1=0,sum2=0,sum3=0,sum4=0;
-    float malo_1[27][1]; /*malo_2[27][27],malo_3[27][27]*/
-    
-    
-    
-    float DFT_in[1000][300];
-    float DFT_transpose[39][950];
-    float DFT_avg[39][950];
-    
-    float b1,b2;
-    float fs=16000;
-    int i1,j1,i2,j2;
-    float sum_last=0; float avg_last=0;
-    
-    //char choice = '2';
-    
-    
+    float Arrey_out[6][NUM_OF_FILTER];
          for(int i=0; i<totalFrames; i++)
                 {
                      arr1[i]=0;
@@ -943,15 +881,15 @@ void twoDimensional_DCT(float log_out[], float A_out[], int totalFrames)
          }
              
             
-             float p=7800;
+             float p=6669;
              diff = (arr1[k]-p);
-             if(diff>0 && diff<16)
+             if(diff>0 && diff<100)
              {
                  rslt =k;
                  //printf("\t\t\t\tDIFF IS \t %d \n", k);
              }
     }        
-    //printf("\t\t\t\tDIFF IS \t %d \n",rslt);
+    printf("\t\t\t\tDIFF IS \t %d \n",rslt);
     for(int m=0; m<totalFrames-2 ; m++)
     {
     for(l=0; l<NUM_OF_FILTER; l++)
@@ -962,437 +900,25 @@ void twoDimensional_DCT(float log_out[], float A_out[], int totalFrames)
    
     }
     
-    int temp1=0, temp2=60;
-    for(int i=rslt; i<rslt+60; i++)
+    
+    for(int i=rslt-1; i<rslt+6; i++)
     {
         for(int j=0; j<NUM_OF_FILTER; j++)
         {
-            
-            //printf("THE FINAL ARRAY IS \t%f\n", NEW[i][j]);                    /////////////PATCHING output  (NEW[i][j]) //////////
+            //printf("THE FINAL ARRAY IS \t%f\n", NEW[i][j]);
             fprintf(myfile2 , "%f\t", NEW[i][j]);
-            NEW_patching_1[i][j]=NEW[i][j];
-            //printf("RESULT NOW IS----->> %f\t\t\t ",NEW_patching_1[i][j]);
         }
          fprintf(myfile2, "\r\n");
          
     }
-    
-    
-    /*////////////////////////////////////////////////////////
-    for(int p1=rslt;p1<rslt+60;p1++){
-        for(int r1=0;r1<NUM_OF_FILTER;r1++){
-            
-            NEW_patching_1[p1][r1]=NEW[p1][r1];
-            //printf("RESULT NOW IS----->> %f\t\t\t ",NEW_patching_1[p1][r1]);
-        }
-        
-   }
-    
-    for(int p1=0;p1<NUM_OF_FILTER;p1++){
-        for(int r1=rslt; r1<rslt+60; r1++){
-            
-           //printf("RESULT NOW IS----->> %f\t\t\t ",NEW_patching_1[p1][r1]);
-        }
-        
-   }
-    ///////////////////////////////////////////////////////////*/
-    
-    for(int i=0;i<9;i++)
-    {
-        for(int j=0;j<22;j++)
-        {
-           fscanf( MATRIX1, "%f", &matrix1[i][j]);                               //////// (C1.txt) is transposed////////
-           //fscanf( MATRIX2, "%f", &matrix2[i][j]);
-           //printf("matrix1@ is \t%f\t   ", matrix1[i][j]);
-           transpose_C1[j][i]=matrix1[i][j];
-           //transpose_C2[j][i]=matrix2[i][j];
-           //printf(" matrix1 is \t%f   ", transpose_C1[j][i]);
-           //printf("\n\n\n matrix2  is \t%f   ", transpose_C2[j][i]);
-           
-        }
-       
-    }
-    
-    for(int i1=0;i1<3;i1++)
-    {
-        for(int j1=0;j1<60;j1++)
-        {
-                                                                                 ////////// (C2.txt)///////////
-           fscanf(MATRIX2, "%f", &matrix2[i1][j1]);
-        }}
-    
-    
-    for(int p1=0;p1<60;p1++){
-        for(int r1=0;r1<22;r1++){
-            fscanf( target_A, "%f", &A_tar[p1][r1]);                              /////////Copying A_out(PATCHING.txt) && putting in A_111/////////
-            //printf("NEW is %f\t\t  ", A_tar[p1][r1]);
-        }
-        
-   }
-    
-    
-   
-    for(int i=0;i<22;i++)
-    {
-        for(int j=0;j<9;j++)
-        {
-            fprintf(transpose_1, "%f\t", transpose_C1[i][j] );                    ///////////(C1.txt) transpose, written to a file////////
-            //printf("NEW is %f\n  ", transpose_C1[i][j]);
-        }
-    
-    fprintf(transpose_1, "\r\n");
-     }
-    
-    
-    
-    for(int p=rslt,a=0;p<rslt+60,a<60;p++,a++){
-        for(int q=0;q<9;q++){
-            for(int r=0;r<NUM_OF_FILTER;r++){
-                
-               sum= sum+ (NEW_patching_1[p][r]*transpose_C1[r][q]);
-               //printf("RESULT NOW IS----->> %f\t\t\t ",NEW_patching_1[p][r]);
-               //printf("The result is--->--->>%f\t\t\t",sum);
-            
-            }
-            ///////////////////////////////NOW THIS?????????  ON THIS////////////
-            //for(int a=0;a<60;a++){
-                   //for(int b=0;b<9;b++){
-                       
-                       multiply1[a][q]=sum;
-                      
-                     //printf("The result is----->--->>  %f\t\t ",multiply1[a][q]);
-                      fprintf(transpose_2, "%f\t",multiply1[a][q] );
-                      //q++;
-                      //break;
-                   // }
-              //break;
-            //}
-                      sum=0;
-                      continue;
-            }
-            
-        //}
-        fprintf(transpose_2, "\r\n");
-      //printf("NEW is %f  ", A_tar[p][r] );
-    }
-    
-    
-    for(int f=0;f<60;f++){
-        for(int g=0;g<9;g++){
-            //printf("The result is  %f\t\t\t ",multiply1[f][g]);
-            //fprintf(transpose_2, "%f\t",multiply1[f][g] );
-        }
-         //fprintf(transpose_2, "\r\n");
-    }    
-    
-    
-    
-    
-    for(c=0;c<3;c++){
-        for(d=0;d<9;d++){
-            for(e=0;e<60;e++){
-                //printf("The result is---->----->>  %f\t\t\t ",multiply1[e][d]);
-                sum1= sum1+ (matrix2[c][e]*multiply1[e][d]);                           
-                 //printf("sum is %f \n ", matrix2[c][e]);
-            }
-           
-            multiply2[c][d]=sum1;
-            sum1=0;
-          //printf("The result is  %f\t",multiply2[c][d]);
-        }
-    }
-    
-    ////////////////***************FINAL OUTPUT OF 2DDCT***********//////////////////
-    
-    for(int f=0,i=0;f<3,i<27;f++,i++){
-        for(int g=0;g<=8;g++){
-             mult_new[g][f]= multiply2[f][g];   
-             //printf("ans is %f\n", mult_new[g][f]);
-            fprintf(transpose_3, "%f\t",multiply2[f][g]);                        /////////2DDCT output (multiply2[][]) && T_3.txt/////////////
-            fprintf(transpose_3, "\r\n");
-            //printf("ans (2DDCT Final check------>>) is %f\n", multiply2[f][g]);  /////////Automatic upto here////////
-            
-            
-                for(int j=0;j<1;j++){
-                mult_NEW[i][j]= multiply2[f][g];
-                
-                //printf("ans (2DDCT Final check------>>) is %f\n",  mult_NEW[i][j]);
-                 }
-            if (g==8){
-                //printf("thissssssssss");
-                break;}
-            else{ i++;
-                      }
-        }
-        //i=0;
-    }
-    
-                    ////////////////////////NOW THIS again///////////////////
-    for(int f1=0;f1<27;f1++){
-        for(int g1=0;g1<1;g1++){
-          //printf("ans is %f\n", mult_NEW[f1][g1]);
-          
-        }
-    }
-             
-    
-    
-    for(int x=0;x<27;x++){
-        for(int y=0;y<1;y++){
-               mult_new[x][y]= multiply2[x][y];
-               //printf("mean is %f\n",multiply2[x][y]); 
-               //fprintf(malo_1T, "%f\t",multiply2[x][y]);
-        }
-    }
-            
-            
-            
-            
-     for(x=0;x<27;x++){
-        for(y=0;y<1;y++){
-           fscanf(mean_in_PAPA," %f", &mean[x][y]);
-          //printf("mean is %f\n",mean[x][y]); 
-           }
-       }
-         //fprintf(transpose_3, "\r\n");
-       
-   ////////////////////////////**************(C-M)****************/////////////////////////
-    
-    for(x1=0;x1<27;x1++){
-        for(y1=0;y1<1;y1++){                                                            //////////Copy T_3.txt to C.txt for "C" matrix////////
-            fscanf(twoDDCT_IN," %f", &TWOddct[x1][y1]);                                  //////////T_3.txt is the 2DDCT matrix/////////
-             //printf("malo_1 is %f\n", TWOddct[x1][y1]);                                          
-            malo_1[x1][y1] = mult_NEW[x1][y1] - mean[x1][y1];                           ///////////(C-M) calculation
-            //printf(" malo_1 is\t %f\n", malo_1[x1][y1]); 
-            malo1_transpose[y1][x1] = malo_1[x1][y1];
-            
-        }
-         
-    }
-    
-    for(int x2=0;x2<1;x2++){
-        for(int y2=0;y2<27;y2++){
-            
-             //printf("\n\n malo_transpose is\t %f\n", malo1_transpose[x2][y2]);     ///////(C-M) matrix to txt file T_4.txt i.e [T_4.txt is (C-M)]////////
-            
-             fprintf(malo_1T, "%f\t",malo1_transpose[x2][y2]);
-             fprintf(malo_1T, "\r\n");
-        }
-          
-      }
-    
-    for(int i=0;i<27;i++){
-        for(int j=0;j<27;j++){
-             fscanf(covar_in," %f", &covariance[i][j]);                              /////READ the covariance matrix from txt file.
-             //printf("\n covariance matrix is\t %f\n", covariance[i][j]);
-        }
-    }
-    
-    ///////////////////************(C-M)'*ll*(C-M)************/////////////////////
-    
-    for(int f1=0;f1<1;f1++){
-        for(int g1=0;g1<27;g1++){
-            for(int h1=0;h1<27;h1++){
-                sum2= sum2 + (malo1_transpose[f1][h1]*covariance[h1][g1]);            /////////(C-M)'*ll//////////
-                 //printf("sum is %f \n ",malo1_transpose[f1][h1]);
-            }
-           
-           covar_mult[f1][g1]=sum2;
-           sum2=0;
-        
-           //printf("The result is  %f\t\n",covar_mult[f1][g1]);
-           fscanf(malo_2I," %f", &substract_transpose[g1][f1]); 
-           //printf("The result is  %f\t\n", substract_transpose[g1][f1]);      
-        }
-    
-           for(int f2=0;f2<1;f2++){
-                for(int g2=0;g2<1;g2++){
-                     for(int h2=0;h2<27;h2++){
-                         sum3= sum3 + (covar_mult[f2][h2]*malo_1[h2][g2]);        ///////////*(C-M)//////////
-                         //printf("The result is---->----->>%f\t\n",mult_NEW[h2][g2]);
-                     }
-                     covar_mult1[f2][g2]=sum3;
-                     sum3=0;
-                     printf("%f", covar_mult1[f2][g2]);            /////////Final output = (covar_mult1[f2][g2]) MAHALNOBIS DISTANCE/////////
-        }
-    }
-        
-    }
-    
-                        //////////////////////AUTOMATIC selection///////////////
-    
-    {
-    for(i1=0; i1<=(totalFrames-3); i1++)
-    {
-       for(j1=0; j1<=255; j1++)
-       {
-        fscanf(DFT_IN, "%f", &DFT_in[i1][j1]);                                      ///////////DFT matrix///////////
-        //DFT_Transpose[i1][j1]= DFT_in[j1][i1];
-       
-        //printf("DFT is %f \t\n", DFT_in[i1][j1]);
-        fprintf(check_NW1, "%f \t", DFT_in[i1][j1]);
-        
-       }
-      fprintf(check_NW1,"\r\n");
-    }
-    //printf("\n\n");
-    
-    
-    }
-    
-    for(int i=0; i<=255; i++)
-    {
-       for(int j=0; j<=(totalFrames-3); j++)
-       {
-         //printf("DFT is %f \t\n", DFT_transpose[i][j]);
-         //fprintf(check_NW1, "%f \t", DFT_in[i][j]);
-         
-       }
-        fprintf(check_NW1,"\r\n");
-    }                                             
-    
-    
-    b1 = ((500*DFT_POINT)/fs);
-    //printf("f1 is %f \n\n", b1);
-    b2 = ((1700*DFT_POINT)/fs);                                                 ///////////F1 and F2 frequency band points//////
-    //printf("f2 is %f \n\n", b2);
-    
-    
-    //for(int p=0; p<=(totalFrames-3); p++)
-        
-    {  
-        i2=i2++;
-        for(i2=0; i2<=(totalFrames-3); i2++)
-        {
-            for(j2=b1; j2<=b2; j2++)
-            {
-              //printf("NEW DFT is %f \t", DFT_in[i2][j2]);                     //////////Wrapping the DFT matrix with F1 nd F2 and taking the AVERAGE/////
-              sum_last=sum_last+DFT_in[i2][j2];
-              fprintf(check_NW2, "%f \t", DFT_in[i2][j2]);
-              //fscanf(check_NW2, "%f\t", &DFT_avg[i2][j2]);
-              //printf("NEW DFT is %f \t", DFT_avg[i2][j2]);  
-            }
-            avg_last=sum_last/39;
-            sum_last=0;
-            //printf("AVERAGE IS %f\n\t ", avg_last);
-            fprintf(check_NW3, "%f \t", avg_last);
-            fprintf(check_NW2,"\r\n");
-            fprintf(check_NW3,"\r\n");
-            i2=i2++;                                                            ///////AVERAGE of all the wrapped DFTs///////////
-            //break;
-        }
-        i2=i2++;
-        fprintf(check_NW2,"\r\n");
-        
-    }
-    //i2=i2++;
-    //}
-    
-    
-    
-        
-    
-    
-    /*switch(choice){
-        case '1':
-             for(int f2=0;f2<1;f2++){  
-        for(int g2=0;g2<27;g2++){
-            for(int h2=0;h2<27;h2++){
-                sum4= sum4 + (malo1_transpose[f2][h2]*covariance[h2][g2]);
-                 //printf("sum is %f \n ",covariance[h1][g1]);
-            }
-           
-           covar_mult[f2][g2]=sum4;
-           sum4=0;
-        
-           printf("The result is(NOW)  %f\t",covar_mult[f2][g2]);
-        
-    }
-             }
-        case '2':
-            printf(" INVALID request");
-    }*/
-    
-  
-    
-    
-    
-    
-    
      
          fclose(myfile1);
          fclose(myfile2);
-         fclose(transpose_1);
-         fclose(transpose_2);
-         fclose(transpose_3);
-           //fclose(covar_in);
     
-} 
+}
 
-////////////////*****************MAHALNOBIS DISTANCE****************////////////////////////
 
-//FILE *covar_in;
-FILE *myfile2;
-void automatic_selection(float mahal_out[],char *x,int totalFrames)
-{
-    myfile2= fopen("TEST.txt","w");
-    //printf("\nInside \n");
- //   char *articulation="";
- //   *articulation=*x;
-    //printf(" 1st---->%s\t ",x);
-    
-  //  printf(" %c rhenjdkutmkl \t ",*articulation);
-     switch(*x){
-         case 'k':
-             twoDimensional_DCT(globDataSpeechRecgStruct.log_magnitude1,globDataSpeechRecgStruct.A_out, totalFrames ); 
-            //printf(" k is printed");/////////////////////replace your code here
-            break;
-         case 't':
-             twoDimensional_DCT(globDataSpeechRecgStruct.log_magnitude1,globDataSpeechRecgStruct.A_out, totalFrames ); 
-             
-            break;
-   
-         case 'p':
-             twoDimensional_DCT(globDataSpeechRecgStruct.log_magnitude1,globDataSpeechRecgStruct.A_out, totalFrames ); 
-             //printf("THIS is P");
-         //fprintf(myfile2,"%d",10);
-            //printf (myfile2,"this is line %d\n",12);
-                    
-            break ;
-         case 'T':
-             twoDimensional_DCT(globDataSpeechRecgStruct.log_magnitude1,globDataSpeechRecgStruct.A_out, totalFrames ); 
-              //printf(" \n T is printed");
-            break;
-   
-            
-         case 2:
-            //printf(" INVALID request");
-            break;
-         default:
-             //printf(" default value printed");
-             break;
-    }
-    
-/*
-    //covar_in = fopen("cov_k.txt", "r");T x before use
 
-    int f,g,h,i;
-    double covariance[27][27];
-    for(f=0;f<27;f++){
-        for(g=0;g<27;g++){
-            //fscanf(covar_in, "%f", &covariance[f][g]);
-          
-        }
-          
-   }
-     for(h=0;h<27;h++){
-        for( i=0;i<27;i++){
-            //printf(" covariance is %f \n", covariance[h][i]);
-        }
-     }
-     //fclose(covar_in);
-    */
-}      
  
 /**              
 Function Name: IDCT()
@@ -1510,7 +1036,7 @@ void  ZeroMeanUnitVariance(float **mfccCoeffs, int totalFrames,int numCoeffs){
                     //tmpxSquared += (mfccCoeffs[iter][dimIter] * mfccCoeffs[iter][dimIter]);
                                                        }
              
-            //printf(" Before Mean = %f\n ", meanVects[dimIter]);
+            printf(" Before Mean = %f\n ", meanVects[dimIter]);
             meanVects[dimIter] =  meanVects[dimIter]/totalFrames;
            // variance[dimIter]  =  sqrt((tmpxSquared - (meanVects[dimIter] * meanVects[dimIter])) * 1.0/totalFrames);
             //printf("\n Variance = %f ",   variance[dimIter]);     
@@ -1528,7 +1054,7 @@ void  ZeroMeanUnitVariance(float **mfccCoeffs, int totalFrames,int numCoeffs){
              variance[dimIter] = sqrt ((tmpxSquared  * 1.0)/totalFrames);
             
            // variance[dimIter]  =  sqrt((tmpxSquared - (meanVects[dimIter] * meanVects[dimIter])) * 1.0/totalFrames);
-             //printf("\n Variance = %f Mean = %f  Number of Frames = %d ",   variance[dimIter], meanVects[dimIter], totalFrames);     
+             printf("\n Variance = %f Mean = %f  Number of Frames = %d ",   variance[dimIter], meanVects[dimIter], totalFrames);     
                                                         } // END_OF_THE_FOR_LOOP_OF Variable <<<< dimIter>>>>> 
 
                   

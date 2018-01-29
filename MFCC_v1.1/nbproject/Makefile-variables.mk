@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=Cygwin_1-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/Cygwin_1-Windows
-CND_ARTIFACT_NAME_Debug=mfcc_final_version_working_v
-CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin_1-Windows/mfcc_final_version_working_v
+CND_ARTIFACT_NAME_Debug=mfcc_final_version_working
+CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin_1-Windows/mfcc_final_version_working
 CND_PACKAGE_DIR_Debug=dist/Debug/Cygwin_1-Windows/package
-CND_PACKAGE_NAME_Debug=mfccfinalversionworkingv.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin_1-Windows/package/mfccfinalversionworkingv.tar
+CND_PACKAGE_NAME_Debug=mfccfinalversionworking.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin_1-Windows/package/mfccfinalversionworking.tar
 # Release configuration
 CND_PLATFORM_Release=Cygwin_1-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/Cygwin_1-Windows
-CND_ARTIFACT_NAME_Release=mfcc_final_version_working_v
-CND_ARTIFACT_PATH_Release=dist/Release/Cygwin_1-Windows/mfcc_final_version_working_v
+CND_ARTIFACT_NAME_Release=mfcc_final_version_working
+CND_ARTIFACT_PATH_Release=dist/Release/Cygwin_1-Windows/mfcc_final_version_working
 CND_PACKAGE_DIR_Release=dist/Release/Cygwin_1-Windows/package
-CND_PACKAGE_NAME_Release=mfccfinalversionworkingv.tar
-CND_PACKAGE_PATH_Release=dist/Release/Cygwin_1-Windows/package/mfccfinalversionworkingv.tar
+CND_PACKAGE_NAME_Release=mfccfinalversionworking.tar
+CND_PACKAGE_PATH_Release=dist/Release/Cygwin_1-Windows/package/mfccfinalversionworking.tar
 #
 # include compiler specific variables
 #
