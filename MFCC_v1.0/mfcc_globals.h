@@ -5,7 +5,7 @@ struct audio
 {
 
 	int Chunk_ID;
-	int Chunk_Size;
+	int Chunk_Size; 
 	int Format;
 	int SubChunk1_ID;
 	int SubChunk1_Size;
@@ -17,6 +17,7 @@ struct audio
 	short Bits_Per_Sample;
 	int SubChunk2_ID;
 	int Subchunk2_Size;
+       
 
 };
 typedef struct audio waveStruct;	
@@ -35,6 +36,7 @@ struct speech_recognition
 	float warping_spectrum1[NUM_OF_FILTER];
 	float log_magnitude1[NUM_OF_FILTER];
 	float IDCT_Output1[NUM_OF_COEFFICIENTS];
+        float A_out[NUM_OF_FILTER];
 };
 
 typedef struct speech_recognition speech_recognition_struct;
