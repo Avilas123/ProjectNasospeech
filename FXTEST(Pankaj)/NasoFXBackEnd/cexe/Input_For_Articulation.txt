@@ -1,9 +1,0 @@
-
-Starting MousePosition-->
-565.0
-Mouse_End_Position-->
-896.0
-StartSample-->
-31640
-endSample-->
-50176

@@ -1,6 +1,0 @@
-
-MouseStartPosition	1.101203871681416
-MouseEndPosition	1.101203871681416
-StartSample-->	8809
-endSample-->
-8809
