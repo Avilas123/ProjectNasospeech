@@ -13,7 +13,7 @@ short    *vad_enrthr(char *, int *, int *, int *, char *,
                   char *, char *, char *, char *);
 char     *mfcc_computation(char *, int, char *, int, char *);
 float    **ComputeDeltaCoefficients(float **inpFeatures, int numFeatures, int dimFeats, int K);
-float    **ComputeMFCC(char waveName[], int numSpeechFrames, short *speechNonSpeech, int nof_fsize, int totalFrames);
+float    **ComputeMFCC(char waveName[], int numSpeechFrames, short *speechNonSpeech, int nof_fsize, int totalFrames,char *a);
 void     stat_comp(char id[], short *speech_nonspeech, int no_of_speech_frames, int total_no_of_frames, char features_filename[], char zeroOrderStats_fileName[], char firstOrderStats_fileName[]);
 void     StatisticsCompV(char *, float **, int, int, char *, char *);
 float    **ConcatenateFeaturesWithOffset(float **feature1, int rows1, int cols1, float **feature2, int rows2, int col2, int offset);
@@ -26,14 +26,17 @@ void     ZeroMeanUnitVariance(float **features, int totalFrames,int numCoeffs);
 
 int main(int argc, char *argv[]){  
 
-   if (argc != 11){
-       printf("Usage::: ./ComputeMFCCDeltaDelta   full_path_input(waveFile)  id_(phone Number)  strt_frame_fileName(op)  end_frame_fileName(op)  voiced_unvoiced_fileName(op)  \
+   if (argc != 12){
+       //printf("Usage::: ./ComputeMFCCDeltaDelta   full_path_input(waveFile)  id_(phone Number)  strt_frame_fileName(op)  end_frame_fileName(op)  voiced_unvoiced_fileName(op)  \
                           speech_frameNo_fileName(op)  Average_Energy_FileName(op)   Zeroth_Order_Stats_FileName(op)   First_Order_Stats_FileName(op) MFCC_Delta_Delta_Coeff_File(op) \n");
        exit(0);
                  } 
-   printf(" I/P file \t %s  \n", argv[1]);
+   //printf(" I/P file \t %s  \n", argv[1]);
+   //printf(" I/P file \t %s  \n", argv[11]);
   
-      
+  // char *articulate="";
+  // *articulate=argv[11];
+   //printf(" error strinng is------>%s\n",argv[11]);
    char *input_filename, *fullpath_input, *id;
    short *speech_nonspeech_frames;
    int i;
@@ -52,8 +55,8 @@ int main(int argc, char *argv[]){
    //speech_nonspeech_frames = vad_enrthr(argv[1], &total_no_of_frames, &no_of_speech_frames, &nof_fsize);
    speech_nonspeech_frames = vad_enrthr(argv[1], &total_no_of_frames, &no_of_speech_frames, &nof_fsize, argv[3], argv[4], argv[5], argv[6], argv[7]);
    
-   printf("Voice Activity detection module execution is done. \n Input is  Fullpath of input: %s \n Output of module are Total No of frames : %d No of speech frames : %d  and speech frames array\n.", argv[1], total_no_of_frames,   no_of_speech_frames); 
-    printf("FILE PATH IS \t %s \n ",  argv[1]);
+   //printf("Voice Activity detection module execution is done. \n Input is  Fullpath of input: %s \n Output of module are Total No of frames : %d No of speech frames : %d  and speech frames array\n.", argv[1], total_no_of_frames,   no_of_speech_frames); 
+    //printf("FILE PATH IS \t %s \n ",  argv[1]);
 
   
 
@@ -62,7 +65,7 @@ int main(int argc, char *argv[]){
 
     FILE *opMfccDD;
     opMfccDD = fopen(argv[10], "w");
-    printf("argv 10 is \t %s\n ", argv[10]);
+    //printf("argv 10 is \t %s\n ", argv[10]);
    //// Count the Number of Lines ..... 
     float  **mfccCoeffs, **deltaCoeffs, **deltaDeltaCoeffs;
   // mfccCoeffs = (float **) calloc(total_no_of_frames, sizeof(float *));  // Define the Mfcc Coefficients to have <<< NUMSPEECHFRAMES >>> 
@@ -70,9 +73,9 @@ int main(int argc, char *argv[]){
  // Computing the Static MFCC Coefficients  ...
     
  //printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n\n\n\n\n\n\n",nof_fsize);
-    mfccCoeffs = ComputeMFCC(argv[1], no_of_speech_frames, speech_nonspeech_frames, nof_fsize, total_no_of_frames);
+    mfccCoeffs = ComputeMFCC(argv[1], no_of_speech_frames, speech_nonspeech_frames, nof_fsize, total_no_of_frames,argv[11]);
    // printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n\n\n\n\n\n\n",nof_fsize);
-    printf("\n MFCC Computation is Done \n");
+    //printf("\n MFCC Computation is Done \n");
 
     //  Calling the Delta Coefficient Now ..... 
  // deltaCoeffs = ComputeDeltaCoefficients(mfccCoeffs, total_no_of_frames, NUM_OF_COEFFICIENTS, DELTA_WINDOW);  // the return value if of the 

@@ -37,6 +37,8 @@ struct speech_recognition
 	float log_magnitude1[NUM_OF_FILTER];
 	float IDCT_Output1[NUM_OF_COEFFICIENTS];
         float A_out[NUM_OF_FILTER];
+        float mahal_out[];
+        
 };
 
 typedef struct speech_recognition speech_recognition_struct;

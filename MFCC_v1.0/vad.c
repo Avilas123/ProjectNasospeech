@@ -30,7 +30,7 @@ short *vad_enrthr(char fullpath_input[], int *total_no_of_frames, int *no_of_spe
                   char voiced_unvoiced_fileName[], char speech_frameNo_fileName[], char avrEgy_FileName[], float *Energy_frames){
 	short *ptr;
 	int i, j, k = 0, m, start_point, end_point; 
-	int shift, incr = 0;
+	int shift=0, incr = 0;
         int nof_fshift;                           // Actual no of frames of FRAMESIZE obtained after FRAMESHIFT
         int sum_energy=0;
         short *speech_nonspeech_frames;
@@ -44,22 +44,22 @@ short *vad_enrthr(char fullpath_input[], int *total_no_of_frames, int *no_of_spe
         *no_of_speech_frames = 0;                // used to calculate the no. of speech frames
 
 
-	printf(" I/P File is \t %s \n",fullpath_input);
+	//printf(" I/P File is \t %s \n",fullpath_input);
 	if((fp1_input = fopen(fullpath_input,"rb")) == NULL)                               // Opens the input wav file to count the no of frames without FRAMESHIFT
 		{
-			printf("Unable to open the file %s \n",fullpath_input);
+			//printf("Unable to open the file %s \n",fullpath_input);
 			exit(0);
 		}
 	else
 	{
-		fread(&globDataSpeechRecgStruct.header,sizeof(waveStruct),1,fp1_input);	             // Reads input file header information
+		fread(&globDataSpeechRecgStruct.header,sizeof(waveStruct),1,fp1_input);	              // Reads input file header information
                
 	}
 	
  
 	if((fp2_input = fopen(fullpath_input,"rb")) == NULL)                               // Opens the input wav file
 		{
-			printf("Unable to open the %s file\n",fullpath_input); 
+			//printf("Unable to open the %s file\n",fullpath_input); 
 			exit(0);
 		}
 	else
@@ -83,13 +83,14 @@ short *vad_enrthr(char fullpath_input[], int *total_no_of_frames, int *no_of_spe
 
 	fclose(fp1_input);
 
-        printf("no of frame size\t%d \n",*nof_fsize);
-        nof_fshift=((FRAMESIZE/FRAMESHIFT)*(*nof_fsize))-((FRAMESIZE/FRAMESHIFT)-1);   // Calculating the no of frames of FRAMESHIFT
-        printf("no of frame shift\t%d\n", nof_fshift);
+        //printf("no of frame_size\t%d \n",*nof_fsize);
+        //nof_fshift=((FRAMESIZE/FRAMESHIFT)*(*nof_fsize))-((FRAMESIZE/FRAMESHIFT)-1);   // Calculating the no of frames of FRAMESHIFT
+        nof_fshift = floor((FRAMESIZE * (*nof_fsize))/FRAMESHIFT) + 1;
+        //printf("no of frame shift\t%d\n", nof_fshift);
 	ptr = (short*)malloc((FRAMESIZE * (*nof_fsize)) * sizeof(short));              // Allocating contiguous memory to store the complete data of Input wav file
 
 	Energy_frames = (float *)malloc( nof_fshift * sizeof(float) );                // Allocating contiguous memory to store the energies of every frame
-        printf("ENERGY_FRAMES IS \t%f\n", *Energy_frames);
+        //printf("ENERGY_FRAMES IS \t%f\n", *Energy_frames);
         
         speech_nonspeech_frames = (short *)malloc( nof_fshift * sizeof(short) );       // Allocating contiguous memory to store the boolean value whether a frame is speech or non-speech 
 
@@ -102,7 +103,7 @@ short *vad_enrthr(char fullpath_input[], int *total_no_of_frames, int *no_of_spe
 	shift = 0;
 
        eoinput= ( (*nof_fsize) * FRAMESIZE ) - FRAMESHIFT;
-       printf("endofinput....(vad)\t %ld  \n", eoinput);
+      // printf("endofinput....(vad)\t %ld  \n", eoinput);
  /**
      The below while loop is used for calculating the energy of each frame and storing it in the Energy_frames array
 
@@ -112,9 +113,10 @@ short *vad_enrthr(char fullpath_input[], int *total_no_of_frames, int *no_of_spe
 			        for(i=0; i<FRAMESIZE; i++)                    // Calculating channel data for one frame of 20 milli seconds
 				  {
 					
-					
+                                                //printf("Ptr is %hd\t ", *ptr);
 						globDataSpeechRecgStruct.sample_value[i] = (float)(*ptr)/(float)pow(2,(globDataSpeechRecgStruct.header.Bits_Per_Sample-1));   
                                                 ptr++;
+                                                //printf(" %f\t ", globDataSpeechRecgStruct.sample_value[i]);
 								
 				   }
                         
@@ -123,20 +125,22 @@ short *vad_enrthr(char fullpath_input[], int *total_no_of_frames, int *no_of_spe
 					for(i=0; i<FRAMESIZE; i++)           // Calculating energy of the frame
 						{
 							energy = (float)energy + (float)pow(globDataSpeechRecgStruct.sample_value[i], 2);
+                                                        //printf(" %f\t ", energy);
 						}
+                                        
 					Energy_frames[incr] = energy;                                    
 					incr++;
                                         
 
                         
-                        ptr = ptr - FRAMESHIFT;
+                        ptr = ptr- (FRAMESIZE- FRAMESHIFT);
 			shift = shift + FRAMESHIFT;		
-                                        								
+                                     								
 
 		}                                     // While Loop ends
 
 
-
+       //printf("%d", FRAMESIZE);
       for(i=0; i<nof_fshift; i++)                    // Calculating average energy
       {
 	Avg_Energy = Avg_Energy + Energy_frames[i]; 
@@ -144,6 +148,7 @@ short *vad_enrthr(char fullpath_input[], int *total_no_of_frames, int *no_of_spe
       }
        Avg_Energy = Avg_Energy/nof_fshift;
        //printf("Average energy is : %f\n",Avg_Energy);
+       //printf("%d", FRAMESIZE);
 
 /*for(i=0;i<nof_fshift;i++)
 {
@@ -194,7 +199,8 @@ printf("energy_frames : %f\n",Energy_frames[i]);
    
         if( (fp_starting_end_point = fopen(strt_frame_fileName,"w") ) == NULL)
 	  {
-		printf("Unable to open the file %d \n",*no_of_speech_frames);
+            //printf("......EXIT.....");
+		//printf("Unable to open the file %d \n",*no_of_speech_frames);
 		exit(0);
 	  }
 	else
@@ -284,7 +290,8 @@ printf("energy_frames : %f\n",Energy_frames[i]);
 
     if( (fp_endpoint = fopen(end_frame_fileName,"w") ) == NULL)
 	  {
-		printf("Unable to open the file %d \n",*no_of_speech_frames);
+         //printf("......EXIT.....");
+		//printf("Unable to open the file %d \n",*no_of_speech_frames);
 		exit(0);
 	  }
 	else
@@ -319,7 +326,8 @@ k=0;
    
         if( (fp_no_speech_frames = fopen(speech_frameNo_fileName,"w") ) == NULL)
 	  {
-		printf("Unable to open the file %d \n",*no_of_speech_frames);
+          
+                //printf("Unable to open the file %d \n",*no_of_speech_frames);
 		exit(0);
 	  }
 	else
@@ -330,7 +338,8 @@ k=0;
 
         if( (fp_avr_enr = fopen(avrEgy_FileName,"w") ) == NULL)
 	  {
-		printf("Unable to open the file %f \n",Avg_Energy);
+           
+                //printf("Unable to open the file %f \n",Avg_Energy);
 		exit(0);
 	  }
         else
@@ -351,7 +360,7 @@ k=0;
 		
 	if((fp_speech_nonspeech = fopen(voiced_unvoiced_fileName,"w")) == NULL)
 	  {
-		printf("Unable to open the file %s \n",SPEECH_NONSPEECH);
+                //printf("Unable to open the file %s \n",SPEECH_NONSPEECH);
 		exit(0);
 	  }
 	else
@@ -360,9 +369,9 @@ k=0;
                 fprintf(fp_speech_nonspeech,"%hd\n",speech_nonspeech_frames[i]);
 	}
 
-       printf("SPEECH NON SPEECH (print in vad) \t%d\n", temp_no_speech_frames);
+       //printf("SPEECH NON SPEECH (print in vad) \t%d\n", temp_no_speech_frames);
 	      
-                ptr = ptr - eoinput;
+                /*ptr = ptr - eoinput;
                 printf("no of frame shift 1\t%d\n", nof_fshift);  
                  printf("ENERGY_FRAMES IS \t%f\n", *Energy_frames);
 		free(ptr);
@@ -371,16 +380,16 @@ k=0;
                 printf("no of frame shift 3\t%d\n", nof_fshift);  
               
                 fclose(fp_starting_end_point);
-                fclose(fp_endpoint);
+                fclose(fp_endpoint);*/
                  
                 *total_no_of_frames = nof_fshift;
-                printf("Total no of frames \t %d \n", *total_no_of_frames );
+                /*printf("Total no of frames \t %d \n", *total_no_of_frames );
                int count =0; 
                 for (int i=0;i<nof_fshift;i++){
                     if(speech_nonspeech_frames[i]==1)
                         count++;
                 
-                }
+                }*/
              //  printf("\n\n\nthe shift is %d\n\n",nof_fshift);
                //printf("\n\n\nthe count is %d\n\n",count);
              //  *total_no_of_frames = count;
