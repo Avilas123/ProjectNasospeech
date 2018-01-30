@@ -1,0 +1,278 @@
+/*MARGINS*/
+.ml0{
+    margin-left: 0!important;
+}
+.mr0{
+    margin-right: 0!important;
+}
+.m0{
+    margin: 0!important;
+}
+.mt0{
+    margin-top: 0!important;
+}
+.mb0{
+    margin-bottom: 0!important;
+}
+.mt10{
+    margin-top: 10px!important;
+}
+.mt12{
+    margin-top: 12px!important;
+}
+.mt17{
+    margin-top: 17px!important;
+}
+.mt20{
+    margin-top: 20px!important;
+}
+.mt30{
+    margin-top: 30px!important;
+}
+.mt32{
+    margin-top: 32px!important;
+}
+.mt40{
+    margin-top: 40px!important;
+}
+.mb8{
+    margin-bottom: 8px!important;
+}
+.mr8{
+    margin-right: 8px!important;
+}
+.mr16{
+    margin-right: 16px!important;
+}
+.ml8{
+    margin-left: 8px!important;
+}
+.ml16{
+    margin-left: 16px!important;
+}
+.mb10{
+    margin-bottom: 10px!important;
+}
+.mb12{
+    margin-bottom: 12px!important;
+}
+
+/*PADDINGS*/
+.pl0{
+    padding-left:0!important;
+}
+.pr0{
+    padding-right: 0!important;
+}
+.p0{
+    padding: 0px!important;
+}
+.p8{
+    padding: 8px!important;
+}
+.ptb2{
+    padding: 2px 0!important;
+}
+.ptb5{
+    padding: 5px 0!important;
+}
+.p8{
+    padding: 8px!important;
+}
+.pt8{
+    padding-top: 8px!important;
+}
+.pt10{
+    padding-top: 10px!important;
+}
+.pt12{
+    padding-top: 12px!important;
+}
+.pt20{
+    padding-top: 20px!important;
+}
+.pt30{
+    padding-top: 30px!important;
+}
+.pt40{
+    padding-top: 40px!important;
+}
+.pl10{
+    padding-left: 10px!important;
+}
+.pl12{
+    padding-left: 12px!important;
+}
+.pl14{
+    padding-left: 14px!important;
+}
+.pl15{
+    padding-left: 15px!important;
+}
+.pl8{
+    padding-left: 8px!important;
+}
+/*BORDERS*/
+.br{
+    border-right: 1px solid #fff;
+}
+.bb{
+    border-bottom: 1px solid  #ccc;
+}
+.bor{
+    border: 1px solid #eee;
+}
+.bn{
+    border:none!important
+}
+/*Display*/
+.df{
+    display: flex!important;
+}
+.db{
+    display: block!important;
+}
+.ln{
+    list-style: none!important;
+}
+/*color*/
+.bg-1{
+    background-color: #fff;
+}
+.bg-2{
+    background-color: #212121;
+}
+.white{
+    color: #fff!important;
+}
+.blue{
+    color:#03A9F4!important;
+}
+.transparent{
+    background-color: transparent!important;
+}
+
+/*Card*/
+.card{
+    box-shadow: 0 1px 2px #ccc;
+}
+/*border styles*/
+.pinkbortop{
+    border-top: 2px solid #D81B60;
+}
+/*Width*/
+.w14{
+    width: 14%!important;
+}
+/*Font weight*/
+.b{
+    font-weight: bold !important;
+}
+/*bORDER RADIUS*/
+.br4{
+    border-radius: 4px!important;
+}
+/*Seacrh icon place*/
+.placing{
+    position: relative;
+    right: 22px;}
+/*Breadcrumb Header*/
+.main .wrapper {
+ width: 70.5%;
+    margin: 0 auto 15px;
+}
+
+.main .wrapper ul {
+  list-style-type: none;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.main .wrapper li {
+  float: left;
+  padding: 0;
+  margin: 0;
+}
+.main .wrapper li a {
+  color: #757575;
+  text-decoration: none;
+ padding: 2px 0 2px 45px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    background: #e0e0e0;
+  position: relative;
+  display: block;
+  float: left;
+}
+.main .wrapper li a:after {
+ content: " ";
+    /* display: block; */
+    width: 76%;
+    height: 0;
+    border-top: 50px solid transparent;
+    border-bottom: 58px solid transparent;
+    border-left: 30px solid #e0e0e0;
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    left: 100%;
+    z-index: 2;
+}
+.main .wrapper li a:before {
+  content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent;
+    border-left: 30px solid transparent;
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    margin-left: 6px;
+    left: 100%;
+    z-index: 1;
+}
+.main .wrapper li:first-child a {
+  padding-left: 15px;
+}
+.main .wrapper li.active a {
+  color: white;
+  background: #368cd7;
+}
+.main .wrapper li.active a:after {
+  border-left-color: #368cd7;
+}
+/*Fonts*/
+.f12{
+    font-size: 12px!important;
+}
+.f20{
+    font-size: 20px!important;
+}
+/*POINTER*/
+.cp{
+    cursor: pointer!important;
+}
+/*width*/
+.w100{
+    width: 100%!important;
+}
+.w20{
+    width: 20%!important;
+}
+.w10{
+    width: 10%!important;
+}
+/*height*/
+.h40{
+    height: 40px!important;
+}
+/*lineheight*/
+.lineheight6{
+    line-height: 6px!important;
+}
+.lineheight12{
+    line-height: 12px!important;
+}
