@@ -1,0 +1,174 @@
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 1.8em;
+	line-height: 1.7em;
+	font-weight: 300;
+	color: #646464;
+	background-color: #ffffff;
+}
+h1, h2, h3, h4, h5, h6 {
+	color: #545454;
+	font-weight: 600;
+	line-height: 1.3em;
+}
+h2 {
+	margin-top: 1.3em;
+}
+/*a {
+    font-size: 18px;
+    color: #0099cc;
+    cursor: pointer;
+    text-decoration: none;
+}*/
+a:link {
+/*	ffont-size: 18px;*/
+	text-decoration: none;
+	color: #0099cc;
+}
+a:visited {
+/*	ffont-size: 18px;*/
+	color: #0099cc;
+	text-decoration: none;
+}
+a:hover {
+/*	ffont-size: 18px;*/
+	color: #007399;
+	text-decoration: none;
+}
+a:active {
+	font-size: 18px;
+	color: #0099cc;
+	text-decoration: none;
+}
+p#testingP {
+	margin-top: 10px;
+	font-size: 0.8em;
+	line-height: 1.5em;
+	padding-bottom: 10px;
+	border-bottom: dashed 1px #AFAFAF;
+	text-align: justify;
+}
+p.lhsstory {
+	margin-top: 10px;
+	font-size: 0.8em;
+	line-height: 1.5em;
+	padding-bottom: 10px;
+	
+	
+}
+#testingCol {
+	margin-top: 25px;
+}
+.testingCol1 {
+	border-right: dashed 1px #AFAFAF;
+	margin-bottom:70px;
+	
+}
+.testingCol2 {
+	padding-right: 0px;
+}
+.h5News {
+	margin: 0px;
+}
+
+/*media query for device width of 991*/
+@media only screen and (max-width: 991px) {
+p#testingP {
+	border-bottom: dashed 0px #AFAFAF;
+}
+#testingCol {
+	margin-top: 0px;
+}
+.testingCol1 {
+	border-left: dashed 0px #AFAFAF;
+	padding-left: 0px;
+}
+.testingCol2 {
+	padding-right: 1.5%;
+}
+.h5News {
+	margin: 10px 0px;
+}
+    .carousel-indicators {
+    bottom: -30px;
+}
+}
+
+@media only screen and (max-width: 767px) {
+p#testingP {
+	border-bottom: dashed 1px #AFAFAF;
+}
+}
+
+/*Dikshita begins*/
+
+.topgap{
+    margin-top: 30px;
+}
+.df{display: flex;}
+
+.carousel-control.right,.carousel-control.left{
+    background-image: none!important;
+}
+.carousel-indicators li{
+    background-color: #0099cc!important;
+    width: 15px !important;
+    height: 15px !important;
+    border: 2px solid  #0099cc!important;
+    background-color: #fff!important;
+    margin: 0!important;
+/*     box-shadow: 0 2px 2px #ccc;*/
+}
+@media screen and (min-width: 768px)
+
+{ .carousel-indicators {
+    bottom: -30px;
+}
+}
+.carousel-indicators .active{
+   background-color: #0099cc!important;
+    width: 15px !important;
+    height: 15px !important;
+    border: 2px solid #0099cc!important; 
+     margin: 0!important;
+    box-shadow: 0 2px 2px #ccc;
+}
+
+.lessmargin{
+    margin-bottom: 12px!important;
+}
+.nomarginbottom{
+    margin: 0 0 0px!important;
+}
+.readmore {
+  max-width: 550px;
+  height: 100%;
+  overflow: hidden;
+  transition: height 200ms ease;
+}
+.readmore-toggle {
+  display: block;
+  width: 100%;
+  text-align: right;
+  clear: both;
+  height: 40px;
+  margin-top: -16px;
+}
+.carousel-control.left{
+   left: -13px!important;
+    top: 49.3%;
+}
+.carousel-control.right{
+  right: -13px!important;
+    top: 49.3%;
+}
+.circle{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    background-color: #fff;
+    opacity: 1!important;
+}
+/*Dikshita ends*/
+

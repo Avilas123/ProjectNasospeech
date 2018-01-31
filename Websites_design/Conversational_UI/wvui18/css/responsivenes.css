@@ -1,0 +1,10 @@
+@media (max-width: 1023px) {
+    .list li{
+  width: 100%;
+    height: auto;
+   
+}
+    .buttons{
+        left: 68px;
+    }
+}
