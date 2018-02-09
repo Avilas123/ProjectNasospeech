@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    tools:context="com.example.dod.nasospeech_android.MainActivity"
+
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@drawable/children">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="290dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="550dp"
+                android:layout_height="wrap_content"
+                android:text="NasoSpeech"
+                android:layout_gravity="center"
+                android:textColor="#25d1cb"
+                android:textStyle="bold"
+                android:textSize="28sp"/>
+            <TextView
+                android:layout_width="550dp"
+                android:layout_height="wrap_content"
+                android:text="@string/slogan"
+                android:textSize="22sp"
+                android:paddingTop="15dp"
+                android:textColor="#b2b7b7"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="550dp"
+        android:layout_height="400dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="-50dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:paddingTop="10dp"
+            android:src="@drawable/ic_mode_edit_black_24dp" />
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:text="Username"
+            android:textColor="#000" />
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="90dp"
+            android:text="Password" />
+
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>
+
+
+
+
+
+
+
+
