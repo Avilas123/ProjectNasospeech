@@ -1,82 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bottom_bg">
 
-    tools:context="com.example.dod.nasospeech_android.MainActivity"
+    
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
 
-    android:orientation="vertical">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="@drawable/children">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="290dp"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="550dp"
-                android:layout_height="wrap_content"
-                android:text="NasoSpeech"
-                android:layout_gravity="center"
-                android:textColor="#25d1cb"
-                android:textStyle="bold"
-                android:textSize="28sp"/>
-            <TextView
-                android:layout_width="550dp"
-                android:layout_height="wrap_content"
-                android:text="@string/slogan"
-                android:textSize="22sp"
-                android:paddingTop="15dp"
-                android:textColor="#b2b7b7"/>
-
-        </LinearLayout>
-
-    </RelativeLayout>
-
-
-    <android.support.v7.widget.CardView
-        android:layout_width="550dp"
-        android:layout_height="400dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="-50dp">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#fff"
-            android:paddingTop="10dp"
-            android:src="@drawable/ic_mode_edit_black_24dp" />
-
-        <EditText
-            android:layout_width="300dp"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
-            android:text="Username"
-            android:textColor="#000" />
-
-        <EditText
-            android:layout_width="300dp"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="90dp"
-            android:text="Password" />
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical"
+           android:layout_marginTop="60dp">
+           
+          <ImageView
+              android:layout_width="200dp"
+              android:layout_height="160dp"
+              android:layout_gravity="center_horizontal"
+              android:src="@drawable/ns_logo"/>
+           <EditText
+               android:layout_width="480dp"
+               android:layout_height="wrap_content"
+               android:inputType="textWebEmailAddress"
+               android:ems="10"
+               android:background="@android:color/transparent"
+               android:layout_gravity="center_horizontal"
+               android:drawablePadding="10dp"
+               android:layout_marginTop="40dp"
+               android:padding="10dp"
+               android:hint="Username"
+               android:textSize="20sp"
+               android:textColorHint="#7c7c7c"
+               android:maxLines="1"
+               android:drawableLeft="@drawable/ic_person_outline_black_24dp"/>
+           <View
+               android:layout_width="480dp"
+               android:layout_height="1dp"
+               android:layout_gravity="center_horizontal"
+               android:background="#7c7c7c">
+               </View>
+           <EditText
+               android:layout_width="480dp"
+               android:layout_height="wrap_content"
+               android:inputType="phone"
+               android:ems="10"
+               android:textSize="20sp"
+               android:layout_marginTop="40dp"
+               android:background="@android:color/transparent"
+               android:layout_gravity="center_horizontal"
+               android:drawablePadding="10dp"
+               android:padding="10dp"
+               android:hint="Password"
+               android:textColorHint="#7c7c7c"
+               android:maxLines="1"
+               android:drawableLeft="@drawable/ic_lock_open_black_24dp"/>
 
 
-    </android.support.v7.widget.CardView>
+           <View
+               android:layout_width="480dp"
+               android:layout_height="1dp"
+               android:layout_gravity="center_horizontal"
+               android:background="#7c7c7c">
+           </View>
+
+           <CheckBox
+               android:layout_width="480dp"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="30dp"
+               android:text="Remember me"
+               android:layout_marginLeft="10dp"
+               android:layout_gravity="center_horizontal"
+               android:textColor="#527787"
+               android:textSize="20sp"
+               android:padding="8dp"
+
+             />
+
+           <LinearLayout
+               android:layout_width="480dp"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:layout_gravity="center">
+               
+            <Button
+                android:layout_width="0dp"
+                android:layout_marginTop="50dp"
+                android:layout_height="68dp"
+                android:textColor="#2281a9"
+                android:id="@+id/buttonlogin"
+                android:background="@drawable/button1"
+
+                android:layout_weight="1"
+                android:text="Login"/>
+               <Button
+                   android:layout_marginTop="50dp"
+                   android:layout_width="0dp"
+                   android:textColor="#fff"
+                   android:layout_height="68dp"
+                   android:background="@drawable/button2"
+                   android:layout_weight="1"
+                   android:text="Sign up"/>
+               
+           </LinearLayout>
+           
+       </LinearLayout>
+
+
+
+   </ScrollView>
+
+
 </LinearLayout>
-
-
-
-
-
-
-
-
