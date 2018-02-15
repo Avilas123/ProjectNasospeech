@@ -10,11 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
-        <TextView
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="judfhhdsfhihdfidhsfihi"/>
-    </ScrollView>
+            android:layout_height="wrap_content"
+            android:background="#90A4AE"
+            android:titleTextColor="#000">
+</android.support.v7.widget.Toolbar>
+
+</ScrollView>
 </LinearLayout>
