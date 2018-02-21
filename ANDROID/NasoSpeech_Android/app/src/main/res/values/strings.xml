@@ -1,8 +1,17 @@
 <resources>
-    <string name="app_name">NasoSpeech_Android</string>
-    <string name="slogan">
-        All copyrights reserved.
+    <string name="app_name">NasoSpeech</string>
+    <!--<string name="forgotpassword"><a href="mailto:support@cleverfinger.com.au?Subject=forgot%20Password" target="_top">FORGOT PASSWORD ? </a></string>-->
+    <string name="mainline"> New to Nasospeech ? <a href="mailto:" target="_top"> Sign up </a></string>
 
+    <string name="lostpassword"><a href="mailto:support@cleverfinger.com.au?Subject=Lost%20Password" target="_top">FORGOT PASSWORD ? </a></string>
 
-    </string>
+    <string name="defaultpassword">New to Nasospeech ?  <a href="">Sign up </a> now</string>
+    <string name="password">Password</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
