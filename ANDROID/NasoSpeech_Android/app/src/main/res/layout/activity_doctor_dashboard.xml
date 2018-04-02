@@ -20,6 +20,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_doctor_dashboard"
+        app:theme="@style/NavigationViewStyle"
         app:menu="@menu/activity_doctor_dashboard_drawer" />
 
 </android.support.v4.widget.DrawerLayout>

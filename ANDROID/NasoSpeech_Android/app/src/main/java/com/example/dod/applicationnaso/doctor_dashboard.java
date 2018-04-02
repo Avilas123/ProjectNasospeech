@@ -1,5 +1,6 @@
 package com.example.dod.applicationnaso;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,9 +13,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 public class doctor_dashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private Button hypernasalbtn;
+    private Button articulatebtn;
+    private Button intelligibilitybtn;
+    private Button voicingbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +29,41 @@ public class doctor_dashboard extends AppCompatActivity
         setContentView(R.layout.activity_doctor_dashboard);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        hypernasalbtn = (Button) findViewById(R.id.hypernasality);
+        hypernasalbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(doctor_dashboard.this,Hypernasality.class);
+                startActivity(intent);
+            }
+        });
+        articulatebtn = (Button) findViewById(R.id.articulation);
+        articulatebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(doctor_dashboard.this,Articulation.class);
+                startActivity(intent);
+
+            }
+        });
+        intelligibilitybtn = (Button) findViewById(R.id.intelligibility);
+        intelligibilitybtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(doctor_dashboard.this,Intelligibility.class);
+                startActivity(intent);
+
+            }
+        });
+        voicingbtn = (Button) findViewById(R.id.voicing);
+        voicingbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(doctor_dashboard.this,VoicingError.class);
+                startActivity(intent);
+
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -87,10 +129,6 @@ public class doctor_dashboard extends AppCompatActivity
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
 
         }
 

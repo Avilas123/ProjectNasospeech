@@ -24,7 +24,11 @@
         <activity
             android:name=".Forgot_Password"
             android:label="@string/title_activity_forgot__password"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".Hypernasality" />
+        <activity android:name=".Articulation" />
+        <activity android:name=".Intelligibility" />
+        <activity android:name=".VoicingError" />
     </application>
 
 </manifest>

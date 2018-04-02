@@ -11,7 +11,7 @@ import android.widget.Button;
 import java.sql.BatchUpdateException;
 
 public class MainActivity extends Activity {
-     private Button button;
+    private Button button;
     private Button forgotpassbutton;
     private Button signupbutton;
 
@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-      button = (Button) findViewById(R.id.buttonone);
+       button = (Button) findViewById(R.id.buttonone);
        forgotpassbutton = (Button) findViewById(R.id.buttontwo) ;
        signupbutton = (Button) findViewById(R.id.buttonthree) ;
        button.setOnClickListener(new View.OnClickListener() {

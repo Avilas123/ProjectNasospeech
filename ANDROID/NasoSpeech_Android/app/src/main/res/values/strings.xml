@@ -4,7 +4,7 @@
     <string name="forgotpasstext">Enter your email address and we will send you a link to reset your password .</string>
     <string name="confirmpassword">Confirm Password</string>
     <string name="registerline">New to Nasospeech ?</string>
-    <string name="title_activity_doctor_dashboard">doctor_dashboard</string>
+    <string name="title_activity_doctor_dashboard">Dashboard</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
