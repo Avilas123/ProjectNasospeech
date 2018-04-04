@@ -3,6 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:paddingTop="22dp"
+    android:paddingBottom="24dp"
+    android:paddingLeft="30dp"
     android:background="@drawable/listborder">
 
 
@@ -11,7 +14,8 @@
         android:id="@+id/icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher" />
+        android:paddingTop="5dp"
+       android:src="@drawable/ic_face_black_24dp"/>
 
     <TextView
         android:id="@+id/secondLine"
@@ -19,22 +23,25 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/icon"
         android:ellipsize="marquee"
-        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="4dp"
         android:maxLines="1"
-        android:text="Description"
-        android:textSize="18sp" />
+        android:text="Sambulinga"
+        android:textSize="17sp" />
 
     <TextView
         android:id="@+id/firstLine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/secondLine"
+        android:layout_toLeftOf="@id/secondLine"
         android:layout_alignParentRight="true"
         android:layout_alignWithParentIfMissing="true"
         android:layout_toRightOf="@id/icon"
-        android:gravity="center_vertical"
-        android:text="Example application"
-        android:textSize="16sp"
+        android:gravity="right"
+        android:paddingRight="30dp"
+        android:text="(a1.wav)"
+        android:textSize="17sp"
+
         android:layout_alignParentTop="true" />
 
 </RelativeLayout>

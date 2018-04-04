@@ -27,8 +27,8 @@ public class Hypernasality extends Activity {
         recyclerView.setLayoutManager(layoutManager);
         List<String> input = new ArrayList<>();
 
-        for (int i=0;i<100;i++){
-              input.add("Test" + i);
+        for (int i=0;i<30;i++){
+              input.add("(a1.wav)" );
 
      }
 
