@@ -24,7 +24,7 @@ public class doctor_dashboard extends AppCompatActivity
     private Button intelligibilitybtn;
     private Button voicingbtn;
 
-  
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,13 +121,15 @@ public class doctor_dashboard extends AppCompatActivity
 
        int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_patients) {
 
-        } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_appointments) {
+
+        } else if (id == R.id.nav_details) {
+
+        } else if (id == R.id.nav_support) {
 
         }
 

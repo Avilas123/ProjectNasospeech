@@ -4,28 +4,28 @@
     <group android:checkableBehavior="single"
            android:id="@+id/nav_camera_group">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_patients"
             android:icon="@drawable/ic_people_outline_black_24dp"
             android:title="Patients" />
         </group>
     <group android:checkableBehavior="single"
         android:id="@+id/nav_gallery_group">
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_appointments"
             android:icon="@drawable/ic_event_available_black_24dp"
             android:title="Appointments" />
         </group>
     <group android:checkableBehavior="single"
            android:id="@+id/nav_slideshow_group">
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_details"
             android:icon="@drawable/ic_settings_black_24dp"
             android:title="Profile details" />
         </group>
     <group android:checkableBehavior="single"
            android:id="@+id/nav_manage_group">
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_support"
             android:icon="@drawable/ic_headset_mic_black_24dp"
             android:title="Support" />
     </group>
