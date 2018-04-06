@@ -123,13 +123,30 @@ public class doctor_dashboard extends AppCompatActivity
 
         if (id == R.id.nav_patients) {
 
-
+       Intent myintent = new Intent(doctor_dashboard.this,Patients.class);
+            startActivity(myintent);
+            return false;
 
         } else if (id == R.id.nav_appointments) {
 
+
+            Intent myIntent1 = new Intent(doctor_dashboard.this,Appointments.class);
+            startActivity(myIntent1);
+            return false;
+
         } else if (id == R.id.nav_details) {
 
+
+            Intent myIntent2 = new Intent(doctor_dashboard.this,ProfileDetails.class);
+            startActivity(myIntent2);
+            return false;
+
         } else if (id == R.id.nav_support) {
+
+            Intent myIntent3 = new Intent(doctor_dashboard.this,Support.class);
+            startActivity(myIntent3);
+            return false;
+
 
         }
 
