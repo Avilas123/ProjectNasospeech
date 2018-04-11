@@ -3,12 +3,6 @@
 
 NasoSpeech, a tangible and an interactive tool, is our response to the current state of art in the assessment of hypernasality of CLP patients. We aim to make it simple-to-use and user-friendly for both CLP patients and speech pathologists. It will be non-restrictive, mobile, fast and accurate with inbuilt state-of-the-art Speech processing methods. NasoSpeech will have the ability to support mediated scenarios of distant assessment, counselling and self-learning for CLP patients, and would enhance collaboration between CLP patients and speech pathologists.
 
-
-<<<<<<< HEAD
-A JavaFx API consisting of integrated version of Media Player,Media Editing Features and Media Analysis with the flavor of Speech Processing .
-=======
->>>>>>> d5f0e7cb6eeedfa3771bd344a2b511c1c1ed3d09
-
 Basic API Features:
  -MediaPlayer :
                play,pause,forward,rewind,stop coded in Java.
@@ -19,3 +13,13 @@ Basic API Features:
                
  -Speech_Processing:
                
+Websites_design:
+ - Conversational_UI : Website designed for "Workshop on VOICE USER INTERFACES (WoVUI 2018)"
+                     : Bootstrap,CSS3,HTML5,jQUERY with a smooth scroll-spy has been the tech stacks.
+ - Nasospeech web    : It is a website for our ongoing project Nasospeech
+                     : Bootstrap,CSS3,HTML5,jQUERY and fully responsive web.
+                     
+Android: 
+  Nasospeech has a mobile version with its UI designed in Android studio and functioned in java.
+       
+                     
