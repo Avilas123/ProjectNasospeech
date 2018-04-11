@@ -13,7 +13,7 @@ short    *vad_enrthr(char *, int *, int *, int *, char *,
                   char *, char *, char *, char *);
 char     *mfcc_computation(char *, int, char *, int, char *);
 float    **ComputeDeltaCoefficients(float **inpFeatures, int numFeatures, int dimFeats, int K);
-float    **ComputeMFCC(char waveName[], int numSpeechFrames, short *speechNonSpeech, int nof_fsize, int totalFrames,char *a);
+float    **ComputeMFCC(char waveName[], int numSpeechFrames, short *speechNonSpeech, int nof_fsize, int totalFrames,char *a,char *mouse);/////mouseposition is updated
 void     stat_comp(char id[], short *speech_nonspeech, int no_of_speech_frames, int total_no_of_frames, char features_filename[], char zeroOrderStats_fileName[], char firstOrderStats_fileName[]);
 void     StatisticsCompV(char *, float **, int, int, char *, char *);
 float    **ConcatenateFeaturesWithOffset(float **feature1, int rows1, int cols1, float **feature2, int rows2, int col2, int offset);
@@ -26,7 +26,7 @@ void     ZeroMeanUnitVariance(float **features, int totalFrames,int numCoeffs);
 
 int main(int argc, char *argv[]){  
 
-   if (argc != 12){
+   if (argc != 13){
        //printf("Usage::: ./ComputeMFCCDeltaDelta   full_path_input(waveFile)  id_(phone Number)  strt_frame_fileName(op)  end_frame_fileName(op)  voiced_unvoiced_fileName(op)  \
                           speech_frameNo_fileName(op)  Average_Energy_FileName(op)   Zeroth_Order_Stats_FileName(op)   First_Order_Stats_FileName(op) MFCC_Delta_Delta_Coeff_File(op) \n");
        exit(0);
@@ -36,7 +36,7 @@ int main(int argc, char *argv[]){
   
   // char *articulate="";
   // *articulate=argv[11];
-   //printf(" error strinng is------>%s\n",argv[11]);
+  // printf(" value  is------>%s\n",argv[12]);
    char *input_filename, *fullpath_input, *id;
    short *speech_nonspeech_frames;
    int i;
@@ -73,7 +73,7 @@ int main(int argc, char *argv[]){
  // Computing the Static MFCC Coefficients  ...
     
  //printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n\n\n\n\n\n\n",nof_fsize);
-    mfccCoeffs = ComputeMFCC(argv[1], no_of_speech_frames, speech_nonspeech_frames, nof_fsize, total_no_of_frames,argv[11]);
+    mfccCoeffs = ComputeMFCC(argv[1], no_of_speech_frames, speech_nonspeech_frames, nof_fsize, total_no_of_frames,argv[11],argv[12]);
    // printf("\n\n\n\n\n\nCCCHHHEEECCCCCKKKKKKK %d\n\n\n\n\n\n\n\n\n",nof_fsize);
     //printf("\n MFCC Computation is Done \n");
 

@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=MFCC_final_version_working_V
+PROJECTNAME=MFCC_Removing_FileWriting
 
 # Active Configuration
 DEFAULTCONF=Debug

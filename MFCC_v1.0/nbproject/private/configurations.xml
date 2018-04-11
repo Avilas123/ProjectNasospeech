@@ -24,18 +24,18 @@
       </nativedebugger>
       <runprofile version="9">
         <runcommandpicklist>
-          <runcommandpicklistitem>"${OUTPUT_PATH}"    C:\Users\user\Desktop\samples\CM08013_897_CVCV2_kaka.wav    1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}"    C:\Users\user\Desktop\samples\CM08013_896_CVCV1_papa.wav    1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}"   C:\Users\user\Desktop\Speech_files   1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}"   C:\Users\user\Desktop\Speech_files\sahana_s1.wav   1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}"   C:\Users\user\Desktop\samples   1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}"   C:\Users\user\Desktop\samples\CM08013_896_CVCV1_papa.wav   1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}"   C:\Users\user\Desktop\samples\CM08013_896_CVCV1_papa.wav   1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt T</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}"   C:\Users\user\Desktop\samples\CM08013_896_CVCV1_papa.wav   1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt k</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}"   C:\Users\user\Desktop\samples\abhilash\CM09022_558_CVCV1_papa1.wav   1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt k</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}"   C:\Users\user\Desktop\samples\abhilash\CM09022_558_CVCV1_papa1.wav   1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt p</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   C:\Users\user\Desktop\samples\CM10030_784_CVCV1_tata2.wav   1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt  t "7800"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   C:\Users\user\Desktop\samples\NM11039_779_CVCV2_tata2.wav   1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt  t "7800"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   C:\Users\user\Desktop\samples\CM08013_896_CVCV3_kaka.wav   1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt  k "7800"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   C:\Users\user\Desktop\samples\CM08013_896_CVCV1_papa.wav   1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt  p "7800"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   C:\Users\user\Desktop\samples\CM08013_896_CVCV1_papa.wav   1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt  p "8127"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   C:\Users\user\Desktop\samples\CM08013_896_CVCV1_TaTa1.wav   1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt  T"8127"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   C:\Users\user\Desktop\samples\CM08013_896_CVCV1_TaTa1.wav   1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt  T "8127"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   C:\Users\user\Desktop\samples\CM07007_354_CVCV2_tata21.wav   1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt  t "7800"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   C:\Users\user\Desktop\samples\NM12043_469_CVCV1_kaka.wav   1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt  k "7800"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   C:\Users\user\Desktop\samples\NM09020_416_CVCV1_kaka1.wav   1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt  k "7800"</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}"   C:\Users\user\Desktop\samples\abhilash\CM09022_558_CVCV1_papa1.wav   1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt p</runcommand>
+        <runcommand>"${OUTPUT_PATH}"   C:\Users\user\Desktop\samples\NM09020_416_CVCV1_kaka1.wav   1001   start.txt    end.txt    vunv.txt    spfr.txt  avg.txt   N.txt   F.txt  C:\Users\user\Desktop\mfcc.txt  k "7800"</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>

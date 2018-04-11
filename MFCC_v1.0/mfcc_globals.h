@@ -37,7 +37,8 @@ struct speech_recognition
 	float log_magnitude1[NUM_OF_FILTER];
 	float IDCT_Output1[NUM_OF_COEFFICIENTS];
         float A_out[NUM_OF_FILTER];
-        float mahal_out[];
+        float mahal_out[1];
+        float mean[27][1];
         
 };
 
