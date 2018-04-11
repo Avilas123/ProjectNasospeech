@@ -14,7 +14,7 @@ Basic API Features:
                play,pause,forward,rewind,stop coded in Java.
                Recording with a multi-thread Platorm.Recording and Displaying the waveform in JavaFX Linechart.
                
- -MediaEditing :
+ -MediaEditings :
                Cut,copy,paste all the basic media editing functionalities coded in java .
                
  -Speech_Processing:
