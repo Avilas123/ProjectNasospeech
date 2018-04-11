@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="151.0" prefWidth="501.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="designtemplate.TDNeedHelpController">
+  <children>
+    <Label layoutX="19.0" layoutY="6.0" prefHeight="28.0" prefWidth="443.0" text="Text-dependent instructions:-">
+      <font>
+        <Font name="System Bold" size="16.0" />
+      </font>
+    </Label>
+    <Label layoutX="44.0" layoutY="35.0" prefHeight="28.0" prefWidth="432.0" text="1. Please check microphone connection by doing mic testing.">
+      <font>
+        <Font size="14.0" fx:id="x1" />
+      </font>
+    </Label>
+    <Label font="$x1" layoutX="45.0" layoutY="63.0" prefHeight="28.0" prefWidth="432.0" text="2. Please finish recording within the time limit of 4 seconds." />
+    <Label font="$x1" layoutX="47.0" layoutY="91.0" prefHeight="28.0" prefWidth="432.0" text="3. Please read the sentence carefully while recording." />
+  </children>
+  <stylesheets>
+    <URL value="@css/StartButtonCSS.css" />
+  </stylesheets>
+</AnchorPane>
