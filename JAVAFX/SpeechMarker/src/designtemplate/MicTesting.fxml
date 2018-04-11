@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="MicPane" fx:id="MicTestingPane" prefHeight="339.0" prefWidth="305.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="designtemplate.MicTestingController">
+  <children>
+    <Label alignment="CENTER_LEFT" layoutX="25.0" layoutY="123.0" prefHeight="29.0" prefWidth="246.0" text="Adjust microphone settings" textFill="#606060">
+      <font>
+        <Font name="System Bold" size="12.0" />
+      </font>
+    </Label>
+    <Button layoutX="196.0" layoutY="294.0" mnemonicParsing="false" onAction="#doneButton" prefWidth="84.0" style="-fx-background-color:#9f9f9f;" text="NEXT" textFill="WHITE">
+      <font>
+        <Font size="14.0" />
+      </font>
+      <stylesheets>
+        <URL value="@css/StartButtonCSS.css" />
+      </stylesheets>
+    </Button>
+    <Label fx:id="micLabel" layoutX="22.0" layoutY="43.0" prefHeight="73.0" prefWidth="267.0" text="Oops! SpeechMarker fails to identify your microphone signals." textFill="#ff6433" wrapText="true">
+      <font>
+        <Font name="System Bold" size="16.0" />
+      </font>
+    </Label>
+    <Label layoutX="61.0" layoutY="248.0" prefWidth="192.0" text="Please speak to test" textFill="#404040" />
+    <AnchorPane fx:id="recordPane" layoutX="25.0" layoutY="152.0" prefHeight="70.0" prefWidth="248.0" style="-fx-border-color:#ffffff;&#10;-fx-border-radius: 2 2 2 2;" />
+    <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="21.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@images/ripple.gif" />
+      </image>
+    </ImageView>
+  </children>
+  <stylesheets>
+    <URL value="@mictesting.css" />
+  </stylesheets>
+</AnchorPane>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="256.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="designtemplate.VPNeedHelpController">
+  <children>
+    <Label layoutX="26.0" layoutY="14.0" prefHeight="28.0" prefWidth="535.0" text="Voice-password instructions:-">
+      <font>
+        <Font name="System Bold" size="16.0" />
+      </font>
+    </Label>
+    <Label layoutX="51.0" layoutY="43.0" prefHeight="28.0" prefWidth="535.0" text="1. Please check microphone connection by doing mic testing.">
+      <font>
+        <Font size="14.0" fx:id="x1" />
+      </font>
+    </Label>
+    <Label font="$x1" layoutX="52.0" layoutY="71.0" prefHeight="28.0" prefWidth="535.0" text="2. Please finish recording within the time limit of 6 seconds." />
+    <Label font="$x1" layoutX="54.0" layoutY="99.0" prefHeight="28.0" prefWidth="535.0" text="3. Please speak your name first then phone number." />
+    <Label font="$x1" layoutX="75.0" layoutY="127.0" prefHeight="28.0" prefWidth="347.0" text="3.1 Expand your full name." />
+    <Label font="$x1" layoutX="104.0" layoutY="179.0" prefHeight="28.0" prefWidth="485.0" text="For example, if phone number is 9706699221, it will be spoken as,  " />
+    <Label font="$x1" layoutX="77.0" layoutY="155.0" prefHeight="28.0" prefWidth="391.0" text="3.2 Phone number to be spoken in an isolated manner." />
+    <Label font="$x1" layoutX="106.0" layoutY="200.0" prefHeight="28.0" prefWidth="376.0" text="Nine Seven Zero Six Six Nine Nine Two Two One." />
+  </children>
+  <stylesheets>
+    <URL value="@css/StartButtonCSS.css" />
+  </stylesheets>
+</AnchorPane>
