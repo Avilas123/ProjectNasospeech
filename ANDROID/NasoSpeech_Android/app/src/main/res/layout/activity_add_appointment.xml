@@ -5,7 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
-    tools:context="com.example.dod.applicationnaso.ProfileDetails">
+    tools:context="com.example.dod.applicationnaso.AddAppointment"
+    tools:showIn="@layout/activity_add_appointment">
+
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -60,7 +63,34 @@
                 android:layout_gravity="center_horizontal"
                 android:background="#7c7c7c">
             </View>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
+                android:layout_marginTop="40dp">
+                <EditText
+                    android:layout_width="480dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    android:ems="10"
+                    android:textSize="22sp"
+                    android:id="@+id/tvDate"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="center_horizontal"
+                    android:drawablePadding="10dp"
+                    android:padding="10dp"
+                    android:hint="D.O.B"
+                    android:textColorHint="#7c7c7c"
+                    android:maxLines="1"/>
+            </android.support.design.widget.TextInputLayout>
+
+
+            <View
+                android:layout_width="480dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center_horizontal"
+                android:background="#7c7c7c">
+            </View>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -119,58 +149,34 @@
                 android:layout_gravity="center_horizontal"
                 android:background="#7c7c7c">
             </View>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/appointmentdate"
+                android:layout_marginTop="40dp">
+                <EditText
+                    android:layout_width="480dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="datetime"
+                    android:ems="10"
+                    android:textSize="22sp"
 
-           <GridLayout
-               android:layout_width="480dp"
-               android:layout_height="match_parent"
-               android:layout_gravity="center_horizontal"
-               android:layout_marginTop="30dp"
-               android:layout_weight="3"
-              >
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="center_horizontal"
+                    android:drawablePadding="10dp"
+                    android:padding="10dp"
+                    android:hint="Appointment Date"
+                    android:textColorHint="#7c7c7c"
+                    android:maxLines="1"/>
+            </android.support.design.widget.TextInputLayout>
 
 
-               <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="match_parent"
-                   android:text="Gender"
-                   android:textSize="22sp"
-                   android:padding="10dp"
-                   android:textColorHint="#7d7d7d"></TextView>
-
-
-               <CheckBox
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="Male"
-                   android:layout_marginLeft="6dp"
-
-                   android:textColor="#7d7d7d"
-
-                   android:textSize="22sp"
-                   />
-               <CheckBox
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-
-                   android:text="Female"
-                   android:layout_marginLeft="15dp"
-
-                   android:textColor="#7d7d7d"
-
-                   android:textSize="22sp"
-                    />
-               <CheckBox
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-
-                   android:text="Others"
-                   android:layout_marginLeft="15dp"
-
-                   android:textColor="#7d7d7d"
-                   android:textSize="22sp"
-                   />
-
-           </GridLayout>
+            <View
+                android:layout_width="480dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center_horizontal"
+                android:background="#7c7c7c">
+            </View>
 
 
 
