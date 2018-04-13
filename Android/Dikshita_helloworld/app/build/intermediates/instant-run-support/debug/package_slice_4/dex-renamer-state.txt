@@ -1,0 +1,4 @@
+#Tue Jan 30 11:48:16 IST 2018
+base.0=/Users/DoD/AndroidStudioProjects/Dikshita_helloworld/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4
+renamed.0=classes.dex
+file.0=/Users/DoD/AndroidStudioProjects/Dikshita_helloworld/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex

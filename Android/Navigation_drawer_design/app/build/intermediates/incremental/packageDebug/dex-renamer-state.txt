@@ -1,0 +1,7 @@
+#Mon Feb 05 15:08:05 IST 2018
+base.0=/Users/DoD/AndroidStudioProjects/Navigation_drawer_design/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_809e679daaaae6e9b3e31c3a4199dbfd368f4b77
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=/Users/DoD/AndroidStudioProjects/Navigation_drawer_design/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_781f0a7cbeca93d30bc99e744533dd2a6ff2ac78/classes.dex
+base.1=/Users/DoD/AndroidStudioProjects/Navigation_drawer_design/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_781f0a7cbeca93d30bc99e744533dd2a6ff2ac78
+file.0=/Users/DoD/AndroidStudioProjects/Navigation_drawer_design/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_809e679daaaae6e9b3e31c3a4199dbfd368f4b77/classes.dex

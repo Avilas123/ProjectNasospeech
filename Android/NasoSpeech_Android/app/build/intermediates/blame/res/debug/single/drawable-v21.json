@@ -1,0 +1,58 @@
+[
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-v21/ic_menu_share.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/drawable-v21/ic_menu_share.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-v21/ic_menu_manage.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/drawable-v21/ic_menu_manage.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-v21/avd_hide_password.xml",
+        "source": "/Users/DoD/.android/build-cache/e78f58cc814b68f6e38cc5cfa459d9e8a2547ce0/output/res/drawable-v21/avd_hide_password.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-v21/ic_menu_camera.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/drawable-v21/ic_menu_camera.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-v21/ic_menu_gallery.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/drawable-v21/ic_menu_gallery.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-v21/abc_action_bar_item_background_material.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/drawable-v21/abc_action_bar_item_background_material.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-v21/design_password_eye.xml",
+        "source": "/Users/DoD/.android/build-cache/e78f58cc814b68f6e38cc5cfa459d9e8a2547ce0/output/res/drawable-v21/design_password_eye.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-v21/ic_menu_send.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/drawable-v21/ic_menu_send.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-v21/abc_edit_text_material.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/drawable-v21/abc_edit_text_material.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-v21/design_bottom_navigation_item_background.xml",
+        "source": "/Users/DoD/.android/build-cache/e78f58cc814b68f6e38cc5cfa459d9e8a2547ce0/output/res/drawable-v21/design_bottom_navigation_item_background.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-v21/ic_menu_slideshow.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/drawable-v21/ic_menu_slideshow.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-v21/notification_action_background.xml",
+        "source": "/Users/DoD/.android/build-cache/8df013bcd09d11da1335973d7d8c9a308208a73c/output/res/drawable-v21/notification_action_background.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-v21/avd_show_password.xml",
+        "source": "/Users/DoD/.android/build-cache/e78f58cc814b68f6e38cc5cfa459d9e8a2547ce0/output/res/drawable-v21/avd_show_password.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-v21/abc_btn_colored_material.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/drawable-v21/abc_btn_colored_material.xml"
+    }
+]

@@ -1,0 +1,4 @@
+#Mon Feb 05 15:08:05 IST 2018
+base.0=/Users/DoD/AndroidStudioProjects/Navigation_drawer_design/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_5
+renamed.0=classes.dex
+file.0=/Users/DoD/AndroidStudioProjects/Navigation_drawer_design/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_5/classes.dex

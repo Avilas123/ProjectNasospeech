@@ -1,0 +1,54 @@
+[
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/design_ic_visibility.xml",
+        "source": "/Users/DoD/.android/build-cache/e78f58cc814b68f6e38cc5cfa459d9e8a2547ce0/output/res/drawable-anydpi-v21/design_ic_visibility.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_face_black_24dp.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/build/generated/res/pngs/debug/drawable-anydpi-v21/ic_face_black_24dp.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_dvr_black_24dp.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/build/generated/res/pngs/debug/drawable-anydpi-v21/ic_dvr_black_24dp.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_people_outline_black_24dp.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/build/generated/res/pngs/debug/drawable-anydpi-v21/ic_people_outline_black_24dp.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_perm_identity_black_24dp.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/build/generated/res/pngs/debug/drawable-anydpi-v21/ic_perm_identity_black_24dp.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_event_available_black_24dp.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/build/generated/res/pngs/debug/drawable-anydpi-v21/ic_event_available_black_24dp.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_add_black_24dp.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/build/generated/res/pngs/debug/drawable-anydpi-v21/ic_add_black_24dp.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_settings_black_24dp.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/build/generated/res/pngs/debug/drawable-anydpi-v21/ic_settings_black_24dp.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_person_outline_black_24dp.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/build/generated/res/pngs/debug/drawable-anydpi-v21/ic_person_outline_black_24dp.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_notifications_active_black_24dp.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/build/generated/res/pngs/debug/drawable-anydpi-v21/ic_notifications_active_black_24dp.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_headset_mic_black_24dp.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/build/generated/res/pngs/debug/drawable-anydpi-v21/ic_headset_mic_black_24dp.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_mode_edit_black_24dp.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/build/generated/res/pngs/debug/drawable-anydpi-v21/ic_mode_edit_black_24dp.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/design_ic_visibility_off.xml",
+        "source": "/Users/DoD/.android/build-cache/e78f58cc814b68f6e38cc5cfa459d9e8a2547ce0/output/res/drawable-anydpi-v21/design_ic_visibility_off.xml"
+    }
+]

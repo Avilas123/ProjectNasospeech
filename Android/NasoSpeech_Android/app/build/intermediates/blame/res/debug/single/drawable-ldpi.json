@@ -1,0 +1,46 @@
+[
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-ldpi/ic_headset_mic_black_24dp.png",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/build/generated/res/pngs/debug/drawable-ldpi/ic_headset_mic_black_24dp.png"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-ldpi/ic_settings_black_24dp.png",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/build/generated/res/pngs/debug/drawable-ldpi/ic_settings_black_24dp.png"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-ldpi/ic_mode_edit_black_24dp.png",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/build/generated/res/pngs/debug/drawable-ldpi/ic_mode_edit_black_24dp.png"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-ldpi/ic_dvr_black_24dp.png",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/build/generated/res/pngs/debug/drawable-ldpi/ic_dvr_black_24dp.png"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-ldpi/ic_add_black_24dp.png",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/build/generated/res/pngs/debug/drawable-ldpi/ic_add_black_24dp.png"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-ldpi/ic_event_available_black_24dp.png",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/build/generated/res/pngs/debug/drawable-ldpi/ic_event_available_black_24dp.png"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-ldpi/ic_face_black_24dp.png",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/build/generated/res/pngs/debug/drawable-ldpi/ic_face_black_24dp.png"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-ldpi/ic_notifications_active_black_24dp.png",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/build/generated/res/pngs/debug/drawable-ldpi/ic_notifications_active_black_24dp.png"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-ldpi/ic_person_outline_black_24dp.png",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/build/generated/res/pngs/debug/drawable-ldpi/ic_person_outline_black_24dp.png"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-ldpi/ic_perm_identity_black_24dp.png",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/build/generated/res/pngs/debug/drawable-ldpi/ic_perm_identity_black_24dp.png"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/drawable-ldpi/ic_people_outline_black_24dp.png",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/build/generated/res/pngs/debug/drawable-ldpi/ic_people_outline_black_24dp.png"
+    }
+]

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_7d3b6c319dca07377e24f98b6ef7df0eeae4e411/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="f7b491244f827b34c090149620edbd395f82c771">
+        <dex dex="/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_a2af8035767f800a3e5079d7e144c478283125ea/classes.dex" />
+    </item>
+
+</items>

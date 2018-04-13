@@ -1,0 +1,338 @@
+[
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/select_dialog_multichoice_material.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/activity_main.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/notification_template_lines_media.xml",
+        "source": "/Users/DoD/.android/build-cache/f9a6ba75b15c0ee8bfbe8ec5ca08bd4af7cfcbb1/output/res/layout/notification_template_lines_media.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/support_simple_spinner_dropdown_item.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/support_simple_spinner_dropdown_item.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/design_navigation_menu_item.xml",
+        "source": "/Users/DoD/.android/build-cache/e78f58cc814b68f6e38cc5cfa459d9e8a2547ce0/output/res/layout/design_navigation_menu_item.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/design_bottom_sheet_dialog.xml",
+        "source": "/Users/DoD/.android/build-cache/e78f58cc814b68f6e38cc5cfa459d9e8a2547ce0/output/res/layout/design_bottom_sheet_dialog.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/activity_intelligibility.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/layout/activity_intelligibility.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/notification_template_media.xml",
+        "source": "/Users/DoD/.android/build-cache/f9a6ba75b15c0ee8bfbe8ec5ca08bd4af7cfcbb1/output/res/layout/notification_template_media.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/patientlist_item.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/layout/patientlist_item.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/design_menu_item_action_area.xml",
+        "source": "/Users/DoD/.android/build-cache/e78f58cc814b68f6e38cc5cfa459d9e8a2547ce0/output/res/layout/design_menu_item_action_area.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/activity_doctor_dashboard.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/layout/activity_doctor_dashboard.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_list_menu_item_checkbox.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/appointmentlist_item.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/layout/appointmentlist_item.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_tooltip.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_tooltip.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/select_dialog_item_material.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/select_dialog_item_material.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/activity_appointments.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/layout/activity_appointments.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow.xml",
+        "source": "/Users/DoD/.android/build-cache/f9a6ba75b15c0ee8bfbe8ec5ca08bd4af7cfcbb1/output/res/layout/notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/design_navigation_menu.xml",
+        "source": "/Users/DoD/.android/build-cache/e78f58cc814b68f6e38cc5cfa459d9e8a2547ce0/output/res/layout/design_navigation_menu.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_screen_content_include.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_screen_content_include.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_action_menu_layout.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_radio.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_expanded_menu_layout.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_expanded_menu_layout.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/design_layout_tab_icon.xml",
+        "source": "/Users/DoD/.android/build-cache/e78f58cc814b68f6e38cc5cfa459d9e8a2547ce0/output/res/layout/design_layout_tab_icon.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/design_bottom_navigation_item.xml",
+        "source": "/Users/DoD/.android/build-cache/e78f58cc814b68f6e38cc5cfa459d9e8a2547ce0/output/res/layout/design_bottom_navigation_item.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/app_bar_doctor_dashboard.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/layout/app_bar_doctor_dashboard.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/content_doctor_dashboard.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/layout/content_doctor_dashboard.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_search_view.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_search_view.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/design_navigation_item_subheader.xml",
+        "source": "/Users/DoD/.android/build-cache/e78f58cc814b68f6e38cc5cfa459d9e8a2547ce0/output/res/layout/design_navigation_item_subheader.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/notification_template_media_custom.xml",
+        "source": "/Users/DoD/.android/build-cache/f9a6ba75b15c0ee8bfbe8ec5ca08bd4af7cfcbb1/output/res/layout/notification_template_media_custom.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_action_bar_up_container.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_action_bar_up_container.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/activity_articulation.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/layout/activity_articulation.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/notification_template_big_media.xml",
+        "source": "/Users/DoD/.android/build-cache/f9a6ba75b15c0ee8bfbe8ec5ca08bd4af7cfcbb1/output/res/layout/notification_template_big_media.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/notification_action_tombstone.xml",
+        "source": "/Users/DoD/.android/build-cache/8df013bcd09d11da1335973d7d8c9a308208a73c/output/res/layout/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_screen_toolbar.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_screen_toolbar.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/content_patients.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/layout/content_patients.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_search_dropdown_item_icons_2line.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_dialog_title_material.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_dialog_title_material.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/activity_hypernasality.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/layout/activity_hypernasality.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/design_navigation_item_separator.xml",
+        "source": "/Users/DoD/.android/build-cache/e78f58cc814b68f6e38cc5cfa459d9e8a2547ce0/output/res/layout/design_navigation_item_separator.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/activity_patients.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/layout/activity_patients.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
+        "source": "/Users/DoD/.android/build-cache/8df013bcd09d11da1335973d7d8c9a308208a73c/output/res/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_popup_menu_header_item_layout.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_popup_menu_header_item_layout.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/notification_template_icon_group.xml",
+        "source": "/Users/DoD/.android/build-cache/8df013bcd09d11da1335973d7d8c9a308208a73c/output/res/layout/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/design_text_input_password_icon.xml",
+        "source": "/Users/DoD/.android/build-cache/e78f58cc814b68f6e38cc5cfa459d9e8a2547ce0/output/res/layout/design_text_input_password_icon.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_screen_simple.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_screen_simple.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view_list_item.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/activity_add_patient.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/layout/activity_add_patient.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/notification_media_action.xml",
+        "source": "/Users/DoD/.android/build-cache/f9a6ba75b15c0ee8bfbe8ec5ca08bd4af7cfcbb1/output/res/layout/notification_media_action.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_title_material.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_alert_dialog_title_material.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_custom.xml",
+        "source": "/Users/DoD/.android/build-cache/f9a6ba75b15c0ee8bfbe8ec5ca08bd4af7cfcbb1/output/res/layout/notification_template_big_media_custom.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/activity_profile_details.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/layout/activity_profile_details.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/app_bar_check_hypernasality.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/layout/app_bar_check_hypernasality.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/activity_forgot__password.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/layout/activity_forgot__password.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_popup_menu_item_layout.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_popup_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/notification_template_custom_big.xml",
+        "source": "/Users/DoD/.android/build-cache/8df013bcd09d11da1335973d7d8c9a308208a73c/output/res/layout/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/activity_add_appointment.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/layout/activity_add_appointment.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/content_appointments.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/layout/content_appointments.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/design_navigation_item_header.xml",
+        "source": "/Users/DoD/.android/build-cache/e78f58cc814b68f6e38cc5cfa459d9e8a2547ce0/output/res/layout/design_navigation_item_header.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/nav_header_doctor_dashboard.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/layout/nav_header_doctor_dashboard.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow_custom.xml",
+        "source": "/Users/DoD/.android/build-cache/f9a6ba75b15c0ee8bfbe8ec5ca08bd4af7cfcbb1/output/res/layout/notification_template_big_media_narrow_custom.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/notification_media_cancel_action.xml",
+        "source": "/Users/DoD/.android/build-cache/f9a6ba75b15c0ee8bfbe8ec5ca08bd4af7cfcbb1/output/res/layout/notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/activity_signup.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/layout/activity_signup.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/activity_support.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/layout/activity_support.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_action_mode_bar.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_action_menu_item_layout.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_select_dialog_material.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/design_layout_snackbar.xml",
+        "source": "/Users/DoD/.android/build-cache/e78f58cc814b68f6e38cc5cfa459d9e8a2547ce0/output/res/layout/design_layout_snackbar.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_icon.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/design_navigation_item.xml",
+        "source": "/Users/DoD/.android/build-cache/e78f58cc814b68f6e38cc5cfa459d9e8a2547ce0/output/res/layout/design_navigation_item.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_button_bar_material.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/select_dialog_singlechoice_material.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/select_dialog_singlechoice_material.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/activity_voicing_error.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/layout/activity_voicing_error.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/list_item.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/layout/list_item.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/content_forgot__password.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/layout/content_forgot__password.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/notification_action.xml",
+        "source": "/Users/DoD/.android/build-cache/8df013bcd09d11da1335973d7d8c9a308208a73c/output/res/layout/notification_action.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
+        "source": "/Users/DoD/.android/build-cache/c4908c13b427bdb2cb4f9ce1b99b366ebe31cfa3/output/res/layout/abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/design_layout_snackbar_include.xml",
+        "source": "/Users/DoD/.android/build-cache/e78f58cc814b68f6e38cc5cfa459d9e8a2547ce0/output/res/layout/design_layout_snackbar_include.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml",
+        "source": "/Users/DoD/.android/build-cache/8df013bcd09d11da1335973d7d8c9a308208a73c/output/res/layout/notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/layout/design_layout_tab_text.xml",
+        "source": "/Users/DoD/.android/build-cache/e78f58cc814b68f6e38cc5cfa459d9e8a2547ce0/output/res/layout/design_layout_tab_text.xml"
+    }
+]

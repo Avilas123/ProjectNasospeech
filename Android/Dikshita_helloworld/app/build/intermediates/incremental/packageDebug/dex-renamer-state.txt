@@ -1,0 +1,7 @@
+#Tue Jan 30 11:48:17 IST 2018
+base.0=/Users/DoD/AndroidStudioProjects/Dikshita_helloworld/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_0f90a518fc6593c5ec6e2e159bf9eb843da8497f
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=/Users/DoD/AndroidStudioProjects/Dikshita_helloworld/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_728a05570ae5038d62941a616c069c08b4b7d1e5/classes.dex
+base.1=/Users/DoD/AndroidStudioProjects/Dikshita_helloworld/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_728a05570ae5038d62941a616c069c08b4b7d1e5
+file.0=/Users/DoD/AndroidStudioProjects/Dikshita_helloworld/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_0f90a518fc6593c5ec6e2e159bf9eb843da8497f/classes.dex

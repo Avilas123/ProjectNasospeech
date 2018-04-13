@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/DoD/AndroidStudioProjects/Navigation_drawer_design/app/build/intermediates/res/merged/debug/mipmap-xxhdpi/ic_launcher_round.png",
+        "source": "/Users/DoD/AndroidStudioProjects/Navigation_drawer_design/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/DoD/AndroidStudioProjects/Navigation_drawer_design/app/build/intermediates/res/merged/debug/mipmap-xxhdpi/ic_launcher.png",
+        "source": "/Users/DoD/AndroidStudioProjects/Navigation_drawer_design/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+    }
+]

@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/menu/activity_doctor_dashboard_drawer.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/menu/activity_doctor_dashboard_drawer.xml"
+    },
+    {
+        "merged": "/Users/DoD/Downloads/ApplicationNaso/app/build/intermediates/res/merged/debug/menu/doctor_dashboard.xml",
+        "source": "/Users/DoD/Downloads/ApplicationNaso/app/src/main/res/menu/doctor_dashboard.xml"
+    }
+]

@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Users/DoD/AndroidStudioProjects/Navigation_drawer_design/app/build/intermediates/res/merged/debug/drawable-mdpi/ic_dashboard_black_24dp.png",
+        "source": "/Users/DoD/AndroidStudioProjects/Navigation_drawer_design/app/build/generated/res/pngs/debug/drawable-mdpi/ic_dashboard_black_24dp.png"
+    },
+    {
+        "merged": "/Users/DoD/AndroidStudioProjects/Navigation_drawer_design/app/build/intermediates/res/merged/debug/drawable-mdpi/ic_keyboard_backspace_black_24dp.png",
+        "source": "/Users/DoD/AndroidStudioProjects/Navigation_drawer_design/app/build/generated/res/pngs/debug/drawable-mdpi/ic_keyboard_backspace_black_24dp.png"
+    },
+    {
+        "merged": "/Users/DoD/AndroidStudioProjects/Navigation_drawer_design/app/build/intermediates/res/merged/debug/drawable-mdpi/ic_settings_black_24dp.png",
+        "source": "/Users/DoD/AndroidStudioProjects/Navigation_drawer_design/app/build/generated/res/pngs/debug/drawable-mdpi/ic_settings_black_24dp.png"
+    },
+    {
+        "merged": "/Users/DoD/AndroidStudioProjects/Navigation_drawer_design/app/build/intermediates/res/merged/debug/drawable-mdpi/ic_search_black_24dp.png",
+        "source": "/Users/DoD/AndroidStudioProjects/Navigation_drawer_design/app/build/generated/res/pngs/debug/drawable-mdpi/ic_search_black_24dp.png"
+    },
+    {
+        "merged": "/Users/DoD/AndroidStudioProjects/Navigation_drawer_design/app/build/intermediates/res/merged/debug/drawable-mdpi/ic_event_black_24dp.png",
+        "source": "/Users/DoD/AndroidStudioProjects/Navigation_drawer_design/app/build/generated/res/pngs/debug/drawable-mdpi/ic_event_black_24dp.png"
+    },
+    {
+        "merged": "/Users/DoD/AndroidStudioProjects/Navigation_drawer_design/app/build/intermediates/res/merged/debug/drawable-mdpi/ic_local_activity_black_24dp.png",
+        "source": "/Users/DoD/AndroidStudioProjects/Navigation_drawer_design/app/build/generated/res/pngs/debug/drawable-mdpi/ic_local_activity_black_24dp.png"
+    }
+]
