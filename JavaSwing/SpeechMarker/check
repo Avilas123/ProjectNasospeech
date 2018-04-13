@@ -1,0 +1,353 @@
+File /home/training_module/Voice-password/9706607258/9706607258_VP_1.wav462
+Voice Activity detection module execution is done. 
+ Input is  Fullpath of input: /home/training_module/Voice-password/9706607258/9706607258_VP_1.wav 
+ Output of module are Total No of frames : 599 No of speech frames : 462  and speech frames array
+.
+ MFCC Computation is Done 
+ In Delta Now ....  599 Limit and NNUM_FEATURES = 593
+ MFCC + Delta is done 
+ In Delta Now ....  599 Limit and NNUM_FEATURES = 593
+ MFCC + Delta + Delta is done 
+Writing the New Modified Code Mfcc Delta Delta Coefficient to a file 
+working
+
+reading means
+
+reading weights
+
+reading variance
+
+calculating zero order stats
+
+zero order stats calculated
+
+calculating first order stats
+
+first order stats calculated
+File /home/training_module/Text-dependent/9706607258/9706607258_TD1_1.wav274
+Voice Activity detection module execution is done. 
+ Input is  Fullpath of input: /home/training_module/Text-dependent/9706607258/9706607258_TD1_1.wav 
+ Output of module are Total No of frames : 399 No of speech frames : 274  and speech frames array
+.
+ MFCC Computation is Done 
+ In Delta Now ....  399 Limit and NNUM_FEATURES = 393
+ MFCC + Delta is done 
+ In Delta Now ....  399 Limit and NNUM_FEATURES = 393
+ MFCC + Delta + Delta is done 
+Writing the New Modified Code Mfcc Delta Delta Coefficient to a file 
+working
+
+reading means
+
+reading weights
+
+reading variance
+
+calculating zero order stats
+
+zero order stats calculated
+
+calculating first order stats
+
+first order stats calculated
+File /home/training_module/Text-dependent/9706607258/9706607258_TD2_1.wav286
+Voice Activity detection module execution is done. 
+ Input is  Fullpath of input: /home/training_module/Text-dependent/9706607258/9706607258_TD2_1.wav 
+ Output of module are Total No of frames : 399 No of speech frames : 286  and speech frames array
+.
+ MFCC Computation is Done 
+ In Delta Now ....  399 Limit and NNUM_FEATURES = 393
+ MFCC + Delta is done 
+ In Delta Now ....  399 Limit and NNUM_FEATURES = 393
+ MFCC + Delta + Delta is done 
+Writing the New Modified Code Mfcc Delta Delta Coefficient to a file 
+working
+
+reading means
+
+reading weights
+
+reading variance
+
+calculating zero order stats
+
+zero order stats calculated
+
+calculating first order stats
+
+first order stats calculated
+File /home/training_module/Text-dependent/9706607258/9706607258_TD3_1.wav308
+Voice Activity detection module execution is done. 
+ Input is  Fullpath of input: /home/training_module/Text-dependent/9706607258/9706607258_TD3_1.wav 
+ Output of module are Total No of frames : 399 No of speech frames : 308  and speech frames array
+.
+ MFCC Computation is Done 
+ In Delta Now ....  399 Limit and NNUM_FEATURES = 393
+ MFCC + Delta is done 
+ In Delta Now ....  399 Limit and NNUM_FEATURES = 393
+ MFCC + Delta + Delta is done 
+Writing the New Modified Code Mfcc Delta Delta Coefficient to a file 
+working
+
+reading means
+
+reading weights
+
+reading variance
+
+calculating zero order stats
+
+zero order stats calculated
+
+calculating first order stats
+
+first order stats calculated
+File /home/training_module/Voice-password/9706607258/9706607258_VP_2.wav399
+Voice Activity detection module execution is done. 
+ Input is  Fullpath of input: /home/training_module/Voice-password/9706607258/9706607258_VP_2.wav 
+ Output of module are Total No of frames : 599 No of speech frames : 399  and speech frames array
+.
+ MFCC Computation is Done 
+ In Delta Now ....  599 Limit and NNUM_FEATURES = 593
+ MFCC + Delta is done 
+ In Delta Now ....  599 Limit and NNUM_FEATURES = 593
+ MFCC + Delta + Delta is done 
+Writing the New Modified Code Mfcc Delta Delta Coefficient to a file 
+working
+
+reading means
+
+reading weights
+
+reading variance
+
+calculating zero order stats
+
+zero order stats calculated
+
+calculating first order stats
+
+first order stats calculated
+File /home/training_module/Text-dependent/9706607258/9706607258_TD1_2.wav205
+Voice Activity detection module execution is done. 
+ Input is  Fullpath of input: /home/training_module/Text-dependent/9706607258/9706607258_TD1_2.wav 
+ Output of module are Total No of frames : 399 No of speech frames : 205  and speech frames array
+.
+ MFCC Computation is Done 
+ In Delta Now ....  399 Limit and NNUM_FEATURES = 393
+ MFCC + Delta is done 
+ In Delta Now ....  399 Limit and NNUM_FEATURES = 393
+ MFCC + Delta + Delta is done 
+Writing the New Modified Code Mfcc Delta Delta Coefficient to a file 
+working
+
+reading means
+
+reading weights
+
+reading variance
+
+calculating zero order stats
+
+zero order stats calculated
+
+calculating first order stats
+
+first order stats calculated
+File /home/training_module/Text-dependent/9706607258/9706607258_TD2_2.wav192
+Voice Activity detection module execution is done. 
+ Input is  Fullpath of input: /home/training_module/Text-dependent/9706607258/9706607258_TD2_2.wav 
+ Output of module are Total No of frames : 399 No of speech frames : 192  and speech frames array
+.
+ MFCC Computation is Done 
+ In Delta Now ....  399 Limit and NNUM_FEATURES = 393
+ MFCC + Delta is done 
+ In Delta Now ....  399 Limit and NNUM_FEATURES = 393
+ MFCC + Delta + Delta is done 
+Writing the New Modified Code Mfcc Delta Delta Coefficient to a file 
+working
+
+reading means
+
+reading weights
+
+reading variance
+
+calculating zero order stats
+
+zero order stats calculated
+
+calculating first order stats
+
+first order stats calculated
+File /home/training_module/Text-dependent/9706607258/9706607258_TD3_2.wav214
+Voice Activity detection module execution is done. 
+ Input is  Fullpath of input: /home/training_module/Text-dependent/9706607258/9706607258_TD3_2.wav 
+ Output of module are Total No of frames : 399 No of speech frames : 214  and speech frames array
+.
+ MFCC Computation is Done 
+ In Delta Now ....  399 Limit and NNUM_FEATURES = 393
+ MFCC + Delta is done 
+ In Delta Now ....  399 Limit and NNUM_FEATURES = 393
+ MFCC + Delta + Delta is done 
+Writing the New Modified Code Mfcc Delta Delta Coefficient to a file 
+working
+
+reading means
+
+reading weights
+
+reading variance
+
+calculating zero order stats
+
+zero order stats calculated
+
+calculating first order stats
+
+first order stats calculated
+File /home/training_module/Voice-password/9706607258/9706607258_VP_3.wav351
+Voice Activity detection module execution is done. 
+ Input is  Fullpath of input: /home/training_module/Voice-password/9706607258/9706607258_VP_3.wav 
+ Output of module are Total No of frames : 599 No of speech frames : 351  and speech frames array
+.
+ MFCC Computation is Done 
+ In Delta Now ....  599 Limit and NNUM_FEATURES = 593
+ MFCC + Delta is done 
+ In Delta Now ....  599 Limit and NNUM_FEATURES = 593
+ MFCC + Delta + Delta is done 
+Writing the New Modified Code Mfcc Delta Delta Coefficient to a file 
+working
+
+reading means
+
+reading weights
+
+reading variance
+
+calculating zero order stats
+
+zero order stats calculated
+
+calculating first order stats
+
+first order stats calculated
+File /home/training_module/Text-dependent/9706607258/9706607258_TD1_3.wav270
+Voice Activity detection module execution is done. 
+ Input is  Fullpath of input: /home/training_module/Text-dependent/9706607258/9706607258_TD1_3.wav 
+ Output of module are Total No of frames : 399 No of speech frames : 270  and speech frames array
+.
+ MFCC Computation is Done 
+ In Delta Now ....  399 Limit and NNUM_FEATURES = 393
+ MFCC + Delta is done 
+ In Delta Now ....  399 Limit and NNUM_FEATURES = 393
+ MFCC + Delta + Delta is done 
+Writing the New Modified Code Mfcc Delta Delta Coefficient to a file 
+working
+
+reading means
+
+reading weights
+
+reading variance
+
+calculating zero order stats
+
+zero order stats calculated
+
+calculating first order stats
+
+first order stats calculated
+File /home/training_module/Text-dependent/9706607258/9706607258_TD2_3.wav234
+Voice Activity detection module execution is done. 
+ Input is  Fullpath of input: /home/training_module/Text-dependent/9706607258/9706607258_TD2_3.wav 
+ Output of module are Total No of frames : 399 No of speech frames : 234  and speech frames array
+.
+ MFCC Computation is Done 
+ In Delta Now ....  399 Limit and NNUM_FEATURES = 393
+ MFCC + Delta is done 
+ In Delta Now ....  399 Limit and NNUM_FEATURES = 393
+ MFCC + Delta + Delta is done 
+Writing the New Modified Code Mfcc Delta Delta Coefficient to a file 
+working
+
+reading means
+
+reading weights
+
+reading variance
+
+calculating zero order stats
+
+zero order stats calculated
+
+calculating first order stats
+
+first order stats calculated
+File /home/training_module/Text-dependent/9706607258/9706607258_TD3_3.wav226
+Voice Activity detection module execution is done. 
+ Input is  Fullpath of input: /home/training_module/Text-dependent/9706607258/9706607258_TD3_3.wav 
+ Output of module are Total No of frames : 399 No of speech frames : 226  and speech frames array
+.
+ MFCC Computation is Done 
+ In Delta Now ....  399 Limit and NNUM_FEATURES = 393
+ MFCC + Delta is done 
+ In Delta Now ....  399 Limit and NNUM_FEATURES = 393
+ MFCC + Delta + Delta is done 
+Writing the New Modified Code Mfcc Delta Delta Coefficient to a file 
+working
+
+reading means
+
+reading weights
+
+reading variance
+
+calculating zero order stats
+
+zero order stats calculated
+
+calculating first order stats
+
+first order stats calculated
+File /home/training_module/Text-independent/9706607258/9706607258_TI.wav4332
+Voice Activity detection module execution is done. 
+ Input is  Fullpath of input: /home/training_module/Text-independent/9706607258/9706607258_TI.wav 
+ Output of module are Total No of frames : 5999 No of speech frames : 4332  and speech frames array
+.
+ MFCC Computation is Done 
+ In Delta Now ....  5999 Limit and NNUM_FEATURES = 5993
+ MFCC + Delta is done 
+ In Delta Now ....  5999 Limit and NNUM_FEATURES = 5993
+ MFCC + Delta + Delta is done 
+Writing the New Modified Code Mfcc Delta Delta Coefficient to a file 
+working
+
+reading means
+
+reading weights
+
+reading variance
+
+calculating zero order stats
+
+zero order stats calculated
+
+calculating first order stats
+
+first order stats calculated
+/home/training_module/Voice-password/9706607258/9706607258_VP_1.wav
+/home/training_module/Text-dependent/9706607258/9706607258_TD1_1.wav
+/home/training_module/Text-dependent/9706607258/9706607258_TD2_1.wav
+/home/training_module/Text-dependent/9706607258/9706607258_TD3_1.wav
+/home/training_module/Voice-password/9706607258/9706607258_VP_2.wav
+/home/training_module/Text-dependent/9706607258/9706607258_TD1_2.wav
+/home/training_module/Text-dependent/9706607258/9706607258_TD2_2.wav
+/home/training_module/Text-dependent/9706607258/9706607258_TD3_2.wav
+/home/training_module/Voice-password/9706607258/9706607258_VP_3.wav
+/home/training_module/Text-dependent/9706607258/9706607258_TD1_3.wav
+/home/training_module/Text-dependent/9706607258/9706607258_TD2_3.wav
+/home/training_module/Text-dependent/9706607258/9706607258_TD3_3.wav
+ch_wave /home/training_module/Text-independent/tmp/9706607258_TI_1455681918833.wav  /home/training_module/Text-independent/tmp/9706607258_TI_1455682425463.wav -o /home/training_module/Text-independent/tmp/tmp.wav
+src/designtemplate/object_file/mfccNStatComp_39 /home/training_module/Text-independent/9706607258/9706607258_TI.wav 9706607258 /home/training_module/Otherfiles/9706607258_strt /home/training_module/Otherfiles/9706607258_end /home/training_module/Otherfiles/9706607258_vunv /home/training_module/Otherfiles/9706607258_speech /home/training_module/Otherfiles/9706607258_avg /home/training_module/Mfcc/Text-independent/9706607258/9706607258_TI_N /home/training_module/Mfcc/Text-independent/9706607258/9706607258_TI_F /home/training_module/Mfcc/Text-independent/9706607258/9706607258_TI.mfcc
+src/designtemplate/object_file/write_F_N    39   1024  /home/training_module/Mfcc/Text-independent/9706607258/9706607258_TI_N /home/training_module/Mfcc/Text-independent/9706607258/9706607258_TI_F /home/training_module/Mfcc/Text-independent/9706607258/9706607258_TI.mat

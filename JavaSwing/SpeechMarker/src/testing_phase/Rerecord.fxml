@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="558.0" prefWidth="891.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="testing_phase.RerecordController">
+  <children>
+    <Label fx:id="complete1" layoutX="89.0" layoutY="465.0" prefHeight="25.0" prefWidth="222.0" text="Recording is completed">
+      <font>
+        <Font size="16.0" />
+      </font>
+    </Label>
+    <Button id="pause" fx:id="playRecorded" layoutX="91.0" layoutY="503.0" mnemonicParsing="false" prefHeight="42.000099999997474" prefWidth="271.0" style="&#10;-fx-background-color:#fc5d00;&#10;" text="PLAY RECORDED" textFill="WHITE">
+      <font>
+        <Font name="System Bold" size="18.0" fx:id="x4" />
+      </font>
+    </Button>
+    <Label id="AnchorPane" alignment="CENTER" disable="false" focusTraversable="false" layoutX="74.0" layoutY="158.0" prefHeight="54.0" prefWidth="202.0" rotate="0.0" style="-fx-border-radius: 100 0 0 100;&#10;-fx-border-width:2;&#10;-fx-background-color:#fc5d00;&#10;-fx-background-radius: 100 0 0 100;&#10;-fx-font-family:'Helvetica', Arial, sans-serif;&#10;-fx-font-size:18;" styleClass="mainFxmlClass" text="Mark my attendance" textAlignment="CENTER" textFill="WHITE" wrapText="false">
+      <font>
+        <Font size="20.0" />
+      </font>
+    </Label>
+    <Label id="AnchorPane" alignment="CENTER" cache="true" cacheHint="DEFAULT" layoutX="276.0" layoutY="158.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="302.0" style="-fx-background-color:#dfdfdf;" text="" textAlignment="CENTER" textFill="BLACK" wrapText="true">
+      <font>
+        <Font size="12.0" fx:id="x2" />
+      </font>
+    </Label>
+    <Label id="AnchorPane" layoutX="578.0" layoutY="158.0" prefHeight="54.0" prefWidth="238.0" style="-fx-border-radius: 0 100 100 0;&#10;-fx-background-color:#dfdfdf;&#10;-fx-background-radius: 0 100 100 0;&#10;" text="" />
+    <Label id="labelAction" layoutX="284.0" layoutY="167.0" onMouseClicked="#micCheck" prefHeight="20.999900000002526" prefWidth="70.0" text="Click here">
+      <font>
+        <Font name="System Bold" size="12.0" />
+      </font>
+      <textFill>
+        <Color blue="0.000" green="0.365" red="0.988" fx:id="x3" />
+      </textFill>
+    </Label>
+    <Label font="$x2" layoutX="582.0" layoutY="166.0" prefHeight="21.0" prefWidth="222.0001220703125" text="Approximate time to completion" />
+    <Label font="$x2" layoutX="359.0" layoutY="171.0" text="to check the microphone settings." />
+    <Label layoutX="583.0" layoutY="181.0" prefHeight="28.0" prefWidth="39.0" text="0" textFill="BLACK">
+      <font>
+        <Font size="22.0" fx:id="x5" />
+      </font>
+    </Label>
+    <Line endX="596.0" endY="-1.0" layoutX="196.0" layoutY="249.0" startX="-104.0" startY="1.0" />
+    <Button fx:id="rerecord" font="$x4" layoutX="373.0" layoutY="503.0" mnemonicParsing="false" onAction="#rerecordAudio" prefHeight="43.0" prefWidth="193.5" style="-fx-background-color: #000000;&#10;&#10;" text="RECORD AGAIN" textFill="WHITE" />
+    <Button id="next" font="$x4" layoutX="91.0" layoutY="502.0" mnemonicParsing="false" onAction="#Next" prefHeight="43.0" prefWidth="126.0" style="-fx-background-color: #292929;&#10;" text="NEXT" textFill="WHITE" />
+    <ImageView fitHeight="15.999900817871094" fitWidth="15.999900817871094" layoutX="122.0" layoutY="553.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@../designtemplate/play-16.png" />
+      </image>
+    </ImageView>
+    <Label font="$x5" layoutX="615.0" layoutY="181.0" prefHeight="24.0" prefWidth="126.0" text="Seconds" textFill="#606060" />
+    <Label graphicTextGap="4.0" layoutX="137.0" layoutY="229.0" minHeight="14.0" prefHeight="15.0" prefWidth="135.0" text="Your voice password &gt;">
+      <font>
+        <Font size="10.0" fx:id="x1" />
+      </font>
+    </Label>
+    <Line endX="-98.0" endY="45.0" layoutX="673.0" layoutY="161.0" startX="-98.0" startY="6.0" strokeMiterLimit="5.0" strokeWidth="0.6" />
+    <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="84.0" layoutY="-31.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fitHeight="58.58490211386111" fitWidth="221.78570556640625" layoutX="75.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@../designtemplate/images/IMAGE_1-01.jpg" />
+      </image>
+    </ImageView>
+    <Label fx:id="decission" layoutX="82.0" layoutY="373.0" prefHeight="40.0" prefWidth="135.0" text="Thank you!">
+      <font>
+        <Font size="18.0" />
+      </font>
+    </Label>
+    <Label fx:id="phoneNoAndName" layoutX="85.0" layoutY="406.0" prefHeight="28.0" prefWidth="426.0" text="Your Full Name and Phone number is verified.">
+      <font>
+        <Font size="15.0" />
+      </font>
+    </Label>
+    <ImageView fx:id="acceptImg" fitHeight="103.0" fitWidth="103.0" layoutX="86.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@../designtemplate/images/Accept-icon.png" />
+      </image>
+    </ImageView>
+    <Label font="$x1" graphicTextGap="4.0" layoutX="92.0" layoutY="229.0" minHeight="14.0" onMouseClicked="#toHome" prefHeight="15.0" prefWidth="43.0" text="Home &gt;" />
+    <ImageView id="acceptImg" fx:id="rejectImg" fitHeight="103.0" fitWidth="103.0" layoutX="85.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@../designtemplate/images/error.png" />
+      </image>
+    </ImageView>
+    <Button fx:id="exit" font="$x4" layoutX="227.0" layoutY="503.0" mnemonicParsing="false" onAction="#toHome" prefHeight="43.0" prefWidth="111.00009999999747" style="-fx-background-color: #292929;" text="EXIT" textFill="WHITE" />
+    <Hyperlink layoutX="713.0" layoutY="248.0" onAction="#NeedHelp" style="-fx-text-fill:#fc4d00;" text="Need help?" />
+  </children>
+</AnchorPane>

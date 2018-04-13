@@ -1,0 +1,278 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package testing_phase;
+
+import designtemplate.DesignTemplate;
+import designtemplate.TDNeedHelpController;
+import designtemplate.TINeedHelpController;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+
+/**
+ * FXML Controller class
+ *
+ * @author nazibur
+ */
+public class TiconfirmedController extends DesignTemplate implements Initializable {
+
+    /**
+     * Initializes the controller class.
+     */
+    Stage dialogStage;
+   
+     @FXML
+    Button rerecord,playRecorded;
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+        rerecord.setVisible(false);
+        playRecorded.setVisible(false);
+        
+      
+    }  
+    
+    
+    
+    public void setDialog(Stage dialogStage)
+    {
+        this.dialogStage=dialogStage;
+    }
+    
+    @FXML
+    public void toHome()
+    {
+        try {
+            FXMLLoader loader1 = new FXMLLoader();
+            loader1.setLocation(DesignTemplate.class.getResource("MainPage.fxml"));
+            AnchorPane record= (AnchorPane)loader1.load();
+            BorderPane border1=DesignTemplate.getRoot();
+            border1.setLeft(record);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    
+    @FXML
+    public void txtRerecord()
+    {
+        try 
+        {
+                
+            FXMLLoader loader2 = new FXMLLoader();        
+            loader2.setLocation(DesignTemplate.class.getResource("/testing_phase/Tirecord.fxml"));           
+            AnchorPane renext= (AnchorPane)loader2.load();                   
+            BorderPane border2=DesignTemplate.getRoot();           
+            border2.setLeft(renext); 
+            TirecordController control=loader2.getController();
+         }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    public void txtNext()
+    {
+        try 
+        {
+               FXMLLoader loader2 = new FXMLLoader();        
+               loader2.setLocation(DesignTemplate.class.getResource("/testing_phase/UserLastPage.fxml"));           
+               AnchorPane renext= (AnchorPane)loader2.load();                   
+               BorderPane border2=DesignTemplate.getRoot();           
+               border2.setLeft(renext);
+               //((Label)DesignTemplate.getRoot().lookup("#rejectLabel")).setText("Congratulation! Your claim is accepted.");
+               
+             
+              
+            
+           /* else
+            {
+                
+               
+                
+                FXMLLoader loader2 = new FXMLLoader();
+                loader2.setLocation(DesignTemplate.class.getResource("OvalPart.fxml"));
+                AnchorPane renext= (AnchorPane)loader2.load();
+                BorderPane border2=DesignTemplate.getRoot();
+                border2.setLeft(renext);
+                OvalPart_testController control=loader2.getController();
+                //control.getDP();
+            }*/
+                
+            
+         }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+         
+    @FXML
+    public void NeedHelp()
+    {
+        try {
+            FXMLLoader loader1 = new FXMLLoader();
+            loader1.setLocation(DesignTemplate.class.getResource("TINeedHelp.fxml"));
+            AnchorPane record= (AnchorPane)loader1.load();
+            Platform.setImplicitExit(false);
+            Stage stage=new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("TD help");
+            stage.initOwner(getDP().getPrimaryStage());
+            Scene scene = new Scene(record);
+            stage.setScene(scene);
+            TINeedHelpController controller=loader1.getController();
+            controller.setdialogStage(stage);
+       // stage.onCloseRequestProperty();
+            stage.showAndWait();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    
+    @FXML
+    public void loadVP()
+    {
+        try 
+        {
+             
+            FXMLLoader loader = new FXMLLoader();        
+            loader.setLocation(DesignTemplate.class.getResource("/testing_phase/OvalPart.fxml"));           
+            AnchorPane oval = (AnchorPane) loader.load();                   
+            BorderPane border=DesignTemplate.getRoot();           
+            border.setLeft(oval);           
+            OvalPart_testController controller1 =(OvalPart_testController) loader.getController();
+            //((Label)DesignTemplate.getRoot().lookup("#vptimer")).setText("pallavi");
+            
+            
+         }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+     @FXML
+    public void loadTD()
+    {
+        try 
+        {
+             
+            FXMLLoader loader = new FXMLLoader();        
+            loader.setLocation(DesignTemplate.class.getResource("/testing_phase/Td1record.fxml"));           
+            AnchorPane oval = (AnchorPane) loader.load();                   
+            BorderPane border=DesignTemplate.getRoot();           
+            border.setLeft(oval);           
+            Td1recordController controller1 =(Td1recordController) loader.getController();
+            //((Label)DesignTemplate.getRoot().lookup("#vptimer")).setText("pallavi");
+            
+            
+         }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+     @FXML
+    public void micCheck() throws IOException
+    {
+        /*
+        Thread mic=new Thread(){
+            public void run(){
+                playAudio("/home/NetBeansProjects/DesignTemplate_tmp/src/audio/please.wav");
+                try {
+                    recordWav("/home/Desktop/check.wav",6000);
+                } catch (IOException ex) {
+                    Logger.getLogger(OvalPart_testController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                playAudio("/home/Desktop/check.wav");
+                playAudio("/home/NetBeansProjects/DesignTemplate_tmp/src/audio/if_you.wav");
+            }
+        };mic.start();
+        */
+        
+        FXMLLoader loader1 = new FXMLLoader();        
+        loader1.setLocation(DesignTemplate.class.getResource("/testing_phase/MicTesting.fxml"));           
+        AnchorPane record= (AnchorPane)loader1.load();
+        Platform.setImplicitExit(false);
+        Stage stage=new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Mic Testing");
+        stage.initOwner(getDP().getPrimaryStage());
+        
+        //remove title bar
+        //stage.initStyle(StageStyle.UNDECORATED);
+        
+                
+        Scene scene = new Scene(record);
+        stage.setScene(scene);
+        MicTestingController controller=loader1.getController();
+        controller.setdialogStage(stage);
+       // stage.onCloseRequestProperty();
+        stage.showAndWait();
+        
+    }
+    
+    public String generateUserID() throws IOException
+    {
+        
+        String idFileName ="/home/scripts/id.txt";
+        String id=null;
+        int nextID=0;
+        try {
+            FileReader fileReader = new FileReader(idFileName);
+            // Always wrap FileReader in BufferedReader.
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            id = bufferedReader.readLine();
+            bufferedReader.close();
+            
+            /// increment the id
+            nextID=Integer.parseInt(id) +1;
+            System.out.println(nextID);
+            //// write this id to the file
+            FileWriter fileWriter = new FileWriter(idFileName);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(Integer.toString(nextID));
+            bufferedWriter.close();
+           
+            
+        } 
+        catch (FileNotFoundException ex) 
+        {
+            Logger.getLogger(TiconfirmedController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                    
+         return Integer.toString(nextID);
+    }
+    private void writeToEnrollList(String id) throws IOException
+    {
+        String fileName="/home/scripts/enrolledUserList.txt";
+        FileWriter fileWriter = new FileWriter(fileName,true);
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        bufferedWriter.append(getFName() + " " + getLName() + " " + getUserNumber() + " " + id +"\n");
+        bufferedWriter.close();
+    }
+}

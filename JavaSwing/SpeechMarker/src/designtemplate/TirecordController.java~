@@ -1,0 +1,291 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package designtemplate;
+
+import static designtemplate.DesignTemplate.userNumber;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+/**
+ * FXML Controller class
+ *
+ * @author nazibur
+ */
+public class TirecordController extends DesignTemplate implements Initializable {
+
+    /**
+     * Initializes the controller class.
+     */
+    
+    TiStrings tiStr;
+    Process p;
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }    
+    @FXML
+    public void txtIndependent() throws InterruptedException
+    {
+        if(usrmode)
+        {
+            try
+            {
+                FXMLLoader loader2 = new FXMLLoader();        
+                loader2.setLocation(DesignTemplate.class.getResource("Tipause.fxml"));           
+                AnchorPane renext= (AnchorPane)loader2.load();                   
+                BorderPane border2=DesignTemplate.getRoot();           
+                border2.setLeft(renext); 
+                TipauseController control=loader2.getController();
+                String str5="Ticonfirmed.fxml";
+                countDowntimer2("#tiTimeleft",30,str5,"#progress5");
+                System.out.println("Repeat"+repeat);
+                if(getrepeatLoop()==1)
+                {
+                    ((TextArea)DesignTemplate.getRoot().lookup("#txtArea2")).setText("After some time, he met Dharmabuddhi, \"My friend, we need to earn money to provide for ourselves when we grow old. Let us travel to some other kingdom to earn money. Besides, unless we travel to far-off kingdoms, we will not have any stories to tell our grand children! .\"Dharmabuddhi agreed to his plan, and took the blessings of his parents and teachers to travel to a distant kingdom.On an auspicious day, they began their journey.");
+                    System.out.println("Second iteration in text independent");
+                }
+                if(getrepeatLoop()==2)
+                {
+                    ((TextArea)DesignTemplate.getRoot().lookup("#txtArea2")).setText("The two of them made a lot of money due to Dharmabuddhi's skills and knowledge. After some time, pleased with their earnings, they planned to return home. Dharmabuddhi agreed to his plan, and took the blessings of his parents and teachers to travel to a distant kingdom.On an auspicious day, they began their journey.The two of them made a lot of money due to Dharmabuddhi's skills and knowledge. After some time, pleased with their earnings, they planned to return home.");
+                }
+                String tiTmpPath="/home/training_module/Text-independent/tmp/";
+                String OtherFilesPath="/home/training_module/Otherfiles/";
+                String pathMfcc="/home/training_module/Mfcc/Text-independent/";
+            
+                Thread thd=new Thread()
+                {
+                    public void run()
+                    {
+                        try 
+                        {
+                             miliSec=Long.toString(System.currentTimeMillis());
+                            int iter = getrepeatLoop() + 1;
+                            recordWavFile(tiTmpPath+userNumber+ "_TI_" + miliSec +  ".wav",30000);
+                 
+                        } 
+                        catch (Exception ex) 
+                        {
+                            ex.printStackTrace();
+                        }
+                    }
+                };
+                thd.start();
+            }
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            try
+            {
+                FXMLLoader loader2 = new FXMLLoader();        
+                loader2.setLocation(DesignTemplate.class.getResource("Tipause_debug.fxml"));           
+                AnchorPane renext= (AnchorPane)loader2.load();                   
+                BorderPane border2=DesignTemplate.getRoot();           
+                border2.setLeft(renext); 
+                Tipause_debugController control=loader2.getController();
+                String str5="Ticonfirmed_debug.fxml";
+                countDowntimer2("#tiTimeleft",30,str5,"#progress5");
+                System.out.println("Repeat"+repeat);
+                if(getrepeatLoop()==1)
+                    ((TextArea)DesignTemplate.getRoot().lookup("#txtArea2")).setText("He thought, If I can deprive him of all the earnings, I can have all the money for myself and live happily. After some time, he met Dharmabuddhi, \"My friend, we need to earn money to provide for ourselves when we grow old. Let us travel to some other kingdom to earn money. Besides, unless we travel to far-off kingdoms, we will not have any stories to tell our grand children! .");
+                if(getrepeatLoop()==2)
+                    ((TextArea)DesignTemplate.getRoot().lookup("#txtArea2")).setText("After some time, pleased with their earnings, they planned to return home. Dharmabuddhi agreed to his plan, and took the blessings of his parents and teachers to travel to a distant kingdom.On an auspicious day, they began their journey.The two of them made a lot of money due to Dharmabuddhi's skills and knowledge. After some time, pleased with their earnings, they planned to return home.");
+            
+                String tiTmpPath="/home/training_module/Text-independent/tmp/";
+                String OtherFilesPath="/home/training_module/Otherfiles/";
+                String pathMfcc="/home/training_module/Mfcc/Text-independent/";
+            
+                Thread thd=new Thread()
+                {
+                    public void run()
+                    {
+                        try 
+                        {
+                            miliSec=Long.toString(System.currentTimeMillis());
+                            int iter = getrepeatLoop() + 1;
+                            recordWavFile(tiTmpPath+userNumber+ "_TI_" + miliSec +  ".wav",30000);
+                       
+                            while(DesignTemplate.countDownTi==-1)
+                            {
+                                /* remove extension from the wave file*/
+                                File extn=new File("/home/training_module/Text-independent/"+userNumber+"/"+userNumber +"_TI.wav");
+                                String str1=extn.getName();
+// vp_wav=str1;//assign string name to another variable
+                                int index=str1.indexOf("_");
+                                String str=str1.substring(0,index);
+                                System.out.printf(str);
+                                /*end of */
+                             /*   p=Runtime.getRuntime().exec("python src/designtemplate/shellscripts/joinWav_extract_ivect.py"+" "+userNumber);
+                                p.waitFor();
+                                p=Runtime.getRuntime().exec("src/designtemplate/object_file/mfccNStatComp_39 "+extn+" "+str+" "+OtherFilesPath+userNumber+"_strt"+" "+OtherFilesPath+userNumber+"_end"+" "+OtherFilesPath+userNumber+"_vunv"+" "+OtherFilesPath+userNumber+"_speech"+" "+OtherFilesPath+userNumber+"_avg"+" "+pathMfcc+userNumber+"_N"+" "+pathMfcc+userNumber+"_F"+" "+pathMfcc+userNumber+"/"+userNumber+".mfcc");
+                                p.waitFor();*/
+                            }
+                        } 
+                        catch (Exception ex) 
+                        {
+                            ex.printStackTrace();
+                        }
+                    }
+                };
+                thd.start();
+            }
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    
+    @FXML
+    public void loadVP()
+    {
+        try 
+        {
+             
+            FXMLLoader loader = new FXMLLoader();        
+            loader.setLocation(DesignTemplate.class.getResource("OvalPart.fxml"));           
+            AnchorPane oval = (AnchorPane) loader.load();                   
+            BorderPane border=DesignTemplate.getRoot();           
+            border.setLeft(oval);           
+            OvalPartController controller1 =(OvalPartController) loader.getController();
+            //((Label)DesignTemplate.getRoot().lookup("#vptimer")).setText("pallavi");
+            
+            
+         }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+       @FXML
+    public void loadTD()
+    {
+        try 
+        {
+             
+            FXMLLoader loader = new FXMLLoader();        
+            loader.setLocation(DesignTemplate.class.getResource("Td1record.fxml"));           
+            AnchorPane oval = (AnchorPane) loader.load();                   
+            BorderPane border=DesignTemplate.getRoot();           
+            border.setLeft(oval);           
+            Td1recordController controller1 =(Td1recordController) loader.getController();
+            //((Label)DesignTemplate.getRoot().lookup("#vptimer")).setText("pallavi");
+            
+            
+         }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+     @FXML
+    public void micCheck() throws IOException
+    {
+       
+        if(usrmode)
+        {
+            FXMLLoader loader1 = new FXMLLoader();        
+            loader1.setLocation(DesignTemplate.class.getResource("MicTesting.fxml"));           
+            AnchorPane record= (AnchorPane)loader1.load();
+            Platform.setImplicitExit(false);
+            Stage stage=new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Mic Testing");
+            stage.initOwner(getDP().getPrimaryStage());
+        
+        //remove the title bar
+       // stage.initStyle(StageStyle.UNDECORATED);
+            
+            Scene scene = new Scene(record);
+            stage.setScene(scene);
+            MicTestingController controller=loader1.getController();
+            controller.setdialogStage(stage);
+       // stage.onCloseRequestProperty();
+            stage.showAndWait();
+        }
+        else
+        {
+            FXMLLoader loader1 = new FXMLLoader();        
+            loader1.setLocation(DesignTemplate.class.getResource("micDebugMode.fxml"));           
+            AnchorPane record= (AnchorPane)loader1.load();
+            Platform.setImplicitExit(false);
+            Stage stage=new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Mic Testing");
+            stage.initOwner(getDP().getPrimaryStage());
+        
+        //remove the title bar
+       // stage.initStyle(StageStyle.UNDECORATED);
+                
+            Scene scene = new Scene(record);
+            stage.setScene(scene);
+            micDebugModeController controller=loader1.getController();
+            controller.setdialogStage(stage);
+       // stage.onCloseRequestProperty();
+            stage.showAndWait();
+        }
+        
+    }
+    
+    @FXML
+    public void toHome()
+    {
+        try {
+            FXMLLoader loader1 = new FXMLLoader();
+            loader1.setLocation(DesignTemplate.class.getResource("MainPage.fxml"));
+            AnchorPane record= (AnchorPane)loader1.load();
+            BorderPane border1=DesignTemplate.getRoot();
+            border1.setLeft(record);
+        } catch (IOException ex) {
+            Logger.getLogger(OvalPartController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    
+    @FXML
+    public void NeedHelp()
+    {
+        try {
+            FXMLLoader loader1 = new FXMLLoader();
+            loader1.setLocation(DesignTemplate.class.getResource("TINeedHelp.fxml"));
+            AnchorPane record= (AnchorPane)loader1.load();
+            Platform.setImplicitExit(false);
+            Stage stage=new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("TD help");
+            stage.initOwner(getDP().getPrimaryStage());
+            Scene scene = new Scene(record);
+            stage.setScene(scene);
+            TINeedHelpController controller=loader1.getController();
+            controller.setdialogStage(stage);
+       // stage.onCloseRequestProperty();
+            stage.showAndWait();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+}
