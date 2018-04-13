@@ -1,0 +1,15 @@
+/*
+@media(min-width:768px) {
+  .navbar-default {
+    -webkit-transition: all .35s;
+    -moz-transition: all .35s;
+    transition: all .35s;
+    padding: 15px 0;
+      box-shadow: 0 2px 2px #ccc;
+    
+  }
+  .navbar-default.affix {
+    padding: 0;
+    
+  }
+}*/
