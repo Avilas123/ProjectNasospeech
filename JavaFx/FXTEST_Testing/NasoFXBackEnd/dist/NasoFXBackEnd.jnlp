@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="NasoFXBackEnd.jnlp">
+  <information>
+    <title>NasoFXBackEnd</title>
+    <vendor>DoD</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" java-vm-args="-Djava.security.policy=applet.policy "  href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="NasoFXBackEnd.jar" size="287193" download="eager" />
+    <jar href="lib/jlayer-1.0.1.jar" size="143624" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="NasoFXBackEnd" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="nasofx.NasoFX"  name="NasoFXBackEnd" />
+  <update check="always"/>
+</jnlp>

@@ -1,0 +1,6 @@
+
+MouseStartPosition	0.6732240781710915
+MouseEndPosition	0.6732240781710915
+StartSample-->	5385
+endSample-->
+5385
