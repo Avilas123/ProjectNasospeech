@@ -1,0 +1,109 @@
+body{
+    padding: 0;
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+   font-weight: 300;
+    color: #646464;
+}
+
+a:hover{
+  text-decoration: none!important;
+     cursor: pointer;
+}
+.nolinkcolor{
+    color: #646464!important;
+}
+.tagline{
+    font-style: italic;
+    line-height: 20px;
+    font-size: 18px;
+}
+.article-readmore{
+    margin-top: 26px;
+}
+.readmore {
+  overflow: hidden;
+    font-size: 15px;
+    line-height: 18px;
+ }
+.readmore p{
+    font-size: 15px;
+    line-height: 18px;
+}
+.readmore-toggle{
+  display: block;
+  width: 100%;
+  text-align: right;
+  clear: both;
+  height: 40px;
+  margin-top: -14px;
+}
+.carousel-control.left,.carousel-control.right{
+    background-image: none!important;
+}
+.carousel .carousel-indicators li{
+    background-color: #bcbcbc!important;
+}
+.topgappadding{
+    padding-top: 30px;
+}
+.gap{
+    margin: 4px 0 12px 0!important;
+}
+.slider .thumbnail,.team .thumbnail{
+    margin: 0!important;
+}
+.faculty .thumbnail{
+    margin-bottom: 14px!important;
+}
+.wrapper{
+    margin-top: 40px;
+}
+.wrapper .read-less{
+        float: right;
+    position: relative;
+    bottom: 20px;
+    right: 10px;
+}
+.photo,.team,.insiitem1{
+    display: flex;
+    list-style: none;
+   padding: 4px 0 0 0;
+    width: 100%;
+}
+.photo .photolist{
+    width: 25%;
+    margin-right: 8px;
+}
+.team li{
+    margin-right: 8px;
+}
+.photo li img{
+    width: 100%;
+}
+.teamrow .thumbnail{
+    margin-bottom: 0!important; 
+}
+.collaborators .thumbnail{
+    margin-bottom: 10px!important;
+}
+.collaborators{
+    display: block;
+     list-style: none;
+    padding: 4px 0 0 0!important;
+    width: 100%;
+}
+.collaborators li{
+    display: flex;
+}
+.team{
+    margin-top: 8px;
+}
+.logo{
+    width: 57px;
+    height: 57px;
+}
+.thumbnail{
+    border: none!important;
+}
+

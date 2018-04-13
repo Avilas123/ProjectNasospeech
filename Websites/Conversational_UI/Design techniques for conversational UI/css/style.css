@@ -1,0 +1,39 @@
+html, body, #page-one, #page-two, #page-three, #page-four {
+  height: auto;
+  font-family: Cambria;
+    color: #3a3a3a;
+}
+
+#page-one, 
+#page-three, #page-four {
+  padding-top: 50px;
+}
+h1 {
+/*  font-size: 3em;*/
+    font-weight: bold;
+  padding-top: 50px;
+  text-align: left;
+    color: #3a3a3a;
+}
+
+#page-one {
+  background-color: #f8ce37;
+    min-height: 80vh
+}
+
+#page-two {
+  background-color: #fff;
+      min-height: 80vh
+}
+
+#page-three {
+  background-color: #f8f9fa;
+      min-height: 35vh;
+    padding-bottom: 60px;
+}
+
+#page-four {
+  background-color: #f1f1f1;
+      min-height: 50vh;
+    padding-bottom: 60px;
+}
